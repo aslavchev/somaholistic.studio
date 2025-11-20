@@ -27,7 +27,8 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     time: "",
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    countryCode: "359"
   });
   const [errors, setErrors] = useState({
     name: "",
@@ -62,8 +63,9 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   };
 
   const validatePhone = (phone: string) => {
-    const phoneRegex = /^(\+359|0)\d{9}$/;
-    if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+    const digitsOnly = phone.replace(/\D/g, '');
+    // Accept 9 digits for Bulgarian numbers, or 10+ for international
+    if (digitsOnly.length < 9) {
       setErrors(prev => ({ ...prev, phone: t("Невалиден телефон", "Invalid phone") }));
       return false;
     }
@@ -86,13 +88,24 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       .trim();
   };
 
+  const formatPhone = (value: string) => {
+    // Remove all non-digits
+    const digits = value.replace(/\D/g, '');
+
+    // Format as XXX XXX XXX
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+    return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)}`;
+  };
+
   const handleSubmit = () => {
-    const message = `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:")}\n\n${t("Услуга:", "Service:")} ${sanitizeInput(formData.service)}\n${t("Продължителност:", "Duration:")} ${formData.duration}\n${t("Дата:", "Date:")} ${formData.date?.toLocaleDateString()}\n${t("Час:", "Time:")} ${formData.time}\n${t("Име:", "Name:")} ${sanitizeInput(formData.name)}\n${t("Email:", "Email:")} ${sanitizeInput(formData.email)}\n${t("Телефон:", "Phone:")} ${sanitizeInput(formData.phone)}`;
-    
+    const fullPhone = `+${formData.countryCode} ${formData.phone}`;
+    const message = `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:")}\n\n${t("Услуга:", "Service:")} ${sanitizeInput(formData.service)}\n${t("Продължителност:", "Duration:")} ${formData.duration}\n${t("Дата:", "Date:")} ${formData.date?.toLocaleDateString()}\n${t("Час:", "Time:")} ${formData.time}\n${t("Име:", "Name:")} ${sanitizeInput(formData.name)}\n${t("Email:", "Email:")} ${sanitizeInput(formData.email)}\n${t("Телефон:", "Phone:")} ${fullPhone}`;
+
     const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-    
-    toast.success(t("Вашата заявка е изпратена!", "Your booking request has been sent!"));
+
+    toast.success(t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation"));
     onOpenChange(false);
     setStep(1);
     setFormData({
@@ -102,15 +115,16 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       time: "",
       name: "",
       email: "",
-      phone: ""
+      phone: "",
+      countryCode: "359"
     });
   };
 
   const canProceedToStep2 = formData.service && formData.duration;
   const canProceedToStep3 = formData.date && formData.time;
-  const canSubmit = formData.name.trim().length >= 2 && 
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && 
-                    /^(\+359|0)\d{9}$/.test(formData.phone.replace(/\s/g, '')) &&
+  const canSubmit = formData.name.trim().length >= 2 &&
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+                    formData.phone.replace(/\D/g, '').length >= 9 &&
                     !errors.name && !errors.email && !errors.phone;
 
   return (
@@ -273,19 +287,36 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
             <div>
               <Label htmlFor="phone">{t("Телефон", "Phone")}</Label>
-              <div className="relative">
-                <PhoneIcon className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-                <Input
-                  id="phone"
-                  type="tel"
-                  placeholder={CONTACT.PHONE_DISPLAY}
-                  value={formData.phone}
-                  onChange={(e) => {
-                    setFormData({ ...formData, phone: e.target.value });
-                    validatePhone(e.target.value);
-                  }}
-                  className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
-                />
+              <div className="flex gap-2">
+                <Select
+                  value={formData.countryCode}
+                  onValueChange={(value) => setFormData({ ...formData, countryCode: value })}
+                >
+                  <SelectTrigger className="w-32">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="359">+359 🇧🇬</SelectItem>
+                    <SelectItem value="1">+1 🇺🇸</SelectItem>
+                    <SelectItem value="44">+44 🇬🇧</SelectItem>
+                    <SelectItem value="49">+49 🇩🇪</SelectItem>
+                  </SelectContent>
+                </Select>
+                <div className="relative flex-1">
+                  <PhoneIcon className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="888 333 424"
+                    value={formData.phone}
+                    onChange={(e) => {
+                      const formatted = formatPhone(e.target.value);
+                      setFormData({ ...formData, phone: formatted });
+                      validatePhone(`+${formData.countryCode}${formatted.replace(/\s/g, '')}`);
+                    }}
+                    className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
+                  />
+                </div>
               </div>
               {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
             </div>
@@ -317,16 +348,18 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 <p><strong>{t("Час:", "Time:")}</strong> {formData.time}</p>
                 <p><strong>{t("Име:", "Name:")}</strong> {formData.name}</p>
                 <p><strong>Email:</strong> {formData.email}</p>
-                <p><strong>{t("Телефон:", "Phone:")}</strong> {formData.phone}</p>
+                <p><strong>{t("Телефон:", "Phone:")}</strong> +{formData.countryCode} {formData.phone}</p>
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground">
-              {t(
-                "След натискане на бутона ще бъдете пренасочени към WhatsApp за финално потвърждаване на резервацията.",
-                "After clicking the button, you will be redirected to WhatsApp for final booking confirmation."
-              )}
-            </p>
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <p className="text-sm text-green-800">
+                {t(
+                  "След натискане на бутона ще бъдете пренасочени към WhatsApp за финално потвърждаване на резервацията.",
+                  "After clicking the button, you will be redirected to WhatsApp for final booking confirmation."
+                )}
+              </p>
+            </div>
 
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setStep(3)} className="flex-1">

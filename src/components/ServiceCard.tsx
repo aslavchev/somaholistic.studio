@@ -202,9 +202,8 @@ const ServiceCard = ({
           </div>
         )}
         
-        {/* Enhanced CTA Buttons - Always visible on desktop, only when expanded on mobile */}
-        {(!isMobile || isExpanded) && (
-          <div className="space-y-2">
+        {/* Enhanced CTA Buttons - Always visible */}
+        <div className="space-y-2">
             <Button 
               onClick={(e) => {
                 e.stopPropagation();
@@ -238,7 +237,6 @@ const ServiceCard = ({
               </a>
             </Button>
           </div>
-        )}
 
         {/* Expand/Collapse Toggle */}
         {hasExpandedContent && (
