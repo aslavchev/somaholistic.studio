@@ -167,21 +167,24 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-semibold text-foreground">
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto" data-testid="booking-dialog">
+        <DialogHeader data-testid="booking-dialog-header">
+          <DialogTitle className="text-2xl font-semibold text-foreground" data-testid="booking-dialog-title">
             {t("Запази час", "Book Appointment")}
           </DialogTitle>
         </DialogHeader>
 
         {/* Progress Steps */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6" data-testid="booking-step-indicator">
           {[1, 2, 3, 4].map((s) => (
             <div key={s} className="flex items-center flex-1">
-              <div className={`
-                w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold
-                ${step >= s ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}
-              `}>
+              <div
+                className={`
+                  w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold
+                  ${step >= s ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}
+                `}
+                data-testid={`booking-step-${s}`}
+              >
                 {step > s ? <CheckCircle2 className="w-5 h-5" /> : s}
               </div>
               {s < 4 && (
@@ -197,7 +200,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             <div>
               <Label htmlFor="service">{t("Изберете услуга", "Select Service")}</Label>
               <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
-                <SelectTrigger id="service">
+                <SelectTrigger id="service" data-testid="booking-service-select">
                   <SelectValue placeholder={t("Изберете услуга", "Select Service")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -213,7 +216,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             <div>
               <Label htmlFor="duration">{t("Продължителност", "Duration")}</Label>
               <Select value={formData.duration} onValueChange={(value) => setFormData({ ...formData, duration: value })}>
-                <SelectTrigger id="duration">
+                <SelectTrigger id="duration" data-testid="booking-duration-select">
                   <SelectValue placeholder={t("Изберете продължителност", "Select Duration")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -224,10 +227,11 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               </Select>
             </div>
 
-            <Button 
-              onClick={() => setStep(2)} 
+            <Button
+              onClick={() => setStep(2)}
               disabled={!canProceedToStep2}
               className="w-full"
+              data-testid="booking-step1-next"
             >
               {t("Напред", "Next")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
             </Button>
@@ -246,6 +250,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 onSelect={(date) => setFormData({ ...formData, date })}
                 disabled={(date) => date < new Date()}
                 className="rounded-md border p-3"
+                data-testid="booking-date-calendar"
               />
             </div>
 
@@ -253,7 +258,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               <Label htmlFor="time">{t("Изберете час", "Select Time")}</Label>
               {availableTimeSlots.length > 0 ? (
                 <Select value={formData.time} onValueChange={(value) => setFormData({ ...formData, time: value })}>
-                  <SelectTrigger id="time">
+                  <SelectTrigger id="time" data-testid="booking-time-select">
                     <SelectValue placeholder={t("Изберете час", "Select Time")} />
                   </SelectTrigger>
                   <SelectContent>
@@ -268,7 +273,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   </SelectContent>
                 </Select>
               ) : (
-                <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+                <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800" data-testid="booking-time-warning">
                   <p className="font-semibold">{t("Няма налични часове за днес", "No available times today")}</p>
                   <p className="mt-1 text-amber-700">
                     {t(
@@ -289,13 +294,14 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             </div>
 
             <div className="flex gap-2">
-              <Button variant="outline" onClick={() => setStep(1)} className="flex-1">
+              <Button variant="outline" onClick={() => setStep(1)} className="flex-1" data-testid="booking-step2-back">
                 <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back")}
               </Button>
-              <Button 
-                onClick={() => setStep(3)} 
+              <Button
+                onClick={() => setStep(3)}
                 disabled={!canProceedToStep3}
                 className="flex-1"
+                data-testid="booking-step2-next"
               >
                 {t("Напред", "Next")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
@@ -319,9 +325,10 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                     validateName(e.target.value);
                   }}
                   className={`pl-10 ${errors.name ? 'border-red-500' : ''}`}
+                  data-testid="booking-name-input"
                 />
               </div>
-              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+              {errors.name && <p className="text-red-500 text-sm mt-1" data-testid="booking-name-error">{errors.name}</p>}
             </div>
 
             <div>
@@ -338,9 +345,10 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                     validateEmail(e.target.value);
                   }}
                   className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
+                  data-testid="booking-email-input"
                 />
               </div>
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              {errors.email && <p className="text-red-500 text-sm mt-1" data-testid="booking-email-error">{errors.email}</p>}
             </div>
 
             <div>
@@ -350,7 +358,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   value={formData.countryCode}
                   onValueChange={(value) => setFormData({ ...formData, countryCode: value })}
                 >
-                  <SelectTrigger className="w-32">
+                  <SelectTrigger className="w-32" data-testid="booking-country-select">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="max-h-[300px]">
@@ -393,20 +401,22 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                       validatePhone(`+${formData.countryCode}${formatted.replace(/\s/g, '')}`);
                     }}
                     className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
+                    data-testid="booking-phone-input"
                   />
                 </div>
               </div>
-              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+              {errors.phone && <p className="text-red-500 text-sm mt-1" data-testid="booking-phone-error">{errors.phone}</p>}
             </div>
 
             <div className="flex gap-2">
-              <Button variant="outline" onClick={() => setStep(2)} className="flex-1">
+              <Button variant="outline" onClick={() => setStep(2)} className="flex-1" data-testid="booking-step3-back">
                 <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back")}
               </Button>
-              <Button 
-                onClick={() => setStep(4)} 
+              <Button
+                onClick={() => setStep(4)}
                 disabled={!canSubmit}
                 className="flex-1"
+                data-testid="booking-step3-next"
               >
                 {t("Напред", "Next")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
@@ -417,20 +427,20 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         {/* Step 4: Confirmation */}
         {step === 4 && (
           <div className="space-y-4">
-            <div className="bg-muted p-4 rounded-lg space-y-3">
+            <div className="bg-muted p-4 rounded-lg space-y-3" data-testid="booking-summary">
               <h3 className="font-semibold text-foreground">{t("Потвърдете вашата резервация", "Confirm Your Booking")}</h3>
               <div className="space-y-2 text-sm">
-                <p><strong>{t("Услуга:", "Service:")}</strong> {services.find(s => s.value === formData.service)?.label}</p>
-                <p><strong>{t("Продължителност:", "Duration:")}</strong> {formData.duration} {t("минути", "minutes")}</p>
-                <p><strong>{t("Дата:", "Date:")}</strong> {formData.date?.toLocaleDateString()}</p>
-                <p><strong>{t("Час:", "Time:")}</strong> {formData.time}</p>
-                <p><strong>{t("Име:", "Name:")}</strong> {formData.name}</p>
-                <p><strong>Email:</strong> {formData.email}</p>
-                <p><strong>{t("Телефон:", "Phone:")}</strong> +{formData.countryCode} {formData.phone}</p>
+                <p data-testid="booking-summary-service"><strong>{t("Услуга:", "Service:")}</strong> {services.find(s => s.value === formData.service)?.label}</p>
+                <p data-testid="booking-summary-duration"><strong>{t("Продължителност:", "Duration:")}</strong> {formData.duration} {t("минути", "minutes")}</p>
+                <p data-testid="booking-summary-date"><strong>{t("Дата:", "Date:")}</strong> {formData.date?.toLocaleDateString()}</p>
+                <p data-testid="booking-summary-time"><strong>{t("Час:", "Time:")}</strong> {formData.time}</p>
+                <p data-testid="booking-summary-name"><strong>{t("Име:", "Name:")}</strong> {formData.name}</p>
+                <p data-testid="booking-summary-email"><strong>Email:</strong> {formData.email}</p>
+                <p data-testid="booking-summary-phone"><strong>{t("Телефон:", "Phone:")}</strong> +{formData.countryCode} {formData.phone}</p>
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2" data-testid="booking-info-box">
               <p className="text-sm font-semibold text-blue-900">
                 {t("📱 Как работи потвърждението?", "📱 How does confirmation work?")}
               </p>
@@ -448,10 +458,10 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             </div>
 
             <div className="flex gap-2">
-              <Button variant="outline" onClick={() => setStep(3)} className="flex-1" disabled={isSubmitting}>
+              <Button variant="outline" onClick={() => setStep(3)} className="flex-1" disabled={isSubmitting} data-testid="booking-step4-back">
                 <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back")}
               </Button>
-              <Button onClick={handleSubmit} disabled={isSubmitting} className="flex-1 bg-primary">
+              <Button onClick={handleSubmit} disabled={isSubmitting} className="flex-1 bg-primary" data-testid="booking-submit-button">
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />

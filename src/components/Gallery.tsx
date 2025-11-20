@@ -44,7 +44,7 @@ const Gallery = () => {
   }, [selectedImage]);
 
   return (
-    <section className="py-16 md:py-24 bg-background" id="gallery">
+    <section className="py-16 md:py-24 bg-background" id="gallery" data-testid="gallery-section">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
@@ -60,10 +60,11 @@ const Gallery = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
           {images.map((image, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer"
               onClick={() => setSelectedImage(index)}
+              data-testid={`gallery-image-${index + 1}`}
             >
               {!loadedImages[index] && (
                 <Skeleton className="absolute inset-0 w-full h-full" />
@@ -87,13 +88,14 @@ const Gallery = () => {
         </div>
 
         <Dialog open={selectedImage !== null} onOpenChange={() => setSelectedImage(null)}>
-          <DialogContent className="max-w-4xl p-2">
+          <DialogContent className="max-w-4xl p-2" data-testid="gallery-lightbox">
             {selectedImage !== null && (
               <div className="relative">
                 <button
                   onClick={goToPrevious}
                   className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
                   aria-label="Previous image"
+                  data-testid="gallery-prev-button"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
@@ -102,17 +104,19 @@ const Gallery = () => {
                   src={images[selectedImage].src}
                   alt={images[selectedImage].alt}
                   className="w-full h-auto rounded-lg"
+                  data-testid="gallery-lightbox-image"
                 />
 
                 <button
                   onClick={goToNext}
                   className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
                   aria-label="Next image"
+                  data-testid="gallery-next-button"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
 
-                <p className="text-center mt-2 text-sm text-muted-foreground">
+                <p className="text-center mt-2 text-sm text-muted-foreground" data-testid="gallery-counter">
                   {selectedImage + 1} / {images.length}
                 </p>
               </div>

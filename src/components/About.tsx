@@ -6,11 +6,11 @@ const About = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 md:py-24 bg-background" id="about">
+    <section className="py-16 md:py-24 bg-background" id="about" data-testid="about-section">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
+        <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="about-heading">
           {t("За", "About")} <span className="font-bold text-primary">{t("терапевта", "the Therapist")}</span>
         </h2>
         <p className="text-muted-foreground text-lg leading-relaxed">
@@ -28,11 +28,12 @@ const About = () => {
               src={wellnessAccessories}
               alt={t("Терапевт в SOMA STUDIO", "Therapist at SOMA STUDIO")}
               className="w-full h-full object-cover"
+              data-testid="about-image"
             />
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4" data-testid="about-bio">
           <h3 className="text-2xl font-semibold text-foreground">
             {t("За мен", "About Me")}
           </h3>
@@ -52,7 +53,7 @@ const About = () => {
       </div>
 
       <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center p-6 rounded-lg bg-accent/50">
+            <div className="text-center p-6 rounded-lg bg-accent/50" data-testid="about-skills-certified">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-primary" aria-hidden="true" />
               </div>
@@ -67,7 +68,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-lg bg-accent/50">
+            <div className="text-center p-6 rounded-lg bg-accent/50" data-testid="about-skills-individual">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-primary" aria-hidden="true" />
               </div>
@@ -82,7 +83,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-lg bg-accent/50">
+            <div className="text-center p-6 rounded-lg bg-accent/50" data-testid="about-skills-holistic">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="w-8 h-8 text-primary" aria-hidden="true" />
               </div>

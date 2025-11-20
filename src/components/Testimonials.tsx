@@ -70,7 +70,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-wellness-cream">
+    <section className="py-16 md:py-24 bg-wellness-cream" data-testid="testimonials-section">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
@@ -88,7 +88,7 @@ const Testimonials = () => {
           <div className="flex gap-6">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="flex-[0_0_100%] md:flex-[0_0_33.33%] min-w-0">
-                <Card className="border-0 shadow-lg h-full">
+                <Card className="border-0 shadow-lg h-full" data-testid={`testimonial-card-${index + 1}`}>
                   <CardContent className="p-6">
                     <div className="flex gap-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
@@ -121,6 +121,7 @@ const Testimonials = () => {
               }`}
               onClick={() => emblaApi?.scrollTo(index)}
               aria-label={`Go to testimonial ${index + 1}`}
+              data-testid={`testimonial-nav-dot-${index + 1}`}
             />
           ))}
         </div>
@@ -132,19 +133,20 @@ const Testimonials = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2 hover:shadow-lg transition-shadow"
+            data-testid="testimonial-trust-badge-google"
           >
             <Star className="w-5 h-5 text-primary" aria-hidden="true" />
             <span className="font-semibold text-foreground">
               {t("5.0 в Google Maps", "5.0 on Google Maps")}
             </span>
           </a>
-          <div className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2">
+          <div className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2" data-testid="testimonial-trust-badge-top">
             <span className="text-xl">🏆</span>
             <span className="font-semibold text-foreground">
               {t("Топ терапевт София 2024", "Top Therapist Sofia 2024")}
             </span>
           </div>
-          <div className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2">
+          <div className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2" data-testid="testimonial-trust-badge-cert">
             <span className="text-xl">✓</span>
             <span className="font-semibold text-foreground">
               {t("Сертифициран специалист", "Certified Specialist")}
