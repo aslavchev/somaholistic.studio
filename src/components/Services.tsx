@@ -13,6 +13,7 @@ const Services = () => {
   const { t } = useLanguage();
 
   const services = [
+    // 1. SOMA Wellness Ritual
     {
       title: t("Ритуал за благоденствие", "SOMA Wellness Ritual"),
       description: t(
@@ -29,6 +30,52 @@ const Services = () => {
       featured: true,
       category: 'signature' as const
     },
+    // 2. Phytotherapy Consultation
+    {
+      title: t("Фитотерапевтична консултация", "Phytotherapy Consultation"),
+      description: t(
+        "Индивидуална консултация, насочена към постигане на баланс и хармония чрез силата на лечебните растения. По време на срещата ще изследваме твоето състояние в дълбочина и ще изготвим персонализиран фитотерапевтичен план с натурални средства – билкови тинктури, чайове, масла и други природни формули.",
+        "Individual consultation aimed at achieving balance and harmony through the power of medicinal plants. During the meeting, we will examine your condition in depth and prepare a personalized phytotherapy plan with natural remedies – herbal tinctures, teas, oils and other natural formulas."
+      ),
+      benefits: [
+        t("Укрепване на имунната система", "Strengthening the immune system"),
+        t("Справяне със стрес, тревожност и емоционален дисбаланс", "Coping with stress, anxiety and emotional imbalance"),
+        t("Хормонален баланс", "Hormonal balance"),
+        t("Детоксикация и общо възстановяване на организма", "Detoxification and general recovery of the body")
+      ],
+      suitableFor: [
+        t("Конкретни здравословни оплаквания", "Specific health complaints"),
+        t("Превантивна грижа", "Preventive care")
+      ],
+      price60: t("80лв", "80 BGN"),
+      duration60: t("60 минути", "60 minutes"),
+      image: energyTherapy,
+      category: 'coaching' as const
+    },
+    // 3. Wellness Coaching Consultation
+    {
+      title: t("Wellness Coaching консултация", "Wellness Coaching Consultation"),
+      description: t(
+        "Усещаш ли, че е време за промяна, но не знаеш откъде да започнеш? Тази консултация е твоето пространство за осъзнаване, подредба и нов фокус. Заедно ще изследваме начина ти на живот, емоционалните ти нужди, вътрешните блокажи и ще създадем ясен и устойчив план за баланс и благополучие.",
+        "Do you feel it is time for a change, but you don't know where to start? This consultation is your space for awareness, arrangement and a new focus. Together we will explore your lifestyle, your emotional needs, your internal blockages and create a clear and sustainable plan for balance and well-being."
+      ),
+      benefits: [
+        t("Повече енергия и жизненост", "More energy and vitality"),
+        t("Лична яснота и посока", "Personal clarity and direction"),
+        t("Освобождаване от стрес и напрежение", "Relief from stress and tension"),
+        t("Здравословни навици, които са реалистични и устойчиви", "Healthy habits that are realistic and sustainable"),
+        t("По-дълбока връзка със себе си", "A deeper connection with yourself")
+      ],
+      suitableFor: [
+        t("Търсещи промяна", "Seeking change"),
+        t("Баланс и благополучие", "Balance and well-being")
+      ],
+      price60: t("90лв", "90 BGN"),
+      duration60: t("60 минути", "60 minutes"),
+      image: wellnessAccessories,
+      category: 'coaching' as const
+    },
+    // 4. Classic Massage
     {
       title: t("Класически масаж", "Classic Massage"),
       description: t(
@@ -49,6 +96,7 @@ const Services = () => {
       image: classicalMassage,
       category: 'massage' as const
     },
+    // 5. Partial Back Massage
     {
       title: t("Частичен масаж на гръб", "Partial Back Massage"),
       description: t(
@@ -69,6 +117,7 @@ const Services = () => {
       image: backMassage,
       category: 'massage' as const
     },
+    // 6. Traditional Thai Massage
     {
       title: t("Традиционен Тай масаж", "Traditional Thai Massage"),
       description: t(
@@ -91,6 +140,7 @@ const Services = () => {
       image: massageTherapy,
       category: 'massage' as const
     },
+    // 7. Energy Therapy with Thai Massage Techniques
     {
       title: t("Енергийна терапия с техники от тайландски масаж", "Energy Therapy with Thai Massage Techniques"),
       description: t(
@@ -113,6 +163,7 @@ const Services = () => {
       image: energyTherapy,
       category: 'therapy' as const
     },
+    // 8. Rejuvenating Facial Therapy
     {
       title: t("Подмладяваща терапия за лице", "Rejuvenating Facial Therapy"),
       description: t(
@@ -132,49 +183,6 @@ const Services = () => {
       duration60: t("30 минути", "30 minutes"),
       image: facialMassage,
       category: 'beauty' as const
-    },
-    {
-      title: t("Фитотерапевтична консултация", "Phytotherapy Consultation"),
-      description: t(
-        "Индивидуална консултация, насочена към постигане на баланс и хармония чрез силата на лечебните растения. По време на срещата ще изследваме твоето състояние в дълбочина и ще изготвим персонализиран фитотерапевтичен план с натурални средства – билкови тинктури, чайове, масла и други природни формули.",
-        "Individual consultation aimed at achieving balance and harmony through the power of medicinal plants. During the meeting, we will examine your condition in depth and prepare a personalized phytotherapy plan with natural remedies – herbal tinctures, teas, oils and other natural formulas."
-      ),
-      benefits: [
-        t("Укрепване на имунната система", "Strengthening the immune system"),
-        t("Справяне със стрес, тревожност и емоционален дисбаланс", "Coping with stress, anxiety and emotional imbalance"),
-        t("Хормонален баланс", "Hormonal balance"),
-        t("Детоксикация и общо възстановяване на организма", "Detoxification and general recovery of the body")
-      ],
-      suitableFor: [
-        t("Конкретни здравословни оплаквания", "Specific health complaints"),
-        t("Превантивна грижа", "Preventive care")
-      ],
-      price60: t("80лв", "80 BGN"),
-      duration60: t("60 минути", "60 minutes"),
-      image: energyTherapy,
-      category: 'coaching' as const
-    },
-    {
-      title: t("Wellness Coaching консултация", "Wellness Coaching Consultation"),
-      description: t(
-        "Усещаш ли, че е време за промяна, но не знаеш откъде да започнеш? Тази консултация е твоето пространство за осъзнаване, подредба и нов фокус. Заедно ще изследваме начина ти на живот, емоционалните ти нужди, вътрешните блокажи и ще създадем ясен и устойчив план за баланс и благополучие.",
-        "Do you feel it is time for a change, but you don't know where to start? This consultation is your space for awareness, arrangement and a new focus. Together we will explore your lifestyle, your emotional needs, your internal blockages and create a clear and sustainable plan for balance and well-being."
-      ),
-      benefits: [
-        t("Повече енергия и жизненост", "More energy and vitality"),
-        t("Лична яснота и посока", "Personal clarity and direction"),
-        t("Освобождаване от стрес и напрежение", "Relief from stress and tension"),
-        t("Здравословни навици, които са реалистични и устойчиви", "Healthy habits that are realistic and sustainable"),
-        t("По-дълбока връзка със себе си", "A deeper connection with yourself")
-      ],
-      suitableFor: [
-        t("Търсещи промяна", "Seeking change"),
-        t("Баланс и благополучие", "Balance and well-being")
-      ],
-      price60: t("90лв", "90 BGN"),
-      duration60: t("60 минути", "60 minutes"),
-      image: wellnessAccessories,
-      category: 'coaching' as const
     }
   ];
 
