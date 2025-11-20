@@ -19,11 +19,11 @@ Read these files in order for full context:
 ## Project Overview
 
 **Client:** Mari - SOMA Wellness Studio
-**GitHub Repo:** https://github.com/aslavchev/feelgood-glowup-hub
-**Local Path:** D:\repositories\mari-potfolio\feelgood-glowup-hub
-**Website:** somaholistic.studio (to be deployed)
+**GitHub Repo:** https://github.com/aslavchev/somaholistic.studio
+**Local Path:** D:\repositories\mari-potfolio\somaholistic.studio
+**Website:** somaholistic.studio (deploying via GitHub Pages)
 **Tech Stack:** Vite + React + TypeScript + Tailwind CSS + shadcn/ui
-**Development:** Lovable.dev → GitHub → GitHub Pages
+**Development:** Local fixes → GitHub → GitHub Pages
 **Languages:** Bulgarian (primary) + English
 
 ---
