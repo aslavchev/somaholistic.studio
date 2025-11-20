@@ -1,4 +1,4 @@
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -9,20 +9,34 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
+const IndexContent = () => {
+  const { t } = useLanguage();
+
+  return (
+    <div className="min-h-screen">
+      <a
+        href="#services"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none"
+      >
+        {t("Към съдържанието", "Skip to content")}
+      </a>
+      <Header />
+      <Hero />
+        <About />
+        <Services />
+        <Testimonials />
+        <Gallery />
+      <Contact />
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  );
+};
+
 const Index = () => {
   return (
     <LanguageProvider>
-      <div className="min-h-screen">
-        <Header />
-        <Hero />
-        <Services />
-        <About />
-        <Testimonials />
-        <Gallery />
-        <Contact />
-        <Footer />
-        <WhatsAppButton />
-      </div>
+      <IndexContent />
     </LanguageProvider>
   );
 };

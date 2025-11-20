@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import spaHero from "@/assets/spa-hero.jpg";
 import massageTherapy from "@/assets/massage-therapy.jpg";
 import classicalMassage from "@/assets/classical-massage.jpg";
@@ -18,6 +19,29 @@ const Gallery = () => {
     { src: classicalMassage, alt: t("Класически масаж", "Classical massage") },
     { src: backMassage, alt: t("Масаж на гръб", "Back massage") }
   ];
+
+  const goToPrevious = () => {
+    setSelectedImage(prev =>
+      prev === null ? null : prev === 0 ? images.length - 1 : prev - 1
+    );
+  };
+
+  const goToNext = () => {
+    setSelectedImage(prev =>
+      prev === null ? null : prev === images.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImage === null) return;
+      if (e.key === 'ArrowLeft') goToPrevious();
+      if (e.key === 'ArrowRight') goToNext();
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage]);
 
   return (
     <section className="py-16 md:py-24 bg-background" id="gallery">
@@ -65,11 +89,33 @@ const Gallery = () => {
         <Dialog open={selectedImage !== null} onOpenChange={() => setSelectedImage(null)}>
           <DialogContent className="max-w-4xl p-2">
             {selectedImage !== null && (
-              <img
-                src={images[selectedImage].src}
-                alt={images[selectedImage].alt}
-                className="w-full h-auto rounded-lg"
-              />
+              <div className="relative">
+                <button
+                  onClick={goToPrevious}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+
+                <img
+                  src={images[selectedImage].src}
+                  alt={images[selectedImage].alt}
+                  className="w-full h-auto rounded-lg"
+                />
+
+                <button
+                  onClick={goToNext}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+
+                <p className="text-center mt-2 text-sm text-muted-foreground">
+                  {selectedImage + 1} / {images.length}
+                </p>
+              </div>
             )}
           </DialogContent>
         </Dialog>

@@ -21,16 +21,16 @@ const Header = () => {
           </div>
           
           <div className="flex items-center space-x-2">
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               className="text-primary hover:bg-accent"
               onClick={() => setLanguage(language === 'bg' ? 'en' : 'bg')}
               data-testid="header-language-button"
               aria-label={`Switch to ${language === 'bg' ? 'English' : 'Bulgarian'}`}
             >
               <Languages className="w-4 h-4" aria-hidden="true" />
-              <span className="ml-1 font-semibold">{language === 'bg' ? 'EN' : 'БГ'}</span>
+              <span className="ml-1 font-semibold">{language === 'bg' ? 'EN' : 'BG'}</span>
             </Button>
             
             <Button 

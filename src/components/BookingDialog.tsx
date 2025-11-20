@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
-import { CheckCircle2, Clock, User, Mail, Phone as PhoneIcon, ArrowLeft, ArrowRight } from "lucide-react";
+import { CheckCircle2, Clock, User, Mail, Phone as PhoneIcon, ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { toast } from "sonner";
 import { bg } from "date-fns/locale";
@@ -20,6 +20,7 @@ interface BookingDialogProps {
 const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialogProps) => {
   const { t, language } = useLanguage();
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     service: preselectedService || "",
     duration: "",
@@ -99,25 +100,30 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   };
 
   const handleSubmit = () => {
+    setIsSubmitting(true);
+
     const fullPhone = `+${formData.countryCode} ${formData.phone}`;
     const message = `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:")}\n\n${t("Услуга:", "Service:")} ${sanitizeInput(formData.service)}\n${t("Продължителност:", "Duration:")} ${formData.duration}\n${t("Дата:", "Date:")} ${formData.date?.toLocaleDateString()}\n${t("Час:", "Time:")} ${formData.time}\n${t("Име:", "Name:")} ${sanitizeInput(formData.name)}\n${t("Email:", "Email:")} ${sanitizeInput(formData.email)}\n${t("Телефон:", "Phone:")} ${fullPhone}`;
 
     const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 
-    toast.success(t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation"));
-    onOpenChange(false);
-    setStep(1);
-    setFormData({
-      service: "",
-      duration: "",
-      date: undefined,
-      time: "",
-      name: "",
-      email: "",
-      phone: "",
-      countryCode: "359"
-    });
+    setTimeout(() => {
+      toast.success(t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation"));
+      onOpenChange(false);
+      setStep(1);
+      setIsSubmitting(false);
+      setFormData({
+        service: "",
+        duration: "",
+        date: undefined,
+        time: "",
+        name: "",
+        email: "",
+        phone: "",
+        countryCode: "359"
+      });
+    }, 500);
   };
 
   const canProceedToStep2 = formData.service && formData.duration;
@@ -362,11 +368,18 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             </div>
 
             <div className="flex gap-2">
-              <Button variant="outline" onClick={() => setStep(3)} className="flex-1">
+              <Button variant="outline" onClick={() => setStep(3)} className="flex-1" disabled={isSubmitting}>
                 <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back")}
               </Button>
-              <Button onClick={handleSubmit} className="flex-1 bg-primary">
-                {t("Потвърди и изпрати", "Confirm & Send")}
+              <Button onClick={handleSubmit} disabled={isSubmitting} className="flex-1 bg-primary">
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
+                    {t("Изпращане...", "Sending...")}
+                  </>
+                ) : (
+                  t("Потвърди и изпрати", "Confirm & Send")
+                )}
               </Button>
             </div>
           </div>

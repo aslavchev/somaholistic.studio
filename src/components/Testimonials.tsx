@@ -4,13 +4,22 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { CONTACT } from "@/lib/constants";
+import { useState, useEffect } from "react";
 
 const Testimonials = () => {
   const { t } = useLanguage();
-  const [emblaRef] = useEmblaCarousel(
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [Autoplay({ delay: 5000, stopOnInteraction: true })]
   );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    });
+  }, [emblaApi]);
 
   const testimonials = [
     {
@@ -38,6 +47,24 @@ const Testimonials = () => {
       quote: t(
         "Консултацията ми помогна да разбера какво наистина се случва с тялото ми. Получих ясен план и се чувствам по-енергична от години насам.",
         "The consultation helped me understand what's really happening with my body. I got a clear plan and feel more energetic than I have in years."
+      )
+    },
+    {
+      name: t("Ивана К.", "Ivana K."),
+      service: t("Фитотерапия", "Phytotherapy"),
+      rating: 5,
+      quote: t(
+        "Билковият план напълно промени енергията ми. След месец вече нямам проблемите, с които се борих години. Благодаря за индивидуалния подход!",
+        "The herbal plan completely changed my energy. After a month, I no longer have the problems I struggled with for years. Thank you for the individual approach!"
+      )
+    },
+    {
+      name: t("Петър В.", "Petar V."),
+      service: t("Класически масаж", "Classical Massage"),
+      rating: 5,
+      quote: t(
+        "Всяка седмица идвам тук след работа. Това е моят ритуал за възстановяване. Препоръчвам на всички с офис работа.",
+        "I come here every week after work. This is my recovery ritual. I recommend it to everyone with office work."
       )
     }
   ];
@@ -80,6 +107,22 @@ const Testimonials = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Navigation Dots */}
+        <div className="flex justify-center gap-2 mb-8">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                index === selectedIndex
+                  ? 'bg-primary scale-110'
+                  : 'bg-muted hover:bg-muted-foreground/50'
+              }`}
+              onClick={() => emblaApi?.scrollTo(index)}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
         </div>
 
         {/* Trust Badges */}
