@@ -1,0 +1,93 @@
+import { Phone, Instagram, MapPin } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { CONTACT } from "@/lib/constants";
+
+const Footer = () => {
+  const { t } = useLanguage();
+
+  return (
+    <footer className="bg-primary text-primary-foreground py-12" data-testid="main-footer" role="contentinfo">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+                <span className="text-primary-foreground font-bold">S</span>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">SOMA STUDIO</h3>
+                <p className="text-xs uppercase tracking-wide opacity-80">
+                  {t("Соматични практики", "Somatic Practices")}
+                </p>
+              </div>
+            </div>
+            <p className="text-primary-foreground/80 text-sm leading-relaxed">
+              {t(
+                "Изкуството на дълбоката релаксация и холистичното възстановяване в сърцето на София.",
+                "The art of deep relaxation and holistic restoration in the heart of Sofia."
+              )}
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4">{t("Контакти", "Contact")}</h4>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center space-x-2">
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                <a 
+                  href={`tel:${CONTACT.PHONE_TEL}`}
+                  className="hover:text-primary-foreground/80 transition-colors"
+                  data-testid="footer-phone-link"
+                  aria-label={`Call ${CONTACT.PHONE_DISPLAY}`}
+                >
+                  {CONTACT.PHONE_DISPLAY}
+                </a>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Instagram className="w-4 h-4" aria-hidden="true" />
+                <a 
+                  href={`https://www.instagram.com/${CONTACT.INSTAGRAM}/`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary-foreground/80 transition-colors"
+                  data-testid="footer-instagram-link"
+                  aria-label={`Visit @${CONTACT.INSTAGRAM} on Instagram`}
+                >
+                  @{CONTACT.INSTAGRAM}
+                </a>
+              </div>
+              <div className="flex items-start space-x-2">
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <div>
+                  <p>{t(CONTACT.ADDRESS.AREA, "Manastirski Livadi Iztok")}</p>
+                  <p>{t(CONTACT.ADDRESS.STREET, "409-ta Street 13")}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4">{t("Работно време", "Working Hours")}</h4>
+            <p className="text-primary-foreground/80 text-sm">
+              {t(
+                "Студиото работи само с предварително записани часове",
+                "The studio operates by appointment only"
+              )}
+            </p>
+          </div>
+        </div>
+        
+        <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
+          <p className="text-primary-foreground/60 text-sm">
+            {t(
+              "© 2024 SOMA STUDIO. Всички права запазени.",
+              "© 2024 SOMA STUDIO. All rights reserved."
+            )}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
