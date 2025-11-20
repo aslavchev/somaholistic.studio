@@ -54,6 +54,13 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   ];
 
   const validateEmail = (email: string) => {
+    // Only allow English characters (ASCII) in email
+    const hasNonEnglish = /[^\x00-\x7F]/.test(email);
+    if (hasNonEnglish) {
+      setErrors(prev => ({ ...prev, email: t("Имейлът трябва да съдържа само английски букви", "Email must contain only English characters") }));
+      return false;
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setErrors(prev => ({ ...prev, email: t("Невалиден имейл", "Invalid email") }));
@@ -301,11 +308,31 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   <SelectTrigger className="w-32">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="max-h-[300px]">
                     <SelectItem value="359">+359 🇧🇬</SelectItem>
-                    <SelectItem value="1">+1 🇺🇸</SelectItem>
-                    <SelectItem value="44">+44 🇬🇧</SelectItem>
+                    <SelectItem value="30">+30 🇬🇷</SelectItem>
+                    <SelectItem value="40">+40 🇷🇴</SelectItem>
+                    <SelectItem value="381">+381 🇷🇸</SelectItem>
+                    <SelectItem value="389">+389 🇲🇰</SelectItem>
+                    <SelectItem value="90">+90 🇹🇷</SelectItem>
+                    <SelectItem value="33">+33 🇫🇷</SelectItem>
                     <SelectItem value="49">+49 🇩🇪</SelectItem>
+                    <SelectItem value="39">+39 🇮🇹</SelectItem>
+                    <SelectItem value="34">+34 🇪🇸</SelectItem>
+                    <SelectItem value="44">+44 🇬🇧</SelectItem>
+                    <SelectItem value="31">+31 🇳🇱</SelectItem>
+                    <SelectItem value="32">+32 🇧🇪</SelectItem>
+                    <SelectItem value="41">+41 🇨🇭</SelectItem>
+                    <SelectItem value="43">+43 🇦🇹</SelectItem>
+                    <SelectItem value="48">+48 🇵🇱</SelectItem>
+                    <SelectItem value="420">+420 🇨🇿</SelectItem>
+                    <SelectItem value="36">+36 🇭🇺</SelectItem>
+                    <SelectItem value="351">+351 🇵🇹</SelectItem>
+                    <SelectItem value="46">+46 🇸🇪</SelectItem>
+                    <SelectItem value="47">+47 🇳🇴</SelectItem>
+                    <SelectItem value="45">+45 🇩🇰</SelectItem>
+                    <SelectItem value="358">+358 🇫🇮</SelectItem>
+                    <SelectItem value="1">+1 🇺🇸</SelectItem>
                   </SelectContent>
                 </Select>
                 <div className="relative flex-1">

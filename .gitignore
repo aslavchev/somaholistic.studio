@@ -24,5 +24,5 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# Local context documentation (not for repo)
-docs/START-HERE.md
+# Documentation (all internal, keep local-only)
+docs/
