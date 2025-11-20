@@ -26,7 +26,8 @@ const Services = () => {
       price90: t("150лв", "150 BGN"),
       duration90: t("90 минути", "90 minutes"),
       image: wellnessAccessories,
-      featured: true
+      featured: true,
+      category: 'signature' as const
     },
     {
       title: t("Класически масаж", "Classic Massage"),
@@ -45,7 +46,8 @@ const Services = () => {
       ],
       price60: t("90лв", "90 BGN"),
       duration60: t("60 минути", "60 minutes"),
-      image: classicalMassage
+      image: classicalMassage,
+      category: 'massage' as const
     },
     {
       title: t("Частичен масаж на гръб", "Partial Back Massage"),
@@ -64,7 +66,8 @@ const Services = () => {
       ],
       price60: t("50лв", "50 BGN"),
       duration60: t("30 минути", "30 minutes"),
-      image: backMassage
+      image: backMassage,
+      category: 'massage' as const
     },
     {
       title: t("Традиционен Тай масаж", "Traditional Thai Massage"),
@@ -85,7 +88,8 @@ const Services = () => {
       duration60: t("60 минути", "60 minutes"),
       price90: t("130лв", "130 BGN"),
       duration90: t("90 минути", "90 minutes"),
-      image: massageTherapy
+      image: massageTherapy,
+      category: 'massage' as const
     },
     {
       title: t("Енергийна терапия с техники от тайландски масаж", "Energy Therapy with Thai Massage Techniques"),
@@ -106,7 +110,8 @@ const Services = () => {
       duration60: t("60 минути", "60 minutes"),
       price90: t("140лв", "140 BGN"),
       duration90: t("90 минути", "90 minutes"),
-      image: energyTherapy
+      image: energyTherapy,
+      category: 'therapy' as const
     },
     {
       title: t("Подмладяваща терапия за лице", "Rejuvenating Facial Therapy"),
@@ -125,7 +130,8 @@ const Services = () => {
       ],
       price60: t("50лв", "50 BGN"),
       duration60: t("30 минути", "30 minutes"),
-      image: facialMassage
+      image: facialMassage,
+      category: 'beauty' as const
     },
     {
       title: t("Фитотерапевтична консултация", "Phytotherapy Consultation"),
@@ -145,7 +151,8 @@ const Services = () => {
       ],
       price60: t("80лв", "80 BGN"),
       duration60: t("60 минути", "60 minutes"),
-      image: energyTherapy
+      image: energyTherapy,
+      category: 'coaching' as const
     },
     {
       title: t("Wellness Coaching консултация", "Wellness Coaching Consultation"),
@@ -166,7 +173,8 @@ const Services = () => {
       ],
       price60: t("90лв", "90 BGN"),
       duration60: t("60 минути", "60 minutes"),
-      image: wellnessAccessories
+      image: wellnessAccessories,
+      category: 'coaching' as const
     }
   ];
 

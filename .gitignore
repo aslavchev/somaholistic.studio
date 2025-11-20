@@ -23,3 +23,6 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Local context documentation (not for repo)
+docs/START-HERE.md

@@ -4,6 +4,7 @@ import { Clock, Phone, ChevronDown, CheckCircle2, Calendar } from "lucide-react"
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { CONTACT } from "@/lib/constants";
 import BookingDialog from "@/components/BookingDialog";
 
 interface ServiceCardProps {
@@ -17,21 +18,23 @@ interface ServiceCardProps {
   duration90?: string;
   image?: string;
   featured?: boolean;
+  category?: 'signature' | 'massage' | 'therapy' | 'beauty' | 'coaching';
   isExpanded?: boolean;
   onToggle?: () => void;
 }
 
-const ServiceCard = ({ 
-  title, 
-  description, 
+const ServiceCard = ({
+  title,
+  description,
   benefits = [],
   suitableFor = [],
-  price60, 
-  price90, 
-  duration60, 
-  duration90, 
+  price60,
+  price90,
+  duration60,
+  duration90,
   image,
   featured = false,
+  category,
   isExpanded = false,
   onToggle
 }: ServiceCardProps) => {
@@ -40,6 +43,22 @@ const ServiceCard = ({
   const [bookingOpen, setBookingOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  const categoryColors = {
+    signature: "bg-primary text-primary-foreground",
+    massage: "bg-blue-100 text-blue-800",
+    therapy: "bg-purple-100 text-purple-800",
+    beauty: "bg-pink-100 text-pink-800",
+    coaching: "bg-green-100 text-green-800"
+  };
+
+  const categoryLabels = {
+    signature: t("Авторска", "Signature"),
+    massage: t("Масаж", "Massage"),
+    therapy: t("Терапия", "Therapy"),
+    beauty: t("Красота", "Beauty"),
+    coaching: t("Коучинг", "Coaching")
+  };
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -93,15 +112,20 @@ const ServiceCard = ({
     >
       {image && (
         <div className="h-48 relative overflow-hidden">
-          <div 
-            className="h-full w-full bg-cover bg-center transition-transform duration-300 md:group-hover:scale-105" 
+          <div
+            className="h-full w-full bg-cover bg-center transition-transform duration-300 md:group-hover:scale-105"
             style={{ backgroundImage: `url(${image})` }}
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/10 transition-all duration-300" />
+          {category && (
+            <span className={`absolute top-3 right-3 px-2 py-1 text-xs font-medium rounded-full ${categoryColors[category]}`}>
+              {categoryLabels[category]}
+            </span>
+          )}
         </div>
       )}
-      
+
       <CardContent className="p-6">
         <h3 className={`
           text-xl md:text-2xl font-semibold mb-3 text-foreground
@@ -221,14 +245,14 @@ const ServiceCard = ({
               <span>{t("Запази онлайн", "Book Online")}{isHovered && !isMobile ? ' →' : ''}</span>
             </Button>
             
-            <Button 
+            <Button
               variant="outline"
               asChild
               className="w-full rounded-lg"
               onClick={(e) => isMobile && e.stopPropagation()}
             >
-              <a 
-                href="tel:0888333424" 
+              <a
+                href={`tel:${CONTACT.PHONE_TEL}`}
                 className="flex items-center justify-center space-x-2"
                 aria-label={`Call to book ${title}`}
               >
