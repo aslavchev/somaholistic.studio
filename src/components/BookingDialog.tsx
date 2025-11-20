@@ -48,10 +48,35 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     { value: "facial-massage", label: t("Подмладяващ масаж на лице", "Rejuvenating Facial Massage") }
   ];
 
-  const timeSlots = [
-    "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", 
+  const allTimeSlots = [
+    "09:00", "10:00", "11:00", "12:00", "13:00", "14:00",
     "15:00", "16:00", "17:00", "18:00", "19:00"
   ];
+
+  // Filter time slots based on 2-hour minimum booking window
+  const getAvailableTimeSlots = () => {
+    if (!formData.date) return allTimeSlots;
+
+    const now = new Date();
+    const selectedDate = new Date(formData.date);
+
+    // If selected date is not today, all slots are available
+    const isToday = selectedDate.toDateString() === now.toDateString();
+    if (!isToday) return allTimeSlots;
+
+    // For today, filter out slots within 2 hours
+    const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+
+    return allTimeSlots.filter(slot => {
+      const [hours, minutes] = slot.split(':').map(Number);
+      const slotDateTime = new Date(selectedDate);
+      slotDateTime.setHours(hours, minutes, 0, 0);
+
+      return slotDateTime > twoHoursFromNow;
+    });
+  };
+
+  const availableTimeSlots = getAvailableTimeSlots();
 
   const validateEmail = (email: string) => {
     // Only allow English characters (ASCII) in email
@@ -226,21 +251,41 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
             <div>
               <Label htmlFor="time">{t("Изберете час", "Select Time")}</Label>
-              <Select value={formData.time} onValueChange={(value) => setFormData({ ...formData, time: value })}>
-                <SelectTrigger id="time">
-                  <SelectValue placeholder={t("Изберете час", "Select Time")} />
-                </SelectTrigger>
-                <SelectContent>
-                  {timeSlots.map((time) => (
-                    <SelectItem key={time} value={time}>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4" aria-hidden="true" />
-                        {time}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {availableTimeSlots.length > 0 ? (
+                <Select value={formData.time} onValueChange={(value) => setFormData({ ...formData, time: value })}>
+                  <SelectTrigger id="time">
+                    <SelectValue placeholder={t("Изберете час", "Select Time")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableTimeSlots.map((time) => (
+                      <SelectItem key={time} value={time}>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" aria-hidden="true" />
+                          {time}
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              ) : (
+                <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+                  <p className="font-semibold">{t("Няма налични часове за днес", "No available times today")}</p>
+                  <p className="mt-1 text-amber-700">
+                    {t(
+                      "Моля, изберете друга дата. Резервациите трябва да се правят минимум 2 часа предварително.",
+                      "Please select another date. Bookings must be made at least 2 hours in advance."
+                    )}
+                  </p>
+                </div>
+              )}
+              {formData.date && new Date(formData.date).toDateString() === new Date().toDateString() && availableTimeSlots.length > 0 && (
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {t(
+                    "Показани са само часовете, които могат да бъдат резервирани минимум 2 часа предварително",
+                    "Only showing times available with 2+ hours notice"
+                  )}
+                </p>
+              )}
             </div>
 
             <div className="flex gap-2">
@@ -385,11 +430,19 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               </div>
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <p className="text-sm text-green-800">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
+              <p className="text-sm font-semibold text-blue-900">
+                {t("📱 Как работи потвърждението?", "📱 How does confirmation work?")}
+              </p>
+              <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+                <li>{t("Изпращате заявка през WhatsApp", "You send request via WhatsApp")}</li>
+                <li>{t("Мари потвърждава наличността в рамките на 2 часа", "Mari confirms availability within 2 hours")}</li>
+                <li>{t("Получавате финално потвърждение в същия чат", "You receive final confirmation in the same chat")}</li>
+              </ul>
+              <p className="text-xs text-blue-700 mt-2">
                 {t(
-                  "След натискане на бутона ще бъдете пренасочени към WhatsApp за финално потвърждаване на резервацията.",
-                  "After clicking the button, you will be redirected to WhatsApp for final booking confirmation."
+                  "💡 Съвет: Проверете WhatsApp съобщенията си след изпращане",
+                  "💡 Tip: Check your WhatsApp messages after sending"
                 )}
               </p>
             </div>

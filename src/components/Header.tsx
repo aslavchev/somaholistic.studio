@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { CONTACT } from "@/lib/constants";
 
 const Header = () => {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <header className="bg-wellness-cream border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95" data-testid="main-header" role="banner">
@@ -16,7 +16,7 @@ const Header = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide">Соматични практики</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices")}</p>
             </div>
           </div>
           
