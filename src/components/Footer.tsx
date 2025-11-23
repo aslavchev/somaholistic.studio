@@ -1,5 +1,6 @@
 import { Phone, Instagram, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import DiscoveryCallButton from "./DiscoveryCallButton";
 import { CONTACT } from "@/lib/constants";
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground py-12" data-testid="main-footer" role="contentinfo">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 rounded-full bg-primary-foreground/20 flex items-center justify-center">
@@ -74,6 +75,21 @@ const Footer = () => {
                 "The studio operates by appointment only"
               )}
             </p>
+          
+          <div>
+            <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?")}</h4>
+            <p className="text-primary-foreground/80 text-sm mb-4">
+              {t(
+                "Свържете се с нас за безплатна консултация",
+                "Contact us for a free consultation"
+              )}
+            </p>
+            <DiscoveryCallButton 
+              size="sm"
+              variant="outline" 
+              className="w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+            />
+          </div>
           </div>
         </div>
         

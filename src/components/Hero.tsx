@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingDialog from "@/components/BookingDialog";
+import DiscoveryCallButton from "@/components/DiscoveryCallButton";
 import spaHero from "@/assets/spa-hero.jpg";
 import { CONTACT } from "@/lib/constants";
 
@@ -70,6 +71,22 @@ const Hero = () => {
                   <span className="font-semibold">{t("Обади се", "Call Now")}</span>
                 </a>
               </Button>
+
+            </div>
+
+            {/* Discovery Call CTA for uncertain prospects */}
+            <div className="mt-8">
+              <p className="text-sm text-gray-300 mb-3">
+                {t(
+                  "Не сте сигурни коя услуга е подходяща за вас?",
+                  "Not sure which service is right for you?"
+                )}
+              </p>
+              <DiscoveryCallButton
+                variant="outline"
+                size="lg"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+              />
             </div>
           </div>
         </div>
