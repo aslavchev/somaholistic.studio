@@ -55,8 +55,10 @@ const Pricing = () => {
     }
   ];
 
-  // Calculate package savings
-  const averagePricePer60Min = 90; // Average price for calculations
+  // Package pricing based on averagePricePer60Min = 90 BGN
+  // This represents the average cost of most 60-minute services (Classic Massage, Wellness Coaching)
+  // When updating service prices, review package calculations to ensure discounts remain competitive
+  const averagePricePer60Min = 90;
   const package4Sessions = {
     price: 480,
     normalPrice: averagePricePer60Min * 4,

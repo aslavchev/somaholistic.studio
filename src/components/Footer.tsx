@@ -76,10 +76,14 @@ const Footer = () => {
                 "The studio operates by appointment only"
               )}
             </p>
-          
+          </div>
+
           <div>
             <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links")}</h4>
             <div className="space-y-2">
+              <Link to="/" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+                {t("Начало", "Home")}
+              </Link>
               <Link to="/pricing" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
                 {t("Цени и пакети", "Pricing & Packages")}
               </Link>

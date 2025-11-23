@@ -26,7 +26,7 @@ const GoogleReviewBadge = ({
         target="_blank"
         rel="noopener noreferrer"
         className={`inline-flex items-center gap-1 text-sm hover:opacity-80 transition-opacity ${className}`}
-        aria-label={t(`${rating} рейтинг с ${reviewCount}+ отзива в Google`, `${rating} rating with ${reviewCount}+ Google reviews`)}
+        aria-label={t(`${rating} рейтинг с ${reviewCount} отзива в Google`, `${rating} rating with ${reviewCount} Google reviews`)}
       >
         <div className="flex items-center">
           {[1, 2, 3, 4, 5].map((star) => (
@@ -49,7 +49,7 @@ const GoogleReviewBadge = ({
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors ${className}`}
-      aria-label={t(`${rating} рейтинг с ${reviewCount}+ отзива в Google`, `${rating} rating with ${reviewCount}+ Google reviews`)}
+      aria-label={t(`${rating} рейтинг с ${reviewCount} отзива в Google`, `${rating} rating with ${reviewCount} Google reviews`)}
     >
       <div className="flex items-center gap-1">
         {[1, 2, 3, 4, 5].map((star) => (

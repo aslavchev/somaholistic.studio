@@ -32,12 +32,12 @@ const Hero = () => {
         
         <div className="relative container mx-auto px-4 py-16 text-center text-white">
           <div className="max-w-4xl mx-auto">
+            {/* Google Review Badge - Above title */}
+            <div className="mb-4 flex justify-center">
+              <GoogleReviewBadge className="text-white" />
+            </div>
+
             <h1 className="text-4xl md:text-6xl font-light mb-6 leading-tight" data-testid="hero-heading">
-              {/* Google Review Badge - Above title */}
-              <div className="mb-4 flex justify-center">
-                <GoogleReviewBadge className="text-white" />
-              </div>
-              
               {t("Добре дошли в", "Welcome to")} <br />
               <span className="font-bold bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent" data-testid="studio-name">
                 SOMA STUDIO
