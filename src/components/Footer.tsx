@@ -1,6 +1,7 @@
 import { Phone, Instagram, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "./DiscoveryCallButton";
+import { Link } from "react-router-dom";
 import { CONTACT } from "@/lib/constants";
 
 const Footer = () => {
@@ -77,6 +78,16 @@ const Footer = () => {
             </p>
           
           <div>
+            <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links")}</h4>
+            <div className="space-y-2">
+              <Link to="/pricing" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+                {t("Цени и пакети", "Pricing & Packages")}
+              </Link>
+            </div>
+          </div>
+          </div>
+          
+          <div>
             <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?")}</h4>
             <p className="text-primary-foreground/80 text-sm mb-4">
               {t(
@@ -91,13 +102,12 @@ const Footer = () => {
             />
           </div>
           </div>
-        </div>
         
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-primary-foreground/60 text-sm">
             {t(
-              "© 2024 SOMA STUDIO. Всички права запазени.",
-              "© 2024 SOMA STUDIO. All rights reserved."
+              "© 2025 SOMA STUDIO. Всички права запазени.",
+              "© 2025 SOMA STUDIO. All rights reserved."
             )}
           </p>
         </div>

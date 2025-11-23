@@ -13,9 +13,10 @@ const GoogleReviewBadge = ({
 }: GoogleReviewBadgeProps) => {
   const { t } = useLanguage();
 
-  // Temporary hardcoded values - will be moved to constants
+  // TODO: These values should be updated monthly from Google Business Profile
+  // Current as of: January 2025
   const rating = "5.0";
-  const reviewCount = 15;
+  const reviewCount = 4;
   const reviewLink = CONTACT.GOOGLE_MAPS;
 
   if (variant === "compact") {
@@ -37,7 +38,7 @@ const GoogleReviewBadge = ({
           ))}
         </div>
         <span className="font-medium">{rating}</span>
-        <span className="text-muted-foreground">({reviewCount}+)</span>
+        <span className="text-muted-foreground">({reviewCount})</span>
       </a>
     );
   }
@@ -62,7 +63,7 @@ const GoogleReviewBadge = ({
       <div className="flex flex-col items-start">
         <span className="font-semibold text-sm leading-none">{rating}</span>
         <span className="text-xs text-muted-foreground">
-          {t(`${reviewCount}+ отзива`, `${reviewCount}+ reviews`)}
+          {t(`${reviewCount} отзива`, `${reviewCount} reviews`)}
         </span>
       </div>
     </a>
