@@ -1,6 +1,7 @@
 import { Phone, Instagram, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 import { CONTACT } from "@/lib/constants";
 
 const Header = () => {
@@ -10,7 +11,13 @@ const Header = () => {
     <header className="bg-wellness-cream border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95" data-testid="main-header" role="banner">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 md:space-x-4">
+            {/* Google Review Badge - Hidden on mobile, shown on tablet+ */}
+            <div className="hidden md:block">
+              <GoogleReviewBadge variant="compact" />
+            </div>
+            
+            {/* Logo */}
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">S</span>
             </div>

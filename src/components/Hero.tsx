@@ -4,6 +4,7 @@ import { Phone, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingDialog from "@/components/BookingDialog";
 import DiscoveryCallButton from "@/components/DiscoveryCallButton";
+import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 import spaHero from "@/assets/spa-hero.jpg";
 import { CONTACT } from "@/lib/constants";
 
@@ -32,6 +33,11 @@ const Hero = () => {
         <div className="relative container mx-auto px-4 py-16 text-center text-white">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-light mb-6 leading-tight" data-testid="hero-heading">
+              {/* Google Review Badge - Above title */}
+              <div className="mb-4 flex justify-center">
+                <GoogleReviewBadge className="text-white" />
+              </div>
+              
               {t("Добре дошли в", "Welcome to")} <br />
               <span className="font-bold bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent" data-testid="studio-name">
                 SOMA STUDIO
