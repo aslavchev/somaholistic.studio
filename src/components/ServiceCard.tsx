@@ -161,7 +161,7 @@ const ServiceCard = ({
               {benefits.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🌿 Какво ще получите:
+                    🌿 {t("Какво ще получите:", "What You'll Get:")}
                   </h4>
                   <ul className="space-y-3">
                     {benefits.map((benefit, index) => (
@@ -177,7 +177,7 @@ const ServiceCard = ({
               {suitableFor.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🎯 Подходящ за:
+                    🎯 {t("Подходящ за:", "Suitable For:")}
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {suitableFor.join(", ")}
@@ -192,7 +192,7 @@ const ServiceCard = ({
         {(price60 || price90) && (
           <div className="mb-6">
             <h4 className="text-base font-semibold text-primary mb-3">
-              Цени и опции:
+              {t("Цени и опции:", "Prices & Options:")}
             </h4>
             <div className="flex flex-col sm:flex-row gap-3">
               {price60 && duration60 && (
