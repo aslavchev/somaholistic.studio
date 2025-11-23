@@ -82,7 +82,7 @@ const Hero = () => {
 
             {/* Discovery Call CTA for uncertain prospects */}
             <div className="mt-8">
-              <p className="text-sm text-gray-300 mb-3">
+              <p className="text-sm text-white/90 font-medium mb-3">
                 {t(
                   "Не сте сигурни коя услуга е подходяща за вас?",
                   "Not sure which service is right for you?"
@@ -91,7 +91,7 @@ const Hero = () => {
               <DiscoveryCallButton
                 variant="outline"
                 size="lg"
-                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
+                className="bg-white/20 backdrop-blur-sm border-white/60 text-white font-semibold hover:bg-white/30 hover:border-white"
               />
             </div>
           </div>

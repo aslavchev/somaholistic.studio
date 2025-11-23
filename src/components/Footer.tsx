@@ -98,7 +98,7 @@ const Footer = () => {
             <DiscoveryCallButton 
               size="sm"
               variant="outline" 
-              className="w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              className="w-full sm:w-auto border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/20 hover:border-primary-foreground/70"
             />
           </div>
           </div>
