@@ -12,11 +12,16 @@ const Hero = () => {
   const { t } = useLanguage();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
     const img = new Image();
     img.src = spaHero;
-    img.onload = () => setImageLoaded(true);
+    img.onload = () => {
+      setImageLoaded(true);
+      // Trigger content animation after image loads
+      setTimeout(() => setContentVisible(true), 100);
+    };
   }, []);
 
   return (
@@ -33,25 +38,42 @@ const Hero = () => {
         <div className="relative container mx-auto px-4 py-16 text-center text-white">
           <div className="max-w-4xl mx-auto">
             {/* Google Review Badge - Above title */}
-            <div className="mb-4 flex justify-center">
+            <div
+              className={`mb-4 flex justify-center transition-all duration-700 ${
+                contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+              }`}
+            >
               <GoogleReviewBadge className="text-white" />
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-light mb-6 leading-tight" data-testid="hero-heading">
+            <h1
+              className={`text-4xl md:text-6xl font-light mb-6 leading-tight transition-all duration-700 delay-100 ${
+                contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              data-testid="hero-heading"
+            >
               {t("Добре дошли в", "Welcome to")} <br />
               <span className="font-bold bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent" data-testid="studio-name">
                 SOMA STUDIO
               </span>
             </h1>
-            
-            <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto leading-relaxed">
+
+            <p
+              className={`text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${
+                contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
               {t(
                 "Изкуството на дълбоката релаксация. Подарете си 90 минути блаженство от шума на ежедневието със SOMA Ритуал - холистична терапия, вдъхновена от източни традиции.",
                 "The art of deep relaxation. Gift yourself 90 minutes of bliss away from the noise of everyday life with the SOMA Ritual - holistic therapy inspired by Eastern traditions."
               )}
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+            <div
+              className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-700 delay-300 ${
+                contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
               <Button 
                 size="lg" 
                 onClick={() => setBookingOpen(true)}
@@ -81,7 +103,11 @@ const Hero = () => {
             </div>
 
             {/* Discovery Call CTA for uncertain prospects */}
-            <div className="mt-8">
+            <div
+              className={`mt-8 transition-all duration-700 delay-500 ${
+                contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
               <p className="text-sm text-white/90 font-medium mb-3">
                 {t(
                   "Не сте сигурни коя услуга е подходяща за вас?",

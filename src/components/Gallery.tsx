@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Skeleton } from "@/components/ui/skeleton";
 import Lightbox from "@/components/Lightbox";
 import spaHero from "@/assets/spa-hero.jpg";
@@ -13,6 +14,8 @@ const Gallery = () => {
   const { t } = useLanguage();
   const [loadedImages, setLoadedImages] = useState<{ [key: number]: boolean }>({});
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.3 });
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const images = [
     { src: spaHero, alt: t("SOMA Studio интериор", "SOMA Studio interior") },
@@ -38,7 +41,12 @@ const Gallery = () => {
   return (
     <section className="py-16 md:py-24 bg-background" id="gallery" data-testid="gallery-section">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div
+          ref={headerRef as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-12 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
             {t("Нашето", "Our")} <span className="font-bold text-primary">{t("пространство", "Space")}</span>
           </h2>
@@ -50,11 +58,17 @@ const Gallery = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
+        <div
+          ref={gridRef as React.RefObject<HTMLDivElement>}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 max-w-6xl mx-auto"
+        >
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer"
+              className={`relative aspect-square overflow-hidden rounded-lg group cursor-pointer transition-all duration-500 ${
+                gridVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}
+              style={{ transitionDelay: `${index * 80}ms` }}
               onClick={() => setSelectedImage(index)}
               data-testid={`gallery-image-${index + 1}`}
             >

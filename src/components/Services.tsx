@@ -2,6 +2,7 @@ import { useState } from "react";
 import ServiceCard from "./ServiceCard";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { SERVICES, CATEGORY_LABELS } from "@/data";
 import wellnessAccessories from "@/assets/wellness-accessories.jpg";
 import massageTherapy from "@/assets/massage-therapy.jpg";
@@ -23,6 +24,8 @@ const IMAGE_MAP: Record<string, string> = {
 const Services = () => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const { t, language } = useLanguage();
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   // Transform centralized data into ServiceCard props format
   const services = SERVICES.map((service) => ({
@@ -50,7 +53,12 @@ const Services = () => {
   return (
     <section className="py-16 md:py-24 bg-background" data-testid="services-section" aria-label="Services section">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div
+          ref={headerRef as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-12 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="services-heading">
             {t("Нашите", "Our")} <span className="font-bold text-primary">{t("Услуги", "Services")}</span>
           </h2>
@@ -62,14 +70,24 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div
+          ref={gridRef as React.RefObject<HTMLDivElement>}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto"
+        >
           {services.map((service, index) => (
-            <ServiceCard
+            <div
               key={index}
-              {...service}
-              isExpanded={expandedCard === index}
-              onToggle={() => handleToggle(index)}
-            />
+              className={`transition-all duration-700 ${
+                gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <ServiceCard
+                {...service}
+                isExpanded={expandedCard === index}
+                onToggle={() => handleToggle(index)}
+              />
+            </div>
           ))}
         </div>
 
