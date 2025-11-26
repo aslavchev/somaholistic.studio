@@ -4,7 +4,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
+// Code splitting: Each route is loaded only when needed
 const Index = lazy(() => import('./pages/Index'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Pricing = lazy(() => import('./pages/Pricing'));
@@ -17,7 +19,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter basename="/somaholistic.studio">
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+        <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/pricing" element={<Pricing />} />

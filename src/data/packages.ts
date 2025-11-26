@@ -4,32 +4,13 @@
  * Wellness bundle definitions and pricing calculations.
  * These packages offer discounted rates for multiple sessions.
  *
- * Last Updated: November 23, 2024
+ * Last Updated: November 26, 2024
  */
 
-import type { TranslatedString } from './services';
+import type { WellnessPackage, PackagePricing } from '@/types';
 
-// ============================================================================
-// TypeScript Interfaces
-// ============================================================================
-
-export interface WellnessPackage {
-  id: string;
-  name: TranslatedString;
-  sessions: number;
-  price: number;
-  validityMonths: number;
-  benefits: TranslatedString[];
-  featured?: boolean;
-  popular?: boolean;
-}
-
-export interface PackagePricing {
-  price: number;
-  normalPrice: number;
-  savings: number;
-  discount: number;
-}
+// Re-export types for backward compatibility
+export type { WellnessPackage, PackagePricing } from '@/types';
 
 // ============================================================================
 // Package Definitions

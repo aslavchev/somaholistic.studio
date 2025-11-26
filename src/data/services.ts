@@ -5,44 +5,13 @@
  * This file centralizes service data to prevent inconsistencies
  * between different pages (Services, Pricing, Booking).
  *
- * Last Updated: November 23, 2024
+ * Last Updated: November 26, 2024
  */
 
-// ============================================================================
-// TypeScript Interfaces
-// ============================================================================
+import type { Service, ServiceCategory, TranslatedString } from '@/types';
 
-export interface TranslatedString {
-  bg: string;
-  en: string;
-}
-
-export interface ServicePricing {
-  duration60?: {
-    minutes: number;
-    price: number;
-    label: TranslatedString;
-  };
-  duration90?: {
-    minutes: number;
-    price: number;
-    label: TranslatedString;
-  };
-}
-
-export type ServiceCategory = 'signature' | 'massage' | 'therapy' | 'beauty' | 'coaching';
-
-export interface Service {
-  id: string;
-  title: TranslatedString;
-  description: TranslatedString;
-  category: ServiceCategory;
-  pricing: ServicePricing;
-  benefits?: TranslatedString[];
-  suitableFor?: TranslatedString[];
-  featured?: boolean;
-  image?: string;
-}
+// Re-export types for backward compatibility
+export type { Service, ServiceCategory, TranslatedString, ServicePricing } from '@/types';
 
 // ============================================================================
 // Service Definitions
