@@ -2,7 +2,7 @@ import { Phone, Instagram, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "./DiscoveryCallButton";
 import { Link } from "react-router-dom";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 
 const Footer = () => {
   const { t } = useLanguage();

@@ -2,7 +2,7 @@ import { Phone, Instagram, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import GoogleReviewBadge from "@/components/GoogleReviewBadge";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();

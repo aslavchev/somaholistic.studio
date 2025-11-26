@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Instagram, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 
 const Contact = () => {
   const { t } = useLanguage();

@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 
 interface GoogleReviewBadgeProps {
   variant?: "default" | "compact";

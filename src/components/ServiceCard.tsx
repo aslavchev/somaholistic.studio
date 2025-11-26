@@ -4,7 +4,7 @@ import { Clock, Phone, ChevronDown, CheckCircle2, Calendar } from "lucide-react"
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 import BookingDialog from "@/components/BookingDialog";
 
 interface ServiceCardProps {

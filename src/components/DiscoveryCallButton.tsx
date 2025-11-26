@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 import { MessageCircle } from "lucide-react";
 
 interface DiscoveryCallButtonProps {

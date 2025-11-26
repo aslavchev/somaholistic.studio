@@ -3,75 +3,24 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DiscoveryCallButton from "@/components/DiscoveryCallButton";
 import { Check, Sparkles } from "lucide-react";
+import { SERVICES, get4SessionPricing, get6SessionPricing } from "@/data";
 
 const Pricing = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  const services = [
-    {
-      title: t("Ритуал за благоденствие", "SOMA Wellness Ritual"),
-      duration90: t("90 минути", "90 minutes"),
-      price90: 150,
-      featured: true
-    },
-    {
-      title: t("Фитотерапевтична консултация", "Phytotherapy Consultation"),
-      duration60: t("60 минути", "60 minutes"),
-      price60: 80
-    },
-    {
-      title: t("Wellness Coaching консултация", "Wellness Coaching Consultation"),
-      duration60: t("60 минути", "60 minutes"),
-      price60: 90
-    },
-    {
-      title: t("Класически масаж", "Classic Massage"),
-      duration60: t("60 минути", "60 minutes"),
-      price60: 90
-    },
-    {
-      title: t("Частичен масаж на гръб", "Partial Back Massage"),
-      duration60: t("30 минути", "30 minutes"),
-      price60: 50
-    },
-    {
-      title: t("Традиционен Тай масаж", "Traditional Thai Massage"),
-      duration60: t("60 минути", "60 minutes"),
-      price60: 100,
-      duration90: t("90 минути", "90 minutes"),
-      price90: 130
-    },
-    {
-      title: t("Енергийна терапия с техники от тайландски масаж", "Energy Therapy with Thai Massage Techniques"),
-      duration60: t("60 минути", "60 minutes"),
-      price60: 110,
-      duration90: t("90 минути", "90 minutes"),
-      price90: 140
-    },
-    {
-      title: t("Подмладяваща терапия за лице", "Rejuvenating Facial Therapy"),
-      duration60: t("30 минути", "30 minutes"),
-      price60: 50
-    }
-  ];
+  // Transform centralized services data for display
+  const services = SERVICES.map((service) => ({
+    title: service.title[language],
+    duration60: service.pricing.duration60?.label[language],
+    price60: service.pricing.duration60?.price,
+    duration90: service.pricing.duration90?.label[language],
+    price90: service.pricing.duration90?.price,
+    featured: service.featured
+  }));
 
-  // Package pricing based on averagePricePer60Min = 90 BGN
-  // This represents the average cost of most 60-minute services (Classic Massage, Wellness Coaching)
-  // When updating service prices, review package calculations to ensure discounts remain competitive
-  const averagePricePer60Min = 90;
-  const package4Sessions = {
-    price: 480,
-    normalPrice: averagePricePer60Min * 4,
-    get savings() { return this.normalPrice - this.price; },
-    get discount() { return Math.round((this.savings / this.normalPrice) * 100); }
-  };
-
-  const package6Sessions = {
-    price: 690,
-    normalPrice: averagePricePer60Min * 6,
-    get savings() { return this.normalPrice - this.price; },
-    get discount() { return Math.round((this.savings / this.normalPrice) * 100); }
-  };
+  // Get package pricing from centralized calculations
+  const package4Sessions = get4SessionPricing();
+  const package6Sessions = get6SessionPricing();
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

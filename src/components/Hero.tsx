@@ -6,7 +6,7 @@ import BookingDialog from "@/components/BookingDialog";
 import DiscoveryCallButton from "@/components/DiscoveryCallButton";
 import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 import spaHero from "@/assets/spa-hero.jpg";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 
 const Hero = () => {
   const { t } = useLanguage();

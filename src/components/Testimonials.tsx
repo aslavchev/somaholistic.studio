@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 import { useState, useEffect } from "react";
 
 const Testimonials = () => {

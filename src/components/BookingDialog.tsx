@@ -9,7 +9,7 @@ import { CheckCircle2, Clock, User, Mail, Phone as PhoneIcon, ArrowLeft, ArrowRi
 import { useLanguage } from "@/contexts/LanguageContext";
 import { toast } from "sonner";
 import { bg } from "date-fns/locale";
-import { CONTACT } from "@/lib/constants";
+import { CONTACT } from "@/data";
 
 interface BookingDialogProps {
   open: boolean;
