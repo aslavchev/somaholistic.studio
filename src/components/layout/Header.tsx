@@ -1,7 +1,7 @@
 import { Phone, Instagram, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import GoogleReviewBadge from "@/components/GoogleReviewBadge";
+import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import { CONTACT } from "@/data";
 
 const Header = () => {

@@ -1,7 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import DiscoveryCallButton from "@/components/DiscoveryCallButton";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Check, Sparkles } from "lucide-react";
 import { SERVICES, get4SessionPricing, get6SessionPricing } from "@/data";
 

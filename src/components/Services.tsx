@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ServiceCard from "./ServiceCard";
-import DiscoveryCallButton from "./DiscoveryCallButton";
+import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES, CATEGORY_LABELS } from "@/data";
 import wellnessAccessories from "@/assets/wellness-accessories.jpg";

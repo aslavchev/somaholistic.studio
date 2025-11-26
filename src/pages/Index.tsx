@@ -1,13 +1,13 @@
 import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
-import Header from "@/components/Header";
+import Header from "@/components/layout/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 const IndexContent = () => {
   const { t } = useLanguage();

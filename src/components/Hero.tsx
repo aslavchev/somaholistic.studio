@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Phone, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingDialog from "@/components/BookingDialog";
-import DiscoveryCallButton from "@/components/DiscoveryCallButton";
-import GoogleReviewBadge from "@/components/GoogleReviewBadge";
+import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
+import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import spaHero from "@/assets/spa-hero.jpg";
 import { CONTACT } from "@/data";
 

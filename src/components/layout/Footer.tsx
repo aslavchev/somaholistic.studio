@@ -1,6 +1,6 @@
 import { Phone, Instagram, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import DiscoveryCallButton from "./DiscoveryCallButton";
+import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Link } from "react-router-dom";
 import { CONTACT } from "@/data";
 
