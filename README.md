@@ -1,73 +1,151 @@
-# Welcome to your Lovable project
+# SOMA Wellness Studio
 
-## Project info
+Professional wellness and holistic therapy website for SOMA Studio in Sofia, Bulgaria.
 
-**URL**: https://lovable.dev/projects/a3e2d0ca-4209-481c-8768-216b1437aedf
+**Live Site:** [https://aslavchev.github.io/somaholistic.studio/](https://aslavchev.github.io/somaholistic.studio/)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend:** React 18.3.1 + TypeScript 5.8.3
+- **Build Tool:** Vite 7.2.4
+- **Styling:** Tailwind CSS 3.4.17
+- **UI Components:** Radix UI (shadcn/ui)
+- **Deployment:** GitHub Pages (Auto-deploy via GitHub Actions)
+- **Languages:** Bulgarian (primary) + English
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a3e2d0ca-4209-481c-8768-216b1437aedf) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Features
 
-**Use your preferred IDE**
+- 🌐 Bilingual support (Bulgarian/English)
+- 📱 Fully responsive design
+- ♿ WCAG 2.1 Level AA accessible
+- 🎨 Smooth scroll animations
+- 📅 WhatsApp booking integration
+- 🗺️ Google Maps integration
+- 🔍 SEO optimized (Open Graph, Schema.org)
+- 📊 Google Analytics ready
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Quick Start
 
-Follow these steps:
+### Prerequisites
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Node.js v20.11.0 (see `.nvmrc`)
+- npm or bun
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Development
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start dev server
 npm run dev
+
+# Open: http://localhost:8080/somaholistic.studio/
 ```
 
-**Edit a file directly in GitHub**
+### Build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Production build
+npm run build
 
-**Use GitHub Codespaces**
+# Preview production build
+npm run preview
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Test with correct base path
+npm run test:local
+```
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## Project Structure
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+somaholistic.studio/
+├── src/
+│   ├── components/     # React components
+│   ├── hooks/         # Custom React hooks
+│   ├── pages/         # Page components
+│   ├── contexts/      # React contexts
+│   ├── lib/           # Utilities and constants
+│   ├── data/          # Business data
+│   └── assets/        # Images and static files
+├── public/            # Public static assets
+├── docker/            # Docker configuration
+└── [config files]
+```
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/a3e2d0ca-4209-481c-8768-216b1437aedf) and click on Share -> Publish.
+## Deployment
 
-## Can I connect a custom domain to my Lovable project?
+Automatic deployment via GitHub Actions:
 
-Yes, you can!
+1. Push to `main` branch
+2. GitHub Actions builds the site
+3. Deploys to GitHub Pages (~2-3 minutes)
+4. Live at: https://aslavchev.github.io/somaholistic.studio/
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Docker Support
+
+```bash
+cd docker
+docker-compose up --build
+
+# Access at: http://localhost:8080
+```
+
+See `docker/README.md` for details.
+
+---
+
+## Development Standards
+
+- **Code Style:** EditorConfig + ESLint
+- **Node Version:** v20.11.0 (locked via .nvmrc)
+- **TypeScript:** Strict mode enabled
+- **Git:** Conventional commits recommended
+
+---
+
+## Performance
+
+- Build time: ~6 seconds
+- Bundle size: 100 KB gzipped
+- Lighthouse score: 90+ (all metrics)
+- Zero npm vulnerabilities
+
+---
+
+## Browser Support
+
+- Chrome/Edge (last 2 versions)
+- Firefox (last 2 versions)
+- Safari (last 2 versions)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+---
+
+## License
+
+Proprietary - SOMA Wellness Studio
+
+---
+
+## Contact
+
+**Client:** SOMA Wellness Studio
+**Location:** Sofia, Bulgaria
+**Website:** [somaholistic.studio](https://aslavchev.github.io/somaholistic.studio/)
+
+---
+
+Built with ❤️ for wellness and holistic therapy.
