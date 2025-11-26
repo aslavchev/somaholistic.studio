@@ -1,11 +1,11 @@
-import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Check, Sparkles } from "lucide-react";
 import { SERVICES, get4SessionPricing, get6SessionPricing } from "@/data";
 
-const Pricing = () => {
+const PricingContent = () => {
   const { t, language } = useLanguage();
 
   // Transform centralized services data for display
@@ -274,6 +274,14 @@ const Pricing = () => {
 
       <Footer />
     </div>
+  );
+};
+
+const Pricing = () => {
+  return (
+    <LanguageProvider>
+      <PricingContent />
+    </LanguageProvider>
   );
 };
 
