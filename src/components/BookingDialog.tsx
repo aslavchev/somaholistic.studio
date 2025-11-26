@@ -9,7 +9,17 @@ import { CheckCircle2, Clock, User, Mail, Phone as PhoneIcon, ArrowLeft, ArrowRi
 import { useLanguage } from "@/contexts/LanguageContext";
 import { toast } from "sonner";
 import { bg } from "date-fns/locale";
-import { CONTACT } from "@/data";
+import { CONTACT, SERVICES } from "@/data";
+import {
+  validateEmail,
+  validatePhone,
+  validateName,
+  sanitizeInput,
+  formatPhone,
+  getAvailableTimeSlots,
+  buildBookingMessage,
+  buildWhatsAppUrl
+} from "@/lib/utils";
 
 interface BookingDialogProps {
   open: boolean;
@@ -37,107 +47,52 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     phone: ""
   });
 
-  const services = [
-    { value: "soma-ritual", label: t("SOMA Ритуал", "SOMA Ritual") },
-    { value: "phytotherapy", label: t("Фитотерапевтична консултация", "Phytotherapy Consultation") },
-    { value: "wellness-coaching", label: t("Wellness Coaching консултация", "Wellness Coaching Consultation") },
-    { value: "classical-massage", label: t("Класически масаж", "Classical Massage") },
-    { value: "back-massage", label: t("Частичен масаж на гръб", "Partial Back Massage") },
-    { value: "thai-massage", label: t("Традиционен Тай масаж", "Traditional Thai Massage") },
-    { value: "energy-therapy", label: t("Енергийна терапия", "Energy Therapy") },
-    { value: "facial-massage", label: t("Подмладяващ масаж на лице", "Rejuvenating Facial Massage") }
-  ];
+  // Transform centralized services data for select options
+  const services = SERVICES.map(service => ({
+    value: service.id,
+    label: service.title[language]
+  }));
 
-  const allTimeSlots = [
-    "09:00", "10:00", "11:00", "12:00", "13:00", "14:00",
-    "15:00", "16:00", "17:00", "18:00", "19:00"
-  ];
+  const availableTimeSlots = getAvailableTimeSlots(formData.date);
 
-  // Filter time slots based on 2-hour minimum booking window
-  const getAvailableTimeSlots = () => {
-    if (!formData.date) return allTimeSlots;
-
-    const now = new Date();
-    const selectedDate = new Date(formData.date);
-
-    // If selected date is not today, all slots are available
-    const isToday = selectedDate.toDateString() === now.toDateString();
-    if (!isToday) return allTimeSlots;
-
-    // For today, filter out slots within 2 hours
-    const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000);
-
-    return allTimeSlots.filter(slot => {
-      const [hours, minutes] = slot.split(':').map(Number);
-      const slotDateTime = new Date(selectedDate);
-      slotDateTime.setHours(hours, minutes, 0, 0);
-
-      return slotDateTime > twoHoursFromNow;
-    });
+  // Validation helpers with error state management
+  const handleValidateEmail = (email: string) => {
+    const result = validateEmail(email, t);
+    setErrors(prev => ({ ...prev, email: result.error || "" }));
+    return result.valid;
   };
 
-  const availableTimeSlots = getAvailableTimeSlots();
-
-  const validateEmail = (email: string) => {
-    // Only allow English characters (ASCII) in email
-    const hasNonEnglish = /[^\x00-\x7F]/.test(email);
-    if (hasNonEnglish) {
-      setErrors(prev => ({ ...prev, email: t("Имейлът трябва да съдържа само английски букви", "Email must contain only English characters") }));
-      return false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setErrors(prev => ({ ...prev, email: t("Невалиден имейл", "Invalid email") }));
-      return false;
-    }
-    setErrors(prev => ({ ...prev, email: "" }));
-    return true;
+  const handleValidatePhone = (phone: string) => {
+    const result = validatePhone(phone, t);
+    setErrors(prev => ({ ...prev, phone: result.error || "" }));
+    return result.valid;
   };
 
-  const validatePhone = (phone: string) => {
-    const digitsOnly = phone.replace(/\D/g, '');
-    // Accept 9 digits for Bulgarian numbers, or 10+ for international
-    if (digitsOnly.length < 9) {
-      setErrors(prev => ({ ...prev, phone: t("Невалиден телефон", "Invalid phone") }));
-      return false;
-    }
-    setErrors(prev => ({ ...prev, phone: "" }));
-    return true;
-  };
-
-  const validateName = (name: string) => {
-    if (name.trim().length < 2) {
-      setErrors(prev => ({ ...prev, name: t("Минимум 2 символа", "Minimum 2 characters") }));
-      return false;
-    }
-    setErrors(prev => ({ ...prev, name: "" }));
-    return true;
-  };
-
-  const sanitizeInput = (input: string) => {
-    return input
-      .replace(/[<>]/g, '') // Remove HTML brackets
-      .trim();
-  };
-
-  const formatPhone = (value: string) => {
-    // Remove all non-digits
-    const digits = value.replace(/\D/g, '');
-
-    // Format as XXX XXX XXX
-    if (digits.length <= 3) return digits;
-    if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
-    return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)}`;
+  const handleValidateName = (name: string) => {
+    const result = validateName(name, t);
+    setErrors(prev => ({ ...prev, name: result.error || "" }));
+    return result.valid;
   };
 
   const handleSubmit = () => {
     setIsSubmitting(true);
 
-    const fullPhone = `+${formData.countryCode} ${formData.phone}`;
-    const message = `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:")}\n\n${t("Услуга:", "Service:")} ${sanitizeInput(formData.service)}\n${t("Продължителност:", "Duration:")} ${formData.duration}\n${t("Дата:", "Date:")} ${formData.date?.toLocaleDateString()}\n${t("Час:", "Time:")} ${formData.time}\n${t("Име:", "Name:")} ${sanitizeInput(formData.name)}\n${t("Email:", "Email:")} ${sanitizeInput(formData.email)}\n${t("Телефон:", "Phone:")} ${fullPhone}`;
+    // Get service label from centralized data
+    const serviceLabel = services.find(s => s.value === formData.service)?.label || formData.service;
 
-    const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
+    // Build message with sanitized inputs
+    const message = buildBookingMessage(
+      {
+        ...formData,
+        service: sanitizeInput(serviceLabel),
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email)
+      },
+      t
+    );
+
+    // Open WhatsApp with pre-filled message
+    const whatsappUrl = buildWhatsAppUrl(CONTACT.WHATSAPP, message);
     window.open(whatsappUrl, '_blank');
 
     setTimeout(() => {
@@ -322,7 +277,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   value={formData.name}
                   onChange={(e) => {
                     setFormData({ ...formData, name: e.target.value });
-                    validateName(e.target.value);
+                    handleValidateName(e.target.value);
                   }}
                   className={`pl-10 ${errors.name ? 'border-red-500' : ''}`}
                   data-testid="booking-name-input"
@@ -342,7 +297,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   value={formData.email}
                   onChange={(e) => {
                     setFormData({ ...formData, email: e.target.value });
-                    validateEmail(e.target.value);
+                    handleValidateEmail(e.target.value);
                   }}
                   className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
                   data-testid="booking-email-input"
@@ -398,7 +353,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                     onChange={(e) => {
                       const formatted = formatPhone(e.target.value);
                       setFormData({ ...formData, phone: formatted });
-                      validatePhone(`+${formData.countryCode}${formatted.replace(/\s/g, '')}`);
+                      handleValidatePhone(`+${formData.countryCode}${formatted.replace(/\s/g, '')}`);
                     }}
                     className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
                     data-testid="booking-phone-input"
