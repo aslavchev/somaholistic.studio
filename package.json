@@ -9,7 +9,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:local": "node test-server.cjs"
+    "test:local": "node scripts/test-server.cjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
