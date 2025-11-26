@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import Lightbox from "@/components/Lightbox";
 import spaHero from "@/assets/spa-hero.jpg";
 import massageTherapy from "@/assets/massage-therapy.jpg";
 import classicalMassage from "@/assets/classical-massage.jpg";
 import backMassage from "@/assets/back-massage.jpg";
+import energyTherapy from "@/assets/energy-therapy.jpg";
+import facialMassage from "@/assets/facial-massage-new.jpg";
 
 const Gallery = () => {
   const { t } = useLanguage();
@@ -17,7 +18,9 @@ const Gallery = () => {
     { src: spaHero, alt: t("SOMA Studio интериор", "SOMA Studio interior") },
     { src: massageTherapy, alt: t("Масажна терапия", "Massage therapy") },
     { src: classicalMassage, alt: t("Класически масаж", "Classical massage") },
-    { src: backMassage, alt: t("Масаж на гръб", "Back massage") }
+    { src: backMassage, alt: t("Масаж на гръб", "Back massage") },
+    { src: energyTherapy, alt: t("Енергийна терапия", "Energy therapy") },
+    { src: facialMassage, alt: t("Подмладяваща терапия за лице", "Facial therapy") }
   ];
 
   const goToPrevious = () => {
@@ -31,17 +34,6 @@ const Gallery = () => {
       prev === null ? null : prev === images.length - 1 ? 0 : prev + 1
     );
   };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedImage === null) return;
-      if (e.key === 'ArrowLeft') goToPrevious();
-      if (e.key === 'ArrowRight') goToNext();
-      if (e.key === 'Escape') setSelectedImage(null);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage]);
 
   return (
     <section className="py-16 md:py-24 bg-background" id="gallery" data-testid="gallery-section">
@@ -58,7 +50,7 @@ const Gallery = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
           {images.map((image, index) => (
             <div
               key={index}
@@ -87,42 +79,17 @@ const Gallery = () => {
           ))}
         </div>
 
-        <Dialog open={selectedImage !== null} onOpenChange={() => setSelectedImage(null)}>
-          <DialogContent className="max-w-4xl p-2" data-testid="gallery-lightbox">
-            {selectedImage !== null && (
-              <div className="relative">
-                <button
-                  onClick={goToPrevious}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
-                  aria-label="Previous image"
-                  data-testid="gallery-prev-button"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-
-                <img
-                  src={images[selectedImage].src}
-                  alt={images[selectedImage].alt}
-                  className="w-full h-auto rounded-lg"
-                  data-testid="gallery-lightbox-image"
-                />
-
-                <button
-                  onClick={goToNext}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
-                  aria-label="Next image"
-                  data-testid="gallery-next-button"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-
-                <p className="text-center mt-2 text-sm text-muted-foreground" data-testid="gallery-counter">
-                  {selectedImage + 1} / {images.length}
-                </p>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
+        {/* Lightbox for full-screen image viewing */}
+        {selectedImage !== null && (
+          <Lightbox
+            images={images.map(img => img.src)}
+            currentIndex={selectedImage}
+            onClose={() => setSelectedImage(null)}
+            onNext={goToNext}
+            onPrevious={goToPrevious}
+            alt={t("Галерия", "Gallery")}
+          />
+        )}
       </div>
     </section>
   );

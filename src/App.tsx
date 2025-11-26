@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 // Code splitting: Each route is loaded only when needed
 const Index = lazy(() => import('./pages/Index'));
@@ -19,6 +20,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter basename="/somaholistic.studio">
+        <GoogleAnalytics />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Index />} />
