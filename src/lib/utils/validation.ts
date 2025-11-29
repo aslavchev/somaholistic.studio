@@ -16,7 +16,7 @@ export interface ValidationResult {
  */
 export function validateEmail(email: string, t: (bg: string, en: string) => string): ValidationResult {
   // Check for non-English (non-ASCII) characters
-  const hasNonEnglish = /[^\x00-\x7F]/.test(email);
+  const hasNonEnglish = /[^\x20-\x7F]/.test(email);
   if (hasNonEnglish) {
     return {
       valid: false,
