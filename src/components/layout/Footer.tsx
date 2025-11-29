@@ -24,7 +24,10 @@ const Footer = () => {
       // Get header height dynamically to position h2 just below the sticky header
       const header = document.querySelector('header');
       const headerHeight = header ? header.offsetHeight : 80;
-      const offset = headerHeight + 24; // Header height + more padding to prevent cutoff
+
+      // Add generous padding for mobile UX - ensures heading is fully visible
+      const paddingBuffer = window.innerWidth < 768 ? 32 : 24;
+      const offset = headerHeight + paddingBuffer;
 
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;

@@ -12,26 +12,34 @@ const Header = () => {
   const activeSection = useActiveSection();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // Find the h2 heading within the section for more precise scrolling
-      const heading = element.querySelector('h2');
-      const targetElement = heading || element;
-
-      // Get header height dynamically to position h2 just below the sticky header
-      const header = document.querySelector('header');
-      const headerHeight = header ? header.offsetHeight : 80;
-      const offset = headerHeight + 24; // Header height + more padding to prevent cutoff
-
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    // Close menu first for better UX
     setMobileMenuOpen(false);
+
+    // Small delay to let menu close animation complete
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // Find the h2 heading within the section for more precise scrolling
+        const heading = element.querySelector('h2');
+        const targetElement = heading || element;
+
+        // Get header height after menu closes for accurate measurement
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 80;
+
+        // Add generous padding for mobile UX - ensures heading is fully visible
+        const paddingBuffer = window.innerWidth < 768 ? 32 : 24;
+        const offset = headerHeight + paddingBuffer;
+
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   const scrollToTop = () => {

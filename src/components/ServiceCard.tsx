@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CONTACT } from "@/data";
 import BookingDialog from "@/components/BookingDialog";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ServiceCardProps {
   title: string;
@@ -42,6 +43,7 @@ const ServiceCard = ({
   const [isHovered, setIsHovered] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const categoryColors = {
@@ -111,12 +113,18 @@ const ServiceCard = ({
       }}
     >
       {image && (
-        <div className="h-48 relative overflow-hidden">
+        <div className="h-48 relative overflow-hidden bg-muted">
+          {!imageLoaded && (
+            <Skeleton className="absolute inset-0 w-full h-full" />
+          )}
           <img
             src={image}
             alt={title}
             loading="eager"
-            className="h-full w-full object-cover transition-transform duration-300 md:group-hover:scale-105"
+            onLoad={() => setImageLoaded(true)}
+            className={`h-full w-full object-cover transition-all duration-300 md:group-hover:scale-105 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
           />
           <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/10 transition-all duration-300" />
           {category && (
