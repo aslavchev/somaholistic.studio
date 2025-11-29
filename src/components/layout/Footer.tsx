@@ -7,6 +7,27 @@ import { CONTACT } from "@/data";
 const Footer = () => {
   const { t } = useLanguage();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <footer className="bg-primary text-primary-foreground py-12" data-testid="main-footer" role="contentinfo">
       <div className="container mx-auto px-4">
@@ -81,18 +102,18 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links")}</h4>
             <div className="space-y-2">
-              <Link to="/" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+              <button onClick={scrollToTop} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("Начало", "Home")}
-              </Link>
-              <a href="#services" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+              </button>
+              <button onClick={() => scrollToSection('services')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("Услуги", "Services")}
-              </a>
-              <a href="#about" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+              </button>
+              <button onClick={() => scrollToSection('about')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("За нас", "About")}
-              </a>
-              <a href="#contact" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+              </button>
+              <button onClick={() => scrollToSection('contact')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("Контакти", "Contact")}
-              </a>
+              </button>
               <Link to="/pricing" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
                 {t("Цени и пакети", "Pricing & Packages")}
               </Link>
