@@ -8,6 +8,7 @@ import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
+import BackToTopButton from "@/components/common/BackToTopButton";
 
 const IndexContent = () => {
   const { t } = useLanguage();
@@ -29,6 +30,7 @@ const IndexContent = () => {
       <Contact />
       <Footer />
       <WhatsAppButton />
+      <BackToTopButton />
     </div>
   );
 };

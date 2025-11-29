@@ -4,10 +4,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import { CONTACT } from "@/data";
 import { useState } from "react";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const activeSection = useActiveSection();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -55,7 +57,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                className={`text-sm font-medium transition-colors ${ activeSection === item.id ? "text-primary font-semibold" : "text-foreground hover:text-primary" }`}
               >
                 {t(item.labelBg, item.labelEn)}
               </button>
