@@ -250,6 +250,16 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               />
             </div>
 
+            {/* Availability Notice */}
+            <div className="bg-muted/50 border border-primary/20 rounded-lg p-3 text-sm">
+              <p className="text-muted-foreground">
+                {t(
+                  "💡 Избраните часове са ориентировъчни. Мари ще потвърди наличността в рамките на 2 часа.",
+                  "💡 Selected times are indicative. Mari will confirm availability within 2 hours."
+                )}
+              </p>
+            </div>
+
             <div>
               <Label htmlFor="time">{t("Изберете час", "Select Time")}</Label>
               {availableTimeSlots.length > 0 ? (
@@ -430,7 +440,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         {step === 4 && (
           <div className="space-y-4">
             <div className="bg-muted p-4 rounded-lg space-y-3" data-testid="booking-summary">
-              <h3 className="font-semibold text-foreground">{t("Потвърдете вашата резервация", "Confirm Your Booking")}</h3>
+              <h3 className="font-semibold text-foreground">{t("Преглед на заявката", "Review Your Request")}</h3>
               <div className="space-y-2 text-sm">
                 <p data-testid="booking-summary-service"><strong>{t("Услуга:", "Service:")}</strong> {services.find(s => s.value === formData.service)?.label}</p>
                 <p data-testid="booking-summary-duration"><strong>{t("Продължителност:", "Duration:")}</strong> {formData.duration} {t("минути", "minutes")}</p>
@@ -470,7 +480,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                     {t("Изпращане...", "Sending...")}
                   </>
                 ) : (
-                  t("Потвърди и изпрати", "Confirm & Send")
+                  t("Изпрати заявка", "Send Request")
                 )}
               </Button>
             </div>
