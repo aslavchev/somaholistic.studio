@@ -18,7 +18,11 @@ const Header = () => {
       const heading = element.querySelector('h2');
       const targetElement = heading || element;
 
-      const offset = 100; // Slightly larger offset to ensure heading is visible below header
+      // Get header height dynamically to position h2 just below the sticky header
+      const header = document.querySelector('header');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const offset = headerHeight + 16; // Header height + small padding
+
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
