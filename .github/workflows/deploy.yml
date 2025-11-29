@@ -15,8 +15,43 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  security-checks:
+    name: Security & Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: 🔒 Gitleaks - Secret Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+      - name: 🔍 npm audit - Dependency Security
+        run: npm audit --production --audit-level=high
+        continue-on-error: false
+
+      - name: ✅ ESLint - Code Quality
+        run: npm run lint
+
+      - name: 🎯 TypeScript - Type Check
+        run: npx tsc --noEmit
+
   build:
     runs-on: ubuntu-latest
+    needs: security-checks
     steps:
       - name: Checkout
         uses: actions/checkout@v4
