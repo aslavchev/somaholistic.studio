@@ -26,6 +26,14 @@ const Header = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setMobileMenuOpen(false);
+  };
+
   const navItems = [
     { id: 'services', labelBg: 'Услуги', labelEn: 'Services' },
     { id: 'about', labelBg: 'За нас', labelEn: 'About' },
@@ -43,13 +51,15 @@ const Header = () => {
               <GoogleReviewBadge variant="compact" />
             </div>
 
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">S</span>
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
-              <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices")}</p>
-            </div>
+            <button onClick={scrollToTop} className="flex items-center space-x-2 hover:opacity-80 transition-opacity" aria-label="Scroll to top">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">S</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices")}</p>
+              </div>
+            </button>
           </div>
 
           <nav className="hidden lg:flex items-center space-x-6" role="navigation">

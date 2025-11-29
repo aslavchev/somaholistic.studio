@@ -57,7 +57,7 @@ const Services = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-background" data-testid="services-section" aria-label="Services section">
+    <section className="py-16 md:py-24 bg-background" id="services" data-testid="services-section" aria-label="Services section">
       <div className="container mx-auto px-4">
         <div
           ref={headerRef as React.RefObject<HTMLDivElement>}

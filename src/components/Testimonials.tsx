@@ -70,7 +70,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-wellness-cream" data-testid="testimonials-section">
+    <section className="py-16 md:py-24 bg-wellness-cream" id="testimonials" data-testid="testimonials-section">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
