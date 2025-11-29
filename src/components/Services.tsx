@@ -28,9 +28,15 @@ const Services = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
-  // Preload first 2 service images for better UX on navigation
+  // Preload first 4 service images for better UX on navigation
+  // Order: SOMA Ritual, Phytotherapy, Wellness Coaching, Classic Massage
   useEffect(() => {
-    const imagesToPreload = [massageTherapy, classicalMassage];
+    const imagesToPreload = [
+      wellnessAccessories, // SOMA Ritual (featured, shows first)
+      energyTherapy,       // Phytotherapy
+      classicalMassage,    // Classic Massage
+      massageTherapy       // Thai Massage
+    ];
     imagesToPreload.forEach((src) => {
       const img = new Image();
       img.src = src;

@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CONTACT } from "@/data";
 import BookingDialog from "@/components/BookingDialog";
-import { Skeleton } from "@/components/ui/skeleton";
 
 interface ServiceCardProps {
   title: string;
@@ -113,19 +112,21 @@ const ServiceCard = ({
       }}
     >
       {image && (
-        <div className="h-48 relative overflow-hidden bg-muted">
-          {!imageLoaded && (
-            <Skeleton className="absolute inset-0 w-full h-full" />
-          )}
+        <div className="h-48 relative overflow-hidden bg-muted/30">
           <img
             src={image}
             alt={title}
             loading="eager"
+            decoding="async"
             onLoad={() => setImageLoaded(true)}
-            className={`h-full w-full object-cover transition-all duration-300 md:group-hover:scale-105 ${
+            className={`h-full w-full object-cover transition-all duration-500 md:group-hover:scale-105 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
+            style={{ willChange: 'opacity' }}
           />
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-muted animate-pulse" />
+          )}
           <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/10 transition-all duration-300" />
           {category && (
             <span className={`absolute top-3 right-3 px-2 py-1 text-xs font-medium rounded-full ${categoryColors[category]}`}>
