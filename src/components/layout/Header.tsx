@@ -22,8 +22,8 @@ const Header = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
-      setMobileMenuOpen(false);
     }
+    setMobileMenuOpen(false);
   };
 
   const scrollToTop = () => {
