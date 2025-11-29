@@ -23,6 +23,7 @@ const IMAGE_MAP: Record<string, string> = {
 
 const Services = () => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const { t, language } = useLanguage();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
@@ -45,6 +46,11 @@ const Services = () => {
     featured: service.featured,
     category: service.category
   }));
+
+  // Filter services by category
+  const filteredServices = selectedCategory === 'all' 
+    ? services 
+    : services.filter(service => service.category === selectedCategory);
 
   const handleToggle = (index: number) => {
     setExpandedCard(expandedCard === index ? null : index);
@@ -70,11 +76,75 @@ const Services = () => {
           </p>
         </div>
 
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <button
+            onClick={() => setSelectedCategory('all')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === 'all'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-muted text-foreground hover:bg-muted/80'
+            }`}
+          >
+            {t("Всички", "All")}
+          </button>
+          <button
+            onClick={() => setSelectedCategory('signature')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === 'signature'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-muted text-foreground hover:bg-muted/80'
+            }`}
+          >
+            {t(CATEGORY_LABELS.signature.bg, CATEGORY_LABELS.signature.en)}
+          </button>
+          <button
+            onClick={() => setSelectedCategory('massage')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === 'massage'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-muted text-foreground hover:bg-muted/80'
+            }`}
+          >
+            {t(CATEGORY_LABELS.massage.bg, CATEGORY_LABELS.massage.en)}
+          </button>
+          <button
+            onClick={() => setSelectedCategory('therapy')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === 'therapy'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-muted text-foreground hover:bg-muted/80'
+            }`}
+          >
+            {t(CATEGORY_LABELS.therapy.bg, CATEGORY_LABELS.therapy.en)}
+          </button>
+          <button
+            onClick={() => setSelectedCategory('beauty')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === 'beauty'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-muted text-foreground hover:bg-muted/80'
+            }`}
+          >
+            {t(CATEGORY_LABELS.beauty.bg, CATEGORY_LABELS.beauty.en)}
+          </button>
+          <button
+            onClick={() => setSelectedCategory('coaching')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              selectedCategory === 'coaching'
+                ? 'bg-primary text-primary-foreground shadow-md'
+                : 'bg-muted text-foreground hover:bg-muted/80'
+            }`}
+          >
+            {t(CATEGORY_LABELS.coaching.bg, CATEGORY_LABELS.coaching.en)}
+          </button>
+        </div>
+
         <div
           ref={gridRef as React.RefObject<HTMLDivElement>}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto"
         >
-          {services.map((service, index) => (
+          {filteredServices.map((service, index) => (
             <div
               key={index}
               className={`transition-all duration-700 ${
