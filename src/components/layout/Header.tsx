@@ -14,8 +14,12 @@ const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
+      // Find the h2 heading within the section for more precise scrolling
+      const heading = element.querySelector('h2');
+      const targetElement = heading || element;
+
+      const offset = 100; // Slightly larger offset to ensure heading is visible below header
+      const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       window.scrollTo({
