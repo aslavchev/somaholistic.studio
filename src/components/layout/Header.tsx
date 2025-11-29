@@ -1,23 +1,46 @@
-import { Phone, Instagram, Languages } from "lucide-react";
+import { Phone, Instagram, Languages, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import { CONTACT } from "@/data";
+import { useState } from "react";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const navItems = [
+    { id: 'services', labelBg: 'Услуги', labelEn: 'Services' },
+    { id: 'about', labelBg: 'За нас', labelEn: 'About' },
+    { id: 'testimonials', labelBg: 'Отзиви', labelEn: 'Testimonials' },
+    { id: 'gallery', labelBg: 'Галерия', labelEn: 'Gallery' },
+    { id: 'contact', labelBg: 'Контакти', labelEn: 'Contact' }
+  ];
 
   return (
     <header className="bg-wellness-cream border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95" data-testid="main-header" role="banner">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 md:space-x-4">
-            {/* Google Review Badge - Hidden on mobile, shown on tablet+ */}
             <div className="hidden md:block">
               <GoogleReviewBadge variant="compact" />
             </div>
-            
-            {/* Logo */}
+
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">S</span>
             </div>
@@ -26,8 +49,30 @@ const Header = () => {
               <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices")}</p>
             </div>
           </div>
-          
+
+          <nav className="hidden lg:flex items-center space-x-6" role="navigation">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                {t(item.labelBg, item.labelEn)}
+              </button>
+            ))}
+          </nav>
+
           <div className="flex items-center space-x-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="lg:hidden text-primary hover:bg-accent"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? t("Затвори меню", "Close menu") : t("Отвори меню", "Open menu")}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </Button>
+
             <Button
               variant="ghost"
               size="sm"
@@ -39,14 +84,14 @@ const Header = () => {
               <Languages className="w-4 h-4" aria-hidden="true" />
               <span className="ml-1 font-semibold">{language === 'bg' ? 'EN' : 'BG'}</span>
             </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="text-primary hover:bg-accent"
+
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-primary hover:bg-accent hidden sm:flex"
               asChild
             >
-              <a 
+              <a
                 href={`tel:${CONTACT.PHONE_TEL}`}
                 className="flex items-center space-x-1"
                 data-testid="header-phone-button"
@@ -56,16 +101,16 @@ const Header = () => {
                 <span className="hidden sm:inline">{CONTACT.PHONE_DISPLAY}</span>
               </a>
             </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="text-primary hover:bg-accent"
+
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-primary hover:bg-accent hidden sm:flex"
               asChild
             >
-              <a 
+              <a
                 href={`https://www.instagram.com/${CONTACT.INSTAGRAM}/`}
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 data-testid="header-instagram-button"
                 aria-label={`Visit @${CONTACT.INSTAGRAM} on Instagram`}
@@ -75,6 +120,41 @@ const Header = () => {
             </Button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="lg:hidden mt-4 pb-4 border-t border-border pt-4">
+            <nav className="flex flex-col space-y-3" role="navigation">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                >
+                  {t(item.labelBg, item.labelEn)}
+                </button>
+              ))}
+
+              <div className="border-t border-border pt-3 mt-2 space-y-2">
+                <a
+                  href={`tel:${CONTACT.PHONE_TEL}`}
+                  className="flex items-center space-x-2 text-sm text-foreground hover:text-primary transition-colors py-2"
+                >
+                  <Phone className="w-4 h-4" aria-hidden="true" />
+                  <span>{CONTACT.PHONE_DISPLAY}</span>
+                </a>
+                <a
+                  href={`https://www.instagram.com/${CONTACT.INSTAGRAM}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-sm text-foreground hover:text-primary transition-colors py-2"
+                >
+                  <Instagram className="w-4 h-4" aria-hidden="true" />
+                  <span>@{CONTACT.INSTAGRAM}</span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );

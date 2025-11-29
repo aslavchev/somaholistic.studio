@@ -53,6 +53,40 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     label: service.title[language]
   }));
 
+
+
+  // Get service price for display
+  const getServicePrice = (serviceId: string) => {
+    const service = SERVICES.find(s => s.id === serviceId);
+    if (!service) return "";
+    const prices = [];
+    if (service.pricing.duration60) prices.push(`${service.pricing.duration60.price} BGN`);
+    else if (service.pricing.duration90) prices.push(`${service.pricing.duration90.price} BGN`);
+    return prices[0] || "";
+  };
+
+
+  // Get available durations for selected service
+  const getAvailableDurations = () => {
+    if (!formData.service) return [];
+    const service = SERVICES.find(s => s.id === formData.service);
+    if (!service) return [];
+    
+    const durations = [];
+    if (service.pricing.duration60) {
+      durations.push({ value: '30', label: t("30 минути", "30 minutes") });
+      durations.push({ value: '60', label: t("60 минути", "60 minutes") });
+    }
+    if (service.pricing.duration90) {
+      durations.push({ value: '90', label: t("90 минути", "90 minutes") });
+    }
+    return durations;
+  };
+
+  const availableDurations = getAvailableDurations();
+
+  // Get service price for display
+
   const availableTimeSlots = getAvailableTimeSlots(formData.date);
 
   // Validation helpers with error state management
@@ -161,7 +195,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 <SelectContent>
                   {services.map((service) => (
                     <SelectItem key={service.value} value={service.value}>
-                      {service.label}
+                      <div className="flex justify-between items-center w-full">
+                        <span>{service.label}</span>
+                        <span className="text-xs text-muted-foreground ml-2">
+                          {getServicePrice(service.value)}
+                        </span>
+                      </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -175,9 +214,11 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   <SelectValue placeholder={t("Изберете продължителност", "Select Duration")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="30">{t("30 минути", "30 minutes")}</SelectItem>
-                  <SelectItem value="60">{t("60 минути", "60 minutes")}</SelectItem>
-                  <SelectItem value="90">{t("90 минути", "90 minutes")}</SelectItem>
+                  {availableDurations.map((duration) => (
+                    <SelectItem key={duration.value} value={duration.value}>
+                      {duration.label}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -304,6 +345,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 />
               </div>
               {errors.email && <p className="text-red-500 text-sm mt-1" data-testid="booking-email-error">{errors.email}</p>}
+              <p className="text-xs text-muted-foreground mt-1">
+                {t(
+                  "Моля, използвайте латински букви (A-Z)",
+                  "Please use Latin characters (A-Z)"
+                )}
+              </p>
             </div>
 
             <div>

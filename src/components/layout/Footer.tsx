@@ -81,6 +81,18 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links")}</h4>
             <div className="space-y-2">
+              <Link to="/" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+                {t("Начало", "Home")}
+              </Link>
+              <a href="#services" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+                {t("Услуги", "Services")}
+              </a>
+              <a href="#about" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+                {t("За нас", "About")}
+              </a>
+              <a href="#contact" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+                {t("Контакти", "Contact")}
+              </a>
               <Link to="/pricing" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
                 {t("Цени и пакети", "Pricing & Packages")}
               </Link>
