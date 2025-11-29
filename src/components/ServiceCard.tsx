@@ -112,10 +112,11 @@ const ServiceCard = ({
     >
       {image && (
         <div className="h-48 relative overflow-hidden">
-          <div
-            className="h-full w-full bg-cover bg-center transition-transform duration-300 md:group-hover:scale-105"
-            style={{ backgroundImage: `url(${image})` }}
-            aria-hidden="true"
+          <img
+            src={image}
+            alt={title}
+            loading="eager"
+            className="h-full w-full object-cover transition-transform duration-300 md:group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/10 transition-all duration-300" />
           {category && (
