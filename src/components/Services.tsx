@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ServiceCard from "./ServiceCard";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -27,6 +27,15 @@ const Services = () => {
   const { t, language } = useLanguage();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
+
+  // Preload first 2 service images for better UX on navigation
+  useEffect(() => {
+    const imagesToPreload = [massageTherapy, classicalMassage];
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   // Transform centralized data into ServiceCard props format
   const services = SERVICES.map((service) => ({

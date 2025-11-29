@@ -17,19 +17,16 @@ const Footer = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Find the h2 heading within the section for more precise scrolling
-      const heading = element.querySelector('h2');
-      const targetElement = heading || element;
-
-      // Get header height dynamically to position h2 just below the sticky header
+      // Get header height dynamically
       const header = document.querySelector('header');
       const headerHeight = header ? header.offsetHeight : 80;
 
-      // Add generous padding for mobile UX - ensures heading is fully visible
-      const paddingBuffer = window.innerWidth < 768 ? 32 : 24;
+      // Scroll to section top (not h2) to avoid animation positioning issues
+      // Section has py-16 (64px) padding, we want to show the heading nicely
+      const paddingBuffer = window.innerWidth < 768 ? 8 : 16;
       const offset = headerHeight + paddingBuffer;
 
-      const elementPosition = targetElement.getBoundingClientRect().top;
+      const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       window.scrollTo({
