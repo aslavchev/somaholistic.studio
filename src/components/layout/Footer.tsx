@@ -3,6 +3,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Link } from "react-router-dom";
 import { CONTACT } from "@/data";
+import { scrollToSection } from '@/utils/scrollToSection';
+import logo from "@/assets/Logo_Soma_png.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -14,27 +16,6 @@ const Footer = () => {
     });
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // Get header height dynamically
-      const header = document.querySelector('header');
-      const headerHeight = header ? header.offsetHeight : 80;
-
-      // Scroll to section top (not h2) to avoid animation positioning issues
-      // Section has py-16 (64px) padding, we want to show the heading nicely
-      const paddingBuffer = window.innerWidth < 768 ? 8 : 16;
-      const offset = headerHeight + paddingBuffer;
-
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <footer className="bg-primary text-primary-foreground py-12" data-testid="main-footer" role="contentinfo">
@@ -42,8 +23,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-primary-foreground/20 flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">S</span>
+              <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center p-1">
+                <img
+                  src={logo}
+                  alt="SOMA STUDIO"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-bold">SOMA STUDIO</h3>

@@ -5,38 +5,17 @@ import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import { CONTACT } from "@/data";
 import { useState } from "react";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { scrollToSection } from '@/utils/scrollToSection';
+import logo from "@/assets/Logo_Soma_png.png";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useActiveSection();
 
-  const scrollToSection = (sectionId: string) => {
-    // Close menu first for better UX
-    setMobileMenuOpen(false);
-
-    // Small delay to let menu close animation complete
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        // Get header height after menu closes for accurate measurement
-        const header = document.querySelector('header');
-        const headerHeight = header ? header.offsetHeight : 80;
-
-        // Scroll to section top (not h2) to avoid animation positioning issues
-        // Section has py-16 (64px) padding, we want to show the heading nicely
-        const paddingBuffer = window.innerWidth < 768 ? 8 : 16;
-        const offset = headerHeight + paddingBuffer;
-
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
+  const handleNavClick = (id: string) => {
+    setMobileMenuOpen(false);      // instant close
+    scrollToSection(id);           // no setTimeout, no delay
   };
 
   const scrollToTop = () => {
@@ -65,8 +44,12 @@ const Header = () => {
             </div>
 
             <button onClick={scrollToTop} className="flex items-center space-x-2 hover:opacity-80 transition-opacity" aria-label="Scroll to top">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">S</span>
+              <div className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center p-1">
+                <img
+                  src={logo}
+                  alt="SOMA STUDIO"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
@@ -79,7 +62,7 @@ const Header = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className={`text-sm font-medium transition-colors ${ activeSection === item.id ? "text-primary font-semibold" : "text-foreground hover:text-primary" }`}
               >
                 {t(item.labelBg, item.labelEn)}
@@ -152,7 +135,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item.id)}
                   className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 >
                   {t(item.labelBg, item.labelEn)}

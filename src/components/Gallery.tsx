@@ -3,12 +3,14 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Skeleton } from "@/components/ui/skeleton";
 import Lightbox from "@/components/Lightbox";
-import spaHero from "@/assets/spa-hero.jpg";
-import massageTherapy from "@/assets/massage-therapy.jpg";
-import classicalMassage from "@/assets/classical-massage.jpg";
-import backMassage from "@/assets/back-massage.jpg";
-import energyTherapy from "@/assets/energy-therapy.jpg";
-import facialMassage from "@/assets/facial-massage-new.jpg";
+import studioPic1 from "@/assets/studio-pics/studio_pic1.jpg";
+import studioPic2 from "@/assets/studio-pics/studio_pic2.jpg";
+import studioPic3 from "@/assets/studio-pics/studio_pic3.jpg";
+import studioPic4 from "@/assets/studio-pics/studio_pic4.jpg";
+import studioPic5 from "@/assets/studio-pics/studio_pic5.jpg";
+import studioPic6 from "@/assets/studio-pics/studio_pic6.jpg";
+import studioPic7 from "@/assets/studio-pics/studio_pic7.jpg";
+import studioPic8 from "@/assets/studio-pics/studio_pic8.jpg";
 
 const Gallery = () => {
   const { t } = useLanguage();
@@ -18,12 +20,14 @@ const Gallery = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const images = [
-    { src: spaHero, alt: t("SOMA Studio интериор", "SOMA Studio interior") },
-    { src: massageTherapy, alt: t("Масажна терапия", "Massage therapy") },
-    { src: classicalMassage, alt: t("Класически масаж", "Classical massage") },
-    { src: backMassage, alt: t("Масаж на гръб", "Back massage") },
-    { src: energyTherapy, alt: t("Енергийна терапия", "Energy therapy") },
-    { src: facialMassage, alt: t("Подмладяваща терапия за лице", "Facial therapy") }
+    { src: studioPic1, alt: t("SOMA Studio интериор", "SOMA Studio interior") },
+    { src: studioPic2, alt: t("Терапевтично пространство", "Therapeutic space") },
+    { src: studioPic3, alt: t("Студио за релаксация", "Relaxation studio") },
+    { src: studioPic4, alt: t("Тихо място за изцеление", "Peaceful healing space") },
+    { src: studioPic5, alt: t("Холистична среда", "Holistic environment") },
+    { src: studioPic6, alt: t("Просторно студио", "Spacious studio") },
+    { src: studioPic7, alt: t("Уютен кът", "Cozy corner") },
+    { src: studioPic8, alt: t("Място за трансформация", "Space for transformation") }
   ];
 
   const goToPrevious = () => {
@@ -60,7 +64,7 @@ const Gallery = () => {
 
         <div
           ref={gridRef as React.RefObject<HTMLDivElement>}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 max-w-6xl mx-auto"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 max-w-6xl mx-auto"
         >
           {images.map((image, index) => (
             <div

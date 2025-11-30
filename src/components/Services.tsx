@@ -169,6 +169,7 @@ const Services = () => {
             >
               <ServiceCard
                 {...service}
+                imageFetchPriority={index < 3 ? 'high' : 'auto'}
                 isExpanded={expandedCard === index}
                 onToggle={() => handleToggle(index)}
               />

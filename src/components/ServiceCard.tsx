@@ -21,6 +21,7 @@ interface ServiceCardProps {
   category?: 'signature' | 'massage' | 'therapy' | 'beauty' | 'coaching';
   isExpanded?: boolean;
   onToggle?: () => void;
+  imageFetchPriority?: 'high' | 'auto';
 }
 
 const ServiceCard = ({
@@ -36,7 +37,8 @@ const ServiceCard = ({
   featured = false,
   category,
   isExpanded = false,
-  onToggle
+  onToggle,
+  imageFetchPriority = 'auto'
 }: ServiceCardProps) => {
   const { t } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
@@ -117,6 +119,7 @@ const ServiceCard = ({
             src={image}
             alt={title}
             loading="eager"
+            fetchPriority={imageFetchPriority}
             decoding="async"
             onLoad={() => setImageLoaded(true)}
             className={`h-full w-full object-cover transition-all duration-500 md:group-hover:scale-105 ${

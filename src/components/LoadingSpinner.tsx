@@ -5,6 +5,7 @@
  */
 
 import { Loader2 } from 'lucide-react';
+import logo from '@/assets/Logo_Soma_png.png';
 
 export const LoadingSpinner = () => {
   return (
@@ -16,8 +17,12 @@ export const LoadingSpinner = () => {
     >
       <div className="flex flex-col items-center gap-4">
         {/* Logo */}
-        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-light to-primary flex items-center justify-center animate-pulse">
-          <span className="text-primary-foreground font-bold text-2xl">S</span>
+        <div className="w-20 h-20 rounded-full bg-white shadow-lg flex items-center justify-center p-2 animate-pulse">
+          <img
+            src={logo}
+            alt="SOMA STUDIO"
+            className="w-full h-full object-contain"
+          />
         </div>
 
         {/* Spinner */}
