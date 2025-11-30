@@ -4,7 +4,7 @@ import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Link } from "react-router-dom";
 import { CONTACT } from "@/data";
 import { scrollToSection } from '@/utils/scrollToSection';
-import logo from "@/assets/Logo_Soma_png.png";
+import logo from "@/assets/Logo_Soma.svg";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -44,13 +44,13 @@ const Footer = () => {
               )}
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-semibold mb-4">{t("Контакти", "Contact")}</h4>
             <div className="space-y-3 text-sm">
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4" aria-hidden="true" />
-                <a 
+                <a
                   href={`tel:${CONTACT.PHONE_TEL}`}
                   className="hover:text-primary-foreground/80 transition-colors"
                   data-testid="footer-phone-link"
@@ -61,9 +61,9 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Instagram className="w-4 h-4" aria-hidden="true" />
-                <a 
+                <a
                   href={`https://www.instagram.com/${CONTACT.INSTAGRAM}/`}
-                  target="_blank" 
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary-foreground/80 transition-colors"
                   data-testid="footer-instagram-link"
@@ -81,7 +81,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          
+
           <div>
             <h4 className="font-semibold mb-4">{t("Работно време", "Working Hours")}</h4>
             <p className="text-primary-foreground/80 text-sm">
@@ -112,7 +112,7 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          
+
           <div>
             <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?")}</h4>
             <p className="text-primary-foreground/80 text-sm mb-4">
@@ -121,14 +121,14 @@ const Footer = () => {
                 "Contact us for a free consultation"
               )}
             </p>
-            <DiscoveryCallButton 
+            <DiscoveryCallButton
               size="sm"
-              variant="outline" 
+              variant="outline"
               className="w-full sm:w-auto bg-transparent border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/20 hover:border-primary-foreground/70"
             />
           </div>
-          </div>
-        
+        </div>
+
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-primary-foreground/60 text-sm">
             {t(

@@ -6,7 +6,7 @@ import { CONTACT } from "@/data";
 import { useState } from "react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { scrollToSection } from '@/utils/scrollToSection';
-import logo from "@/assets/Logo_Soma_png.png";
+import logo from "@/assets/Logo_Soma.svg";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -63,7 +63,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`text-sm font-medium transition-colors ${ activeSection === item.id ? "text-primary font-semibold" : "text-foreground hover:text-primary" }`}
+                className={`text-sm font-medium transition-colors ${activeSection === item.id ? "text-primary font-semibold" : "text-foreground hover:text-primary"}`}
               >
                 {t(item.labelBg, item.labelEn)}
               </button>

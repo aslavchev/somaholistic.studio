@@ -90,10 +90,10 @@ const ServiceCard = ({
     <Card
       ref={cardRef}
       className={`
-        group overflow-hidden transition-all duration-300 cursor-pointer
-        ${featured ? 'border-primary shadow-lg' : 'border-border'}
+        service-card group rounded-xl overflow-hidden transition-all duration-300 cursor-pointer
+        ${featured ? 'border-primary shadow-lg' : 'border-border shadow-lg'}
         ${isExpanded ? 'border-2 border-primary bg-wellness-cream shadow-xl' : ''}
-        md:hover:-translate-y-2 md:hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]
+        md:hover:shadow-2xl md:hover:-translate-y-2
       `}
       onClick={hasExpandedContent ? onToggle : undefined}
       onMouseEnter={() => !isMobile && setIsHovered(true)}
@@ -122,10 +122,9 @@ const ServiceCard = ({
             fetchPriority={imageFetchPriority}
             decoding="async"
             onLoad={() => setImageLoaded(true)}
-            className={`h-full w-full object-cover transition-all duration-500 md:group-hover:scale-105 ${
+            className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ willChange: 'opacity' }}
           />
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-muted animate-pulse" />

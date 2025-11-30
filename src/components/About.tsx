@@ -33,7 +33,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="space-y-4" data-testid="about-bio">
+            <div className="space-y-5 text-foreground/90 leading-relaxed max-w-2xl mx-auto md:mx-0" data-testid="about-bio">
               <h3 className="text-2xl font-semibold text-foreground">
                 {t("За мен", "About Me")}
               </h3>

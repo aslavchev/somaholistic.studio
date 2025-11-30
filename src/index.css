@@ -175,4 +175,14 @@ All colors MUST be HSL.
   button, a[href], input, select, textarea {
     min-height: 44px;
   }
+
+  /* 2025 bulletproof fix: force image decode during opacity/transform */
+  .services-grid img,
+  .service-card img,
+  [data-testid="about-image"] {
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    will-change: opacity, transform !important;
+    image-rendering: -webkit-optimize-contrast;
+  }
 }
