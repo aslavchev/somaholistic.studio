@@ -130,7 +130,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     window.open(whatsappUrl, '_blank');
 
     setTimeout(() => {
-      toast.success(t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation"));
+      toast.success(
+        <div className="flex items-center gap-3">
+          <CheckCircle2 className="w-6 h-6 text-green-600 animate-ping" />
+          <span>{t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation")}</span>
+        </div>
+      );
       onOpenChange(false);
       setStep(1);
       setIsSubmitting(false);
