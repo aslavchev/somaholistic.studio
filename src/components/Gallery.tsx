@@ -3,14 +3,14 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Skeleton } from "@/components/ui/skeleton";
 import Lightbox from "@/components/Lightbox";
-import studioPic1 from "@/assets/studio-pics/studio_pic1.jpg";
-import studioPic2 from "@/assets/studio-pics/studio_pic2.jpg";
-import studioPic3 from "@/assets/studio-pics/studio_pic3.jpg";
-import studioPic4 from "@/assets/studio-pics/studio_pic4.jpg";
-import studioPic5 from "@/assets/studio-pics/studio_pic5.jpg";
-import studioPic6 from "@/assets/studio-pics/studio_pic6.jpg";
-import studioPic7 from "@/assets/studio-pics/studio_pic7.jpg";
-import studioPic8 from "@/assets/studio-pics/studio_pic8.jpg";
+import studioPic1 from "@/assets/studio-pics/studio_pic1.webp";
+import studioPic2 from "@/assets/studio-pics/studio_pic2.webp";
+import studioPic3 from "@/assets/studio-pics/studio_pic3.webp";
+import studioPic4 from "@/assets/studio-pics/studio_pic4.webp";
+import studioPic5 from "@/assets/studio-pics/studio_pic5.webp";
+import studioPic6 from "@/assets/studio-pics/studio_pic6.webp";
+import studioPic7 from "@/assets/studio-pics/studio_pic7.webp";
+import studioPic8 from "@/assets/studio-pics/studio_pic8.webp";
 
 const Gallery = () => {
   const { t } = useLanguage();

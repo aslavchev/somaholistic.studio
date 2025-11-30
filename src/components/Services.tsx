@@ -4,12 +4,12 @@ import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { SERVICES, CATEGORY_LABELS } from "@/data";
-import wellnessAccessories from "@/assets/wellness-accessories.jpg";
-import massageTherapy from "@/assets/massage-therapy.jpg";
-import classicalMassage from "@/assets/classical-massage.jpg";
-import backMassage from "@/assets/back-massage.jpg";
-import energyTherapy from "@/assets/energy-therapy.jpg";
-import facialMassage from "@/assets/facial-massage-new.jpg";
+import wellnessAccessories from "@/assets/wellness-accessories.webp";
+import massageTherapy from "@/assets/massage-therapy.webp";
+import classicalMassage from "@/assets/classical-massage.webp";
+import backMassage from "@/assets/back-massage.webp";
+import energyTherapy from "@/assets/energy-therapy.webp";
+import facialMassage from "@/assets/facial-massage-new.webp";
 
 // Image mapping helper
 const IMAGE_MAP: Record<string, string> = {
