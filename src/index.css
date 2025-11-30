@@ -176,13 +176,19 @@ All colors MUST be HSL.
     min-height: 44px;
   }
 
-  /* 2025 bulletproof fix: force image decode during opacity/transform */
+  /* Ultimate 2025 fix – images always load on first tap + first scroll */
   .services-grid img,
   .service-card img,
-  [data-testid="about-image"] {
+  [data-testid="about-image"],
+  img[loading]:not([loading="eager"]) {
     transform: translateZ(0) !important;
     backface-visibility: hidden !important;
-    will-change: opacity, transform !important;
+    will-change: transform !important;
     image-rendering: -webkit-optimize-contrast;
+  }
+
+  img[loading="lazy"] {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px 1000px;
   }
 }

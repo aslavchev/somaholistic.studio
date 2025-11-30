@@ -118,13 +118,11 @@ const ServiceCard = ({
           <img
             src={image}
             alt={title}
-            loading="eager"
+            loading={imageFetchPriority === "high" ? "eager" : "lazy"}
             fetchPriority={imageFetchPriority}
             decoding="async"
             onLoad={() => setImageLoaded(true)}
-            className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-muted animate-pulse" />

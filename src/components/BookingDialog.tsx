@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -85,7 +85,41 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   const availableDurations = getAvailableDurations();
 
-  // Get service price for display
+  // Smart pre-selection: auto-fill service and duration when preselected
+  useEffect(() => {
+    if (!preselectedService && !formData.service) return;
+
+    const serviceId = preselectedService || formData.service;
+    const service = SERVICES.find(s => s.id === serviceId);
+    if (!service) return;
+
+    setFormData(p => ({ ...p, service: serviceId }));
+
+    const durations = [];
+    if (service.pricing.duration60) {
+      durations.push({
+        value: "60",
+        label: service.pricing.duration60.label[language],
+        price: service.pricing.duration60.price
+      });
+    }
+    if (service.pricing.duration90) {
+      durations.push({
+        value: "90",
+        label: service.pricing.duration90.label[language],
+        price: service.pricing.duration90.price
+      });
+    }
+
+    let defaultDuration = "";
+    if (durations.length === 1) {
+      defaultDuration = durations[0].value;
+    } else if (durations.length > 1) {
+      defaultDuration = "60";
+    }
+
+    setFormData(p => ({ ...p, duration: defaultDuration }));
+  }, [preselectedService, formData.service, language]);
 
   const availableTimeSlots = getAvailableTimeSlots(formData.date);
 
@@ -214,18 +248,28 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
             <div>
               <Label htmlFor="duration">{t("Продължителност", "Duration")}</Label>
-              <Select value={formData.duration} onValueChange={(value) => setFormData({ ...formData, duration: value })}>
-                <SelectTrigger id="duration" data-testid="booking-duration-select">
-                  <SelectValue placeholder={t("Изберете продължителност", "Select Duration")} />
-                </SelectTrigger>
-                <SelectContent>
-                  {availableDurations.map((duration) => (
-                    <SelectItem key={duration.value} value={duration.value}>
-                      {duration.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {(() => {
+                const durations = getAvailableDurations();
+                if (durations.length <= 1) {
+                  const label = durations[0]?.label || "";
+                  const price = getServicePrice(formData.service);
+                  return <p className="text-sm text-muted-foreground">{label} – {price}</p>;
+                }
+                return (
+                  <Select value={formData.duration} onValueChange={(value) => setFormData({ ...formData, duration: value })}>
+                    <SelectTrigger id="duration" data-testid="booking-duration-select">
+                      <SelectValue placeholder={t("Изберете продължителност", "Select Duration")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {durations.map((d) => (
+                        <SelectItem key={d.value} value={d.value}>
+                          {d.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                );
+              })()}
             </div>
 
             <Button
