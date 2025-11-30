@@ -69,18 +69,36 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   // Get available durations for selected service
   const getAvailableDurations = () => {
     if (!formData.service) return [];
+
     const service = SERVICES.find(s => s.id === formData.service);
     if (!service) return [];
-    
-    const durations = [];
+
+    const options = [];
+
+    // Only add duration if it actually exists in pricing
+    if (service.pricing.duration30) {
+      options.push({
+        value: "30",
+        label: service.pricing.duration30.label[language],
+        price: `${service.pricing.duration30.price}${language === 'bg' ? ' лв.' : ' BGN'}`
+      });
+    }
     if (service.pricing.duration60) {
-      durations.push({ value: '30', label: t("30 минути", "30 minutes") });
-      durations.push({ value: '60', label: t("60 минути", "60 minutes") });
+      options.push({
+        value: "60",
+        label: service.pricing.duration60.label[language],
+        price: `${service.pricing.duration60.price}${language === 'bg' ? ' лв.' : ' BGN'}`
+      });
     }
     if (service.pricing.duration90) {
-      durations.push({ value: '90', label: t("90 минути", "90 minutes") });
+      options.push({
+        value: "90",
+        label: service.pricing.duration90.label[language],
+        price: `${service.pricing.duration90.price}${language === 'bg' ? ' лв.' : ' BGN'}`
+      });
     }
-    return durations;
+
+    return options;
   };
 
   const availableDurations = getAvailableDurations();
@@ -93,33 +111,23 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     const service = SERVICES.find(s => s.id === serviceId);
     if (!service) return;
 
-    setFormData(p => ({ ...p, service: serviceId }));
+    setFormData(prev => ({ ...prev, service: serviceId }));
 
     const durations = [];
-    if (service.pricing.duration60) {
-      durations.push({
-        value: "60",
-        label: service.pricing.duration60.label[language],
-        price: service.pricing.duration60.price
-      });
-    }
-    if (service.pricing.duration90) {
-      durations.push({
-        value: "90",
-        label: service.pricing.duration90.label[language],
-        price: service.pricing.duration90.price
-      });
-    }
+    if (service.pricing.duration30) durations.push("30");
+    if (service.pricing.duration60) durations.push("60");
+    if (service.pricing.duration90) durations.push("90");
 
     let defaultDuration = "";
     if (durations.length === 1) {
-      defaultDuration = durations[0].value;
+      defaultDuration = durations[0];
     } else if (durations.length > 1) {
-      defaultDuration = "60";
+      // Always default to shortest/cheapest available
+      defaultDuration = durations.sort((a, b) => Number(a) - Number(b))[0];
     }
 
-    setFormData(p => ({ ...p, duration: defaultDuration }));
-  }, [preselectedService, formData.service, language]);
+    setFormData(prev => ({ ...prev, duration: defaultDuration }));
+  }, [preselectedService, language]);
 
   const availableTimeSlots = getAvailableTimeSlots(formData.date);
 
