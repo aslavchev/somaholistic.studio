@@ -26,7 +26,10 @@ const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const { t, language } = useLanguage();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
-  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({
+    threshold: 0.1,
+    rootMargin: '0px 0px 300px 0px' // Load images 300px before entering viewport
+  });
 
   // Preload first 4 service images for better UX on navigation
   // Order: SOMA Ritual, Phytotherapy, Wellness Coaching, Classic Massage
