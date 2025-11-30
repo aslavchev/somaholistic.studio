@@ -191,4 +191,14 @@ All colors MUST be HSL.
     content-visibility: auto;
     contain-intrinsic-size: 1000px 1000px;
   }
+
+  /* About section image alignment fix */
+  #about img[data-testid="about-image"] {
+    display: block;
+    margin: 0;
+  }
+
+  #about .aspect-\[4\/5\] {
+    margin: 0;
+  }
 }
