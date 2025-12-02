@@ -59,6 +59,41 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     };
   }, []);
 
+  // Analytics: Track step changes
+  useEffect(() => {
+    if (open && step > 0) {
+      // Track step progression for analytics
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'booking_step_change', {
+          step: step,
+          service: formData.service || 'none',
+          event_category: 'booking_flow'
+        });
+      }
+    }
+  }, [step, open, formData.service]);
+
+  // Analytics: Track dialog open/close
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      if (open) {
+        (window as any).gtag('event', 'booking_dialog_open', {
+          preselected_service: preselectedService || 'none',
+          event_category: 'booking_flow'
+        });
+      }
+    }
+  }, [open, preselectedService]);
+
+  // Re-validate fields when returning to Step 3 to restore error state
+  useEffect(() => {
+    if (step === 3) {
+      if (formData.name) handleValidateName(formData.name);
+      if (formData.email) handleValidateEmail(formData.email);
+      if (formData.phone) handleValidatePhone(`+${formData.countryCode}${formData.phone.replace(/\s/g, '')}`);
+    }
+  }, [step]);
+
   // Transform centralized services data for select options
   const services = (SERVICES || []).map(service => ({
     value: service.id,
@@ -204,6 +239,16 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       },
       t
     );
+
+    // Analytics: Track booking submission
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'booking_submit', {
+        service: formData.service,
+        duration: formData.duration,
+        event_category: 'booking_flow',
+        event_label: serviceLabel
+      });
+    }
 
     // Open WhatsApp with pre-filled message
     const whatsappUrl = buildWhatsAppUrl(CONTACT.WHATSAPP, message);
@@ -508,8 +553,11 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                     value={formData.phone}
                     onChange={(e) => {
                       const formatted = formatPhone(e.target.value);
-                      setFormData(prev => ({ ...prev, phone: formatted }));
-                      handleValidatePhone(`+${formData.countryCode}${formatted.replace(/\s/g, '')}`);
+                      setFormData(prev => {
+                        const fullPhone = `+${prev.countryCode}${formatted.replace(/\s/g, '')}`;
+                        handleValidatePhone(fullPhone);
+                        return { ...prev, phone: formatted };
+                      });
                     }}
                     className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
                     data-testid="booking-phone-input"
