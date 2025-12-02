@@ -28,7 +28,7 @@ const Services = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({
     threshold: 0.1,
-    rootMargin: '0px 0px 300px 0px' // Load images 300px before entering viewport
+    rootMargin: '0px 0px 100px 0px' // Small margin for smooth transition, aligned with lazy loading
   });
 
   // Preload first 4 service images for better UX on navigation

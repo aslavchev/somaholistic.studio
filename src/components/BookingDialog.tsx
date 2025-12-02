@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,28 +47,56 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     phone: ""
   });
 
+  // Ref to track timeout for cleanup
+  const submitTimeoutRef = useRef<NodeJS.Timeout>();
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (submitTimeoutRef.current) {
+        clearTimeout(submitTimeoutRef.current);
+      }
+    };
+  }, []);
+
   // Transform centralized services data for select options
-  const services = SERVICES.map(service => ({
+  const services = (SERVICES || []).map(service => ({
     value: service.id,
     label: service.title[language]
   }));
 
 
 
-  // Get service price for display
+  // Helper: Get available duration values for a service
+  const getAvailableDurationValues = (serviceId: string): string[] => {
+    if (!SERVICES) return [];
+    const service = SERVICES.find(s => s.id === serviceId);
+    if (!service) return [];
+
+    const available = [];
+    if (service.pricing.duration30) available.push("30");
+    if (service.pricing.duration60) available.push("60");
+    if (service.pricing.duration90) available.push("90");
+    return available;
+  };
+
+  // Get service price for display (shows first available price)
   const getServicePrice = (serviceId: string) => {
+    if (!SERVICES) return "";
     const service = SERVICES.find(s => s.id === serviceId);
     if (!service) return "";
-    const prices = [];
-    if (service.pricing.duration60) prices.push(`${service.pricing.duration60.price} BGN`);
-    else if (service.pricing.duration90) prices.push(`${service.pricing.duration90.price} BGN`);
-    return prices[0] || "";
+
+    // Check all durations, not just 60/90
+    if (service.pricing.duration30) return `${service.pricing.duration30.price} BGN`;
+    if (service.pricing.duration60) return `${service.pricing.duration60.price} BGN`;
+    if (service.pricing.duration90) return `${service.pricing.duration90.price} BGN`;
+    return "";
   };
 
 
   // Get available durations for selected service
   const getAvailableDurations = () => {
-    if (!formData.service) return [];
+    if (!formData.service || !SERVICES) return [];
 
     const service = SERVICES.find(s => s.id === formData.service);
     if (!service) return [];
@@ -103,31 +131,41 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   const availableDurations = getAvailableDurations();
 
-  // Smart pre-selection: auto-fill service and duration when preselected
+  // Effect 1: Auto-fill service + duration when dialog opens with preselectedService
   useEffect(() => {
-    if (!preselectedService && !formData.service) return;
+    if (!preselectedService) return;
 
-    const serviceId = preselectedService || formData.service;
-    const service = SERVICES.find(s => s.id === serviceId);
-    if (!service) return;
+    const available = getAvailableDurationValues(preselectedService);
+    if (available.length === 0) return; // Invalid service ID
 
-    setFormData(prev => ({ ...prev, service: serviceId }));
+    // Always pick shortest available duration (works for single or multiple durations)
+    const defaultDuration = available.sort((a, b) => Number(a) - Number(b))[0];
 
-    const durations = [];
-    if (service.pricing.duration30) durations.push("30");
-    if (service.pricing.duration60) durations.push("60");
-    if (service.pricing.duration90) durations.push("90");
+    setFormData(prev => ({
+      ...prev,
+      service: preselectedService,
+      duration: defaultDuration
+    }));
+  }, [preselectedService]);
 
-    let defaultDuration = "";
-    if (durations.length === 1) {
-      defaultDuration = durations[0];
-    } else if (durations.length > 1) {
-      // Always default to shortest/cheapest available
-      defaultDuration = durations.sort((a, b) => Number(a) - Number(b))[0];
+  // Effect 2: Validate and auto-correct duration when service changes
+  useEffect(() => {
+    if (!formData.service) {
+      if (formData.duration) {
+        setFormData(prev => ({ ...prev, duration: "" }));
+      }
+      return;
     }
 
-    setFormData(prev => ({ ...prev, duration: defaultDuration }));
-  }, [preselectedService, language]);
+    const available = getAvailableDurationValues(formData.service);
+
+    // Auto-correct invalid duration to shortest available
+    // Only update if duration is actually invalid (prevents infinite loop)
+    if (available.length > 0 && formData.duration && !available.includes(formData.duration)) {
+      const shortest = available.sort((a, b) => Number(a) - Number(b))[0];
+      setFormData(prev => ({ ...prev, duration: shortest }));
+    }
+  }, [formData.service, formData.duration]);
 
   const availableTimeSlots = getAvailableTimeSlots(formData.date);
 
@@ -171,10 +209,10 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     const whatsappUrl = buildWhatsAppUrl(CONTACT.WHATSAPP, message);
     window.open(whatsappUrl, '_blank');
 
-    setTimeout(() => {
+    submitTimeoutRef.current = setTimeout(() => {
       toast.success(
         <div className="flex items-center gap-3">
-          <CheckCircle2 className="w-6 h-6 text-green-600 animate-ping" />
+          <CheckCircle2 className="w-6 h-6 text-green-600" />
           <span>{t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation")}</span>
         </div>
       );
@@ -182,7 +220,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       setStep(1);
       setIsSubmitting(false);
       setFormData({
-        service: "",
+        service: preselectedService || "",
         duration: "",
         date: undefined,
         time: "",
@@ -197,7 +235,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   const canProceedToStep2 = formData.service && formData.duration;
   const canProceedToStep3 = formData.date && formData.time;
   const canSubmit = formData.name.trim().length >= 2 &&
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) &&
+                    validateEmail(formData.email, t).valid &&
                     formData.phone.replace(/\D/g, '').length >= 9 &&
                     !errors.name && !errors.email && !errors.phone;
 
@@ -235,7 +273,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
           <div className="space-y-4">
             <div>
               <Label htmlFor="service">{t("Изберете услуга", "Select Service")}</Label>
-              <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
+              <Select value={formData.service} onValueChange={(value) => setFormData(prev => ({ ...prev, service: value }))}>
                 <SelectTrigger id="service" data-testid="booking-service-select">
                   <SelectValue placeholder={t("Изберете услуга", "Select Service")} />
                 </SelectTrigger>
@@ -264,7 +302,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   return <p className="text-sm text-muted-foreground">{label} – {price}</p>;
                 }
                 return (
-                  <Select value={formData.duration} onValueChange={(value) => setFormData({ ...formData, duration: value })}>
+                  <Select value={formData.duration} onValueChange={(value) => setFormData(prev => ({ ...prev, duration: value }))}>
                     <SelectTrigger id="duration" data-testid="booking-duration-select">
                       <SelectValue placeholder={t("Изберете продължителност", "Select Duration")} />
                     </SelectTrigger>
@@ -300,8 +338,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 locale={language === 'bg' ? bg : undefined}
                 mode="single"
                 selected={formData.date}
-                onSelect={(date) => setFormData({ ...formData, date })}
-                disabled={(date) => date < new Date()}
+                onSelect={(date) => setFormData(prev => ({ ...prev, date }))}
+                disabled={(date) => {
+                  const today = new Date();
+                  today.setHours(0, 0, 0, 0);
+                  return date < today;
+                }}
                 className="rounded-md border p-3"
                 data-testid="booking-date-calendar"
               />
@@ -320,7 +362,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             <div>
               <Label htmlFor="time">{t("Изберете час", "Select Time")}</Label>
               {availableTimeSlots.length > 0 ? (
-                <Select value={formData.time} onValueChange={(value) => setFormData({ ...formData, time: value })}>
+                <Select value={formData.time} onValueChange={(value) => setFormData(prev => ({ ...prev, time: value }))}>
                   <SelectTrigger id="time" data-testid="booking-time-select">
                     <SelectValue placeholder={t("Изберете час", "Select Time")} />
                   </SelectTrigger>
@@ -384,7 +426,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   placeholder={t("Име и фамилия", "Full Name")}
                   value={formData.name}
                   onChange={(e) => {
-                    setFormData({ ...formData, name: e.target.value });
+                    setFormData(prev => ({ ...prev, name: e.target.value }));
                     handleValidateName(e.target.value);
                   }}
                   className={`pl-10 ${errors.name ? 'border-red-500' : ''}`}
@@ -404,7 +446,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => {
-                    setFormData({ ...formData, email: e.target.value });
+                    setFormData(prev => ({ ...prev, email: e.target.value }));
                     handleValidateEmail(e.target.value);
                   }}
                   className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
@@ -425,7 +467,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               <div className="flex gap-2">
                 <Select
                   value={formData.countryCode}
-                  onValueChange={(value) => setFormData({ ...formData, countryCode: value })}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, countryCode: value }))}
                 >
                   <SelectTrigger className="w-32" data-testid="booking-country-select">
                     <SelectValue />
@@ -466,7 +508,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                     value={formData.phone}
                     onChange={(e) => {
                       const formatted = formatPhone(e.target.value);
-                      setFormData({ ...formData, phone: formatted });
+                      setFormData(prev => ({ ...prev, phone: formatted }));
                       handleValidatePhone(`+${formData.countryCode}${formatted.replace(/\s/g, '')}`);
                     }}
                     className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
@@ -501,7 +543,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               <div className="space-y-2 text-sm">
                 <p data-testid="booking-summary-service"><strong>{t("Услуга:", "Service:")}</strong> {services.find(s => s.value === formData.service)?.label}</p>
                 <p data-testid="booking-summary-duration"><strong>{t("Продължителност:", "Duration:")}</strong> {formData.duration} {t("минути", "minutes")}</p>
-                <p data-testid="booking-summary-date"><strong>{t("Дата:", "Date:")}</strong> {formData.date?.toLocaleDateString()}</p>
+                <p data-testid="booking-summary-date"><strong>{t("Дата:", "Date:")}</strong> {formData.date?.toLocaleDateString(language === 'bg' ? 'bg-BG' : 'en-US')}</p>
                 <p data-testid="booking-summary-time"><strong>{t("Час:", "Time:")}</strong> {formData.time}</p>
                 <p data-testid="booking-summary-name"><strong>{t("Име:", "Name:")}</strong> {formData.name}</p>
                 <p data-testid="booking-summary-email"><strong>Email:</strong> {formData.email}</p>
