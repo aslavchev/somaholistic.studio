@@ -3,6 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { copyFileSync } from "fs";
+import { createHtmlPlugin } from "vite-plugin-html";
+import { randomBytes } from "crypto";
+
+// Generate cryptographic nonce for CSP
+const generateNonce = () => randomBytes(16).toString('base64');
 
 // Plugin to copy 404.html for GitHub Pages SPA routing
 const copy404Plugin = () => ({
@@ -18,21 +23,32 @@ const copy404Plugin = () => ({
 });
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: "/somaholistic.studio/",
-  server: {
-    host: "::",
-    port: 8080,
-  },
-  plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
-    copy404Plugin(),
-  ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+export default defineConfig(({ mode }) => {
+  const styleNonce = generateNonce();
+
+  return {
+    base: "/somaholistic.studio/",
+    server: {
+      host: "::",
+      port: 8080,
     },
-  },
-}));
+    plugins: [
+      react(),
+      mode === 'development' && componentTagger(),
+      createHtmlPlugin({
+        minify: true,
+        inject: {
+          data: {
+            styleNonce,
+          },
+        },
+      }),
+      copy404Plugin(),
+    ].filter(Boolean),
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
+  };
+});
