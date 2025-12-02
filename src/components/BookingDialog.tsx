@@ -194,7 +194,8 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   // Effect 1: Auto-fill service + duration when dialog opens with preselectedService
   useEffect(() => {
-    if (!preselectedService) return;
+    // Only run when dialog opens AND we have a preselected service
+    if (!open || !preselectedService) return;
 
     const available = getAvailableDurationValues(preselectedService);
     if (available.length === 0) return; // Invalid service ID
@@ -207,7 +208,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       service: preselectedService,
       duration: defaultDuration
     }));
-  }, [preselectedService]);
+  }, [open, preselectedService]);
 
   // Effect 2: Validate and auto-correct duration when service changes
   useEffect(() => {
