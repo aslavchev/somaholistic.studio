@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,13 @@ import {
   buildBookingMessage,
   buildWhatsAppUrl
 } from "@/lib/utils";
+
+// Type for gtag analytics
+declare global {
+  interface Window {
+    gtag?: (command: string, eventName: string, params: Record<string, unknown>) => void;
+  }
+}
 
 interface BookingDialogProps {
   open: boolean;
@@ -63,8 +70,8 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   useEffect(() => {
     if (open && step > 0) {
       // Track step progression for analytics
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'booking_step_change', {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'booking_step_change', {
           step: step,
           service: formData.service || 'none',
           event_category: 'booking_flow'
@@ -75,15 +82,34 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   // Analytics: Track dialog open/close
   useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
+    if (typeof window !== 'undefined' && window.gtag) {
       if (open) {
-        (window as any).gtag('event', 'booking_dialog_open', {
+        window.gtag('event', 'booking_dialog_open', {
           preselected_service: preselectedService || 'none',
           event_category: 'booking_flow'
         });
       }
     }
   }, [open, preselectedService]);
+
+  // Memoized validation handlers to prevent recreating on every render
+  const handleValidateEmail = useCallback((email: string) => {
+    const result = validateEmail(email, t);
+    setErrors(prev => ({ ...prev, email: result.error || "" }));
+    return result.valid;
+  }, [t]);
+
+  const handleValidatePhone = useCallback((phone: string) => {
+    const result = validatePhone(phone, t);
+    setErrors(prev => ({ ...prev, phone: result.error || "" }));
+    return result.valid;
+  }, [t]);
+
+  const handleValidateName = useCallback((name: string) => {
+    const result = validateName(name, t);
+    setErrors(prev => ({ ...prev, name: result.error || "" }));
+    return result.valid;
+  }, [t]);
 
   // Re-validate fields when returning to Step 3 to restore error state
   useEffect(() => {
@@ -92,7 +118,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       if (formData.email) handleValidateEmail(formData.email);
       if (formData.phone) handleValidatePhone(`+${formData.countryCode}${formData.phone.replace(/\s/g, '')}`);
     }
-  }, [step]);
+  }, [step, formData.name, formData.email, formData.phone, formData.countryCode, handleValidateName, handleValidateEmail, handleValidatePhone]);
 
   // Transform centralized services data for select options
   const services = (SERVICES || []).map(service => ({
@@ -204,25 +230,6 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   const availableTimeSlots = getAvailableTimeSlots(formData.date);
 
-  // Validation helpers with error state management
-  const handleValidateEmail = (email: string) => {
-    const result = validateEmail(email, t);
-    setErrors(prev => ({ ...prev, email: result.error || "" }));
-    return result.valid;
-  };
-
-  const handleValidatePhone = (phone: string) => {
-    const result = validatePhone(phone, t);
-    setErrors(prev => ({ ...prev, phone: result.error || "" }));
-    return result.valid;
-  };
-
-  const handleValidateName = (name: string) => {
-    const result = validateName(name, t);
-    setErrors(prev => ({ ...prev, name: result.error || "" }));
-    return result.valid;
-  };
-
   const handleSubmit = () => {
     setIsSubmitting(true);
 
@@ -241,8 +248,8 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     );
 
     // Analytics: Track booking submission
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'booking_submit', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'booking_submit', {
         service: formData.service,
         duration: formData.duration,
         event_category: 'booking_flow',
