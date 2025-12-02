@@ -42,10 +42,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Testing
+# Testing (all test files and configs kept local-only)
 coverage
 *.lcov
 .nyc_output
+vitest.config.ts
+src/test/
+src/**/__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+TEST_SETUP.md
 
 # Temporary files
 *.tmp
