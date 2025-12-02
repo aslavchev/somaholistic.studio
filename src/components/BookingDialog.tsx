@@ -221,6 +221,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
     const available = getAvailableDurationValues(formData.service);
 
+    // Auto-select duration if only one option available
+    if (available.length === 1 && !formData.duration) {
+      setFormData(prev => ({ ...prev, duration: available[0] }));
+      return;
+    }
+
     // Auto-correct invalid duration to shortest available
     // Only update if duration is actually invalid (prevents infinite loop)
     if (available.length > 0 && formData.duration && !available.includes(formData.duration)) {
