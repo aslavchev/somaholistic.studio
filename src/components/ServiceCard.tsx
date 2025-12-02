@@ -8,6 +8,7 @@ import { CONTACT } from "@/data";
 import BookingDialog from "@/components/BookingDialog";
 
 interface ServiceCardProps {
+  id: string;
   title: string;
   description: string;
   benefits?: string[];
@@ -25,6 +26,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({
+  id,
   title,
   description,
   benefits = [],
@@ -294,10 +296,10 @@ const ServiceCard = ({
       </CardContent>
     </Card>
     
-    <BookingDialog 
-      open={bookingOpen} 
+    <BookingDialog
+      open={bookingOpen}
       onOpenChange={setBookingOpen}
-      preselectedService={title}
+      preselectedService={id}
     />
     </>
   );

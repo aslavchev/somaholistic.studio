@@ -48,6 +48,7 @@ const Services = () => {
 
   // Transform centralized data into ServiceCard props format
   const services = SERVICES.map((service) => ({
+    id: service.id,
     title: service.title[language],
     description: service.description[language],
     benefits: service.benefits?.map(b => b[language]),
