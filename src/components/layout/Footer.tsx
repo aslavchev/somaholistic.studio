@@ -1,10 +1,10 @@
 import { Phone, Instagram, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
+import Logo from "@/components/common/Logo";
 import { Link } from "react-router-dom";
 import { CONTACT } from "@/data";
 import { scrollToSection } from '@/utils/scrollToSection';
-import logo from "@/assets/Logo_Soma.svg";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -22,14 +22,8 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center p-1">
-                <img
-                  src={logo}
-                  alt="SOMA STUDIO"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+            <div className="flex items-center space-x-3 mb-4">
+              <Logo size="md" />
               <div>
                 <h3 className="text-xl font-bold">SOMA STUDIO</h3>
                 <p className="text-xs uppercase tracking-wide opacity-80">
@@ -48,30 +42,26 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">{t("Контакти", "Contact")}</h4>
             <div className="space-y-3 text-sm">
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4" aria-hidden="true" />
-                <a
-                  href={`tel:${CONTACT.PHONE_TEL}`}
-                  className="hover:text-primary-foreground/80 transition-colors"
-                  data-testid="footer-phone-link"
-                  aria-label={`Call ${CONTACT.PHONE_DISPLAY}`}
-                >
-                  {CONTACT.PHONE_DISPLAY}
-                </a>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Instagram className="w-4 h-4" aria-hidden="true" />
-                <a
-                  href={`https://www.instagram.com/${CONTACT.INSTAGRAM}/`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary-foreground/80 transition-colors"
-                  data-testid="footer-instagram-link"
-                  aria-label={`Visit @${CONTACT.INSTAGRAM} on Instagram`}
-                >
-                  @{CONTACT.INSTAGRAM}
-                </a>
-              </div>
+              <a
+                href={`tel:${CONTACT.PHONE_TEL}`}
+                className="flex items-center space-x-2 hover:text-primary-foreground/80 transition-colors group"
+                data-testid="footer-phone-link"
+                aria-label={`Call ${CONTACT.PHONE_DISPLAY}`}
+              >
+                <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                <span>{CONTACT.PHONE_DISPLAY}</span>
+              </a>
+              <a
+                href={`https://www.instagram.com/${CONTACT.INSTAGRAM}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:text-primary-foreground/80 transition-colors group"
+                data-testid="footer-instagram-link"
+                aria-label={`Visit @${CONTACT.INSTAGRAM} on Instagram`}
+              >
+                <Instagram className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                <span>@{CONTACT.INSTAGRAM}</span>
+              </a>
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>

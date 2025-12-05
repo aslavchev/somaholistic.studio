@@ -2,11 +2,11 @@ import { Phone, Instagram, Languages, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
+import Logo from "@/components/common/Logo";
 import { CONTACT } from "@/data";
 import { useState } from "react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { scrollToSection } from '@/utils/scrollToSection';
-import logo from "@/assets/Logo_Soma.svg";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -43,14 +43,8 @@ const Header = () => {
               <GoogleReviewBadge variant="compact" />
             </div>
 
-            <button onClick={scrollToTop} className="flex items-center space-x-2 hover:opacity-80 transition-opacity" aria-label="Scroll to top">
-              <div className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center p-1">
-                <img
-                  src={logo}
-                  alt="SOMA STUDIO"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity" aria-label="Scroll to top">
+              <Logo size="md" />
               <div>
                 <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
                 <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices")}</p>
