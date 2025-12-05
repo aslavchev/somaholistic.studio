@@ -31,11 +31,6 @@ export default defineConfig(({ mode }) => {
     server: {
       host: "::",
       port: 8080,
-      // Dev-only: Disable CSP meta tag enforcement for HMR and Tailwind
-      // Production uses strict CSP from index.html meta tag
-      headers: mode === 'development' ? {
-        'Content-Security-Policy': ''  // Empty string disables CSP in dev mode
-      } : {}
     },
     plugins: [
       react(),
@@ -45,6 +40,7 @@ export default defineConfig(({ mode }) => {
         inject: {
           data: {
             styleNonce,
+            mode,  // Pass build mode to HTML template
           },
         },
       }),

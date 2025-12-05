@@ -148,9 +148,9 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     if (!service) return "";
 
     // Check all durations, not just 60/90
-    if (service.pricing.duration30) return `${service.pricing.duration30.price} BGN`;
-    if (service.pricing.duration60) return `${service.pricing.duration60.price} BGN`;
-    if (service.pricing.duration90) return `${service.pricing.duration90.price} BGN`;
+    if (service.pricing.duration30) return `€${service.pricing.duration30.price}`;
+    if (service.pricing.duration60) return `€${service.pricing.duration60.price}`;
+    if (service.pricing.duration90) return `€${service.pricing.duration90.price}`;
     return "";
   };
 
@@ -169,21 +169,21 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       options.push({
         value: "30",
         label: service.pricing.duration30.label[language],
-        price: `${service.pricing.duration30.price}${language === 'bg' ? ' лв.' : ' BGN'}`
+        price: `€${service.pricing.duration30.price}`
       });
     }
     if (service.pricing.duration60) {
       options.push({
         value: "60",
         label: service.pricing.duration60.label[language],
-        price: `${service.pricing.duration60.price}${language === 'bg' ? ' лв.' : ' BGN'}`
+        price: `€${service.pricing.duration60.price}`
       });
     }
     if (service.pricing.duration90) {
       options.push({
         value: "90",
         label: service.pricing.duration90.label[language],
-        price: `${service.pricing.duration90.price}${language === 'bg' ? ' лв.' : ' BGN'}`
+        price: `€${service.pricing.duration90.price}`
       });
     }
 
