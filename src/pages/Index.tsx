@@ -23,8 +23,8 @@ const IndexContent = () => {
       </a>
       <Header />
       <Hero />
-        <About />
         <Services />
+        <About />
         <Testimonials />
         <Gallery />
       <Contact />

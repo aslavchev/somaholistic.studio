@@ -1,9 +1,22 @@
-import { Award, Heart, Sparkles } from "lucide-react";
+import { Award, Heart, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import therapistPortrait from "@/assets/therapist-portrait.webp";
+import { useState, useEffect } from "react";
 
 const About = () => {
   const { t } = useLanguage();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section className="py-16 md:py-24 bg-background" id="about" data-testid="about-section">
@@ -37,30 +50,47 @@ const About = () => {
                     "My name is Mariana Igova and I have been working in the field of personal transformation and holistic wellbeing for over seven years. I believe that true healing happens through a holistic view of the person – when the body, emotions, mind and spirit are seen as a connected, living system. This philosophy is the foundation of the studio I created – a place dedicated to balance, returning to oneself and inner clarity."
                   )}
                 </p>
-                <p className="leading-relaxed">
-                  {t(
-                    "Соматичните практики са част от живота ми повече от 25 години. Още в началото разбрах, че тялото носи своя собствена мъдрост – тих език, който говори чрез усещания, импулси и фини сигнали. С времето се научих да го слушам и да помагам на другите да чуват неговото послание. За мен тялото е врата към дълбоката ни истина, а движението и дъхът са естествените инструменти за освобождаване, обновяване и възстановяване на хармонията.",
-                    "Somatic practices have been part of my life for more than 25 years. Early on I understood that the body carries its own wisdom – a quiet language that speaks through sensations, impulses and subtle signals. Over time I learned to listen to it and to help others hear its message. For me, the body is the gateway to our deep truth, and movement and breath are the natural tools for liberation, renewal and restoration of harmony."
-                  )}
-                </p>
-                <p className="leading-relaxed">
-                  {t(
-                    "Работата ми включва различни терапии, насочени към раздвижване на потока в тялото, подкрепа на жизнената енергия и създаване на вътрешно пространство за интеграция. Използвам мануални, холистични и енергийни практики, които подпомагат освобождаването на напрежение и възвръщането на усещането за лекота. От години се занимавам и с енергийна работа – посока, която обогати терапевтичния ми подход и ми позволи да работя още по-фино, през нивата, които често остават невидими, но силно влияят на нашето състояние.",
-                    "My work includes various therapies aimed at moving the flow in the body, supporting life energy and creating inner space for integration. I use manual, holistic and energy practices that support the release of tension and the return of the feeling of lightness. For years I have also been engaged in energy work – a direction that enriched my therapeutic approach and allowed me to work even more subtly, through levels that often remain invisible, but strongly affect our condition."
-                  )}
-                </p>
-                <p className="leading-relaxed">
-                  {t(
-                    "В сесиите си интегрирам дъх, осъзнато присъствие и нежно движение, когато това е нужно – като път към по-дълбока връзка със себе си и естествено освобождаване на емоции и блокажи.",
-                    "In my sessions I integrate breath, conscious presence and gentle movement when needed – as a path to deeper connection with oneself and natural release of emotions and blockages."
-                  )}
-                </p>
-                <p className="leading-relaxed">
-                  {t(
-                    "Студиото, което създадох, е пространство за автентичност, лекота и трансформация. Място, в което човек може да се срещне със себе си – истински, спокойно и с доверие. Радвам се да бъда опора в този процес на връщане към цялостност и вътрешен дом.",
-                    "The studio I created is a space for authenticity, lightness and transformation. A place where one can meet oneself truly, calmly and with trust. I am happy to be a support in this process of returning to wholeness and inner home."
-                  )}
-                </p>
+
+                {(!isMobile || isExpanded) && (
+                  <>
+                    <p className="leading-relaxed">
+                      {t(
+                        "Соматичните практики са част от живота ми повече от 25 години. Още в началото разбрах, че тялото носи своя собствена мъдрост – тих език, който говори чрез усещания, импулси и фини сигнали. С времето се научих да го слушам и да помагам на другите да чуват неговото послание. За мен тялото е врата към дълбоката ни истина, а движението и дъхът са естествените инструменти за освобождаване, обновяване и възстановяване на хармонията.",
+                        "Somatic practices have been part of my life for more than 25 years. Early on I understood that the body carries its own wisdom – a quiet language that speaks through sensations, impulses and subtle signals. Over time I learned to listen to it and to help others hear its message. For me, the body is the gateway to our deep truth, and movement and breath are the natural tools for liberation, renewal and restoration of harmony."
+                      )}
+                    </p>
+                    <p className="leading-relaxed">
+                      {t(
+                        "Работата ми включва различни терапии, насочени към раздвижване на потока в тялото, подкрепа на жизнената енергия и създаване на вътрешно пространство за интеграция. Използвам мануални, холистични и енергийни практики, които подпомагат освобождаването на напрежение и възвръщането на усещането за лекота. От години се занимавам и с енергийна работа – посока, която обогати терапевтичния ми подход и ми позволи да работя още по-фино, през нивата, които често остават невидими, но силно влияят на нашето състояние.",
+                        "My work includes various therapies aimed at moving the flow in the body, supporting life energy and creating inner space for integration. I use manual, holistic and energy practices that support the release of tension and the return of the feeling of lightness. For years I have also been engaged in energy work – a direction that enriched my therapeutic approach and allowed me to work even more subtly, through levels that often remain invisible, but strongly affect our condition."
+                      )}
+                    </p>
+                    <p className="leading-relaxed">
+                      {t(
+                        "В сесиите си интегрирам дъх, осъзнато присъствие и нежно движение, когато това е нужно – като път към по-дълбока връзка със себе си и естествено освобождаване на емоции и блокажи.",
+                        "In my sessions I integrate breath, conscious presence and gentle movement when needed – as a path to deeper connection with oneself and natural release of emotions and blockages."
+                      )}
+                    </p>
+                    <p className="leading-relaxed">
+                      {t(
+                        "Студиото, което създадох, е пространство за автентичност, лекота и трансформация. Място, в което човек може да се срещне със себе си – истински, спокойно и с доверие. Радвам се да бъда опора в този процес на връщане към цялостност и вътрешен дом.",
+                        "The studio I created is a space for authenticity, lightness and transformation. A place where one can meet oneself truly, calmly and with trust. I am happy to be a support in this process of returning to wholeness and inner home."
+                      )}
+                    </p>
+                  </>
+                )}
+
+                {isMobile && (
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
+                    aria-expanded={isExpanded}
+                    aria-label={isExpanded ? t("Покажи по-малко", "Show less") : t("Прочети повече", "Read more")}
+                  >
+                    {isExpanded ? t("Покажи по-малко", "Show less") : t("Прочети повече", "Read more")}
+                    {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                  </button>
+                )}
               </div>
             </div>
           </div>

@@ -42,8 +42,8 @@ const PricingContent = () => {
               </p>
               <p className="text-sm text-muted-foreground">
                 {t(
-                  "Всички цени са в български левове (BGN)",
-                  "All prices are in Bulgarian Lev (BGN)"
+                  "Всички цени са в евро (€)",
+                  "All prices are in Euros (€)"
                 )}
               </p>
             </div>
@@ -83,13 +83,12 @@ const PricingContent = () => {
 
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-4xl font-bold text-primary">{package4Sessions.price}</span>
-                    <span className="text-xl text-muted-foreground">{t("лв", "BGN")}</span>
+                    <span className="text-4xl font-bold text-primary">€{package4Sessions.price}</span>
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    <span className="line-through">{package4Sessions.normalPrice} {t("лв", "BGN")}</span>
+                    <span className="line-through">€{package4Sessions.normalPrice}</span>
                     <span className="ml-2 text-primary font-semibold">
-                      {t("Спестете", "Save")} {package4Sessions.savings} {t("лв", "BGN")}
+                      {t("Спестете", "Save")} €{package4Sessions.savings}
                     </span>
                   </div>
                   <div className="inline-block mt-2 px-3 py-1 bg-primary/10 rounded-full">
@@ -141,13 +140,12 @@ const PricingContent = () => {
 
                 <div className="mb-6">
                   <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-4xl font-bold">{package6Sessions.price}</span>
-                    <span className="text-xl text-primary-foreground/80">{t("лв", "BGN")}</span>
+                    <span className="text-4xl font-bold">€{package6Sessions.price}</span>
                   </div>
                   <div className="text-sm text-primary-foreground/80">
-                    <span className="line-through">{package6Sessions.normalPrice} {t("лв", "BGN")}</span>
+                    <span className="line-through">€{package6Sessions.normalPrice}</span>
                     <span className="ml-2 font-semibold">
-                      {t("Спестете", "Save")} {package6Sessions.savings} {t("лв", "BGN")}
+                      {t("Спестете", "Save")} €{package6Sessions.savings}
                     </span>
                   </div>
                   <div className="inline-block mt-2 px-3 py-1 bg-white/20 rounded-full">
@@ -234,13 +232,13 @@ const PricingContent = () => {
                         {service.price60 && (
                           <div className="text-right">
                             <div className="text-sm text-muted-foreground">{service.duration60}</div>
-                            <div className="text-xl font-bold text-primary">{service.price60} {t("лв", "BGN")}</div>
+                            <div className="text-xl font-bold text-primary">€{service.price60}</div>
                           </div>
                         )}
                         {service.price90 && (
                           <div className="text-right">
                             <div className="text-sm text-muted-foreground">{service.duration90}</div>
-                            <div className="text-xl font-bold text-primary">{service.price90} {t("лв", "BGN")}</div>
+                            <div className="text-xl font-bold text-primary">€{service.price90}</div>
                           </div>
                         )}
                       </div>

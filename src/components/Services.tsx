@@ -54,11 +54,11 @@ const Services = () => {
     benefits: service.benefits?.map(b => b[language]),
     suitableFor: service.suitableFor?.map(s => s[language]),
     price60: service.pricing.duration60
-      ? `${service.pricing.duration60.price}${language === 'bg' ? 'лв' : ' BGN'}`
+      ? `€${service.pricing.duration60.price}`
       : undefined,
     duration60: service.pricing.duration60?.label[language],
     price90: service.pricing.duration90
-      ? `${service.pricing.duration90.price}${language === 'bg' ? 'лв' : ' BGN'}`
+      ? `€${service.pricing.duration90.price}`
       : undefined,
     duration90: service.pricing.duration90?.label[language],
     image: service.image ? IMAGE_MAP[service.image] : undefined,
