@@ -37,7 +37,7 @@ export const SERVICES: Service[] = [
     pricing: {
       duration90: {
         minutes: 90,
-        price: 150,
+        price: 75,
         label: { bg: '90 минути', en: '90 minutes' }
       }
     },
@@ -52,39 +52,172 @@ export const SERVICES: Service[] = [
     image: 'wellness-accessories'
   },
 
-  // 2. Phytotherapy Consultation - Coaching
+  // 2. Classic Massage - Massage
   {
-    id: 'phytotherapy',
+    id: 'classic-massage',
     title: {
-      bg: 'Фитотерапевтична консултация',
-      en: 'Phytotherapy Consultation'
+      bg: 'Класически масаж',
+      en: 'Classic Massage'
     },
     description: {
-      bg: 'Индивидуална консултация, насочена към постигане на баланс и хармония чрез силата на лечебните растения. По време на срещата ще изследваме твоето състояние в дълбочина и ще изготвим персонализиран фитотерапевтичен план с натурални средства – билкови тинктури, чайове, масла и други природни формули.',
-      en: 'Individual consultation aimed at achieving balance and harmony through the power of medicinal plants. During the meeting, we will examine your condition in depth and prepare a personalized phytotherapy plan with natural remedies – herbal tinctures, teas, oils and other natural formulas.'
+      bg: 'Класическият масаж е златният стандарт в терапията на тялото – изкуство, което съчетава изящество и ефективност. Той въздейства върху цялото тяло чрез прецизни движения, които стимулират кръвообращението, подобряват метаболизма и освобождават натрупаното напрежение. За взискателния клиент този масаж е не просто грижа за физиката, а ритуал за пълноценна регенерация. Всяко докосване е внимателно премерено, за да носи баланс между дълбока релаксация и терапевтична сила. Резултатът е усещане за лекота, обновена енергия и хармония, които надхвърлят обикновеното удоволствие. Позволете си този първокласен момент на себеобгрижване – защото истинският лукс е здравето и спокойствието.',
+      en: 'Classic massage is the gold standard in body therapy – an art that combines grace and efficiency. It affects the entire body through precise movements that stimulate blood circulation, improve metabolism and release accumulated tension. For the demanding client, this massage is not just physical care, but a ritual for complete regeneration. Each touch is carefully measured to bring a balance between deep relaxation and therapeutic power. The result is a feeling of lightness, renewed energy and harmony that go beyond ordinary pleasure. Allow yourself this first-class moment of self-care – because true luxury is health and peace of mind.'
     },
-    category: 'coaching',
+    category: 'massage',
     pricing: {
       duration60: {
         minutes: 60,
-        price: 80,
+        price: 45,
         label: { bg: '60 минути', en: '60 minutes' }
       }
     },
     benefits: [
-      { bg: 'Укрепване на имунната система', en: 'Strengthening the immune system' },
-      { bg: 'Справяне със стрес, тревожност и емоционален дисбаланс', en: 'Coping with stress, anxiety and emotional imbalance' },
-      { bg: 'Хормонален баланс', en: 'Hormonal balance' },
-      { bg: 'Детоксикация и общо възстановяване на организма', en: 'Detoxification and general recovery of the body' }
+      { bg: 'Подобрява кръвообращението', en: 'Improves blood circulation' },
+      { bg: 'Облекчава мускулно напрежение', en: 'Relieves muscle tension' },
+      { bg: 'Възстановява енергията', en: 'Restores energy' }
     ],
     suitableFor: [
-      { bg: 'Конкретни здравословни оплаквания', en: 'Specific health complaints' },
-      { bg: 'Превантивна грижа', en: 'Preventive care' }
+      { bg: 'Стрес и напрежение', en: 'Stress and tension' },
+      { bg: 'Мускулни болки', en: 'Muscle pain' }
+    ],
+    image: 'classical-massage'
+  },
+
+  // 3. Partial Back Massage - Massage
+  {
+    id: 'back-massage',
+    title: {
+      bg: 'Частичен масаж на гръб',
+      en: 'Partial Back Massage'
+    },
+    description: {
+      bg: 'Гърбът е центърът, в който се натрупват умора, стрес и напрежение. Частичният масаж на гръб е прецизна терапия, създадена специално за хора с динамично ежедневие и високи изисквания. Фокусът е върху освобождаването на мускулни блокажи в рамене, шийна и гръбна област. Масажните техники проникват в дълбочина, стимулират кръвообращението и освобождават напрежението, което често остава незабелязано, но силно влияе върху качеството на живот. За взискателния клиент този масаж не е просто комфорт – той е стратегическа инвестиция в продуктивност, стойка и дълготрайно добро самочувствие. Една сесия е достатъчна, за да усетите яснота, облекчение и сила.',
+      en: 'The back is the center where fatigue, stress and tension accumulate. Partial back massage is a precise therapy created especially for people with dynamic everyday life and high demands. The focus is on releasing muscle blockages in the shoulders, neck and back. Massage techniques penetrate deeply, stimulate blood circulation and release tension that often goes unnoticed but strongly affects the quality of life. For the demanding client, this massage is not just comfort – it is a strategic investment in productivity, posture and long-lasting well-being. One session is enough to feel clarity, relief and strength.'
+    },
+    category: 'massage',
+    pricing: {
+      duration60: {
+        minutes: 30,
+        price: 25,
+        label: { bg: '30 минути', en: '30 minutes' }
+      }
+    },
+    benefits: [
+      { bg: 'Бързо облекчение', en: 'Quick relief' },
+      { bg: 'Фокус върху проблемни зони', en: 'Focus on problem areas' },
+      { bg: 'Подобрява стойката', en: 'Improves posture' }
+    ],
+    suitableFor: [
+      { bg: 'Седяща работа', en: 'Desk work' },
+      { bg: 'Болки в гърба и шията', en: 'Back and neck pain' }
+    ],
+    image: 'back-massage'
+  },
+
+  // 4. Traditional Thai Massage - Massage
+  {
+    id: 'thai-massage',
+    title: {
+      bg: 'Традиционен Тай масаж',
+      en: 'Traditional Thai Massage'
+    },
+    description: {
+      bg: 'Дълбоко възстановяваща терапия, която комбинира лек натиск, разтягане и ритмично движение за балансиране на енергията в тялото. Този масаж освобождава мускулното напрежение, подобрява гъвкавостта и подпомага цялостното благосъстояние. Извършва се облечен върху мат и е идеален за тези, които търсят енергизираща, цялостна грижа за тялото и ума.',
+      en: 'Deeply restorative therapy that combines gentle pressure, stretching and rhythmic movement to balance energy in the body. This massage releases muscle tension, improves flexibility and supports overall well-being. Performed clothed on a mat, it is ideal for those seeking an energizing, holistic care for body and mind.'
+    },
+    category: 'massage',
+    pricing: {
+      duration60: {
+        minutes: 60,
+        price: 50,
+        label: { bg: '60 минути', en: '60 minutes' }
+      },
+      duration90: {
+        minutes: 90,
+        price: 65,
+        label: { bg: '90 минути', en: '90 minutes' }
+      }
+    },
+    benefits: [
+      { bg: 'Подобрява гъвкавостта', en: 'Improves flexibility' },
+      { bg: 'Балансира енергията', en: 'Balances energy' },
+      { bg: 'Освобождава напрежение', en: 'Releases tension' }
+    ],
+    suitableFor: [
+      { bg: 'Скованост', en: 'Stiffness' },
+      { bg: 'Енергиен дисбаланс', en: 'Energy imbalance' }
+    ],
+    image: 'massage-therapy'
+  },
+
+  // 5. Energy Therapy - Therapy
+  {
+    id: 'energy-therapy',
+    title: {
+      bg: 'Енергийна терапия с техники от тайландски масаж',
+      en: 'Energy Therapy with Thai Massage Techniques'
+    },
+    description: {
+      bg: 'Специализирана терапия, която съчетава традиционен тайландски масаж с фокусирано енергийно лечение. Чрез прецизен натиск върху енергийните точки и балансиране на жизнената сила, терапията освобождава физически и емоционални блокажи. Подходяща е за хора, които търсят вътрешен баланс, яснота и обновена жизненост.',
+      en: 'Specialized therapy that combines traditional Thai massage with focused energy healing. Through precise pressure on energy points and balancing life force, the therapy releases physical and emotional blockages. It is suitable for people seeking inner balance, clarity and renewed vitality.'
+    },
+    category: 'therapy',
+    pricing: {
+      duration60: {
+        minutes: 60,
+        price: 55,
+        label: { bg: '60 минути', en: '60 minutes' }
+      },
+      duration90: {
+        minutes: 90,
+        price: 72,
+        label: { bg: '90 минути', en: '90 minutes' }
+      }
+    },
+    benefits: [
+      { bg: 'Балансира жизнената сила', en: 'Balances life force' },
+      { bg: 'Освобождава блокажи', en: 'Releases blockages' },
+      { bg: 'Яснота и фокус', en: 'Clarity and focus' }
+    ],
+    suitableFor: [
+      { bg: 'Емоционален дисбаланс', en: 'Emotional imbalance' },
+      { bg: 'Търсещи вътрешен мир', en: 'Seeking inner peace' }
     ],
     image: 'energy-therapy'
   },
 
-  // 3. Wellness Coaching - Coaching
+  // 6. Rejuvenating Facial Therapy - Beauty
+  {
+    id: 'facial-therapy',
+    title: {
+      bg: 'Подмладяваща терапия за лице',
+      en: 'Rejuvenating Facial Therapy'
+    },
+    description: {
+      bg: 'Нежна подмладяваща терапия за лице, която подобрява кръвообращението, стяга кожата и намалява фините линии. Процедурата отпуска мускулите, освежава тена и придава естествен блясък.',
+      en: 'Gentle rejuvenating facial therapy that improves blood circulation, tightens skin and reduces fine lines. The procedure relaxes muscles, refreshes complexion and gives a natural glow.'
+    },
+    category: 'beauty',
+    pricing: {
+      duration60: {
+        minutes: 30,
+        price: 25,
+        label: { bg: '30 минути', en: '30 minutes' }
+      }
+    },
+    benefits: [
+      { bg: 'Подобрява тена', en: 'Improves complexion' },
+      { bg: 'Намалява фини линии', en: 'Reduces fine lines' },
+      { bg: 'Естествен блясък', en: 'Natural glow' }
+    ],
+    suitableFor: [
+      { bg: 'Антиейдж грижа', en: 'Anti-aging care' },
+      { bg: 'Уморена кожа', en: 'Tired skin' }
+    ],
+    image: 'facial-massage-new'
+  },
+
+  // 7. Wellness Coaching - Coaching
   {
     id: 'wellness-coaching',
     title: {
@@ -99,7 +232,7 @@ export const SERVICES: Service[] = [
     pricing: {
       duration60: {
         minutes: 60,
-        price: 90,
+        price: 45,
         label: { bg: '60 минути', en: '60 minutes' }
       }
     },
@@ -117,169 +250,36 @@ export const SERVICES: Service[] = [
     image: 'wellness-accessories'
   },
 
-  // 4. Classic Massage - Massage
+  // 8. Phytotherapy Consultation - Coaching
   {
-    id: 'classic-massage',
+    id: 'phytotherapy',
     title: {
-      bg: 'Класически масаж',
-      en: 'Classic Massage'
+      bg: 'Фитотерапевтична консултация',
+      en: 'Phytotherapy Consultation'
     },
     description: {
-      bg: 'Класическият масаж е златният стандарт в терапията на тялото – изкуство, което съчетава изящество и ефективност. Той въздейства върху цялото тяло чрез прецизни движения, които стимулират кръвообращението, подобряват метаболизма и освобождават натрупаното напрежение. За взискателния клиент този масаж е не просто грижа за физиката, а ритуал за пълноценна регенерация. Всяко докосване е внимателно премерено, за да носи баланс между дълбока релаксация и терапевтична сила. Резултатът е усещане за лекота, обновена енергия и хармония, които надхвърлят обикновеното удоволствие. Позволете си този първокласен момент на себеобгрижване – защото истинският лукс е здравето и спокойствието.',
-      en: 'Classic massage is the gold standard in body therapy – an art that combines grace and efficiency. It affects the entire body through precise movements that stimulate blood circulation, improve metabolism and release accumulated tension. For the demanding client, this massage is not just physical care, but a ritual for complete regeneration. Each touch is carefully measured to bring a balance between deep relaxation and therapeutic power. The result is a feeling of lightness, renewed energy and harmony that go beyond ordinary pleasure. Allow yourself this first-class moment of self-care – because true luxury is health and peace of mind.'
+      bg: 'Индивидуална консултация, насочена към постигане на баланс и хармония чрез силата на лечебните растения. По време на срещата ще изследваме твоето състояние в дълбочина и ще изготвим персонализиран фитотерапевтичен план с натурални средства – билкови тинктури, чайове, масла и други природни формули.',
+      en: 'Individual consultation aimed at achieving balance and harmony through the power of medicinal plants. During the meeting, we will examine your condition in depth and prepare a personalized phytotherapy plan with natural remedies – herbal tinctures, teas, oils and other natural formulas.'
     },
-    category: 'massage',
+    category: 'coaching',
     pricing: {
       duration60: {
         minutes: 60,
-        price: 90,
+        price: 40,
         label: { bg: '60 минути', en: '60 minutes' }
       }
     },
     benefits: [
-      { bg: 'Подобрява кръвообращението', en: 'Improves blood circulation' },
-      { bg: 'Облекчава мускулно напрежение', en: 'Relieves muscle tension' },
-      { bg: 'Възстановява енергията', en: 'Restores energy' }
+      { bg: 'Укрепване на имунната система', en: 'Strengthening the immune system' },
+      { bg: 'Справяне със стрес, тревожност и емоционален дисбаланс', en: 'Coping with stress, anxiety and emotional imbalance' },
+      { bg: 'Хормонален баланс', en: 'Hormonal balance' },
+      { bg: 'Детоксикация и общо възстановяване на организма', en: 'Detoxification and general recovery of the body' }
     ],
     suitableFor: [
-      { bg: 'Стрес и напрежение', en: 'Stress and tension' },
-      { bg: 'Мускулни болки', en: 'Muscle pain' }
-    ],
-    image: 'classical-massage'
-  },
-
-  // 5. Partial Back Massage - Massage
-  {
-    id: 'back-massage',
-    title: {
-      bg: 'Частичен масаж на гръб',
-      en: 'Partial Back Massage'
-    },
-    description: {
-      bg: 'Гърбът е центърът, в който се натрупват умора, стрес и напрежение. Частичният масаж на гръб е прецизна терапия, създадена специално за хора с динамично ежедневие и високи изисквания. Фокусът е върху освобождаването на мускулни блокажи в рамене, шийна и гръбна област. Масажните техники проникват в дълбочина, стимулират кръвообращението и освобождават напрежението, което често остава незабелязано, но силно влияе върху качеството на живот. За взискателния клиент този масаж не е просто комфорт – той е стратегическа инвестиция в продуктивност, стойка и дълготрайно добро самочувствие. Една сесия е достатъчна, за да усетите яснота, облекчение и сила.',
-      en: 'The back is the center where fatigue, stress and tension accumulate. Partial back massage is a precise therapy created especially for people with dynamic everyday life and high demands. The focus is on releasing muscle blockages in the shoulders, neck and back. Massage techniques penetrate deeply, stimulate blood circulation and release tension that often goes unnoticed but strongly affects the quality of life. For the demanding client, this massage is not just comfort – it is a strategic investment in productivity, posture and long-lasting well-being. One session is enough to feel clarity, relief and strength.'
-    },
-    category: 'massage',
-    pricing: {
-      duration60: {
-        minutes: 30,
-        price: 50,
-        label: { bg: '30 минути', en: '30 minutes' }
-      }
-    },
-    benefits: [
-      { bg: 'Бързо облекчение', en: 'Quick relief' },
-      { bg: 'Фокус върху проблемни зони', en: 'Focus on problem areas' },
-      { bg: 'Подобрява стойката', en: 'Improves posture' }
-    ],
-    suitableFor: [
-      { bg: 'Седяща работа', en: 'Desk work' },
-      { bg: 'Болки в гърба и шията', en: 'Back and neck pain' }
-    ],
-    image: 'back-massage'
-  },
-
-  // 6. Traditional Thai Massage - Massage
-  {
-    id: 'thai-massage',
-    title: {
-      bg: 'Традиционен Тай масаж',
-      en: 'Traditional Thai Massage'
-    },
-    description: {
-      bg: 'Дълбоко възстановяваща терапия, която комбинира лек натиск, разтягане и ритмично движение за балансиране на енергията в тялото. Този масаж освобождава мускулното напрежение, подобрява гъвкавостта и подпомага цялостното благосъстояние. Извършва се облечен върху мат и е идеален за тези, които търсят енергизираща, цялостна грижа за тялото и ума.',
-      en: 'Deeply restorative therapy that combines gentle pressure, stretching and rhythmic movement to balance energy in the body. This massage releases muscle tension, improves flexibility and supports overall well-being. Performed clothed on a mat, it is ideal for those seeking an energizing, holistic care for body and mind.'
-    },
-    category: 'massage',
-    pricing: {
-      duration60: {
-        minutes: 60,
-        price: 100,
-        label: { bg: '60 минути', en: '60 minutes' }
-      },
-      duration90: {
-        minutes: 90,
-        price: 130,
-        label: { bg: '90 минути', en: '90 minutes' }
-      }
-    },
-    benefits: [
-      { bg: 'Подобрява гъвкавостта', en: 'Improves flexibility' },
-      { bg: 'Балансира енергията', en: 'Balances energy' },
-      { bg: 'Освобождава напрежение', en: 'Releases tension' }
-    ],
-    suitableFor: [
-      { bg: 'Скованост', en: 'Stiffness' },
-      { bg: 'Енергиен дисбаланс', en: 'Energy imbalance' }
-    ],
-    image: 'massage-therapy'
-  },
-
-  // 7. Energy Therapy - Therapy
-  {
-    id: 'energy-therapy',
-    title: {
-      bg: 'Енергийна терапия с техники от тайландски масаж',
-      en: 'Energy Therapy with Thai Massage Techniques'
-    },
-    description: {
-      bg: 'Специализирана терапия, която съчетава традиционен тайландски масаж с фокусирано енергийно лечение. Чрез прецизен натиск върху енергийните точки и балансиране на жизнената сила, терапията освобождава физически и емоционални блокажи. Подходяща е за хора, които търсят вътрешен баланс, яснота и обновена жизненост.',
-      en: 'Specialized therapy that combines traditional Thai massage with focused energy healing. Through precise pressure on energy points and balancing life force, the therapy releases physical and emotional blockages. It is suitable for people seeking inner balance, clarity and renewed vitality.'
-    },
-    category: 'therapy',
-    pricing: {
-      duration60: {
-        minutes: 60,
-        price: 110,
-        label: { bg: '60 минути', en: '60 minutes' }
-      },
-      duration90: {
-        minutes: 90,
-        price: 140,
-        label: { bg: '90 минути', en: '90 minutes' }
-      }
-    },
-    benefits: [
-      { bg: 'Балансира жизнената сила', en: 'Balances life force' },
-      { bg: 'Освобождава блокажи', en: 'Releases blockages' },
-      { bg: 'Яснота и фокус', en: 'Clarity and focus' }
-    ],
-    suitableFor: [
-      { bg: 'Емоционален дисбаланс', en: 'Emotional imbalance' },
-      { bg: 'Търсещи вътрешен мир', en: 'Seeking inner peace' }
+      { bg: 'Конкретни здравословни оплаквания', en: 'Specific health complaints' },
+      { bg: 'Превантивна грижа', en: 'Preventive care' }
     ],
     image: 'energy-therapy'
-  },
-
-  // 8. Rejuvenating Facial Therapy - Beauty
-  {
-    id: 'facial-therapy',
-    title: {
-      bg: 'Подмладяваща терапия за лице',
-      en: 'Rejuvenating Facial Therapy'
-    },
-    description: {
-      bg: 'Нежна подмладяваща терапия за лице, която подобрява кръвообращението, стяга кожата и намалява фините линии. Процедурата отпуска мускулите, освежава тена и придава естествен блясък.',
-      en: 'Gentle rejuvenating facial therapy that improves blood circulation, tightens skin and reduces fine lines. The procedure relaxes muscles, refreshes complexion and gives a natural glow.'
-    },
-    category: 'beauty',
-    pricing: {
-      duration60: {
-        minutes: 30,
-        price: 50,
-        label: { bg: '30 минути', en: '30 minutes' }
-      }
-    },
-    benefits: [
-      { bg: 'Подобрява тена', en: 'Improves complexion' },
-      { bg: 'Намалява фини линии', en: 'Reduces fine lines' },
-      { bg: 'Естествен блясък', en: 'Natural glow' }
-    ],
-    suitableFor: [
-      { bg: 'Антиейдж грижа', en: 'Anti-aging care' },
-      { bg: 'Уморена кожа', en: 'Tired skin' }
-    ],
-    image: 'facial-massage-new'
   }
 ];
 

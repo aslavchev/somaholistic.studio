@@ -58,3 +58,16 @@ export {
   BUSINESS_HOURS,
   BOOKING_POLICY
 } from './constants';
+
+// Testimonials
+export {
+  TESTIMONIALS,
+  TESTIMONIAL_STATS,
+  getFeaturedTestimonials,
+  getTestimonialsByRating,
+  getTestimonialsBySource
+} from './testimonials';
+
+export type {
+  Testimonial
+} from './testimonials';
