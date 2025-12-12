@@ -1,151 +1,200 @@
-# SOMA Wellness Studio
+# SOMA Holistic Studio
 
-Professional wellness and holistic therapy website for SOMA Studio in Sofia, Bulgaria.
+[![Live](https://img.shields.io/badge/live-somaholistic.studio-success)](https://somaholistic.studio)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6)](https://typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.2-646CFF)](https://vitejs.dev/)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-94%2B-success)](https://developers.google.com/web/tools/lighthouse)
 
-**Live Site:** [https://aslavchev.github.io/somaholistic.studio/](https://aslavchev.github.io/somaholistic.studio/)
-
----
-
-## Tech Stack
-
-- **Frontend:** React 18.3.1 + TypeScript 5.8.3
-- **Build Tool:** Vite 7.2.4
-- **Styling:** Tailwind CSS 3.4.17
-- **UI Components:** Radix UI (shadcn/ui)
-- **Deployment:** GitHub Pages (Auto-deploy via GitHub Actions)
-- **Languages:** Bulgarian (primary) + English
+> Professional wellness and holistic therapy platform | Sofia, Bulgaria
 
 ---
 
-## Features
-
-- 🌐 Bilingual support (Bulgarian/English)
-- 📱 Fully responsive design
-- ♿ WCAG 2.1 Level AA accessible
-- 🎨 Smooth scroll animations
-- 📅 WhatsApp booking integration
-- 🗺️ Google Maps integration
-- 🔍 SEO optimized (Open Graph, Schema.org)
-- 📊 Google Analytics ready
-
----
-
-## Quick Start
-
-### Prerequisites
-
-- Node.js v20.11.0 (see `.nvmrc`)
-- npm or bun
-
-### Development
+## 🚀 Quick Start
 
 ```bash
-# Install dependencies
+git clone https://github.com/aslavchev/somaholistic.studio.git
+cd somaholistic.studio
 npm install
-
-# Start dev server
-npm run dev
-
-# Open: http://localhost:8080/somaholistic.studio/
+npm run dev  # → http://localhost:8080/somaholistic.studio/
 ```
 
-### Build
+**Requirements:** Node 20.11.0 (see `.nvmrc`) | npm 10+
+
+---
+
+## 📦 Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | React 18.3 + TypeScript 5.8 |
+| **Build** | Vite 7.2 |
+| **UI** | Tailwind CSS + shadcn/ui + Radix UI |
+| **Routing** | React Router 6.30 |
+| **Forms** | React Hook Form + Zod |
+| **Hosting** | Cloudflare Pages (Global CDN) |
+| **Integration** | Google Calendar API, WhatsApp, GA4 |
+
+---
+
+## ✨ Features
+
+- 🌐 Bilingual (Bulgarian/English)
+- 📱 Fully responsive (mobile-first)
+- 📅 Smart booking wizard → WhatsApp
+- 🖼️ Image gallery (WebP optimized, 72% reduction)
+- ⚡ Lighthouse 90+ scores (all metrics)
+- 🔒 CSP Phase 2 security (nonce-based)
+- ♿ WCAG 2.1 Level AA accessible
+- 🗺️ Google Maps integration
+
+---
+
+## 💻 Commands
 
 ```bash
-# Production build
-npm run build
-
-# Preview production build
-npm run preview
-
-# Test with correct base path
-npm run test:local
+npm run dev          # Dev server (http://localhost:8080/somaholistic.studio/)
+npm run build        # Production build
+npm run build:dev    # Dev build (no minification)
+npm run preview      # Preview production build
+npm run lint         # Lint code
+npm run test:local   # Test with correct base path
 ```
 
 ---
 
-## Project Structure
+## 🏗️ Architecture
+
+**System Design:** Client-side SPA (zero backend, zero ops cost)
+
+```
+Client (Browser) 
+  ↓ HTTPS/TLS 1.3
+Cloudflare Pages (CDN + Edge)
+  ↓ Private GitHub
+Source Control (GitHub)
+
+External: Google Calendar API | WhatsApp | GA4
+```
+
+**Key Decisions:**
+- [Infrastructure Decision](docs/current/infrastructure-decision-2025-12-12.md) - Why Cloudflare Pages
+- [Calendar Integration](docs/current/calendar-integration-decision-2025-12-12.md) - Why Google Calendar API
+
+---
+
+## 📁 Structure
 
 ```
 somaholistic.studio/
 ├── src/
-│   ├── components/     # React components
-│   ├── hooks/         # Custom React hooks
-│   ├── pages/         # Page components
-│   ├── contexts/      # React contexts
-│   ├── lib/           # Utilities and constants
-│   ├── data/          # Business data
-│   └── assets/        # Images and static files
-├── public/            # Public static assets
-├── docker/            # Docker configuration
-└── [config files]
+│   ├── components/       # React components
+│   ├── pages/            # Route pages
+│   ├── data/             # Static data (services, contact)
+│   ├── utils/            # Utilities
+│   ├── hooks/            # Custom hooks
+│   ├── assets/           # Images (WebP optimized)
+│   └── lib/              # Third-party configs
+├── docs/
+│   ├── current/          # Active docs (decisions, sessions)
+│   ├── specifications/   # Technical specs
+│   ├── guides/           # User guides (for Mari)
+│   └── qa/               # QA reports
+├── scripts/              # Build scripts (convert-to-webp.cjs)
+├── .github/              # GitHub config (CODEOWNERS, workflows)
+└── public/               # Static assets
 ```
 
 ---
 
-## Deployment
+## 🔧 Environment
 
-Automatic deployment via GitHub Actions:
+Copy `.env.example` → `.env.local`:
 
-1. Push to `main` branch
-2. GitHub Actions builds the site
-3. Deploys to GitHub Pages (~2-3 minutes)
-4. Live at: https://aslavchev.github.io/somaholistic.studio/
+```env
+VITE_GOOGLE_CALENDAR_API_KEY=your_api_key
+VITE_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+```
 
 ---
 
-## Docker Support
+## ⚡ Performance
+
+| Metric | Score | Target |
+|--------|-------|--------|
+| Performance | 94 | 90+ |
+| Accessibility | 100 | 95+ |
+| Best Practices | 100 | 95+ |
+| SEO | 100 | 95+ |
+
+**Optimizations:**
+- WebP images (16.5MB → 4.6MB)
+- Lazy loading (below fold)
+- GPU acceleration
+- Code splitting
+- Global CDN (200+ locations)
+
+---
+
+## 🚀 Deployment
+
+**Automatic (Cloudflare Pages):**
 
 ```bash
-cd docker
-docker-compose up --build
-
-# Access at: http://localhost:8080
+git push origin main
+# → Auto-builds & deploys in ~2 minutes
 ```
 
-See `docker/README.md` for details.
+**Branch Previews:**
+
+```bash
+git push origin experiment/feature
+# → Creates preview URL: experiment-feature.somaholistic.pages.dev
+```
 
 ---
 
-## Development Standards
+## 🔒 Security
 
-- **Code Style:** EditorConfig + ESLint
-- **Node Version:** v20.11.0 (locked via .nvmrc)
-- **TypeScript:** Strict mode enabled
-- **Git:** Conventional commits recommended
+**Report vulnerabilities:** See [SECURITY.md](SECURITY.md) (not public issues)
 
----
-
-## Performance
-
-- Build time: ~6 seconds
-- Bundle size: 100 KB gzipped
-- Lighthouse score: 90+ (all metrics)
+**Features:**
+- CSP Phase 2 (nonce-based, no unsafe-inline)
+- HTTPS-only (HSTS enforced)
+- No inline scripts
 - Zero npm vulnerabilities
 
 ---
 
-## Browser Support
+## 📚 Documentation
 
-- Chrome/Edge (last 2 versions)
-- Firefox (last 2 versions)
-- Safari (last 2 versions)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
----
-
-## License
-
-Proprietary - SOMA Wellness Studio
+- [Current Status](docs/current/CURRENT-STATUS-2024-11-26.md) - Project overview
+- [Agent Quick Start](docs/current/AGENT-QUICK-START.md) - For AI agents
+- [Session Notes](docs/current/) - Development sessions
+- [Architecture Decisions](docs/current/) - ADRs with CEO consensus
+- [User Guides](docs/guides/mari/) - For Mari
 
 ---
 
-## Contact
+## 📊 Status
 
-**Client:** SOMA Wellness Studio
-**Location:** Sofia, Bulgaria
-**Website:** [somaholistic.studio](https://aslavchev.github.io/somaholistic.studio/)
+**Version:** 1.3.2 (Production)
+**Last Deploy:** 2025-12-12
+**Domain:** somaholistic.studio
+**Cost:** $32/year (locked pricing)
 
 ---
 
-Built with ❤️ for wellness and holistic therapy.
+## 📝 License
+
+**Proprietary** - SOMA Holistic Studio. See [LICENSE](LICENSE).
+
+---
+
+<div align="center">
+
+**Built with 🌿 for wellness and holistic therapy**
+
+[somaholistic.studio](https://somaholistic.studio)
+
+</div>
