@@ -13,13 +13,15 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 
 const queryClient = new QueryClient();
+// Use root path for Cloudflare Pages, subdirectory path for GitHub Pages
+const basename = import.meta.env.VITE_CLOUDFLARE === 'true' ? '/' : '/somaholistic.studio';
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/somaholistic.studio">
+      <BrowserRouter basename={basename}>
         <GoogleAnalytics />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
