@@ -1,0 +1,7 @@
+# Code owners
+* @aslavchev
+
+# Critical files require review
+/docs/current/*.md @aslavchev
+/src/data/*.ts @aslavchev
+/.github/ @aslavchev
