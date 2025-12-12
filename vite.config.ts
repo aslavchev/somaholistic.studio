@@ -25,9 +25,10 @@ const copy404Plugin = () => ({
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const styleNonce = generateNonce();
+  const base = process.env.VITE_CLOUDFLARE === 'true' ? '/' : '/somaholistic.studio/';
 
   return {
-    base: "/somaholistic.studio/",
+    base,
     server: {
       host: "::",
       port: 8080,
