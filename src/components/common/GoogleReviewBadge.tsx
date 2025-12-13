@@ -14,9 +14,9 @@ const GoogleReviewBadge = ({
   const { t } = useLanguage();
 
   // TODO: These values should be updated monthly from Google Business Profile
-  // Current as of: January 2025
+  // Current as of: December 2025
   const rating = "5.0";
-  const reviewCount = 4;
+  const reviewCount = 5;
   const reviewLink = CONTACT.GOOGLE_MAPS;
 
   if (variant === "compact") {
