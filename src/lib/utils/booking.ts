@@ -65,14 +65,46 @@ export function buildBookingMessage(
   t: (bg: string, en: string) => string
 ): string {
   const fullPhone = `+${data.countryCode} ${data.phone}`;
+  const formattedDate = data.date?.toLocaleDateString();
 
   return `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:")}
 
 ${t("Услуга:", "Service:")} ${data.service}
 ${t("Продължителност:", "Duration:")} ${data.duration}
-${t("Дата:", "Date:")} ${data.date?.toLocaleDateString()}
+${t("Дата:", "Date:")} ${formattedDate}
 ${t("Час:", "Time:")} ${data.time}
 ${t("Име:", "Name:")} ${data.name}
 ${t("Email:", "Email:")} ${data.email}
-${t("Телефон:", "Phone:")} ${fullPhone}`;
+${t("Телефон:", "Phone:")} ${fullPhone}
+
+━━━━━━━━━━━━━━━━━━━━━━
+📋 ${t("КОПИРАЙ ЗА ПОТВЪРЖДЕНИЕ:", "COPY TO CONFIRM:")}
+━━━━━━━━━━━━━━━━━━━━━━
+
+${t(
+  `✅ Потвърдено! Вашата резервация е одобрена.
+
+📅 Дата: ${formattedDate}
+⏰ Час: ${data.time}
+💆 Услуга: ${data.service}
+⏱️ Продължителност: ${data.duration} мин
+
+📍 Адрес: ул. "409 - та" 13, Манастирски Ливади Изток, София
+🔔 Моля, пристигнете 5 минути по-рано
+
+Очаквам ви! 💚
+SOMA Studio`,
+  `✅ Confirmed! Your booking is approved.
+
+📅 Date: ${formattedDate}
+⏰ Time: ${data.time}
+💆 Service: ${data.service}
+⏱️ Duration: ${data.duration} min
+
+📍 Address: ul. "409 - ta" 13, Manastirski Livadi Iztok, Sofia
+🔔 Please arrive 5 minutes early
+
+Looking forward to seeing you! 💚
+SOMA Studio`
+)}`;
 }
