@@ -64,67 +64,16 @@ export function buildBookingMessage(
   },
   t: (bg: string, en: string) => string
 ): string {
-  // Detect language: if customer's name contains Cyrillic → Bulgarian, else English
-  const isBg = data.name.match(/[\u0400-\u04FF]/) !== null;
+  const fullPhone = `+${data.countryCode} ${data.phone}`;
+  const formattedDate = data.date?.toLocaleDateString();
 
-  // Format date: 15.12.2025 for BG, December 15, 2025 for EN
-  const dateFormattedBg = data.date
-    ? data.date.toLocaleDateString('bg-BG', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.')
-    : '';
-  const dateFormattedEn = data.date
-    ? data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-    : '';
+  return `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:")}
 
-  // Full phone for display
-  const fullPhone = data.phone ? `+${data.countryCode || '359'} ${data.phone}` : '';
-
-  // === Customer-visible part: short booking request ===
-  const customerMessage = `${t("Здравейте! Искам да запазя час:", "Hello! I'd like to book an appointment:")}
-
-Услуга: ${data.service}
-Продължителност: ${data.duration} ${t("минути", "minutes")}
-Дата: ${isBg ? dateFormattedBg : dateFormattedEn}
-Час: ${data.time}
-Име: ${data.name}
-Email: ${data.email}
-Телефон: ${fullPhone}`;
-
-  // === Visible marker for Mary ===
-  const maryMarker = `\n\n━━━━━━━━━━━━━━━━━━━━━━\n📋 КОПИРАЙ ЗА ПОТВЪРЖДЕНИЕ (скрито за клиента):\n━━━━━━━━━━━━━━━━━━━━━━\n`;
-
-  // === Confirmation template (in customer's language) ===
-  const confirmationTemplate = isBg
-    ? `✅ Потвърдено! Вашата резервация е одобрена.
-
-📅 Дата: ${dateFormattedBg}
-⏰ Час: ${data.time}
-💆 Услуга: ${data.service}
-⏱️ Продължителност: ${data.duration} мин
-
-📍 Адрес: ул. "409 - та" 13, Манастирски Ливади Изток, София
-🔔 Моля, пристигнете 5 минути по-рано
-
-Очаквам ви! 💚
-SOMA Studio`
-    : `✅ Confirmed! Your reservation is approved.
-
-📅 Date: ${dateFormattedEn}
-⏰ Time: ${data.time}
-💆 Service: ${data.service}
-⏱️ Duration: ${data.duration} min
-
-📍 Address: ul. "409 - ta" 13, Manastirski Livadi Iztok, Sofia
-🔔 Please arrive 5 minutes early
-
-Looking forward to you! 💚
-SOMA Studio`;
-
-  // === Hide the template: insert zero-width space after every character ===
-  const zwsp = '\u200B';
-  const hiddenTemplate = confirmationTemplate
-    .split('')
-    .join(zwsp);  // Adds ZWSP after each character (including newlines)
-
-  // Final message
-  return customerMessage + maryMarker + hiddenTemplate;
+${t("Услуга:", "Service:")} ${data.service}
+${t("Продължителност:", "Duration:")} ${data.duration}
+${t("Дата:", "Date:")} ${formattedDate}
+${t("Час:", "Time:")} ${data.time}
+${t("Име:", "Name:")} ${data.name}
+${t("Email:", "Email:")} ${data.email}
+${t("Телефон:", "Phone:")} ${fullPhone}`;
 }
