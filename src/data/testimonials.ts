@@ -73,7 +73,7 @@ export const TESTIMONIALS: Testimonial[] = [
     source: 'google'
   },
 
-  // ⭐⭐⭐⭐⭐ Example Review 3 - Replace with real Google review
+  // ⭐⭐⭐⭐⭐ Real Google Review - Габриела Цветанова
   {
     name: {
       bg: "Габриела Цветанова",
@@ -111,6 +111,25 @@ export const TESTIMONIALS: Testimonial[] = [
     source: 'google'
   },
 
+  // ⭐⭐⭐⭐⭐ Real Google Review - Kiril Kirov
+  {
+    name: {
+      bg: "Кирил Киров",
+      en: "Kiril Kirov"
+    },
+    service: {
+      bg: "Ритуал за благоденствие",
+      en: "SOMA Wellness Ritual"
+    },
+    rating: 5,
+    quote: {
+      bg: "Още с посрещането се усеща уютната атмосфера и личното отношение. Всичко е внимателно съобразено с нуждите както на тялото, така и на психиката. Първо напитка, разговор за проследяване състоянието, потребностите и напредъка. А след това масажът - професионален, според желанието или нуждите на тялото, но винаги страхотен. Прекрасно и лечебно преживяване, което препоръчвам с две ръце!",
+      en: "From the moment you are greeted, you can feel the cozy atmosphere and personal attention. Everything is carefully tailored to the needs of both the body and the psyche. First a drink, a conversation to track the condition, needs and progress. And then the massage – professional, according to the desire or needs of the body, but always great. A wonderful and healing experience that I recommend with both hands!"
+    },
+    date: "2024-12",
+    source: 'google'
+  },
+
   // ADD MORE REVIEWS HERE:
   // Copy the structure above and paste real Google reviews
   // Remember to translate Bulgarian reviews to English and vice versa
@@ -120,7 +139,7 @@ export const TESTIMONIALS: Testimonial[] = [
  * Get featured testimonials (for homepage carousel)
  * Returns the most recent 5 reviews
  */
-export function getFeaturedTestimonials(count: number = 4): Testimonial[] {
+export function getFeaturedTestimonials(count: number = 5): Testimonial[] {
   return TESTIMONIALS.slice(0, count);
 }
 
