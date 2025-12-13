@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import StructuredData from "@/components/StructuredData";
 
 // Code splitting: Each route is loaded only when needed
 const Index = lazy(() => import('./pages/Index'));
@@ -23,6 +24,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter basename={basename}>
         <GoogleAnalytics />
+        <StructuredData />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Index />} />
