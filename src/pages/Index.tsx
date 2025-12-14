@@ -2,13 +2,13 @@ import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import Packages from "@/components/Packages";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
-import BackToTopButton from "@/components/common/BackToTopButton";
 
 const IndexContent = () => {
   const { t } = useLanguage();
@@ -24,13 +24,13 @@ const IndexContent = () => {
       <Header />
       <Hero />
         <Services />
+        <Packages />
         <About />
         <Testimonials />
         <Gallery />
       <Contact />
       <Footer />
       <WhatsAppButton />
-      <BackToTopButton />
     </div>
   );
 };

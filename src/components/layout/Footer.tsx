@@ -2,7 +2,6 @@ import { Phone, Instagram, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import Logo from "@/components/common/Logo";
-import { Link } from "react-router-dom";
 import { CONTACT } from "@/data";
 import { scrollToSection } from '@/utils/scrollToSection';
 
@@ -91,9 +90,9 @@ const Footer = () => {
               <button onClick={() => scrollToSection('services')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("Услуги", "Services")}
               </button>
-              <Link to="/pricing" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
+              <button onClick={() => scrollToSection('packages')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("Цени и пакети", "Pricing & Packages")}
-              </Link>
+              </button>
               <button onClick={() => scrollToSection('about')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("За нас", "About")}
               </button>
