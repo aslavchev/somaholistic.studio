@@ -91,15 +91,12 @@ const Footer = () => {
               <button onClick={() => scrollToSection('services')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("Услуги", "Services")}
               </button>
-              <button onClick={() => scrollToSection('about')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("За нас", "About")}
-              </button>
-              <button onClick={() => scrollToSection('contact')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Контакти", "Contact")}
-              </button>
               <Link to="/pricing" className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors">
                 {t("Цени и пакети", "Pricing & Packages")}
               </Link>
+              <button onClick={() => scrollToSection('about')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
+                {t("За нас", "About")}
+              </button>
             </div>
           </div>
 

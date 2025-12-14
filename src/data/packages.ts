@@ -4,10 +4,11 @@
  * Wellness bundle definitions and pricing calculations.
  * These packages offer discounted rates for multiple sessions.
  *
- * Last Updated: November 26, 2024
+ * Last Updated: December 14, 2025
  */
 
 import type { WellnessPackage, PackagePricing } from '@/types';
+import { SERVICES } from './services';
 
 // Re-export types for backward compatibility
 export type { WellnessPackage, PackagePricing } from '@/types';
@@ -17,15 +18,32 @@ export type { WellnessPackage, PackagePricing } from '@/types';
 // ============================================================================
 
 /**
- * Average price per 60-minute session
+ * Calculate average price per 60-minute session from current services
  * Used as baseline for package pricing calculations
  *
- * Based on: Classic Massage (90 BGN) + Wellness Coaching (90 BGN) = 90 BGN average
+ * Dynamically calculated from actual 60-minute services to ensure
+ * package pricing stays accurate when service prices change.
  */
-export const AVERAGE_PRICE_PER_60MIN = 90;
+function calculateAveragePrice60Min(): number {
+  // Filter for actual 60-minute services only (not 30-min or 90-min)
+  const services60min = SERVICES.filter(
+    s => s.pricing.duration60 && s.pricing.duration60.minutes === 60
+  );
+  const total = services60min.reduce((sum, s) => sum + (s.pricing.duration60?.price || 0), 0);
+  return Math.round(total / services60min.length);
+}
+
+/**
+ * Average price per 60-minute session
+ * Currently: €47 (based on Classic Massage €45, Thai Massage €50, Energy Therapy €55,
+ * Wellness Coaching €45, Phytotherapy €40 - average of 5 true 60-min services)
+ */
+export const AVERAGE_PRICE_PER_60MIN = calculateAveragePrice60Min();
 
 /**
  * 4-Session Journey Bundle
+ * Normal price: €188 (4 × €47)
+ * Package price: €168 (11% discount, saves €20)
  */
 export const PACKAGE_4_SESSIONS: WellnessPackage = {
   id: 'journey-4',
@@ -34,7 +52,7 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
     en: 'Journey Bundle'
   },
   sessions: 4,
-  price: 320,  // Discounted price
+  price: 168,  // Discounted price in EUR
   validityMonths: 6,
   benefits: [
     { bg: 'Изберете всяка комбинация от услуги', en: 'Choose any combination of services' },
@@ -46,6 +64,8 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
 
 /**
  * 6-Session Transformation Bundle (Most Popular)
+ * Normal price: €282 (6 × €47)
+ * Package price: €240 (15% discount, saves €42)
  */
 export const PACKAGE_6_SESSIONS: WellnessPackage = {
   id: 'transformation-6',
@@ -54,7 +74,7 @@ export const PACKAGE_6_SESSIONS: WellnessPackage = {
     en: 'Transformation Bundle'
   },
   sessions: 6,
-  price: 480,  // Discounted price
+  price: 240,  // Discounted price in EUR
   validityMonths: 9,
   benefits: [
     { bg: 'Изберете всяка комбинация от услуги', en: 'Choose any combination of services' },
