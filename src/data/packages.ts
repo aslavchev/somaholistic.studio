@@ -41,6 +41,20 @@ function calculateAveragePrice60Min(): number {
 export const AVERAGE_PRICE_PER_60MIN = calculateAveragePrice60Min();
 
 /**
+ * Package discount percentage (applied to all wellness bundles)
+ */
+export const PACKAGE_DISCOUNT_PERCENT = 11;
+
+/**
+ * Calculate package price with discount
+ */
+function calculatePackagePrice(sessions: number): number {
+  const normalPrice = AVERAGE_PRICE_PER_60MIN * sessions;
+  const discountedPrice = normalPrice * (1 - PACKAGE_DISCOUNT_PERCENT / 100);
+  return Math.round(discountedPrice);
+}
+
+/**
  * 4-Session Journey Bundle
  * Normal price: €188 (4 × €47)
  * Package price: €168 (11% discount, saves €20)
@@ -52,7 +66,7 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
     en: 'Journey Bundle'
   },
   sessions: 4,
-  price: 168,  // Discounted price in EUR
+  price: calculatePackagePrice(4),  // Discounted price in EUR (11% off)
   validityMonths: 6,
   benefits: [
     { bg: 'Изберете всяка комбинация от услуги', en: 'Choose any combination of services' },
@@ -65,7 +79,7 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
 /**
  * 6-Session Transformation Bundle (Most Popular)
  * Normal price: €282 (6 × €47)
- * Package price: €240 (15% discount, saves €42)
+ * Package price: €251 (11% discount, saves €31)
  */
 export const PACKAGE_6_SESSIONS: WellnessPackage = {
   id: 'transformation-6',
@@ -74,7 +88,7 @@ export const PACKAGE_6_SESSIONS: WellnessPackage = {
     en: 'Transformation Bundle'
   },
   sessions: 6,
-  price: 240,  // Discounted price in EUR
+  price: calculatePackagePrice(6),  // Discounted price in EUR (11% off)
   validityMonths: 9,
   benefits: [
     { bg: 'Изберете всяка комбинация от услуги', en: 'Choose any combination of services' },
