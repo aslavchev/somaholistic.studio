@@ -56,8 +56,9 @@ function calculatePackagePrice(sessions: number): number {
 
 /**
  * 4-Session Classical Massage Bundle
- * Package: 4 Classical Massage sessions
- * Price: €165 (10% discount)
+ * Package: 4 Classical Massage sessions at €46 each
+ * Normal price: €184 (4 × €46)
+ * Package price: €166 (10% discount, saves €18)
  */
 export const PACKAGE_4_SESSIONS: WellnessPackage = {
   id: 'serenity-voyage-4',
@@ -66,7 +67,7 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
     en: 'Serenity Voyage'
   },
   sessions: 4,
-  price: calculatePackagePrice(4),  // Discounted price in EUR (10% off)
+  price: Math.round(4 * 46 * 0.9),  // 4 sessions × €46 × 10% discount = €166
   validityMonths: 6,
   benefits: [
     { bg: '4 процедури класически масаж', en: '4 classical massage sessions' },
@@ -78,8 +79,9 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
 
 /**
  * 4-Session Facial Rejuvenation Bundle (Most Popular)
- * Package: 4 Facial Rejuvenation sessions
- * Price: €94 (10% discount)
+ * Package: 4 Facial Rejuvenation sessions at €26 each
+ * Normal price: €104 (4 × €26)
+ * Package price: €94 (10% discount, saves €10)
  */
 export const PACKAGE_6_SESSIONS: WellnessPackage = {
   id: 'radiance-renaissance-4',
@@ -88,7 +90,7 @@ export const PACKAGE_6_SESSIONS: WellnessPackage = {
     en: 'Radiance Renaissance'
   },
   sessions: 4,
-  price: calculatePackagePrice(4),  // Discounted price in EUR (10% off)
+  price: Math.round(4 * 26 * 0.9),  // 4 sessions × €26 × 10% discount = €94
   validityMonths: 6,
   benefits: [
     { bg: '4 процедури подмладяващ масаж за лице', en: '4 rejuvenating facial massage sessions' },
@@ -114,13 +116,13 @@ export const PACKAGES: WellnessPackage[] = [
 /**
  * Calculate pricing details for a package
  */
-export function calculatePackagePricing(sessions: number, price: number): PackagePricing {
-  const normalPrice = AVERAGE_PRICE_PER_60MIN * sessions;
-  const savings = normalPrice - price;
+export function calculatePackagePricing(sessions: number, pricePerSession: number, packagePrice: number): PackagePricing {
+  const normalPrice = sessions * pricePerSession;
+  const savings = normalPrice - packagePrice;
   const discount = Math.round((savings / normalPrice) * 100);
 
   return {
-    price,
+    price: packagePrice,
     normalPrice,
     savings,
     discount
@@ -128,21 +130,25 @@ export function calculatePackagePricing(sessions: number, price: number): Packag
 }
 
 /**
- * Get pricing for 4-session package
+ * Get pricing for 4-session classical massage package
+ * 4 sessions × €46 = €184 normal, €166 with 10% discount
  */
 export function get4SessionPricing(): PackagePricing {
   return calculatePackagePricing(
     PACKAGE_4_SESSIONS.sessions,
+    46,  // Classical massage price per session
     PACKAGE_4_SESSIONS.price
   );
 }
 
 /**
- * Get pricing for 6-session package
+ * Get pricing for 4-session facial package
+ * 4 sessions × €26 = €104 normal, €94 with 10% discount
  */
 export function get6SessionPricing(): PackagePricing {
   return calculatePackagePricing(
     PACKAGE_6_SESSIONS.sessions,
+    26,  // Facial massage price per session
     PACKAGE_6_SESSIONS.price
   );
 }
