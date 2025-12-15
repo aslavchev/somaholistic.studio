@@ -74,7 +74,8 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
     { bg: 'Валиден 6 месеца', en: 'Valid for 6 months' },
     { bg: 'Приоритетно записване', en: 'Priority booking' }
   ],
-  featured: false
+  featured: true,
+  popular: true
 };
 
 /**
@@ -97,8 +98,8 @@ export const PACKAGE_6_SESSIONS: WellnessPackage = {
     { bg: 'Валиден 6 месеца', en: 'Valid for 6 months' },
     { bg: 'Приоритетно записване', en: 'Priority booking' }
   ],
-  featured: true,
-  popular: true
+  featured: false,
+  popular: false
 };
 
 /**

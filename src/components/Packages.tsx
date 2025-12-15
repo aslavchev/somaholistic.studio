@@ -45,85 +45,32 @@ const Packages = () => {
             cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* 4-Session Classical Massage Bundle */}
-          <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow">
-            <h3 className="text-2xl font-bold text-foreground mb-2">
-              {t("Пътешествие към Спокойствието", "Serenity Voyage")}
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              {t("4 процедури класически масаж", "4 classical massage sessions")}
-            </p>
-
-            <div className="mb-6">
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-4xl font-bold text-primary">€{package4Sessions.price}</span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <span className="line-through">€{package4Sessions.normalPrice}</span>
-                <span className="ml-2 text-primary font-semibold">
-                  {t("Спестете", "Save")} €{package4Sessions.savings}
-                </span>
-              </div>
-              <div className="inline-block mt-2 px-3 py-1 bg-primary/10 rounded-full">
-                <span className="text-sm font-semibold text-primary">
-                  {package4Sessions.discount}% {t("отстъпка", "discount")}
-                </span>
-              </div>
-            </div>
-
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground">
-                  {t("4 процедури класически масаж", "4 classical massage sessions")}
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground">
-                  {t("Валиден 6 месеца", "Valid for 6 months")}
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground">
-                  {t("Приоритетно записване", "Priority booking")}
-                </span>
-              </li>
-            </ul>
-
-            <DiscoveryCallButton
-              size="lg"
-              className="w-full"
-            />
-          </div>
-
-          {/* 4-Session Facial Bundle - Most Popular */}
+          {/* 4-Session Classical Massage Bundle - Most Popular */}
           <div className="relative bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-2xl shadow-xl border-2 border-primary p-8 hover:shadow-2xl transition-shadow">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-wellness-sage text-white text-sm font-semibold rounded-full">
               {t("Най-популярен", "Most Popular")}
             </div>
 
             <h3 className="text-2xl font-bold mb-2">
-              {t("Ренесанс на Блясъка", "Radiance Renaissance")}
+              {t("Пътешествие към Спокойствието", "Serenity Voyage")}
             </h3>
             <p className="text-primary-foreground/80 mb-6">
-              {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions")}
+              {t("4 процедури класически масаж", "4 classical massage sessions")}
             </p>
 
             <div className="mb-6">
               <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-4xl font-bold">€{package6Sessions.price}</span>
+                <span className="text-4xl font-bold">€{package4Sessions.price}</span>
               </div>
               <div className="text-sm text-primary-foreground/80">
-                <span className="line-through">€{package6Sessions.normalPrice}</span>
+                <span className="line-through">€{package4Sessions.normalPrice}</span>
                 <span className="ml-2 font-semibold">
-                  {t("Спестете", "Save")} €{package6Sessions.savings}
+                  {t("Спестете", "Save")} €{package4Sessions.savings}
                 </span>
               </div>
               <div className="inline-block mt-2 px-3 py-1 bg-white/20 rounded-full">
                 <span className="text-sm font-semibold">
-                  {package6Sessions.discount}% {t("отстъпка", "discount")}
+                  {package4Sessions.discount}% {t("отстъпка", "discount")}
                 </span>
               </div>
             </div>
@@ -132,7 +79,7 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions")}
+                  {t("4 процедури класически масаж", "4 classical massage sessions")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -153,6 +100,59 @@ const Packages = () => {
               size="lg"
               variant="outline"
               className="w-full bg-white/10 border-white/30 hover:bg-white/20"
+            />
+          </div>
+
+          {/* 4-Session Facial Bundle */}
+          <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow">
+            <h3 className="text-2xl font-bold text-foreground mb-2">
+              {t("Ренесанс на Блясъка", "Radiance Renaissance")}
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions")}
+            </p>
+
+            <div className="mb-6">
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-4xl font-bold text-primary">€{package6Sessions.price}</span>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <span className="line-through">€{package6Sessions.normalPrice}</span>
+                <span className="ml-2 text-primary font-semibold">
+                  {t("Спестете", "Save")} €{package6Sessions.savings}
+                </span>
+              </div>
+              <div className="inline-block mt-2 px-3 py-1 bg-primary/10 rounded-full">
+                <span className="text-sm font-semibold text-primary">
+                  {package6Sessions.discount}% {t("отстъпка", "discount")}
+                </span>
+              </div>
+            </div>
+
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-foreground">
+                  {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions")}
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-foreground">
+                  {t("Валиден 6 месеца", "Valid for 6 months")}
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-foreground">
+                  {t("Приоритетно записване", "Priority booking")}
+                </span>
+              </li>
+            </ul>
+
+            <DiscoveryCallButton
+              size="lg"
+              className="w-full"
             />
           </div>
         </div>
