@@ -43,7 +43,7 @@ export const AVERAGE_PRICE_PER_60MIN = calculateAveragePrice60Min();
 /**
  * Package discount percentage (applied to all wellness bundles)
  */
-export const PACKAGE_DISCOUNT_PERCENT = 11;
+export const PACKAGE_DISCOUNT_PERCENT = 10;
 
 /**
  * Calculate package price with discount
@@ -55,21 +55,21 @@ function calculatePackagePrice(sessions: number): number {
 }
 
 /**
- * 4-Session Journey Bundle
- * Normal price: €188 (4 × €47)
- * Package price: €168 (11% discount, saves €20)
+ * 4-Session Classical Massage Bundle
+ * Package: 4 Classical Massage sessions
+ * Price: €165 (10% discount)
  */
 export const PACKAGE_4_SESSIONS: WellnessPackage = {
-  id: 'journey-4',
+  id: 'serenity-voyage-4',
   name: {
-    bg: 'Пакет пътуване',
-    en: 'Journey Bundle'
+    bg: 'Пътешествие към Спокойствието',
+    en: 'Serenity Voyage'
   },
   sessions: 4,
-  price: calculatePackagePrice(4),  // Discounted price in EUR (11% off)
+  price: calculatePackagePrice(4),  // Discounted price in EUR (10% off)
   validityMonths: 6,
   benefits: [
-    { bg: 'Изберете всяка комбинация от услуги', en: 'Choose any combination of services' },
+    { bg: '4 процедури класически масаж', en: '4 classical massage sessions' },
     { bg: 'Валиден 6 месеца', en: 'Valid for 6 months' },
     { bg: 'Приоритетно записване', en: 'Priority booking' }
   ],
@@ -77,24 +77,23 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
 };
 
 /**
- * 6-Session Transformation Bundle (Most Popular)
- * Normal price: €282 (6 × €47)
- * Package price: €251 (11% discount, saves €31)
+ * 4-Session Facial Rejuvenation Bundle (Most Popular)
+ * Package: 4 Facial Rejuvenation sessions
+ * Price: €94 (10% discount)
  */
 export const PACKAGE_6_SESSIONS: WellnessPackage = {
-  id: 'transformation-6',
+  id: 'radiance-renaissance-4',
   name: {
-    bg: 'Пакет трансформация',
-    en: 'Transformation Bundle'
+    bg: 'Ренесанс на Блясъка',
+    en: 'Radiance Renaissance'
   },
-  sessions: 6,
-  price: calculatePackagePrice(6),  // Discounted price in EUR (11% off)
-  validityMonths: 9,
+  sessions: 4,
+  price: calculatePackagePrice(4),  // Discounted price in EUR (10% off)
+  validityMonths: 6,
   benefits: [
-    { bg: 'Изберете всяка комбинация от услуги', en: 'Choose any combination of services' },
-    { bg: 'Валиден 9 месеца', en: 'Valid for 9 months' },
-    { bg: 'Приоритетно записване', en: 'Priority booking' },
-    { bg: 'Една безплатна сесия за приятел', en: 'One free friend session' }
+    { bg: '4 процедури подмладяващ масаж за лице', en: '4 rejuvenating facial massage sessions' },
+    { bg: 'Валиден 6 месеца', en: 'Valid for 6 months' },
+    { bg: 'Приоритетно записване', en: 'Priority booking' }
   ],
   featured: true,
   popular: true

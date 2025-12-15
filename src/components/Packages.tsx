@@ -33,8 +33,8 @@ const Packages = () => {
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
-              "Инвестирайте в дългосрочното си здраве и спестете до 15% с нашите пакети",
-              "Invest in your long-term wellness and save up to 15% with our bundles"
+              "Инвестирайте в дългосрочното си здраве и спестете до 10% с нашите пакети",
+              "Invest in your long-term wellness and save up to 10% with our bundles"
             )}
           </p>
         </div>
@@ -45,13 +45,13 @@ const Packages = () => {
             cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* 4-Session Bundle */}
+          {/* 4-Session Classical Massage Bundle */}
           <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow">
             <h3 className="text-2xl font-bold text-foreground mb-2">
-              {t("Пакет пътуване", "Journey Bundle")}
+              {t("Пътешествие към Спокойствието", "Serenity Voyage")}
             </h3>
             <p className="text-muted-foreground mb-6">
-              {t("4 сесии по избор", "4 sessions of your choice")}
+              {t("4 процедури класически масаж", "4 classical massage sessions")}
             </p>
 
             <div className="mb-6">
@@ -75,7 +75,7 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("Изберете всяка комбинация от услуги", "Choose any combination of services")}
+                  {t("4 процедури класически масаж", "4 classical massage sessions")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -98,17 +98,17 @@ const Packages = () => {
             />
           </div>
 
-          {/* 6-Session Bundle - Most Popular */}
+          {/* 4-Session Facial Bundle - Most Popular */}
           <div className="relative bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-2xl shadow-xl border-2 border-primary p-8 hover:shadow-2xl transition-shadow">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-wellness-sage text-white text-sm font-semibold rounded-full">
               {t("Най-популярен", "Most Popular")}
             </div>
 
             <h3 className="text-2xl font-bold mb-2">
-              {t("Пакет трансформация", "Transformation Bundle")}
+              {t("Ренесанс на Блясъка", "Radiance Renaissance")}
             </h3>
             <p className="text-primary-foreground/80 mb-6">
-              {t("6 сесии по избор", "6 sessions of your choice")}
+              {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions")}
             </p>
 
             <div className="mb-6">
@@ -132,25 +132,19 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("Изберете всяка комбинация от услуги", "Choose any combination of services")}
+                  {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("Валиден 9 месеца", "Valid for 9 months")}
+                  {t("Валиден 6 месеца", "Valid for 6 months")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
                   {t("Приоритетно записване", "Priority booking")}
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span className="text-sm">
-                  {t("Една безплатна сесия за приятел", "One free friend session")}
                 </span>
               </li>
             </ul>
