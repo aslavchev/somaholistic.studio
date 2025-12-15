@@ -46,7 +46,7 @@ const Packages = () => {
           }`}
         >
           {/* 4-Session Classical Massage Bundle - Most Popular */}
-          <div className="relative bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-2xl shadow-xl border-2 border-primary p-8 hover:shadow-2xl transition-shadow">
+          <div className="relative bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-2xl shadow-xl border-2 border-primary p-8 hover:shadow-2xl transition-shadow flex flex-col">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-wellness-sage text-white text-sm font-semibold rounded-full">
               {t("Най-популярен", "Most Popular")}
             </div>
@@ -75,7 +75,7 @@ const Packages = () => {
               </div>
             </div>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-grow">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
@@ -104,7 +104,7 @@ const Packages = () => {
           </div>
 
           {/* 4-Session Facial Bundle */}
-          <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow">
+          <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow flex flex-col">
             <h3 className="text-2xl font-bold text-foreground mb-2">
               {t("Ренесанс на Блясъка", "Radiance Renaissance")}
             </h3>
@@ -129,7 +129,7 @@ const Packages = () => {
               </div>
             </div>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-grow">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
