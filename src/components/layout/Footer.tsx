@@ -91,7 +91,7 @@ const Footer = () => {
                 {t("Услуги", "Services")}
               </button>
               <button onClick={() => scrollToSection('packages')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Цени и пакети", "Pricing & Packages")}
+                {t("Пакети", "Packages")}
               </button>
               <button onClick={() => scrollToSection('about')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("За нас", "About")}
