@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
-import { CheckCircle2, Clock, User, Mail, Phone as PhoneIcon, ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
+import { CheckCircle2, Clock, User, Mail, Phone as PhoneIcon, ArrowLeft, ArrowRight, Loader2, Calendar as CalendarIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCalendar } from "@/contexts/CalendarContext";
+import { useCalendarAvailability } from "@/hooks/useCalendarAvailability";
 import { toast } from "sonner";
 import { bg } from "date-fns/locale";
 import { CONTACT, SERVICES } from "@/data";
@@ -36,6 +38,8 @@ interface BookingDialogProps {
 
 const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialogProps) => {
   const { t, language } = useLanguage();
+  const { isAuthenticated, login } = useCalendar();
+  const { slots: calendarSlots, loading: loadingCalendar, isCalendarEnabled } = useCalendarAvailability(formData.date);
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -235,7 +239,10 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     }
   }, [formData.service, formData.duration]);
 
-  const availableTimeSlots = getAvailableTimeSlots(formData.date);
+  // Get time slots: use calendar if authenticated, otherwise static slots
+  const availableTimeSlots = isCalendarEnabled && calendarSlots.length > 0
+    ? calendarSlots.filter(slot => slot.available).map(slot => slot.time)
+    : getAvailableTimeSlots(formData.date);
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -408,19 +415,46 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               />
             </div>
 
-            {/* Availability Notice */}
-            <div className="bg-muted/50 border border-primary/20 rounded-lg p-3 text-sm">
-              <p className="text-muted-foreground">
-                {t(
-                  "💡 Избраните часове са ориентировъчни. Мари ще потвърди наличността в рамките на 2 часа.",
-                  "💡 Selected times are indicative. Mari will confirm availability within 2 hours."
-                )}
-              </p>
-            </div>
+            {/* Calendar Sync Status */}
+            {isCalendarEnabled ? (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-sm">
+                <div className="flex items-center gap-2 text-green-800">
+                  <CalendarIcon className="w-4 h-4" />
+                  <p className="font-semibold">
+                    {t("✓ Показани са само свободните часове от календара на Мари", "✓ Showing only available times from Mari's calendar")}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-muted/50 border border-primary/20 rounded-lg p-3 space-y-2">
+                <p className="text-muted-foreground text-sm">
+                  {t(
+                    "💡 Избраните часове са ориентировъчни. Мари ще потвърди наличността в рамките на 2 часа.",
+                    "💡 Selected times are indicative. Mari will confirm availability within 2 hours."
+                  )}
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={login}
+                  className="w-full text-xs"
+                >
+                  <CalendarIcon className="w-3 h-3 mr-2" />
+                  {t("Свържи календар за точна наличност", "Connect calendar for real-time availability")}
+                </Button>
+              </div>
+            )}
 
             <div>
               <Label htmlFor="time">{t("Изберете час", "Select Time")}</Label>
-              {availableTimeSlots.length > 0 ? (
+              {loadingCalendar ? (
+                <div className="rounded-md border border-muted bg-muted/30 p-4 flex items-center justify-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-sm text-muted-foreground">
+                    {t("Проверяваме наличността...", "Checking availability...")}
+                  </span>
+                </div>
+              ) : availableTimeSlots.length > 0 ? (
                 <Select value={formData.time} onValueChange={(value) => setFormData(prev => ({ ...prev, time: value }))}>
                   <SelectTrigger id="time" data-testid="booking-time-select">
                     <SelectValue placeholder={t("Изберете час", "Select Time")} />

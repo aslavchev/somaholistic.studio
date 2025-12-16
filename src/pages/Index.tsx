@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { CalendarOAuthProvider } from "@/contexts/CalendarContext";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -54,7 +55,9 @@ const IndexContent = () => {
 const Index = () => {
   return (
     <LanguageProvider>
-      <IndexContent />
+      <CalendarOAuthProvider>
+        <IndexContent />
+      </CalendarOAuthProvider>
     </LanguageProvider>
   );
 };
