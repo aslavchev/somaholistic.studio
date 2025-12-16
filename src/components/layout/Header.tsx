@@ -29,6 +29,7 @@ const Header = () => {
   const navItems = [
     { id: 'services', labelBg: 'Услуги', labelEn: 'Services' },
     { id: 'packages', labelBg: 'Пакети', labelEn: 'Packages' },
+    { id: 'gifts', labelBg: 'Подаръци', labelEn: 'Gifts' },
     { id: 'about', labelBg: 'За нас', labelEn: 'About' },
     { id: 'testimonials', labelBg: 'Отзиви', labelEn: 'Testimonials' },
     { id: 'gallery', labelBg: 'Галерия', labelEn: 'Gallery' },
