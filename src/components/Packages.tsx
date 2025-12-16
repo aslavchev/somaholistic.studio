@@ -1,8 +1,10 @@
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Gift } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
+import { Button } from "@/components/ui/button";
 import { get4SessionPricing, get6SessionPricing } from "@/data";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { scrollToSection } from "@/utils/scrollToSection";
 
 const Packages = () => {
   const { t } = useLanguage();
@@ -155,6 +157,24 @@ const Packages = () => {
               className="w-full"
             />
           </div>
+        </div>
+
+        {/* Gift Certificate CTA */}
+        <div className="mt-12 text-center">
+          <p className="text-muted-foreground text-sm mb-4">
+            {t(
+              "Търсите подарък за специален човек?",
+              "Looking for a gift for someone special?"
+            )}
+          </p>
+          <Button
+            variant="outline"
+            onClick={() => scrollToSection('gifts')}
+            className="group"
+          >
+            <Gift className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+            {t("Разгледайте подаръчните карти", "Explore Gift Certificates")}
+          </Button>
         </div>
       </div>
     </section>
