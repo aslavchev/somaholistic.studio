@@ -12,6 +12,7 @@ import StructuredData from "@/components/StructuredData";
 const Index = lazy(() => import('./pages/Index'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Pricing = lazy(() => import('./pages/Pricing'));
+const CalendarTestPage = lazy(() => import('./pages/CalendarTestPage'));
 
 const queryClient = new QueryClient();
 // Use root path for Cloudflare Pages, subdirectory path for GitHub Pages
@@ -29,6 +30,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/calendar-test" element={<CalendarTestPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
