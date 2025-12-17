@@ -17,6 +17,7 @@ import {
   sanitizeInput,
   formatPhone,
   getAvailableTimeSlots,
+  getAvailableTimeSlotsFromSheet,
   buildBookingMessage,
   buildWhatsAppUrl
 } from "@/lib/utils";
@@ -53,6 +54,10 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     email: "",
     phone: ""
   });
+
+  // Track available time slots from Google Sheets
+  const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
+  const [isLoadingSlots, setIsLoadingSlots] = useState(false);
 
   // Ref to track timeout for cleanup
   const submitTimeoutRef = useRef<NodeJS.Timeout>();
@@ -235,7 +240,31 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     }
   }, [formData.service, formData.duration]);
 
-  const availableTimeSlots = getAvailableTimeSlots(formData.date);
+  // Fetch available time slots from Google Sheets when date changes
+  useEffect(() => {
+    if (!formData.date) {
+      setAvailableTimeSlots([]);
+      return;
+    }
+
+    setIsLoadingSlots(true);
+    getAvailableTimeSlotsFromSheet(formData.date)
+      .then(slots => {
+        // Fallback to local filtering if Sheet fetch fails
+        if (slots.length === 0) {
+          const fallbackSlots = getAvailableTimeSlots(formData.date);
+          setAvailableTimeSlots(fallbackSlots);
+        } else {
+          setAvailableTimeSlots(slots);
+        }
+      })
+      .catch(error => {
+        console.error("Failed to load availability, using fallback:", error);
+        const fallbackSlots = getAvailableTimeSlots(formData.date);
+        setAvailableTimeSlots(fallbackSlots);
+      })
+      .finally(() => setIsLoadingSlots(false));
+  }, [formData.date]);
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -420,7 +449,14 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
             <div>
               <Label htmlFor="time">{t("Изберете час", "Select Time")}</Label>
-              {availableTimeSlots.length > 0 ? (
+              {isLoadingSlots ? (
+                <div className="rounded-md border border-muted bg-muted/30 p-4 flex items-center justify-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span className="text-sm text-muted-foreground">
+                    {t("Зареждане на свободни часове...", "Loading available times...")}
+                  </span>
+                </div>
+              ) : availableTimeSlots.length > 0 ? (
                 <Select value={formData.time} onValueChange={(value) => setFormData(prev => ({ ...prev, time: value }))}>
                   <SelectTrigger id="time" data-testid="booking-time-select">
                     <SelectValue placeholder={t("Изберете час", "Select Time")} />

@@ -10,3 +10,4 @@
 export * from './validation';
 export * from './phone';
 export * from './booking';
+export * from './availability';
