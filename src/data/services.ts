@@ -334,11 +334,11 @@ export function getServiceCountByCategory(): Record<ServiceCategory, number> {
     therapy: 0,
     beauty: 0,
     coaching: 0
- , it: '' };
+};
 
   SERVICES.forEach(service => {
     counts[service.category]++;
- , it: '' });
+});
 
   return counts;
 }
