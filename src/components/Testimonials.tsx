@@ -24,10 +24,10 @@ const Testimonials = () => {
 
   // Transform centralized data for display
   const testimonials = TESTIMONIALS.map(testimonial => ({
-    name: testimonial.name[language === 'it' ? 'en' : language],
-    service: testimonial.service[language === 'it' ? 'en' : language],
+    name: testimonial.name[language],
+    service: testimonial.service[language],
     rating: testimonial.rating,
-    quote: testimonial.quote[language === 'it' ? 'en' : language]
+    quote: testimonial.quote[language]
   }));
 
   return (
@@ -40,7 +40,8 @@ const Testimonials = () => {
           <p className="text-muted-foreground text-lg">
             {t(
               "Споделени преживявания от хора, които са открили пътя към баланс и благополучие",
-              "Shared experiences from people who have discovered the path to balance and wellness"
+              "Shared experiences from people who have discovered the path to balance and wellness",
+              "Esperienze condivise da persone che hanno scoperto il percorso verso l'equilibrio e il benessere"
             )}
           </p>
         </div>
@@ -98,13 +99,13 @@ const Testimonials = () => {
           >
             <Star className="w-5 h-5 text-primary" aria-hidden="true" />
             <span className="font-semibold text-foreground">
-              {t("5.0 в Google Maps", "5.0 on Google Maps", "5.0 on Google Maps")}
+              {t("5.0 в Google Maps", "5.0 on Google Maps", "5.0 su Google Maps")}
             </span>
           </a>
           <div className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2" data-testid="testimonial-trust-badge-cert">
             <span className="text-xl">✓</span>
             <span className="font-semibold text-foreground">
-              {t("Сертифициран специалист", "Certified Specialist", "Certified Specialist")}
+              {t("Сертифициран специалист", "Certified Specialist", "Specialista Certificato")}
             </span>
           </div>
         </div>

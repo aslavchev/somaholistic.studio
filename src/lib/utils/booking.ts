@@ -62,18 +62,18 @@ export function buildBookingMessage(
     phone: string;
     countryCode: string;
   },
-  t: (bg: string, en: string) => string
+  t: (bg: string, en: string, it: string) => string
 ): string {
   const fullPhone = `+${data.countryCode} ${data.phone}`;
   const formattedDate = data.date?.toLocaleDateString();
 
-  return `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:")}
+  return `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:", "Ciao! Vorrei prenotare un appuntamento:")}
 
-${t("Услуга:", "Service:")} ${data.service}
-${t("Продължителност:", "Duration:")} ${data.duration}
-${t("Дата:", "Date:")} ${formattedDate}
-${t("Час:", "Time:")} ${data.time}
-${t("Име:", "Name:")} ${data.name}
-${t("Email:", "Email:")} ${data.email}
-${t("Телефон:", "Phone:")} ${fullPhone}`;
+${t("Услуга:", "Service:", "Servizio:")} ${data.service}
+${t("Продължителност:", "Duration:", "Durata:")} ${data.duration}
+${t("Дата:", "Date:", "Data:")} ${formattedDate}
+${t("Час:", "Time:", "Ora:")} ${data.time}
+${t("Име:", "Name:", "Nome:")} ${data.name}
+${t("Email:", "Email:", "Email:")} ${data.email}
+${t("Телефон:", "Phone:", "Telefono:")} ${fullPhone}`;
 }

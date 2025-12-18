@@ -11,12 +11,13 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="contact-heading">
-            {t("Запази", "Book", "Book")} <span className="font-bold text-primary">{t("своя час", "Your Appointment", "Your Appointment")}</span>
+            {t("Запази", "Book", "Prenota")} <span className="font-bold text-primary">{t("своя час", "Your Appointment", "il Tuo Appuntamento")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
               "Свържете се с нас, за да резервирате вашата терапия и да започнете пътуването към благополучието",
-              "Contact us to book your therapy and begin your journey to wellness"
+              "Contact us to book your therapy and begin your journey to wellness",
+              "Contattaci per prenotare la tua terapia e iniziare il tuo viaggio verso il benessere"
             )}
           </p>
         </div>
@@ -27,7 +28,7 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <h3 className="text-2xl font-semibold text-foreground mb-6">
-                    {t("Информация за контакт", "Contact Information", "Contact Information")}
+                    {t("Информация за контакт", "Contact Information", "Informazioni di Contatto")}
                   </h3>
                   
                   <div className="space-y-4">
@@ -66,7 +67,7 @@ const Contact = () => {
                     <div className="flex items-start space-x-3">
                       <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Адрес", "Address", "Address")}</p>
+                        <p className="font-medium text-foreground">{t("Адрес", "Address", "Indirizzo")}</p>
                         <p className="text-muted-foreground">
                           {t(CONTACT.ADDRESS.AREA, "Manastirski Livadi Iztok")}<br />
                           {t(CONTACT.ADDRESS.STREET, "409-ta Street 13")}
@@ -78,7 +79,7 @@ const Contact = () => {
                           className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors mt-2"
                         >
                           <MapPin className="w-4 h-4" aria-hidden="true" />
-                          {t("Вижте на картата", "Get Directions", "Get Directions")}
+                          {t("Вижте на картата", "Get Directions", "Ottieni Indicazioni")}
                         </a>
                       </div>
                     </div>
@@ -86,11 +87,12 @@ const Contact = () => {
                     <div className="flex items-start space-x-3">
                       <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Работно време", "Working Hours", "Working Hours")}</p>
+                        <p className="font-medium text-foreground">{t("Работно време", "Working Hours", "Orari di Lavoro")}</p>
                         <p className="text-muted-foreground">
                           {t(
                             "Студиото работи само с предварително записани часове",
-                            "The studio operates by appointment only"
+                            "The studio operates by appointment only",
+                            "Lo studio opera solo su appuntamento"
                           )}
                         </p>
                       </div>
@@ -107,7 +109,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title={t("Карта на SOMA STUDIO", "SOMA STUDIO Map", "SOMA STUDIO Map")}
+                    title={t("Карта на SOMA STUDIO", "SOMA STUDIO Map", "Mappa di SOMA STUDIO")}
                   />
                 </div>
               </div>

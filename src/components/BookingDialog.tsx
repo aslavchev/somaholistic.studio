@@ -107,7 +107,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       service: sanitizeInput(serviceLabel),
       name: sanitizeInput(formData.name),
       phone: sanitizeInput(formData.phone)
-    }, t, language);
+    }, t);
     const url = buildWhatsAppUrl(message);
     window.open(url, "_blank");
     setTimeout(() => {
