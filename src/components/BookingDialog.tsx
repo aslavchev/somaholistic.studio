@@ -294,9 +294,9 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   const canProceedToStep2 = formData.service && formData.duration;
   const canProceedToStep3 = formData.date && formData.time;
   const canSubmit = formData.name.trim().length >= 2 &&
-                    validateEmail(formData.email, t).valid &&
+//                     validateEmail(formData.email, t).valid &&
                     formData.phone.replace(/\D/g, '').length >= 9 &&
-                    !errors.name && !errors.email && !errors.phone;
+                    !errors.name &&  !errors.phone;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -495,31 +495,31 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               {errors.name && <p className="text-red-500 text-sm mt-1" data-testid="booking-name-error">{errors.name}</p>}
             </div>
 
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={(e) => {
-                    setFormData(prev => ({ ...prev, email: e.target.value }));
-                    handleValidateEmail(e.target.value);
-                  }}
-                  className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
-                  data-testid="booking-email-input"
-                />
-              </div>
-              {errors.email && <p className="text-red-500 text-sm mt-1" data-testid="booking-email-error">{errors.email}</p>}
-              <p className="text-xs text-muted-foreground mt-1">
-                {t(
-                  "Моля, използвайте латински букви (A-Z)",
-                  "Please use Latin characters (A-Z)"
-                )}
-              </p>
-            </div>
+//             <div>
+//               <Label htmlFor="email">Email</Label>
+//               <div className="relative">
+//                 <Mail className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
+//                 <Input
+//                   id="email"
+//                   type="email"
+//                   placeholder="your@email.com"
+//                   value={formData.email}
+//                   onChange={(e) => {
+//                     setFormData(prev => ({ ...prev, email: e.target.value }));
+//                     handleValidateEmail(e.target.value);
+//                   }}
+//                   className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
+//                   data-testid="booking-email-input"
+//                 />
+//               </div>
+//               {errors.email && <p className="text-red-500 text-sm mt-1" data-testid="booking-email-error">{errors.email}</p>}
+//               <p className="text-xs text-muted-foreground mt-1">
+//                 {t(
+//                   "Моля, използвайте латински букви (A-Z)",
+//                   "Please use Latin characters (A-Z)"
+//                 )}
+//               </p>
+//             </div>
 
             <div>
               <Label htmlFor="phone">{t("Телефон", "Phone")}</Label>
@@ -608,7 +608,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 <p data-testid="booking-summary-date"><strong>{t("Дата:", "Date:")}</strong> {formData.date?.toLocaleDateString(language === 'bg' ? 'bg-BG' : 'en-US')}</p>
                 <p data-testid="booking-summary-time"><strong>{t("Час:", "Time:")}</strong> {formData.time}</p>
                 <p data-testid="booking-summary-name"><strong>{t("Име:", "Name:")}</strong> {formData.name}</p>
-                <p data-testid="booking-summary-email"><strong>Email:</strong> {formData.email}</p>
+//                 <p data-testid="booking-summary-email"><strong>Email:</strong> {formData.email}</p>
                 <p data-testid="booking-summary-phone"><strong>{t("Телефон:", "Phone:")}</strong> +{formData.countryCode} {formData.phone}</p>
               </div>
             </div>
