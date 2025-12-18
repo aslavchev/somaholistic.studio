@@ -232,8 +232,7 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Усещаш ли, че е време за промяна, но не знаеш откъде да започнеш? Тази консултация е твоето пространство за осъзнаване, подредба и нов фокус. Заедно ще изследваме начина ти на живот, емоционалните ти нужди, вътрешните блокажи и ще създадем ясен и устойчив план за баланс и благополучие.',
-      en: 'Do you feel it is time for a change, but you don\',
-      it: 'Do you feel it is time for a change, but you don\'t know where to start? This consultation is your space for awareness, arrangement and a new focus. Together we will explore your lifestyle, your emotional needs, your internal blockages and create a clear and sustainable plan for balance and well-being.'
+      en: 'Do you feel it is time for a change, but you don't know where to start? This consultation is your space for awareness, arrangement and a new focus. Together we will explore your lifestyle, your emotional needs, your internal blockages and create a clear and sustainable plan for balance and well-being.',
     },
     category: 'coaching',
     pricing: {
