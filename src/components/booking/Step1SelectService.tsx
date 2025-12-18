@@ -1,11 +1,12 @@
+import { BookingFormData } from "./types";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SERVICES } from "@/data";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Step1Props {
-  formData: any;
-  setFormData: (fn: any) => void;
+  formData: BookingFormData;
+  setFormData: (fn: (prev: BookingFormData) => BookingFormData) => void;
   selectedServiceData: any;
 }
 
@@ -18,7 +19,7 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
         <Label htmlFor="service">{t("Изберете услуга", "Select Service", "Seleziona Servizio")}</Label>
         <Select
           value={formData.service}
-          onValueChange={(value) => setFormData((prev: any) => ({ ...prev, service: value, duration: "" }))}
+          onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, service: value, duration: "" }))}
         >
           <SelectTrigger id="service" data-testid="booking-service-select">
             <SelectValue placeholder={t("Изберете услуга", "Select Service", "Seleziona Servizio")} />
@@ -38,7 +39,7 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
           <Label htmlFor="duration">{t("Изберете продължителност", "Select Duration", "Seleziona Durata")}</Label>
           <Select
             value={formData.duration}
-            onValueChange={(value) => setFormData((prev: any) => ({ ...prev, duration: value }))}
+            onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, duration: value }))}
           >
             <SelectTrigger id="duration" data-testid="booking-duration-select">
               <SelectValue placeholder={t("Изберете продължителност", "Select Duration", "Seleziona Durata")} />

@@ -28,3 +28,13 @@ export function buildWhatsAppUrl(phoneNumber: string, message: string): string {
 export function formatFullPhone(countryCode: string, phone: string): string {
   return `+${countryCode} ${phone}`;
 }
+
+export const COUNTRY_CODES = [
+  { code: "+359", flag: "🇧🇬", country: "Bulgaria" },
+  { code: "+39", flag: "🇮🇹", country: "Italy" },
+  { code: "+1", flag: "🇺🇸", country: "USA" },
+  { code: "+44", flag: "🇬🇧", country: "UK" },
+  { code: "+49", flag: "🇩🇪", country: "Germany" },
+  { code: "+33", flag: "🇫🇷", country: "France" },
+  { code: "+34", flag: "🇪🇸", country: "Spain" }
+];

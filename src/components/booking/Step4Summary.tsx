@@ -1,9 +1,10 @@
+import { BookingFormData } from "./types";
 import { Calendar, Clock, User, Phone, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { format } from "date-fns";
 
 interface Step4Props {
-  formData: any;
+  formData: BookingFormData;
   selectedServiceData: any;
 }
 

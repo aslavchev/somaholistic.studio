@@ -15,6 +15,7 @@ import { Step1SelectService } from "./booking/Step1SelectService";
 import { Step2DateTime } from "./booking/Step2DateTime";
 import { Step3Contact } from "./booking/Step3Contact";
 import { Step4Summary } from "./booking/Step4Summary";
+import { BookingFormData, BookingErrors } from "./booking/types";
 
 interface BookingDialogProps {
   open: boolean;

@@ -1,3 +1,4 @@
+import { BookingFormData, BookingErrors } from "./types";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -6,9 +7,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { COUNTRY_CODES } from "@/lib/utils";
 
 interface Step3Props {
-  formData: any;
-  setFormData: (fn: any) => void;
-  errors: any;
+  formData: BookingFormData;
+  setFormData: (fn: (prev: BookingFormData) => BookingFormData) => void;
+  errors: BookingErrors;
   handleValidateName: (value: string) => void;
   handleValidatePhone: (value: string) => void;
 }
@@ -27,7 +28,7 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
             placeholder={t("Име и фамилия", "Full Name", "Nome Completo")}
             value={formData.name}
             onChange={(e) => {
-              setFormData((prev: any) => ({ ...prev, name: e.target.value }));
+              setFormData((prev: BookingFormData) => ({ ...prev, name: e.target.value }));
               handleValidateName(e.target.value);
             }}
             className={`pl-10 ${errors.name ? 'border-red-500' : ''}`}
@@ -42,7 +43,7 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
         <div className="flex gap-2">
           <Select
             value={formData.countryCode}
-            onValueChange={(value) => setFormData((prev: any) => ({ ...prev, countryCode: value }))}
+            onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, countryCode: value }))}
           >
             <SelectTrigger className="w-32" data-testid="booking-country-select">
               <SelectValue />
@@ -64,7 +65,7 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
               placeholder="888 123 456"
               value={formData.phone}
               onChange={(e) => {
-                setFormData((prev: any) => ({ ...prev, phone: e.target.value }));
+                setFormData((prev: BookingFormData) => ({ ...prev, phone: e.target.value }));
                 handleValidatePhone(e.target.value);
               }}
               className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}

@@ -1,3 +1,4 @@
+import { BookingFormData } from "./types";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -6,8 +7,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { CalendarIcon, Clock } from "lucide-react";
 
 interface Step2Props {
-  formData: any;
-  setFormData: (fn: any) => void;
+  formData: BookingFormData;
+  setFormData: (fn: (prev: BookingFormData) => BookingFormData) => void;
 }
 
 export const Step2DateTime = ({ formData, setFormData }: Step2Props) => {
@@ -24,7 +25,7 @@ export const Step2DateTime = ({ formData, setFormData }: Step2Props) => {
         <Calendar
           mode="single"
           selected={formData.date}
-          onSelect={(date) => setFormData((prev: any) => ({ ...prev, date: date || new Date(), time: "" }))}
+          onSelect={(date) => setFormData((prev: BookingFormData) => ({ ...prev, date: date || new Date(), time: "" }))}
           disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
           className="rounded-md border mx-auto"
           data-testid="booking-calendar"
@@ -47,7 +48,7 @@ export const Step2DateTime = ({ formData, setFormData }: Step2Props) => {
             <Clock className="w-4 h-4" />
             {t("Изберете час", "Select Time", "Seleziona Ora")}
           </Label>
-          <Select value={formData.time} onValueChange={(value) => setFormData((prev: any) => ({ ...prev, time: value }))}>
+          <Select value={formData.time} onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, time: value }))}>
             <SelectTrigger id="time" className="mt-2" data-testid="booking-time-select">
               <SelectValue placeholder={t("Изберете час", "Select Time", "Seleziona Ora")} />
             </SelectTrigger>
