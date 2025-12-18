@@ -522,7 +522,6 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               </p>
             </div>
             */}
-//             </div>
 
             <div>
               <Label htmlFor="phone">{t("Телефон", "Phone")}</Label>
