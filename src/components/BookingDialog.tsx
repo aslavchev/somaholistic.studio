@@ -16,7 +16,7 @@ import {
   validateName,
   sanitizeInput,
   formatPhone,
-  getAvailableTimeSlots,
+  ALL_TIME_SLOTS,
   buildBookingMessage,
   buildWhatsAppUrl
 } from "@/lib/utils";
@@ -235,7 +235,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     }
   }, [formData.service, formData.duration]);
 
-  const availableTimeSlots = getAvailableTimeSlots(formData.date);
+  const availableTimeSlots = ALL_TIME_SLOTS;
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -412,8 +412,8 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             <div className="bg-muted/50 border border-primary/20 rounded-lg p-3 text-sm">
               <p className="text-muted-foreground">
                 {t(
-                  "💡 Избраните часове са ориентировъчни. Мари ще потвърди наличността в рамките на 2 часа.",
-                  "💡 Selected times are indicative. Mari will confirm availability within 2 hours."
+                  "💡 Моля, изберете желаната дата и час. Мари ще потвърди наличността в рамките на 2 часа.",
+                  "💡 Please select your preferred date and time. Mari will confirm availability within 2 hours."
                 )}
               </p>
             </div>
