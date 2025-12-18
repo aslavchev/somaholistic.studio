@@ -83,7 +83,7 @@ const Header = () => {
               className="text-primary hover:bg-accent"
               onClick={() => setLanguage(language === 'bg' ? 'en' : language === 'en' ? 'it' : 'bg')}
               data-testid="header-language-button"
-              aria-label=`Switch to ${language === 'bg' ? 'English' : language === 'en' ? 'Italian' : 'Bulgarian'}`
+              aria-label={`Switch to ${language === 'bg' ? 'English' : language === 'en' ? 'Italian' : 'Bulgarian'}`}
             >
               <Languages className="w-4 h-4" aria-hidden="true" />
               <span className="ml-1 font-semibold">{language === 'bg' ? 'EN' : language === 'en' ? 'IT' : 'BG'}</span>
