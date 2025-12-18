@@ -1,3 +1,4 @@
+import type { Service } from "@/data/services";
 import { BookingFormData } from "./types";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -7,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 interface Step1Props {
   formData: BookingFormData;
   setFormData: (fn: (prev: BookingFormData) => BookingFormData) => void;
-  selectedServiceData: any;
+  selectedServiceData: Service | undefined;
 }
 
 export const Step1SelectService = ({ formData, setFormData, selectedServiceData }: Step1Props) => {

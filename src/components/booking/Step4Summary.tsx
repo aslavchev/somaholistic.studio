@@ -1,3 +1,4 @@
+import type { Service } from "@/data/services";
 import { BookingFormData } from "./types";
 import { Calendar, Clock, User, Phone, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -5,7 +6,7 @@ import { format } from "date-fns";
 
 interface Step4Props {
   formData: BookingFormData;
-  selectedServiceData: any;
+  selectedServiceData: Service | undefined;
 }
 
 export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
