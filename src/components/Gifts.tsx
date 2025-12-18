@@ -1,7 +1,7 @@
 /**
  * Gifts Section - Gift Certificates
  *
- * Flexible amount gift certificates with WhatsApp purchase flow
+ * Service-based vouchers and custom amount gift certificates with WhatsApp purchase flow
  */
 
 import { useState } from "react";
@@ -9,61 +9,27 @@ import { Gift, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CONTACT } from "@/data";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CONTACT, SERVICES } from "@/data";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-interface GiftAmount {
-  value: number;
-  labelBg: string;
-  labelEn: string;
-  descriptionBg: string;
-  descriptionEn: string;
-  recommended?: boolean;
-}
-
-const GIFT_AMOUNTS: GiftAmount[] = [
-  {
-    value: 50,
-    labelBg: "€50",
-    labelEn: "€50",
-    descriptionBg: "Подходящо за подмладяващ масаж на лице",
-    descriptionEn: "Perfect for a rejuvenating facial treatment"
-  },
-  {
-    value: 77,
-    labelBg: "€77",
-    labelEn: "€77",
-    descriptionBg: "Една SOMA Ритуал процедура",
-    descriptionEn: "One SOMA Ritual session",
-    recommended: true
-  },
-  {
-    value: 100,
-    labelBg: "€100",
-    labelEn: "€100",
-    descriptionBg: "Открийте множество процедури",
-    descriptionEn: "Discover multiple treatments"
-  },
-  {
-    value: 166,
-    labelBg: "€166",
-    labelEn: "€166",
-    descriptionBg: "Пътешествие към Спокойствието",
-    descriptionEn: "The Serenity Voyage package"
-  }
-];
 
 const Gifts = () => {
   const { t, language } = useLanguage();
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [selectedService, setSelectedService] = useState<string>("");
   const [customAmount, setCustomAmount] = useState("");
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation({ threshold: 0.1 });
 
-  const handlePurchase = (amount: number) => {
+  const handleServiceVoucherPurchase = () => {
+    if (!selectedService) return;
+
+    const service = SERVICES.find(s => s.id === selectedService);
+    if (!service) return;
+
+    const serviceTitle = service.title[language];
     const message = language === 'bg'
-      ? `Здравейте! Искам да закупя подаръчна карта на стойност €${amount}.`
-      : `Hello! I would like to purchase a gift certificate worth €${amount}.`;
+      ? `Здравейте! Искам да закупя подаръчна карта за услугата: ${serviceTitle}.`
+      : `Hello! I would like to purchase a gift certificate for the service: ${serviceTitle}.`;
 
     const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -72,7 +38,12 @@ const Gifts = () => {
   const handleCustomPurchase = () => {
     const amount = parseFloat(customAmount);
     if (amount && amount >= 25) {
-      handlePurchase(amount);
+      const message = language === 'bg'
+        ? `Здравейте! Искам да закупя подаръчна карта на стойност €${amount}.`
+        : `Hello! I would like to purchase a gift certificate worth €${amount}.`;
+
+      const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
     }
   };
 
@@ -110,50 +81,62 @@ const Gifts = () => {
 
         <div
           ref={cardsRef as React.RefObject<HTMLDivElement>}
-          className={`max-w-4xl mx-auto transition-all duration-700 ${
+          className={`max-w-4xl mx-auto space-y-8 transition-all duration-700 ${
             cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* Gift Amount Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {GIFT_AMOUNTS.map((gift) => (
-              <button
-                key={gift.value}
-                onClick={() => {
-                  setSelectedAmount(gift.value);
-                  setCustomAmount("");
-                  handlePurchase(gift.value);
-                }}
-                className={`relative bg-white rounded-xl shadow-md border-2 p-6 hover:shadow-xl transition-all group ${
-                  gift.recommended
-                    ? 'border-primary bg-gradient-to-br from-primary/5 to-primary/10'
-                    : 'border-border hover:border-primary/50'
-                }`}
-              >
-                {gift.recommended && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" />
-                    {t("Препоръчано", "Recommended")}
-                  </div>
-                )}
+          {/* Service Voucher Section */}
+          <div className="bg-white rounded-xl shadow-md border-2 border-primary/20 p-8">
+            <div className="max-w-md mx-auto">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Sparkles className="w-5 h-5 text-primary" />
+                <h3 className="text-xl font-bold text-foreground text-center">
+                  {t("Ваучер за една от нашите услуги", "Voucher for One of Our Services")}
+                </h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6 text-center">
+                {t("Изберете услуга и подарете незабравимо изживяване", "Choose a service and gift an unforgettable experience")}
+              </p>
 
-                <div className="text-center">
-                  <div className={`text-3xl font-bold mb-2 ${gift.recommended ? 'text-primary' : 'text-foreground'}`}>
-                    {t(gift.labelBg, gift.labelEn)}
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t(gift.descriptionBg, gift.descriptionEn)}
-                  </p>
+              <div className="space-y-4">
+                <div>
+                  <Select value={selectedService} onValueChange={setSelectedService}>
+                    <SelectTrigger className="w-full h-12">
+                      <SelectValue placeholder={t("Изберете услуга", "Select Service")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SERVICES.map((service) => {
+                        // Get first available price
+                        const price = service.pricing.duration30?.price ||
+                                     service.pricing.duration60?.price ||
+                                     service.pricing.duration90?.price || 0;
+
+                        return (
+                          <SelectItem key={service.id} value={service.id}>
+                            <div className="flex justify-between items-center w-full">
+                              <span>{service.title[language]}</span>
+                              <span className="text-xs text-muted-foreground ml-4">
+                                €{price}
+                              </span>
+                            </div>
+                          </SelectItem>
+                        );
+                      })}
+                    </SelectContent>
+                  </Select>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-border">
-                  <div className="flex items-center justify-center gap-2 text-primary text-sm font-medium group-hover:gap-3 transition-all">
-                    <Gift className="w-4 h-4" />
-                    {t("Изпрати подарък", "Send Gift")}
-                  </div>
-                </div>
-              </button>
-            ))}
+                <Button
+                  onClick={handleServiceVoucherPurchase}
+                  disabled={!selectedService}
+                  size="lg"
+                  className="w-full"
+                >
+                  <Gift className="w-4 h-4 mr-2" />
+                  {t("Изпрати подарък", "Send Gift")}
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Custom Amount Section */}
@@ -179,7 +162,6 @@ const Gifts = () => {
                     value={customAmount}
                     onChange={(e) => {
                       setCustomAmount(e.target.value);
-                      setSelectedAmount(null);
                     }}
                     className="pl-8 text-lg h-12"
                   />
