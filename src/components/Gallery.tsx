@@ -20,14 +20,14 @@ const Gallery = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const images = [
-    { src: studioPic1, alt: t("SOMA Studio интериор", "SOMA Studio interior", "SOMA Studio interior") },
-    { src: studioPic2, alt: t("Терапевтично пространство", "Therapeutic space", "Therapeutic space") },
-    { src: studioPic3, alt: t("Студио за релаксация", "Relaxation studio", "Relaxation studio") },
-    { src: studioPic4, alt: t("Тихо място за изцеление", "Peaceful healing space", "Peaceful healing space") },
-    { src: studioPic5, alt: t("Холистична среда", "Holistic environment", "Holistic environment") },
-    { src: studioPic6, alt: t("Просторно студио", "Spacious studio", "Spacious studio") },
-    { src: studioPic7, alt: t("Уютен кът", "Cozy corner", "Cozy corner") },
-    { src: studioPic8, alt: t("Място за трансформация", "Space for transformation", "Space for transformation") }
+    { src: studioPic1, alt: t("SOMA Studio интериор", "SOMA Studio interior", "Interni SOMA Studio") },
+    { src: studioPic2, alt: t("Терапевтично пространство", "Therapeutic space", "Spazio terapeutico") },
+    { src: studioPic3, alt: t("Студио за релаксация", "Relaxation studio", "Studio relax") },
+    { src: studioPic4, alt: t("Тихо място за изцеление", "Peaceful healing space", "Spazio di guarigione") },
+    { src: studioPic5, alt: t("Холистична среда", "Holistic environment", "Ambiente olistico") },
+    { src: studioPic6, alt: t("Просторно студио", "Spacious studio", "Studio spazioso") },
+    { src: studioPic7, alt: t("Уютен кът", "Cozy corner", "Angolo accogliente") },
+    { src: studioPic8, alt: t("Място за трансформация", "Space for transformation", "Spazio di trasformazione") }
   ];
 
   const goToPrevious = () => {

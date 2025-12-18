@@ -35,7 +35,7 @@ const Testimonials = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Какво казват", "What Our", "What Our")} <span className="font-bold text-primary">{t("нашите клиенти", "Clients Say", "Clients Say")}</span>
+            {t("Какво казват", "What Our", "Cosa Dicono")} <span className="font-bold text-primary">{t("нашите клиенти", "Clients Say", "I Nostri Clienti")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             {t(

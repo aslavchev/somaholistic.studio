@@ -26,14 +26,15 @@ const Footer = () => {
               <div>
                 <h3 className="text-xl font-bold">SOMA STUDIO</h3>
                 <p className="text-xs uppercase tracking-wide opacity-80">
-                  {t("Соматични практики", "Somatic Practices", "Somatic Practices")}
+                  {t("Соматични практики", "Somatic Practices", "Pratiche Somatiche")}
                 </p>
               </div>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               {t(
                 "Изкуството на дълбоката релаксация и холистичното възстановяване в сърцето на София.",
-                "The art of deep relaxation and holistic restoration in the heart of Sofia."
+                "The art of deep relaxation and holistic restoration in the heart of Sofia.",
+                "L'arte del rilassamento profondo e del restauro olistico nel cuore di Sofia."
               )}
             </p>
           </div>
@@ -72,17 +73,18 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Работно време", "Working Hours", "Working Hours")}</h4>
+            <h4 className="font-semibold mb-4">{t("Работно време", "Working Hours", "Orari di Lavoro")}</h4>
             <p className="text-primary-foreground/80 text-sm">
               {t(
                 "Студиото работи само с предварително записани часове",
-                "The studio operates by appointment only"
+                "The studio operates by appointment only",
+                "Lo studio opera solo su appuntamento"
               )}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links", "Quick Links")}</h4>
+            <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links", "Link Rapidi")}</h4>
             <div className="space-y-2">
               <button onClick={scrollToTop} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
                 {t("Начало", "Home", "Home")}
@@ -103,11 +105,12 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?", "Not Sure?")}</h4>
+            <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?", "Non Sei Sicuro?")}</h4>
             <p className="text-primary-foreground/80 text-sm mb-4">
               {t(
                 "Свържете се с нас за безплатна консултация",
-                "Contact us for a free consultation"
+                "Contact us for a free consultation",
+                "Contattaci per una consulenza gratuita"
               )}
             </p>
             <DiscoveryCallButton
@@ -122,7 +125,8 @@ const Footer = () => {
           <p className="text-primary-foreground/60 text-sm">
             {t(
               "© 2025 SOMA STUDIO. Всички права запазени.",
-              "© 2025 SOMA STUDIO. All rights reserved."
+              "© 2025 SOMA STUDIO. All rights reserved.",
+              "© 2025 SOMA STUDIO. Tutti i diritti riservati."
             )}
           </p>
         </div>

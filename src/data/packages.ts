@@ -64,7 +64,8 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
   id: 'serenity-voyage-4',
   name: {
     bg: 'Пътешествие към Спокойствието',
-    en: 'Serenity Voyage'
+    en: 'Serenity Voyage',
+    it: 'Serenity Voyage'
   },
   sessions: 4,
   price: Math.round(4 * 46 * 0.9),  // 4 sessions × €46 × 10% discount = €166
@@ -88,7 +89,8 @@ export const PACKAGE_6_SESSIONS: WellnessPackage = {
   id: 'radiance-renaissance-4',
   name: {
     bg: 'Ренесанс на Блясъка',
-    en: 'Radiance Renaissance'
+    en: 'Radiance Renaissance',
+    it: 'Radiance Renaissance'
   },
   sessions: 4,
   price: Math.round(4 * 26 * 0.9),  // 4 sessions × €26 × 10% discount = €94

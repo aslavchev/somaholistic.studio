@@ -26,9 +26,11 @@ const Gifts = () => {
     const service = SERVICES.find(s => s.id === selectedService);
     if (!service) return;
 
-    const serviceTitle = service.title[language === 'it' ? 'en' : language];
+    const serviceTitle = service.title[language];
     const message = language === 'bg'
       ? `Здравейте! Искам да закупя подаръчна карта за услугата: ${serviceTitle}.`
+      : language === 'it'
+      ? `Ciao! Vorrei acquistare un buono regalo per il servizio: ${serviceTitle}.`
       : `Hello! I would like to purchase a gift certificate for the service: ${serviceTitle}.`;
 
     const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
@@ -40,6 +42,8 @@ const Gifts = () => {
     if (amount && amount >= 25) {
       const message = language === 'bg'
         ? `Здравейте! Искам да закупя подаръчна карта на стойност €${amount}.`
+        : language === 'it'
+        ? `Ciao! Vorrei acquistare un buono regalo del valore di €${amount}.`
         : `Hello! I would like to purchase a gift certificate worth €${amount}.`;
 
       const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
@@ -67,14 +71,15 @@ const Gifts = () => {
 
           {/* Heading */}
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Подарете", "Gift", "Gift")} <span className="font-bold text-primary">{t("преживяване", "an Experience", "an Experience")}</span>
+            {t("Подарете", "Gift", "Regala")} <span className="font-bold text-primary">{t("преживяване", "an Experience", "un'Esperienza")}</span>
           </h2>
 
           {/* Description */}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t(
               "Подарете на любим човек възможността да избере своето пътешествие към благополучието",
-              "Gift a loved one the freedom to choose their wellness journey"
+              "Gift a loved one the freedom to choose their wellness journey",
+              "Regala a una persona cara la libertà di scegliere il proprio percorso di benessere"
             )}
           </p>
         </div>
@@ -90,11 +95,11 @@ const Gifts = () => {
             <div className="flex items-center justify-center gap-2 mb-3">
               <Sparkles className="w-5 h-5 text-primary" />
               <h3 className="text-xl font-bold text-foreground text-center">
-                {t("Ваучер за една от нашите услуги", "Voucher for One of Our Services", "Voucher for One of Our Services")}
+                {t("Ваучер за една от нашите услуги", "Voucher for One of Our Services", "Buono per Uno dei Nostri Servizi")}
               </h3>
             </div>
             <p className="text-sm text-muted-foreground mb-6 text-center">
-              {t("Изберете услуга и подарете незабравимо изживяване", "Choose a service and gift an unforgettable experience", "Choose a service and gift an unforgettable experience")}
+              {t("Изберете услуга и подарете незабравимо изживяване", "Choose a service and gift an unforgettable experience", "Scegli un servizio e regala un'esperienza indimenticabile")}
             </p>
 
             <div className="space-y-4 flex-grow flex flex-col justify-center">
@@ -113,7 +118,7 @@ const Gifts = () => {
                       return (
                         <SelectItem key={service.id} value={service.id}>
                           <div className="flex justify-between items-center w-full">
-                            <span>{service.title[language === 'it' ? 'en' : language]}</span>
+                            <span>{service.title[language]}</span>
                             <span className="text-xs text-muted-foreground ml-4">
                               €{price}
                             </span>
@@ -132,7 +137,7 @@ const Gifts = () => {
                 className="w-full"
               >
                 <Gift className="w-4 h-4 mr-2" />
-                {t("Изпрати подарък", "Send Gift", "Send Gift")}
+                {t("Изпрати подарък", "Send Gift", "Invia Regalo")}
               </Button>
             </div>
           </div>
@@ -140,10 +145,10 @@ const Gifts = () => {
           {/* Custom Amount Section */}
           <div className="bg-white rounded-xl shadow-md border-2 border-border p-8 flex flex-col">
             <h3 className="text-xl font-bold text-foreground mb-2 text-center">
-              {t("Персонализирана сума", "Custom Amount", "Custom Amount")}
+              {t("Персонализирана сума", "Custom Amount", "Importo Personalizzato")}
             </h3>
             <p className="text-sm text-muted-foreground mb-6 text-center">
-              {t("Изберете своя собствена сума (минимум €25)", "Choose your own amount (minimum €25)", "Choose your own amount (minimum €25)")}
+              {t("Изберете своя собствена сума (минимум €25)", "Choose your own amount (minimum €25)", "Scegli il tuo importo (minimo €25)")}
             </p>
 
             <div className="flex gap-3 flex-grow items-center">
@@ -182,10 +187,10 @@ const Gifts = () => {
                 <Check className="w-6 h-6 text-primary" />
               </div>
               <h4 className="font-semibold text-foreground mb-1">
-                {t("Гъвкава валидност", "Flexible Validity", "Flexible Validity")}
+                {t("Гъвкава валидност", "Flexible Validity", "Validità Flessibile")}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {t("Картата е валидна до изчерпване на средствата", "Valid until balance is used", "Valid until balance is used")}
+                {t("Картата е валидна до изчерпване на средствата", "Valid until balance is used", "Valido fino all'esaurimento del saldo")}
               </p>
             </div>
 
@@ -194,10 +199,10 @@ const Gifts = () => {
                 <Check className="w-6 h-6 text-primary" />
               </div>
               <h4 className="font-semibold text-foreground mb-1">
-                {t("Всички процедури", "All Services", "All Services")}
+                {t("Всички процедури", "All Services", "Tutti i Servizi")}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {t("Може да се използва за всяка процедура в студиото", "Can be used for any studio service", "Can be used for any studio service")}
+                {t("Може да се използва за всяка процедура в студиото", "Can be used for any studio service", "Può essere utilizzato per qualsiasi servizio dello studio")}
               </p>
             </div>
 
@@ -206,10 +211,10 @@ const Gifts = () => {
                 <Check className="w-6 h-6 text-primary" />
               </div>
               <h4 className="font-semibold text-foreground mb-1">
-                {t("Лесно закупуване", "Easy Purchase", "Easy Purchase")}
+                {t("Лесно закупуване", "Easy Purchase", "Acquisto Facile")}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {t("Свържете се с нас и ще организираме всичко", "Contact us and we'll arrange everything", "Contact us and we'll arrange everything")}
+                {t("Свържете се с нас и ще организираме всичко", "Contact us and we'll arrange everything", "Contattaci e organizzeremo tutto")}
               </p>
             </div>
           </div>

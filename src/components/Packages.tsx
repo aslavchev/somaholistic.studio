@@ -30,12 +30,13 @@ const Packages = () => {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Пакети за", "Wellness", "Wellness")} <span className="font-bold text-primary">{t("благоденствие", "Bundles", "Bundles")}</span>
+            {t("Пакети за", "Wellness", "Pacchetti di")} <span className="font-bold text-primary">{t("благоденствие", "Bundles", "Benessere")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
               "Инвестирайте в дългосрочното си здраве и спестете до 10% с нашите пакети",
-              "Invest in your long-term wellness and save up to 10% with our bundles"
+              "Invest in your long-term wellness and save up to 10% with our bundles",
+              "Investi nel tuo benessere a lungo termine e risparmia fino al 10% con i nostri pacchetti"
             )}
           </p>
         </div>
@@ -52,10 +53,10 @@ const Packages = () => {
             </div>
 
             <h3 className="text-2xl font-bold mb-2">
-              {t("Пътешествие към Спокойствието", "Serenity Voyage", "Serenity Voyage")}
+              {t("Пътешествие към Спокойствието", "Serenity Voyage", "Viaggio Serenità")}
             </h3>
             <p className="text-primary-foreground/80 mb-6">
-              {t("4 процедури класически масаж", "4 classical massage sessions", "4 classical massage sessions")}
+              {t("4 процедури класически масаж", "4 classical massage sessions", "4 sessioni di massaggio classico")}
             </p>
 
             <div className="mb-6">
@@ -79,19 +80,19 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("4 процедури класически масаж", "4 classical massage sessions", "4 classical massage sessions")}
+                  {t("4 процедури класически масаж", "4 classical massage sessions", "4 sessioni di massaggio classico")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("Валиден 2 месеца", "Valid for 2 months", "Valid for 2 months")}
+                  {t("Валиден 2 месеца", "Valid for 2 months", "Valido per 2 mesi")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("Приоритетно записване", "Priority booking", "Priority booking")}
+                  {t("Приоритетно записване", "Priority booking", "Prenotazione prioritaria")}
                 </span>
               </li>
             </ul>
@@ -106,10 +107,10 @@ const Packages = () => {
           {/* 4-Session Facial Bundle */}
           <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow flex flex-col">
             <h3 className="text-2xl font-bold text-foreground mb-2">
-              {t("Ренесанс на Блясъка", "Radiance Renaissance", "Radiance Renaissance")}
+              {t("Ренесанс на Блясъка", "Radiance Renaissance", "Rinascita Radiosa")}
             </h3>
             <p className="text-muted-foreground mb-6">
-              {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions", "4 rejuvenating facial massage sessions")}
+              {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions", "4 sessioni di massaggio facciale ringiovanente")}
             </p>
 
             <div className="mb-6">
@@ -133,19 +134,19 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions", "4 rejuvenating facial massage sessions")}
+                  {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions", "4 sessioni di massaggio facciale ringiovanente")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("Валиден 2 месеца", "Valid for 2 months", "Valid for 2 months")}
+                  {t("Валиден 2 месеца", "Valid for 2 months", "Valido per 2 mesi")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("Приоритетно записване", "Priority booking", "Priority booking")}
+                  {t("Приоритетно записване", "Priority booking", "Prenotazione prioritaria")}
                 </span>
               </li>
             </ul>
@@ -162,7 +163,8 @@ const Packages = () => {
           <p className="text-muted-foreground text-sm mb-4">
             {t(
               "Търсите подарък за специален човек?",
-              "Looking for a gift for someone special?"
+              "Looking for a gift for someone special?",
+              "Cerchi un regalo per qualcuno di speciale?"
             )}
           </p>
           <Button
@@ -171,7 +173,7 @@ const Packages = () => {
             className="group"
           >
             <Gift className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-            {t("Разгледайте подаръчните карти", "Explore Gift Certificates", "Explore Gift Certificates")}
+            {t("Разгледайте подаръчните карти", "Explore Gift Certificates", "Esplora i Buoni Regalo")}
           </Button>
         </div>
       </div>

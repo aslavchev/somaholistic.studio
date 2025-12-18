@@ -49,18 +49,18 @@ const Services = () => {
   // Transform centralized data into ServiceCard props format
   const services = SERVICES.map((service) => ({
     id: service.id,
-    title: service.title[language === 'it' ? 'en' : language],
-    description: service.description[language === 'it' ? 'en' : language],
-    benefits: service.benefits?.map(b => b[language === 'it' ? 'en' : language]),
-    suitableFor: service.suitableFor?.map(s => s[language === 'it' ? 'en' : language]),
+    title: service.title[language],
+    description: service.description[language],
+    benefits: service.benefits?.map(b => b[language]),
+    suitableFor: service.suitableFor?.map(s => s[language]),
     price60: service.pricing.duration60
       ? `€${service.pricing.duration60.price}`
       : undefined,
-    duration60: service.pricing.duration60?.label[language === 'it' ? 'en' : language],
+    duration60: service.pricing.duration60?.label[language],
     price90: service.pricing.duration90
       ? `€${service.pricing.duration90.price}`
       : undefined,
-    duration90: service.pricing.duration90?.label[language === 'it' ? 'en' : language],
+    duration90: service.pricing.duration90?.label[language],
     image: service.image ? IMAGE_MAP[service.image] : undefined,
     featured: service.featured,
     category: service.category
@@ -85,12 +85,13 @@ const Services = () => {
           }`}
         >
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="services-heading">
-            {t("Нашите", "Our", "Our")} <span className="font-bold text-primary">{t("Услуги", "Services", "Servizi")}</span>
+            {t("Нашите", "Our", "Nostri")} <span className="font-bold text-primary">{t("Услуги", "Services", "Servizi")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
               "Открийте пътя към вътрешно равновесие и хармония чрез нашите специализирани терапии",
-              "Discover the path to inner balance and harmony through our specialized therapies"
+              "Discover the path to inner balance and harmony through our specialized therapies",
+              "Scopri il percorso verso l'equilibrio interiore e l'armonia attraverso le nostre terapie specializzate"
             )}
           </p>
         </div>
@@ -105,7 +106,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t("Всички", "All", "All")}
+            {t("Всички", "All", "Tutti")}
           </button>
           <button
             onClick={() => setSelectedCategory('signature')}
@@ -115,7 +116,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.signature.bg, CATEGORY_LABELS.signature.en)}
+            {t(CATEGORY_LABELS.signature.bg, CATEGORY_LABELS.signature.en, CATEGORY_LABELS.signature.it)}
           </button>
           <button
             onClick={() => setSelectedCategory('massage')}
@@ -125,7 +126,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.massage.bg, CATEGORY_LABELS.massage.en)}
+            {t(CATEGORY_LABELS.massage.bg, CATEGORY_LABELS.massage.en, CATEGORY_LABELS.massage.it)}
           </button>
           <button
             onClick={() => setSelectedCategory('therapy')}
@@ -135,7 +136,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.therapy.bg, CATEGORY_LABELS.therapy.en)}
+            {t(CATEGORY_LABELS.therapy.bg, CATEGORY_LABELS.therapy.en, CATEGORY_LABELS.therapy.it)}
           </button>
           <button
             onClick={() => setSelectedCategory('beauty')}
@@ -145,7 +146,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.beauty.bg, CATEGORY_LABELS.beauty.en)}
+            {t(CATEGORY_LABELS.beauty.bg, CATEGORY_LABELS.beauty.en, CATEGORY_LABELS.beauty.it)}
           </button>
           <button
             onClick={() => setSelectedCategory('coaching')}
@@ -155,7 +156,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.coaching.bg, CATEGORY_LABELS.coaching.en)}
+            {t(CATEGORY_LABELS.coaching.bg, CATEGORY_LABELS.coaching.en, CATEGORY_LABELS.coaching.it)}
           </button>
         </div>
 
@@ -187,13 +188,15 @@ const Services = () => {
             <h3 className="text-xl md:text-2xl font-light text-foreground mb-3">
               {t(
                 "Не сте сигурни коя услуга е подходяща за вас?",
-                "Not sure which service is right for you?"
+                "Not sure which service is right for you?",
+                "Non sei sicuro quale servizio sia giusto per te?"
               )}
             </h3>
             <p className="text-muted-foreground mb-6">
               {t(
                 "Свържете се с Мари за безплатна консултация и тя ще ви помогне да изберете идеалната терапия за вашите нужди.",
-                "Contact Mari for a free consultation and she will help you choose the ideal therapy for your needs."
+                "Contact Mari for a free consultation and she will help you choose the ideal therapy for your needs.",
+                "Contatta Mari per una consulenza gratuita e ti aiuterà a scegliere la terapia ideale per le tue esigenze."
               )}
             </p>
             <DiscoveryCallButton size="lg" />
