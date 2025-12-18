@@ -8,10 +8,10 @@
  * Last Updated: November 26, 2024
  */
 
-import type { Service, ServiceCategory, TranslatedString, it: '' } from '@/types';
+import type { Service, ServiceCategory, TranslatedString } from '@/types';
 
 // Re-export types for backward compatibility
-export type { Service, ServiceCategory, TranslatedString, ServicePricing, it: '' } from '@/types';
+export type { Service, ServiceCategory, TranslatedString, ServicePricing } from '@/types';
 
 // ============================================================================
 // Service Definitions
