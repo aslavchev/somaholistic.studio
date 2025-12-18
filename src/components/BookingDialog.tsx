@@ -101,7 +101,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   const handleSubmit = () => {
     setIsSubmitting(true);
-    const serviceLabel = selectedServiceData?.title[language] || formData.service;
+    const serviceLabel = selectedServiceData?.title[language === 'it' ? 'en' : language] || formData.service;
     const message = buildBookingMessage({
       ...formData,
       service: sanitizeInput(serviceLabel),

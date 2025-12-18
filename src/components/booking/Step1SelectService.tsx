@@ -28,7 +28,7 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
           <SelectContent>
             {SERVICES.map((service) => (
               <SelectItem key={service.id} value={service.id}>
-                {service.title[language]}
+                {service.title[language === 'it' ? 'en' : language]}
               </SelectItem>
             ))}
           </SelectContent>

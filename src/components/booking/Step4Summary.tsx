@@ -25,7 +25,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
           <Sparkles className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div className="flex-1">
             <p className="font-semibold text-foreground" data-testid="booking-summary-service">
-              {selectedServiceData?.title[language]}
+              {selectedServiceData?.title[language === 'it' ? 'en' : language]}
             </p>
             <p className="text-sm text-muted-foreground">
               {formData.duration} {t("мин", "min", "min")} - €{getPrice()}
