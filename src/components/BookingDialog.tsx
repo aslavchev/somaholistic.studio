@@ -495,30 +495,33 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               {errors.name && <p className="text-red-500 text-sm mt-1" data-testid="booking-name-error">{errors.name}</p>}
             </div>
 
-//             <div>
-//               <Label htmlFor="email">Email</Label>
-//               <div className="relative">
-//                 <Mail className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-//                 <Input
-//                   id="email"
-//                   type="email"
-//                   placeholder="your@email.com"
-//                   value={formData.email}
-//                   onChange={(e) => {
-//                     setFormData(prev => ({ ...prev, email: e.target.value }));
-//                     handleValidateEmail(e.target.value);
-//                   }}
-//                   className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
-//                   data-testid="booking-email-input"
-//                 />
-//               </div>
-//               {errors.email && <p className="text-red-500 text-sm mt-1" data-testid="booking-email-error">{errors.email}</p>}
-//               <p className="text-xs text-muted-foreground mt-1">
-//                 {t(
-//                   "Моля, използвайте латински букви (A-Z)",
-//                   "Please use Latin characters (A-Z)"
-//                 )}
-//               </p>
+            {/* Email field hidden - not implementing calendar yet
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  value={formData.email}
+                  onChange={(e) => {
+                    setFormData(prev => ({ ...prev, email: e.target.value }));
+                    handleValidateEmail(e.target.value);
+                  }}
+                  className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
+                  data-testid="booking-email-input"
+                />
+              </div>
+              {errors.email && <p className="text-red-500 text-sm mt-1" data-testid="booking-email-error">{errors.email}</p>}
+              <p className="text-xs text-muted-foreground mt-1">
+                {t(
+                  "Моля, използвайте латински букви (A-Z)",
+                  "Please use Latin characters (A-Z)"
+                )}
+              </p>
+            </div>
+            */}
 //             </div>
 
             <div>
