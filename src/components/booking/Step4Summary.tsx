@@ -12,6 +12,12 @@ interface Step4Props {
 export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
   const { t, language } = useLanguage();
 
+  const getPrice = () => {
+    if (!selectedServiceData) return "";
+    const key = `duration${formData.duration}` as "duration30" | "duration60" | "duration90";
+    return selectedServiceData.pricing[key]?.price || "";
+  };
+
   return (
     <div className="space-y-4">
       <div className="bg-primary/5 rounded-lg p-4 space-y-3" data-testid="booking-summary">
@@ -22,8 +28,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
               {selectedServiceData?.title[language]}
             </p>
             <p className="text-sm text-muted-foreground">
-              {formData.duration} {t("мин", "min", "min")} - €
-              {selectedServiceData?.pricing[`duration${formData.duration}` as keyof typeof selectedServiceData.pricing]?.price}
+              {formData.duration} {t("мин", "min", "min")} - €{getPrice()}
             </p>
           </div>
         </div>
