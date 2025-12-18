@@ -81,106 +81,102 @@ const Gifts = () => {
 
         <div
           ref={cardsRef as React.RefObject<HTMLDivElement>}
-          className={`max-w-4xl mx-auto space-y-8 transition-all duration-700 ${
+          className={`max-w-6xl mx-auto grid md:grid-cols-2 gap-8 transition-all duration-700 ${
             cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           {/* Service Voucher Section */}
-          <div className="bg-white rounded-xl shadow-md border-2 border-primary/20 p-8">
-            <div className="max-w-md mx-auto">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <Sparkles className="w-5 h-5 text-primary" />
-                <h3 className="text-xl font-bold text-foreground text-center">
-                  {t("Ваучер за една от нашите услуги", "Voucher for One of Our Services")}
-                </h3>
+          <div className="bg-white rounded-xl shadow-md border-2 border-primary/20 p-8 flex flex-col">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <Sparkles className="w-5 h-5 text-primary" />
+              <h3 className="text-xl font-bold text-foreground text-center">
+                {t("Ваучер за една от нашите услуги", "Voucher for One of Our Services")}
+              </h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6 text-center">
+              {t("Изберете услуга и подарете незабравимо изживяване", "Choose a service and gift an unforgettable experience")}
+            </p>
+
+            <div className="space-y-4 flex-grow flex flex-col justify-center">
+              <div>
+                <Select value={selectedService} onValueChange={setSelectedService}>
+                  <SelectTrigger className="w-full h-12">
+                    <SelectValue placeholder={t("Изберете услуга", "Select Service")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SERVICES.map((service) => {
+                      // Get first available price
+                      const price = service.pricing.duration30?.price ||
+                                   service.pricing.duration60?.price ||
+                                   service.pricing.duration90?.price || 0;
+
+                      return (
+                        <SelectItem key={service.id} value={service.id}>
+                          <div className="flex justify-between items-center w-full">
+                            <span>{service.title[language]}</span>
+                            <span className="text-xs text-muted-foreground ml-4">
+                              €{price}
+                            </span>
+                          </div>
+                        </SelectItem>
+                      );
+                    })}
+                  </SelectContent>
+                </Select>
               </div>
-              <p className="text-sm text-muted-foreground mb-6 text-center">
-                {t("Изберете услуга и подарете незабравимо изживяване", "Choose a service and gift an unforgettable experience")}
-              </p>
 
-              <div className="space-y-4">
-                <div>
-                  <Select value={selectedService} onValueChange={setSelectedService}>
-                    <SelectTrigger className="w-full h-12">
-                      <SelectValue placeholder={t("Изберете услуга", "Select Service")} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {SERVICES.map((service) => {
-                        // Get first available price
-                        const price = service.pricing.duration30?.price ||
-                                     service.pricing.duration60?.price ||
-                                     service.pricing.duration90?.price || 0;
-
-                        return (
-                          <SelectItem key={service.id} value={service.id}>
-                            <div className="flex justify-between items-center w-full">
-                              <span>{service.title[language]}</span>
-                              <span className="text-xs text-muted-foreground ml-4">
-                                €{price}
-                              </span>
-                            </div>
-                          </SelectItem>
-                        );
-                      })}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <Button
-                  onClick={handleServiceVoucherPurchase}
-                  disabled={!selectedService}
-                  size="lg"
-                  className="w-full"
-                >
-                  <Gift className="w-4 h-4 mr-2" />
-                  {t("Изпрати подарък", "Send Gift")}
-                </Button>
-              </div>
+              <Button
+                onClick={handleServiceVoucherPurchase}
+                disabled={!selectedService}
+                size="lg"
+                className="w-full"
+              >
+                <Gift className="w-4 h-4 mr-2" />
+                {t("Изпрати подарък", "Send Gift")}
+              </Button>
             </div>
           </div>
 
           {/* Custom Amount Section */}
-          <div className="bg-white rounded-xl shadow-md border-2 border-border p-8">
-            <div className="max-w-md mx-auto">
-              <h3 className="text-xl font-bold text-foreground mb-2 text-center">
-                {t("Персонализирана сума", "Custom Amount")}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-6 text-center">
-                {t("Изберете своя собствена сума (минимум €25)", "Choose your own amount (minimum €25)")}
-              </p>
+          <div className="bg-white rounded-xl shadow-md border-2 border-border p-8 flex flex-col">
+            <h3 className="text-xl font-bold text-foreground mb-2 text-center">
+              {t("Персонализирана сума", "Custom Amount")}
+            </h3>
+            <p className="text-sm text-muted-foreground mb-6 text-center">
+              {t("Изберете своя собствена сума (минимум €25)", "Choose your own amount (minimum €25)")}
+            </p>
 
-              <div className="flex gap-3">
-                <div className="relative flex-grow">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg font-semibold text-muted-foreground">
-                    €
-                  </span>
-                  <Input
-                    type="number"
-                    min="25"
-                    step="5"
-                    placeholder="100"
-                    value={customAmount}
-                    onChange={(e) => {
-                      setCustomAmount(e.target.value);
-                    }}
-                    className="pl-8 text-lg h-12"
-                  />
-                </div>
-                <Button
-                  onClick={handleCustomPurchase}
-                  disabled={!customAmount || parseFloat(customAmount) < 25}
-                  size="lg"
-                  className="px-8"
-                >
-                  <Gift className="w-4 h-4 mr-2" />
-                  {t("Изпрати", "Send")}
-                </Button>
+            <div className="flex gap-3 flex-grow items-center">
+              <div className="relative flex-grow">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg font-semibold text-muted-foreground">
+                  €
+                </span>
+                <Input
+                  type="number"
+                  min="25"
+                  step="5"
+                  placeholder="100"
+                  value={customAmount}
+                  onChange={(e) => {
+                    setCustomAmount(e.target.value);
+                  }}
+                  className="pl-8 text-lg h-12"
+                />
               </div>
+              <Button
+                onClick={handleCustomPurchase}
+                disabled={!customAmount || parseFloat(customAmount) < 25}
+                size="lg"
+                className="px-8"
+              >
+                <Gift className="w-4 h-4 mr-2" />
+                {t("Изпрати", "Send")}
+              </Button>
             </div>
           </div>
 
           {/* Features */}
-          <div className="mt-12 grid sm:grid-cols-3 gap-6">
+          <div className="md:col-span-2 mt-4 grid sm:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
                 <Check className="w-6 h-6 text-primary" />
