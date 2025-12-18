@@ -52,7 +52,7 @@ const Hero = () => {
               }`}
               data-testid="hero-heading"
             >
-              {t("Добре дошли в", "Welcome to")} <br />
+              {t("Добре дошли в", "Welcome to", "Benvenuti a")} <br />
               <span className="font-bold bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent" data-testid="studio-name">
                 SOMA STUDIO
               </span>
@@ -80,7 +80,7 @@ const Hero = () => {
                 className="bg-primary hover:bg-primary-dark text-primary-foreground px-8 py-3 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Calendar className="w-5 h-5 mr-2" aria-hidden="true" />
-                <span className="font-semibold">{t("Запази час онлайн", "Book Online")}</span>
+                <span className="font-semibold">{t("Запази час онлайн", "Book Online", "Prenota Online")}</span>
               </Button>
               
               <Button 
@@ -96,7 +96,7 @@ const Hero = () => {
                   aria-label={`Reserve appointment by calling ${CONTACT.PHONE_DISPLAY}`}
                 >
                   <Phone className="w-5 h-5" aria-hidden="true" />
-                  <span className="font-semibold">{t("Обади се", "Call Now")}</span>
+                  <span className="font-semibold">{t("Обади се", "Call Now", "Chiama Ora")}</span>
                 </a>
               </Button>
 

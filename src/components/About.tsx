@@ -29,7 +29,7 @@ const About = () => {
               <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl ring-4 ring-primary/10">
                 <img
                   src={therapistPortrait}
-                  alt={t("Мариана Игова – терапевт в SOMA STUDIO","Mariana Igova – therapist at SOMA STUDIO")}
+                  alt={t("Мариана Игова – терапевт в SOMA STUDIO", "Mariana Igova – therapist at SOMA STUDIO", "Mariana Igova – therapist at SOMA STUDIO")}
                   className="w-full h-full object-cover"
                   loading="eager"
                   fetchPriority="high"
@@ -41,7 +41,7 @@ const About = () => {
             {/* Bio text – perfectly aligned to image top */}
             <div className="space-y-7 text-foreground/90 leading-relaxed pt-8 lg:pt-0">
               <h3 className="text-3xl md:text-4xl font-semibold text-foreground">
-                {t("За мен","About Me")}
+                {t("За мен", "About Me", "About Me")}
               </h3>
               <div className="space-y-5 text-lg text-muted-foreground">
                 <p className="leading-relaxed">
@@ -85,9 +85,9 @@ const About = () => {
                     onClick={() => setIsExpanded(!isExpanded)}
                     className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
                     aria-expanded={isExpanded}
-                    aria-label={isExpanded ? t("Покажи по-малко", "Show less") : t("Прочети повече", "Read more")}
+                    aria-label={isExpanded ? t("Покажи по-малко", "Show less", "Show less") : t("Прочети повече", "Read more", "Read more")}
                   >
-                    {isExpanded ? t("Покажи по-малко", "Show less") : t("Прочети повече", "Read more")}
+                    {isExpanded ? t("Покажи по-малко", "Show less", "Show less") : t("Прочети повече", "Read more", "Read more")}
                     {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                   </button>
                 )}
@@ -104,7 +104,7 @@ const About = () => {
                   <Award className="w-8 h-8 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">
-                  {t("Сертифицирани умения", "Certified Skills")}
+                  {t("Сертифицирани умения", "Certified Skills", "Certified Skills")}
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   {t(
@@ -119,7 +119,7 @@ const About = () => {
                   <Heart className="w-8 h-8 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">
-                  {t("Индивидуален подход", "Individual Approach")}
+                  {t("Индивидуален подход", "Individual Approach", "Individual Approach")}
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   {t(
@@ -134,7 +134,7 @@ const About = () => {
                   <Sparkles className="w-8 h-8 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">
-                  {t("Холистична визия", "Holistic Vision")}
+                  {t("Холистична визия", "Holistic Vision", "Holistic Vision")}
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   {t(

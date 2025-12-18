@@ -20,14 +20,14 @@ const Gallery = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const images = [
-    { src: studioPic1, alt: t("SOMA Studio интериор", "SOMA Studio interior") },
-    { src: studioPic2, alt: t("Терапевтично пространство", "Therapeutic space") },
-    { src: studioPic3, alt: t("Студио за релаксация", "Relaxation studio") },
-    { src: studioPic4, alt: t("Тихо място за изцеление", "Peaceful healing space") },
-    { src: studioPic5, alt: t("Холистична среда", "Holistic environment") },
-    { src: studioPic6, alt: t("Просторно студио", "Spacious studio") },
-    { src: studioPic7, alt: t("Уютен кът", "Cozy corner") },
-    { src: studioPic8, alt: t("Място за трансформация", "Space for transformation") }
+    { src: studioPic1, alt: t("SOMA Studio интериор", "SOMA Studio interior", "SOMA Studio interior") },
+    { src: studioPic2, alt: t("Терапевтично пространство", "Therapeutic space", "Therapeutic space") },
+    { src: studioPic3, alt: t("Студио за релаксация", "Relaxation studio", "Relaxation studio") },
+    { src: studioPic4, alt: t("Тихо място за изцеление", "Peaceful healing space", "Peaceful healing space") },
+    { src: studioPic5, alt: t("Холистична среда", "Holistic environment", "Holistic environment") },
+    { src: studioPic6, alt: t("Просторно студио", "Spacious studio", "Spacious studio") },
+    { src: studioPic7, alt: t("Уютен кът", "Cozy corner", "Cozy corner") },
+    { src: studioPic8, alt: t("Място за трансформация", "Space for transformation", "Space for transformation") }
   ];
 
   const goToPrevious = () => {
@@ -52,7 +52,7 @@ const Gallery = () => {
           }`}
         >
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Нашето", "Our")} <span className="font-bold text-primary">{t("пространство", "Space")}</span>
+            {t("Нашето", "Our", "Our")} <span className="font-bold text-primary">{t("пространство", "Space", "Space")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             {t(
@@ -105,7 +105,7 @@ const Gallery = () => {
             onClose={() => setSelectedImage(null)}
             onNext={goToNext}
             onPrevious={goToPrevious}
-            alt={t("Галерия", "Gallery")}
+            alt={t("Галерия", "Gallery", "Galleria")}
           />
         )}
       </div>

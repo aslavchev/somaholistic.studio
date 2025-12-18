@@ -58,11 +58,11 @@ const ServiceCard = ({
   };
 
   const categoryLabels = {
-    signature: t("Авторска", "Signature"),
-    massage: t("Масаж", "Massage"),
-    therapy: t("Терапия", "Therapy"),
-    beauty: t("Красота", "Beauty"),
-    coaching: t("Коучинг", "Coaching")
+    signature: t("Авторска", "Signature", "Signature"),
+    massage: t("Масаж", "Massage", "Massage"),
+    therapy: t("Терапия", "Therapy", "Therapy"),
+    beauty: t("Красота", "Beauty", "Beauty"),
+    coaching: t("Коучинг", "Coaching", "Coaching")
   };
 
   useEffect(() => {
@@ -173,7 +173,7 @@ const ServiceCard = ({
               {benefits.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🌿 {t("Какво ще получите:", "What You'll Get:")}
+                    🌿 {t("Какво ще получите:", "What You'll Get:", "What You'll Get:")}
                   </h4>
                   <ul className="space-y-3">
                     {benefits.map((benefit, index) => (
@@ -189,7 +189,7 @@ const ServiceCard = ({
               {suitableFor.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🎯 {t("Подходящ за:", "Suitable For:")}
+                    🎯 {t("Подходящ за:", "Suitable For:", "Suitable For:")}
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {suitableFor.join(", ")}
@@ -204,7 +204,7 @@ const ServiceCard = ({
         {(price60 || price90) && (
           <div className="mb-6">
             <h4 className="text-base font-semibold text-primary mb-3">
-              {t("Цени и опции:", "Prices & Options:")}
+              {t("Цени и опции:", "Prices & Options:", "Prices & Options:")}
             </h4>
             <div className="flex flex-col sm:flex-row gap-3">
               {price60 && duration60 && (
@@ -254,7 +254,7 @@ const ServiceCard = ({
               aria-label={`Book appointment for ${title}`}
             >
               <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-              <span>{t("Запази онлайн", "Book Online")}{isHovered && !isMobile ? ' →' : ''}</span>
+              <span>{t("Запази онлайн", "Book Online", "Book Online")}{isHovered && !isMobile ? ' →' : ''}</span>
             </Button>
             
             <Button
@@ -269,7 +269,7 @@ const ServiceCard = ({
                 aria-label={`Call to book ${title}`}
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
-                <span>{t("Обади се", "Call Now")}</span>
+                <span>{t("Обади се", "Call Now", "Chiama Ora")}</span>
               </a>
             </Button>
           </div>
@@ -286,7 +286,7 @@ const ServiceCard = ({
             aria-label={isExpanded ? "Collapse details" : "Expand details"}
             aria-expanded={isExpanded}
           >
-            <span>{isExpanded ? t("Виж по-малко", "Show Less") : t("Виж повече", "Show More")}</span>
+            <span>{isExpanded ? t("Виж по-малко", "Show Less", "Show Less") : t("Виж повече", "Show More", "Show More")}</span>
             <ChevronDown 
               className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
               aria-hidden="true"

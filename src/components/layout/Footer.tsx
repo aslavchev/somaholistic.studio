@@ -26,7 +26,7 @@ const Footer = () => {
               <div>
                 <h3 className="text-xl font-bold">SOMA STUDIO</h3>
                 <p className="text-xs uppercase tracking-wide opacity-80">
-                  {t("Соматични практики", "Somatic Practices")}
+                  {t("Соматични практики", "Somatic Practices", "Somatic Practices")}
                 </p>
               </div>
             </div>
@@ -39,7 +39,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Контакти", "Contact")}</h4>
+            <h4 className="font-semibold mb-4">{t("Контакти", "Contact", "Contatti")}</h4>
             <div className="space-y-3 text-sm">
               <a
                 href={`tel:${CONTACT.PHONE_TEL}`}
@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Работно време", "Working Hours")}</h4>
+            <h4 className="font-semibold mb-4">{t("Работно време", "Working Hours", "Working Hours")}</h4>
             <p className="text-primary-foreground/80 text-sm">
               {t(
                 "Студиото работи само с предварително записани часове",
@@ -82,28 +82,28 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links")}</h4>
+            <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links", "Quick Links")}</h4>
             <div className="space-y-2">
               <button onClick={scrollToTop} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Начало", "Home")}
+                {t("Начало", "Home", "Home")}
               </button>
               <button onClick={() => scrollToSection('services')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Услуги", "Services")}
+                {t("Услуги", "Services", "Servizi")}
               </button>
               <button onClick={() => scrollToSection('packages')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Пакети", "Packages")}
+                {t("Пакети", "Packages", "Pacchetti")}
               </button>
               <button onClick={() => scrollToSection('gifts')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Подаръци", "Gifts")}
+                {t("Подаръци", "Gifts", "Regali")}
               </button>
               <button onClick={() => scrollToSection('about')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("За нас", "About")}
+                {t("За нас", "About", "Chi Siamo")}
               </button>
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?")}</h4>
+            <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?", "Not Sure?")}</h4>
             <p className="text-primary-foreground/80 text-sm mb-4">
               {t(
                 "Свържете се с нас за безплатна консултация",

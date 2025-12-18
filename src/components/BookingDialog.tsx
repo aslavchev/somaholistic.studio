@@ -272,7 +272,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       toast.success(
         <div className="flex items-center gap-3">
           <CheckCircle2 className="w-6 h-6 text-green-600" />
-          <span>{t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation")}</span>
+          <span>{t("Отваряме WhatsApp за потвърждение", "Opening WhatsApp for confirmation", "Opening WhatsApp for confirmation")}</span>
         </div>
       );
       onOpenChange(false);
@@ -303,7 +303,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200" data-testid="booking-dialog">
         <DialogHeader data-testid="booking-dialog-header">
           <DialogTitle className="text-2xl font-semibold text-foreground" data-testid="booking-dialog-title">
-            {t("Запази час", "Book Appointment")}
+            {t("Запази час", "Book Appointment", "Prenota Appuntamento")}
           </DialogTitle>
         </DialogHeader>
 
@@ -331,10 +331,10 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         {step === 1 && (
           <div className="space-y-4">
             <div>
-              <Label htmlFor="service">{t("Изберете услуга", "Select Service")}</Label>
+              <Label htmlFor="service">{t("Изберете услуга", "Select Service", "Seleziona Servizio")}</Label>
               <Select value={formData.service} onValueChange={(value) => setFormData(prev => ({ ...prev, service: value }))}>
                 <SelectTrigger id="service" data-testid="booking-service-select">
-                  <SelectValue placeholder={t("Изберете услуга", "Select Service")} />
+                  <SelectValue placeholder={t("Изберете услуга", "Select Service", "Seleziona Servizio")} />
                 </SelectTrigger>
                 <SelectContent>
                   {services.map((service) => (
@@ -352,7 +352,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             </div>
 
             <div>
-              <Label htmlFor="duration">{t("Продължителност", "Duration")}</Label>
+              <Label htmlFor="duration">{t("Продължителност", "Duration", "Duration")}</Label>
               {(() => {
                 const durations = getAvailableDurations();
                 if (durations.length <= 1) {
@@ -363,7 +363,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 return (
                   <Select value={formData.duration} onValueChange={(value) => setFormData(prev => ({ ...prev, duration: value }))}>
                     <SelectTrigger id="duration" data-testid="booking-duration-select">
-                      <SelectValue placeholder={t("Изберете продължителност", "Select Duration")} />
+                      <SelectValue placeholder={t("Изберете продължителност", "Select Duration", "Seleziona Durata")} />
                     </SelectTrigger>
                     <SelectContent>
                       {durations.map((d) => (
@@ -383,7 +383,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               className="w-full"
               data-testid="booking-step1-next"
             >
-              {t("Напред", "Next")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+              {t("Напред", "Next", "Avanti")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
             </Button>
           </div>
         )}
@@ -392,7 +392,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         {step === 2 && (
           <div className="space-y-4">
             <div>
-              <Label>{t("Изберете дата", "Select Date")}</Label>
+              <Label>{t("Изберете дата", "Select Date", "Seleziona Data")}</Label>
               <Calendar
                 locale={language === 'bg' ? bg : undefined}
                 mode="single"
@@ -419,11 +419,11 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             </div>
 
             <div>
-              <Label htmlFor="time">{t("Изберете час", "Select Time")}</Label>
+              <Label htmlFor="time">{t("Изберете час", "Select Time", "Seleziona Ora")}</Label>
               {availableTimeSlots.length > 0 ? (
                 <Select value={formData.time} onValueChange={(value) => setFormData(prev => ({ ...prev, time: value }))}>
                   <SelectTrigger id="time" data-testid="booking-time-select">
-                    <SelectValue placeholder={t("Изберете час", "Select Time")} />
+                    <SelectValue placeholder={t("Изберете час", "Select Time", "Seleziona Ora")} />
                   </SelectTrigger>
                   <SelectContent>
                     {availableTimeSlots.map((time) => (
@@ -438,7 +438,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 </Select>
               ) : (
                 <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800" data-testid="booking-time-warning">
-                  <p className="font-semibold">{t("Няма налични часове за днес", "No available times today")}</p>
+                  <p className="font-semibold">{t("Няма налични часове за днес", "No available times today", "No available times today")}</p>
                   <p className="mt-1 text-amber-700">
                     {t(
                       "Моля, изберете друга дата. Резервациите трябва да се правят минимум 2 часа предварително.",
@@ -459,7 +459,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setStep(1)} className="flex-1" data-testid="booking-step2-back">
-                <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back")}
+                <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back", "Indietro")}
               </Button>
               <Button
                 onClick={() => setStep(3)}
@@ -467,7 +467,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 className="flex-1"
                 data-testid="booking-step2-next"
               >
-                {t("Напред", "Next")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                {t("Напред", "Next", "Avanti")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -477,12 +477,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         {step === 3 && (
           <div className="space-y-4">
             <div>
-              <Label htmlFor="name">{t("Вашето име", "Your Name")}</Label>
+              <Label htmlFor="name">{t("Вашето име", "Your Name", "Il Tuo Nome")}</Label>
               <div className="relative">
                 <User className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
                 <Input
                   id="name"
-                  placeholder={t("Име и фамилия", "Full Name")}
+                  placeholder={t("Име и фамилия", "Full Name", "Nome Completo")}
                   value={formData.name}
                   onChange={(e) => {
                     setFormData(prev => ({ ...prev, name: e.target.value }));
@@ -524,7 +524,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             */}
 
             <div>
-              <Label htmlFor="phone">{t("Телефон", "Phone")}</Label>
+              <Label htmlFor="phone">{t("Телефон", "Phone", "Telefono")}</Label>
               <div className="flex gap-2">
                 <Select
                   value={formData.countryCode}
@@ -585,7 +585,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setStep(2)} className="flex-1" data-testid="booking-step3-back">
-                <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back")}
+                <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back", "Indietro")}
               </Button>
               <Button
                 onClick={() => setStep(4)}
@@ -593,7 +593,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
                 className="flex-1"
                 data-testid="booking-step3-next"
               >
-                {t("Напред", "Next")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                {t("Напред", "Next", "Avanti")} <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -603,26 +603,26 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         {step === 4 && (
           <div className="space-y-4">
             <div className="bg-muted p-4 rounded-lg space-y-3" data-testid="booking-summary">
-              <h3 className="font-semibold text-foreground">{t("Преглед на заявката", "Review Your Request")}</h3>
+              <h3 className="font-semibold text-foreground">{t("Преглед на заявката", "Review Your Request", "Review Your Request")}</h3>
               <div className="space-y-2 text-sm">
-                <p data-testid="booking-summary-service"><strong>{t("Услуга:", "Service:")}</strong> {services.find(s => s.value === formData.service)?.label}</p>
-                <p data-testid="booking-summary-duration"><strong>{t("Продължителност:", "Duration:")}</strong> {formData.duration} {t("минути", "minutes")}</p>
-                <p data-testid="booking-summary-date"><strong>{t("Дата:", "Date:")}</strong> {formData.date?.toLocaleDateString(language === 'bg' ? 'bg-BG' : 'en-US')}</p>
-                <p data-testid="booking-summary-time"><strong>{t("Час:", "Time:")}</strong> {formData.time}</p>
-                <p data-testid="booking-summary-name"><strong>{t("Име:", "Name:")}</strong> {formData.name}</p>
+                <p data-testid="booking-summary-service"><strong>{t("Услуга:", "Service:", "Service:")}</strong> {services.find(s => s.value === formData.service)?.label}</p>
+                <p data-testid="booking-summary-duration"><strong>{t("Продължителност:", "Duration:", "Duration:")}</strong> {formData.duration} {t("минути", "minutes", "minutes")}</p>
+                <p data-testid="booking-summary-date"><strong>{t("Дата:", "Date:", "Date:")}</strong> {formData.date?.toLocaleDateString(language === 'bg' ? 'bg-BG' : 'en-US')}</p>
+                <p data-testid="booking-summary-time"><strong>{t("Час:", "Time:", "Time:")}</strong> {formData.time}</p>
+                <p data-testid="booking-summary-name"><strong>{t("Име:", "Name:", "Name:")}</strong> {formData.name}</p>
 //                 <p data-testid="booking-summary-email"><strong>Email:</strong> {formData.email}</p>
-                <p data-testid="booking-summary-phone"><strong>{t("Телефон:", "Phone:")}</strong> +{formData.countryCode} {formData.phone}</p>
+                <p data-testid="booking-summary-phone"><strong>{t("Телефон:", "Phone:", "Phone:")}</strong> +{formData.countryCode} {formData.phone}</p>
               </div>
             </div>
 
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2" data-testid="booking-info-box">
               <p className="text-sm font-semibold text-blue-900">
-                {t("📱 Как работи потвърждението?", "📱 How does confirmation work?")}
+                {t("📱 Как работи потвърждението?", "📱 How does confirmation work?", "📱 How does confirmation work?")}
               </p>
               <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
-                <li>{t("Изпращате заявка през WhatsApp", "You send request via WhatsApp")}</li>
-                <li>{t("Мари потвърждава наличността в рамките на 2 часа", "Mari confirms availability within 2 hours")}</li>
-                <li>{t("Получавате финално потвърждение в същия чат", "You receive final confirmation in the same chat")}</li>
+                <li>{t("Изпращате заявка през WhatsApp", "You send request via WhatsApp", "You send request via WhatsApp")}</li>
+                <li>{t("Мари потвърждава наличността в рамките на 2 часа", "Mari confirms availability within 2 hours", "Mari confirms availability within 2 hours")}</li>
+                <li>{t("Получавате финално потвърждение в същия чат", "You receive final confirmation in the same chat", "You receive final confirmation in the same chat")}</li>
               </ul>
               <p className="text-xs text-blue-700 mt-2">
                 {t(
@@ -634,16 +634,16 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setStep(3)} className="flex-1" disabled={isSubmitting} data-testid="booking-step4-back">
-                <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back")}
+                <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" /> {t("Назад", "Back", "Indietro")}
               </Button>
               <Button onClick={handleSubmit} disabled={isSubmitting} className="flex-1 bg-primary" data-testid="booking-submit-button">
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
-                    {t("Изпращане...", "Sending...")}
+                    {t("Изпращане...", "Sending...", "Sending...")}
                   </>
                 ) : (
-                  t("Изпрати заявка", "Send Request")
+                  t("Изпрати заявка", "Send Request", "Send Request")
                 )}
               </Button>
             </div>

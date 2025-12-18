@@ -27,13 +27,13 @@ const Header = () => {
   };
 
   const navItems = [
-    { id: 'services', labelBg: 'Услуги', labelEn: 'Services' },
-    { id: 'packages', labelBg: 'Пакети', labelEn: 'Packages' },
-    { id: 'gifts', labelBg: 'Подаръци', labelEn: 'Gifts' },
-    { id: 'about', labelBg: 'За нас', labelEn: 'About' },
-    { id: 'testimonials', labelBg: 'Отзиви', labelEn: 'Testimonials' },
-    { id: 'gallery', labelBg: 'Галерия', labelEn: 'Gallery' },
-    { id: 'contact', labelBg: 'Контакти', labelEn: 'Contact' }
+    { id: 'services', labelBg: 'Услуги', labelEn: 'Services', labelIt: 'Servizi' },
+    { id: 'packages', labelBg: 'Пакети', labelEn: 'Packages', labelIt: 'Pacchetti' },
+    { id: 'gifts', labelBg: 'Подаръци', labelEn: 'Gifts', labelIt: 'Regali' },
+    { id: 'about', labelBg: 'За нас', labelEn: 'About', labelIt: 'Chi Siamo' },
+    { id: 'testimonials', labelBg: 'Отзиви', labelEn: 'Testimonials', labelIt: 'Testimonianze' },
+    { id: 'gallery', labelBg: 'Галерия', labelEn: 'Gallery', labelIt: 'Galleria' },
+    { id: 'contact', labelBg: 'Контакти', labelEn: 'Contact', labelIt: 'Contatti' }
   ];
 
   return (
@@ -49,7 +49,7 @@ const Header = () => {
               <Logo size="md" />
               <div>
                 <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices")}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices", "Pratiche Somatiche")}</p>
               </div>
             </button>
           </div>
@@ -61,7 +61,7 @@ const Header = () => {
                 onClick={() => handleNavClick(item.id)}
                 className={`text-sm font-medium transition-colors ${activeSection === item.id ? "text-primary font-semibold" : "text-foreground hover:text-primary"}`}
               >
-                {t(item.labelBg, item.labelEn)}
+                {t(item.labelBg, item.labelEn, item.labelIt)}
               </button>
             ))}
           </nav>
@@ -72,7 +72,7 @@ const Header = () => {
               size="sm"
               className="lg:hidden text-primary hover:bg-accent"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? t("Затвори меню", "Close menu") : t("Отвори меню", "Open menu")}
+              aria-label={mobileMenuOpen ? t("Затвори меню", "Close menu", "Chiudi menu") : t("Отвори меню", "Open menu", "Apri menu")}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -81,12 +81,12 @@ const Header = () => {
               variant="ghost"
               size="sm"
               className="text-primary hover:bg-accent"
-              onClick={() => setLanguage(language === 'bg' ? 'en' : 'bg')}
+              onClick={() => setLanguage(language === 'bg' ? 'en' : language === 'en' ? 'it' : 'bg')}
               data-testid="header-language-button"
-              aria-label={`Switch to ${language === 'bg' ? 'English' : 'Bulgarian'}`}
+              aria-label=`Switch to ${language === 'bg' ? 'English' : language === 'en' ? 'Italian' : 'Bulgarian'}`
             >
               <Languages className="w-4 h-4" aria-hidden="true" />
-              <span className="ml-1 font-semibold">{language === 'bg' ? 'EN' : 'BG'}</span>
+              <span className="ml-1 font-semibold">{language === 'bg' ? 'EN' : language === 'en' ? 'IT' : 'BG'}</span>
             </Button>
 
             <Button
@@ -134,7 +134,7 @@ const Header = () => {
                   onClick={() => handleNavClick(item.id)}
                   className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 >
-                  {t(item.labelBg, item.labelEn)}
+                  {t(item.labelBg, item.labelEn, item.labelIt)}
                 </button>
               ))}
 

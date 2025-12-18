@@ -85,7 +85,7 @@ const Services = () => {
           }`}
         >
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="services-heading">
-            {t("Нашите", "Our")} <span className="font-bold text-primary">{t("Услуги", "Services")}</span>
+            {t("Нашите", "Our", "Our")} <span className="font-bold text-primary">{t("Услуги", "Services", "Servizi")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
@@ -105,7 +105,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t("Всички", "All")}
+            {t("Всички", "All", "All")}
           </button>
           <button
             onClick={() => setSelectedCategory('signature')}

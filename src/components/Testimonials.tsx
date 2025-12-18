@@ -35,7 +35,7 @@ const Testimonials = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Какво казват", "What Our")} <span className="font-bold text-primary">{t("нашите клиенти", "Clients Say")}</span>
+            {t("Какво казват", "What Our", "What Our")} <span className="font-bold text-primary">{t("нашите клиенти", "Clients Say", "Clients Say")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             {t(
@@ -98,13 +98,13 @@ const Testimonials = () => {
           >
             <Star className="w-5 h-5 text-primary" aria-hidden="true" />
             <span className="font-semibold text-foreground">
-              {t("5.0 в Google Maps", "5.0 on Google Maps")}
+              {t("5.0 в Google Maps", "5.0 on Google Maps", "5.0 on Google Maps")}
             </span>
           </a>
           <div className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2" data-testid="testimonial-trust-badge-cert">
             <span className="text-xl">✓</span>
             <span className="font-semibold text-foreground">
-              {t("Сертифициран специалист", "Certified Specialist")}
+              {t("Сертифициран специалист", "Certified Specialist", "Certified Specialist")}
             </span>
           </div>
         </div>

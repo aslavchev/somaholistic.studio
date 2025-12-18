@@ -11,7 +11,7 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="contact-heading">
-            {t("Запази", "Book")} <span className="font-bold text-primary">{t("своя час", "Your Appointment")}</span>
+            {t("Запази", "Book", "Book")} <span className="font-bold text-primary">{t("своя час", "Your Appointment", "Your Appointment")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
@@ -27,14 +27,14 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <h3 className="text-2xl font-semibold text-foreground mb-6">
-                    {t("Информация за контакт", "Contact Information")}
+                    {t("Информация за контакт", "Contact Information", "Contact Information")}
                   </h3>
                   
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <Phone className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Телефон", "Phone")}</p>
+                        <p className="font-medium text-foreground">{t("Телефон", "Phone", "Telefono")}</p>
                         <a 
                           href={`tel:${CONTACT.PHONE_TEL}`}
                           className="text-primary hover:text-primary-dark transition-colors text-lg"
@@ -66,7 +66,7 @@ const Contact = () => {
                     <div className="flex items-start space-x-3">
                       <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Адрес", "Address")}</p>
+                        <p className="font-medium text-foreground">{t("Адрес", "Address", "Address")}</p>
                         <p className="text-muted-foreground">
                           {t(CONTACT.ADDRESS.AREA, "Manastirski Livadi Iztok")}<br />
                           {t(CONTACT.ADDRESS.STREET, "409-ta Street 13")}
@@ -78,7 +78,7 @@ const Contact = () => {
                           className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors mt-2"
                         >
                           <MapPin className="w-4 h-4" aria-hidden="true" />
-                          {t("Вижте на картата", "Get Directions")}
+                          {t("Вижте на картата", "Get Directions", "Get Directions")}
                         </a>
                       </div>
                     </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                     <div className="flex items-start space-x-3">
                       <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Работно време", "Working Hours")}</p>
+                        <p className="font-medium text-foreground">{t("Работно време", "Working Hours", "Working Hours")}</p>
                         <p className="text-muted-foreground">
                           {t(
                             "Студиото работи само с предварително записани часове",
@@ -107,7 +107,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title={t("Карта на SOMA STUDIO", "SOMA STUDIO Map")}
+                    title={t("Карта на SOMA STUDIO", "SOMA STUDIO Map", "SOMA STUDIO Map")}
                   />
                 </div>
               </div>

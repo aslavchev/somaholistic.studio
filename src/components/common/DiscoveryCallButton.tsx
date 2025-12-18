@@ -31,10 +31,10 @@ const DiscoveryCallButton = ({
       variant={variant}
       size={size}
       className={`gap-2 ${className}`}
-      aria-label={t("Безплатна консултация", "Free clarity call")}
+      aria-label={t("Безплатна консултация", "Free clarity call", "Free clarity call")}
     >
       <MessageCircle className="w-4 h-4" />
-      {t("Безплатна консултация", "Free Clarity Call")}
+      {t("Безплатна консултация", "Free Clarity Call", "Free Clarity Call")}
     </Button>
   );
 };
