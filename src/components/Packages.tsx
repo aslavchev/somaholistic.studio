@@ -20,9 +20,8 @@ const Packages = () => {
       <div className="container mx-auto px-4">
         <div
           ref={headerRef as React.RefObject<HTMLDivElement>}
-          className={`text-center mb-12 transition-all duration-700 ${
-            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center mb-12 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <Sparkles className="w-4 h-4 text-primary" />
@@ -43,9 +42,8 @@ const Packages = () => {
 
         <div
           ref={cardsRef as React.RefObject<HTMLDivElement>}
-          className={`grid md:grid-cols-2 gap-8 max-w-4xl mx-auto transition-all duration-700 ${
-            cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`grid md:grid-cols-2 gap-8 max-w-4xl mx-auto transition-all duration-700 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {/* 4-Session Classical Massage Bundle - Most Popular */}
           <div className="relative bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-2xl shadow-xl border-2 border-primary p-8 hover:shadow-2xl transition-shadow flex flex-col">
@@ -87,7 +85,7 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("Валиден 6 месеца", "Valid for 6 months")}
+                  {t("Валиден 2 месеца", "Valid for 2 months")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -141,7 +139,7 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("Валиден 6 месеца", "Valid for 6 months")}
+                  {t("Валиден 2 месеца", "Valid for 2 months")}
                 </span>
               </li>
               <li className="flex items-start gap-2">
