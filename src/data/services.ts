@@ -39,7 +39,7 @@ export const SERVICES: Service[] = [
       duration90: {
         minutes: 90,
         price: 77,
-        label: { bg: '90 минути', en: '90 minutes', it: '' }
+        label: { bg: '90 минути', en: '90 minutes', it: '90 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
@@ -70,7 +70,7 @@ export const SERVICES: Service[] = [
       duration60: {
         minutes: 60,
         price: 46,
-        label: { bg: '60 минути', en: '60 minutes', it: '' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
@@ -102,7 +102,7 @@ export const SERVICES: Service[] = [
       duration60: {
         minutes: 30,
         price: 26,
-        label: { bg: '30 минути', en: '30 minutes', it: '' }
+        label: { bg: '30 минути', en: '30 minutes', it: '30 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
@@ -134,12 +134,12 @@ export const SERVICES: Service[] = [
       duration60: {
         minutes: 60,
         price: 52,
-        label: { bg: '60 минути', en: '60 minutes', it: '' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
      , it: '' },
       duration90: {
         minutes: 90,
         price: 66,
-        label: { bg: '90 минути', en: '90 minutes', it: '' }
+        label: { bg: '90 минути', en: '90 minutes', it: '90 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
@@ -171,12 +171,12 @@ export const SERVICES: Service[] = [
       duration60: {
         minutes: 60,
         price: 56,
-        label: { bg: '60 минути', en: '60 minutes', it: '' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
      , it: '' },
       duration90: {
         minutes: 90,
         price: 72,
-        label: { bg: '90 минути', en: '90 minutes', it: '' }
+        label: { bg: '90 минути', en: '90 minutes', it: '90 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
@@ -208,7 +208,7 @@ export const SERVICES: Service[] = [
       duration60: {
         minutes: 30,
         price: 26,
-        label: { bg: '30 минути', en: '30 minutes', it: '' }
+        label: { bg: '30 минути', en: '30 minutes', it: '30 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
@@ -240,7 +240,7 @@ export const SERVICES: Service[] = [
       duration60: {
         minutes: 60,
         price: 46,
-        label: { bg: '60 минути', en: '60 minutes', it: '' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
@@ -274,7 +274,7 @@ export const SERVICES: Service[] = [
       duration60: {
         minutes: 60,
         price: 41,
-        label: { bg: '60 минути', en: '60 minutes', it: '' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
      , it: '' }
    , it: '' },
     benefits: [
