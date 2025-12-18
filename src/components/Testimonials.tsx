@@ -24,10 +24,10 @@ const Testimonials = () => {
 
   // Transform centralized data for display
   const testimonials = TESTIMONIALS.map(testimonial => ({
-    name: testimonial.name[language],
-    service: testimonial.service[language],
+    name: testimonial.name[language === 'it' ? 'en' : language],
+    service: testimonial.service[language === 'it' ? 'en' : language],
     rating: testimonial.rating,
-    quote: testimonial.quote[language]
+    quote: testimonial.quote[language === 'it' ? 'en' : language]
   }));
 
   return (

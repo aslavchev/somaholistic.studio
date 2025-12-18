@@ -26,7 +26,7 @@ const Gifts = () => {
     const service = SERVICES.find(s => s.id === selectedService);
     if (!service) return;
 
-    const serviceTitle = service.title[language];
+    const serviceTitle = service.title[language === 'it' ? 'en' : language];
     const message = language === 'bg'
       ? `Здравейте! Искам да закупя подаръчна карта за услугата: ${serviceTitle}.`
       : `Hello! I would like to purchase a gift certificate for the service: ${serviceTitle}.`;
@@ -113,7 +113,7 @@ const Gifts = () => {
                       return (
                         <SelectItem key={service.id} value={service.id}>
                           <div className="flex justify-between items-center w-full">
-                            <span>{service.title[language]}</span>
+                            <span>{service.title[language === 'it' ? 'en' : language]}</span>
                             <span className="text-xs text-muted-foreground ml-4">
                               €{price}
                             </span>

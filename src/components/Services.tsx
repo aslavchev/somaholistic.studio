@@ -49,18 +49,18 @@ const Services = () => {
   // Transform centralized data into ServiceCard props format
   const services = SERVICES.map((service) => ({
     id: service.id,
-    title: service.title[language],
-    description: service.description[language],
-    benefits: service.benefits?.map(b => b[language]),
-    suitableFor: service.suitableFor?.map(s => s[language]),
+    title: service.title[language === 'it' ? 'en' : language],
+    description: service.description[language === 'it' ? 'en' : language],
+    benefits: service.benefits?.map(b => b[language === 'it' ? 'en' : language]),
+    suitableFor: service.suitableFor?.map(s => s[language === 'it' ? 'en' : language]),
     price60: service.pricing.duration60
       ? `€${service.pricing.duration60.price}`
       : undefined,
-    duration60: service.pricing.duration60?.label[language],
+    duration60: service.pricing.duration60?.label[language === 'it' ? 'en' : language],
     price90: service.pricing.duration90
       ? `€${service.pricing.duration90.price}`
       : undefined,
-    duration90: service.pricing.duration90?.label[language],
+    duration90: service.pricing.duration90?.label[language === 'it' ? 'en' : language],
     image: service.image ? IMAGE_MAP[service.image] : undefined,
     featured: service.featured,
     category: service.category
