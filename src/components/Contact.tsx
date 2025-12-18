@@ -2,16 +2,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Instagram, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CONTACT } from "@/data";
+import { COMMON_TEXT } from "@/data/translations";
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="py-16 md:py-24 bg-wellness-cream" data-testid="contact-section" aria-label="Contact section" id="contact">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="contact-heading">
-            {t("Запази", "Book", "Prenota")} <span className="font-bold text-primary">{t("своя час", "Your Appointment", "il Tuo Appuntamento")}</span>
+            {COMMON_TEXT.buttons.book[language]} <span className="font-bold text-primary">{COMMON_TEXT.phrases.yourAppointment[language]}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
@@ -28,14 +29,14 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <h3 className="text-2xl font-semibold text-foreground mb-6">
-                    {t("Информация за контакт", "Contact Information", "Informazioni di Contatto")}
+                    {COMMON_TEXT.sections.contactInfo[language]}
                   </h3>
-                  
+
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <Phone className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Телефон", "Phone", "Telefono")}</p>
+                        <p className="font-medium text-foreground">{COMMON_TEXT.form.phone[language]}</p>
                         <a 
                           href={`tel:${CONTACT.PHONE_TEL}`}
                           className="text-primary hover:text-primary-dark transition-colors text-lg"
@@ -67,7 +68,7 @@ const Contact = () => {
                     <div className="flex items-start space-x-3">
                       <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Адрес", "Address", "Indirizzo")}</p>
+                        <p className="font-medium text-foreground">{COMMON_TEXT.form.address[language]}</p>
                         <p className="text-muted-foreground">
                           {t(CONTACT.ADDRESS.AREA, "Manastirski Livadi Iztok")}<br />
                           {t(CONTACT.ADDRESS.STREET, "409-ta Street 13")}
@@ -87,7 +88,7 @@ const Contact = () => {
                     <div className="flex items-start space-x-3">
                       <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                       <div>
-                        <p className="font-medium text-foreground">{t("Работно време", "Working Hours", "Orari di Lavoro")}</p>
+                        <p className="font-medium text-foreground">{COMMON_TEXT.form.workingHours[language]}</p>
                         <p className="text-muted-foreground">
                           {t(
                             "Студиото работи само с предварително записани часове",

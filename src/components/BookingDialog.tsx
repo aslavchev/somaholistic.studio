@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES } from "@/data";
+import { COMMON_TEXT } from "@/data/translations";
 import {
   validatePhone,
   validateName,
@@ -131,7 +132,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto" data-testid="booking-dialog">
         <DialogHeader>
           <DialogTitle className="text-2xl font-semibold text-primary">
-            {t("Запази час", "Book Appointment", "Prenota Appuntamento")}
+            {COMMON_TEXT.buttons.bookAppointment[language]}
           </DialogTitle>
           <DialogDescription>
             {t(
@@ -162,7 +163,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         <div className="flex justify-between mt-6">
           <Button variant="outline" onClick={() => setStep(s => Math.max(1, s - 1))} disabled={step === 1} data-testid="booking-back-button">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            {t("Назад", "Back", "Indietro")}
+            {COMMON_TEXT.buttons.back[language]}
           </Button>
 
           {step < 4 ? (
@@ -171,12 +172,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
               disabled={(step === 1 && !canProceedStep1) || (step === 2 && !canProceedStep2) || (step === 3 && !canSubmit)}
               data-testid="booking-next-button"
             >
-              {t("Напред", "Next", "Avanti")} <ArrowRight className="w-4 h-4 ml-2" />
+              {COMMON_TEXT.buttons.next[language]} <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           ) : (
             <Button onClick={handleSubmit} disabled={isSubmitting || !canSubmit} data-testid="booking-confirm-button">
               <Check className="w-4 h-4 mr-2" />
-              {t("Потвърди", "Confirm", "Conferma")}
+              {COMMON_TEXT.buttons.confirm[language]}
             </Button>
           )}
         </div>

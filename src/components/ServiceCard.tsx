@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CONTACT } from "@/data";
+import { COMMON_TEXT } from "@/data/translations";
 import BookingDialog from "@/components/BookingDialog";
 
 interface ServiceCardProps {
@@ -42,7 +43,7 @@ const ServiceCard = ({
   onToggle,
   imageFetchPriority = 'auto'
 }: ServiceCardProps) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -204,7 +205,7 @@ const ServiceCard = ({
         {(price60 || price90) && (
           <div className="mb-6">
             <h4 className="text-base font-semibold text-primary mb-3">
-              {t("Цени и опции:", "Prices & Options:", "Prices & Options:")}
+              {COMMON_TEXT.phrases.pricesAndOptions[language]}
             </h4>
             <div className="flex flex-col sm:flex-row gap-3">
               {price60 && duration60 && (
@@ -254,7 +255,7 @@ const ServiceCard = ({
               aria-label={`Book appointment for ${title}`}
             >
               <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-              <span>{t("Запази онлайн", "Book Online", "Book Online")}{isHovered && !isMobile ? ' →' : ''}</span>
+              <span>{COMMON_TEXT.buttons.bookOnline[language]}{isHovered && !isMobile ? ' →' : ''}</span>
             </Button>
             
             <Button

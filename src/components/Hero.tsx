@@ -7,9 +7,10 @@ import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import spaHero from "@/assets/spa-hero.webp";
 import { CONTACT } from "@/data";
+import { COMMON_TEXT } from "@/data/translations";
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
@@ -74,29 +75,29 @@ const Hero = () => {
                 contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 onClick={() => setBookingOpen(true)}
                 className="bg-primary hover:bg-primary-dark text-primary-foreground px-8 py-3 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Calendar className="w-5 h-5 mr-2" aria-hidden="true" />
-                <span className="font-semibold">{t("Запази час онлайн", "Book Online", "Prenota Online")}</span>
+                <span className="font-semibold">{COMMON_TEXT.buttons.bookOnlineFull[language]}</span>
               </Button>
-              
-              <Button 
-                size="lg" 
+
+              <Button
+                size="lg"
                 variant="outline"
                 className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 px-8 py-3 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                 asChild
               >
-                <a 
+                <a
                   href={`tel:${CONTACT.PHONE_TEL}`}
                   className="flex items-center space-x-2"
                   data-testid="hero-phone-button"
                   aria-label={`Reserve appointment by calling ${CONTACT.PHONE_DISPLAY}`}
                 >
                   <Phone className="w-5 h-5" aria-hidden="true" />
-                  <span className="font-semibold">{t("Обади се", "Call Now", "Chiama Ora")}</span>
+                  <span className="font-semibold">{COMMON_TEXT.buttons.callNow[language]}</span>
                 </a>
               </Button>
 

@@ -4,6 +4,7 @@ import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { SERVICES, CATEGORY_LABELS } from "@/data";
+import { COMMON_TEXT } from "@/data/translations";
 import wellnessAccessories from "@/assets/wellness-accessories.webp";
 import massageTherapy from "@/assets/massage-therapy.webp";
 import classicalMassage from "@/assets/classical-massage.webp";
@@ -85,7 +86,7 @@ const Services = () => {
           }`}
         >
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4" data-testid="services-heading">
-            {t("Нашите", "Our", "Nostri")} <span className="font-bold text-primary">{t("Услуги", "Services", "Servizi")}</span>
+            {COMMON_TEXT.sections.ourServices[language]} <span className="font-bold text-primary">{COMMON_TEXT.sections.services[language]}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             {t(
