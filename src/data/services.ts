@@ -31,14 +31,15 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Изкуството на дълбоката релаксация... Подарете си 90 минути бягство от шума на ежедневието със SOMA Ритуал – холистична терапия, вдъхновена от източни традиции и създадена за модерния ум и тяло. Финият баланс от тайландски масаж, ароматерапия, лечебно дишане и деликатно отпускане на мускулатурата ще ви отведе в състояние на дълбока почивка и вътрешна тишина. Ритуалът е прецизно структуриран, за да намали стреса, възстанови енергийния поток и възвърне усещането за лекота и хармония.',
-      en: 'The art of deep relaxation... Give yourself a 90-minute escape from the hustle and bustle of everyday life with SOMA Ritual - a holistic therapy inspired by Eastern traditions and created for the modern mind and body. The subtle balance of Thai massage, aromatherapy, healing breathing and delicate muscle relaxation will take you to a state of deep rest and inner silence. The ritual is precisely structured to reduce stress, restore energy flow and regain a sense of lightness and harmony.'
+      en: 'The art of deep relaxation... Give yourself a 90-minute escape from the hustle and bustle of everyday life with SOMA Ritual - a holistic therapy inspired by Eastern traditions and created for the modern mind and body. The subtle balance of Thai massage, aromatherapy, healing breathing and delicate muscle relaxation will take you to a state of deep rest and inner silence. The ritual is precisely structured to reduce stress, restore energy flow and regain a sense of lightness and harmony.',
+      it: 'The art of deep relaxation... Give yourself a 90-minute escape from the hustle and bustle of everyday life with SOMA Ritual - a holistic therapy inspired by Eastern traditions and created for the modern mind and body. The subtle balance of Thai massage, aromatherapy, healing breathing and delicate muscle relaxation will take you to a state of deep rest and inner silence. The ritual is precisely structured to reduce stress, restore energy flow and regain a sense of lightness and harmony.'
     },
     category: 'signature',
     pricing: {
       duration90: {
         minutes: 90,
         price: 77,
-        label: { bg: '90 минути', en: '90 minutes' }
+        label: { bg: '90 минути', en: '90 minutes', it: '90 minutes' }
       }
     },
     benefits: [
@@ -61,14 +62,15 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Класическият масаж е златният стандарт в терапията на тялото – изкуство, което съчетава изящество и ефективност. Той въздейства върху цялото тяло чрез прецизни движения, които стимулират кръвообращението, подобряват метаболизма и освобождават натрупаното напрежение. За взискателния клиент този масаж е не просто грижа за физиката, а ритуал за пълноценна регенерация. Всяко докосване е внимателно премерено, за да носи баланс между дълбока релаксация и терапевтична сила. Резултатът е усещане за лекота, обновена енергия и хармония, които надхвърлят обикновеното удоволствие. Позволете си този първокласен момент на себеобгрижване – защото истинският лукс е здравето и спокойствието.',
-      en: 'Classic massage is the gold standard in body therapy – an art that combines grace and efficiency. It affects the entire body through precise movements that stimulate blood circulation, improve metabolism and release accumulated tension. For the demanding client, this massage is not just physical care, but a ritual for complete regeneration. Each touch is carefully measured to bring a balance between deep relaxation and therapeutic power. The result is a feeling of lightness, renewed energy and harmony that go beyond ordinary pleasure. Allow yourself this first-class moment of self-care – because true luxury is health and peace of mind.'
+      en: 'Classic massage is the gold standard in body therapy – an art that combines grace and efficiency. It affects the entire body through precise movements that stimulate blood circulation, improve metabolism and release accumulated tension. For the demanding client, this massage is not just physical care, but a ritual for complete regeneration. Each touch is carefully measured to bring a balance between deep relaxation and therapeutic power. The result is a feeling of lightness, renewed energy and harmony that go beyond ordinary pleasure. Allow yourself this first-class moment of self-care – because true luxury is health and peace of mind.',
+      it: 'Classic massage is the gold standard in body therapy – an art that combines grace and efficiency. It affects the entire body through precise movements that stimulate blood circulation, improve metabolism and release accumulated tension. For the demanding client, this massage is not just physical care, but a ritual for complete regeneration. Each touch is carefully measured to bring a balance between deep relaxation and therapeutic power. The result is a feeling of lightness, renewed energy and harmony that go beyond ordinary pleasure. Allow yourself this first-class moment of self-care – because true luxury is health and peace of mind.'
     },
     category: 'massage',
     pricing: {
       duration60: {
         minutes: 60,
         price: 46,
-        label: { bg: '60 минути', en: '60 minutes' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
       }
     },
     benefits: [
@@ -92,14 +94,15 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Гърбът е центърът, в който се натрупват умора, стрес и напрежение. Частичният масаж на гръб е прецизна терапия, създадена специално за хора с динамично ежедневие и високи изисквания. Фокусът е върху освобождаването на мускулни блокажи в рамене, шийна и гръбна област. Масажните техники проникват в дълбочина, стимулират кръвообращението и освобождават напрежението, което често остава незабелязано, но силно влияе върху качеството на живот. За взискателния клиент този масаж не е просто комфорт – той е стратегическа инвестиция в продуктивност, стойка и дълготрайно добро самочувствие. Една сесия е достатъчна, за да усетите яснота, облекчение и сила.',
-      en: 'The back is the center where fatigue, stress and tension accumulate. Partial back massage is a precise therapy created especially for people with dynamic everyday life and high demands. The focus is on releasing muscle blockages in the shoulders, neck and back. Massage techniques penetrate deeply, stimulate blood circulation and release tension that often goes unnoticed but strongly affects the quality of life. For the demanding client, this massage is not just comfort – it is a strategic investment in productivity, posture and long-lasting well-being. One session is enough to feel clarity, relief and strength.'
+      en: 'The back is the center where fatigue, stress and tension accumulate. Partial back massage is a precise therapy created especially for people with dynamic everyday life and high demands. The focus is on releasing muscle blockages in the shoulders, neck and back. Massage techniques penetrate deeply, stimulate blood circulation and release tension that often goes unnoticed but strongly affects the quality of life. For the demanding client, this massage is not just comfort – it is a strategic investment in productivity, posture and long-lasting well-being. One session is enough to feel clarity, relief and strength.',
+      it: 'The back is the center where fatigue, stress and tension accumulate. Partial back massage is a precise therapy created especially for people with dynamic everyday life and high demands. The focus is on releasing muscle blockages in the shoulders, neck and back. Massage techniques penetrate deeply, stimulate blood circulation and release tension that often goes unnoticed but strongly affects the quality of life. For the demanding client, this massage is not just comfort – it is a strategic investment in productivity, posture and long-lasting well-being. One session is enough to feel clarity, relief and strength.'
     },
     category: 'massage',
     pricing: {
       duration60: {
         minutes: 30,
         price: 26,
-        label: { bg: '30 минути', en: '30 minutes' }
+        label: { bg: '30 минути', en: '30 minutes', it: '30 minutes' }
       }
     },
     benefits: [
@@ -123,19 +126,20 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Дълбоко възстановяваща терапия, която комбинира лек натиск, разтягане и ритмично движение за балансиране на енергията в тялото. Този масаж освобождава мускулното напрежение, подобрява гъвкавостта и подпомага цялостното благосъстояние. Извършва се облечен върху мат и е идеален за тези, които търсят енергизираща, цялостна грижа за тялото и ума.',
-      en: 'Deeply restorative therapy that combines gentle pressure, stretching and rhythmic movement to balance energy in the body. This massage releases muscle tension, improves flexibility and supports overall well-being. Performed clothed on a mat, it is ideal for those seeking an energizing, holistic care for body and mind.'
+      en: 'Deeply restorative therapy that combines gentle pressure, stretching and rhythmic movement to balance energy in the body. This massage releases muscle tension, improves flexibility and supports overall well-being. Performed clothed on a mat, it is ideal for those seeking an energizing, holistic care for body and mind.',
+      it: 'Deeply restorative therapy that combines gentle pressure, stretching and rhythmic movement to balance energy in the body. This massage releases muscle tension, improves flexibility and supports overall well-being. Performed clothed on a mat, it is ideal for those seeking an energizing, holistic care for body and mind.'
     },
     category: 'massage',
     pricing: {
       duration60: {
         minutes: 60,
         price: 52,
-        label: { bg: '60 минути', en: '60 minutes' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
       },
       duration90: {
         minutes: 90,
         price: 66,
-        label: { bg: '90 минути', en: '90 minutes' }
+        label: { bg: '90 минути', en: '90 minutes', it: '90 minutes' }
       }
     },
     benefits: [
@@ -159,19 +163,20 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Специализирана терапия, която съчетава традиционен тайландски масаж с фокусирано енергийно лечение. Чрез прецизен натиск върху енергийните точки и балансиране на жизнената сила, терапията освобождава физически и емоционални блокажи. Подходяща е за хора, които търсят вътрешен баланс, яснота и обновена жизненост.',
-      en: 'Specialized therapy that combines traditional Thai massage with focused energy healing. Through precise pressure on energy points and balancing life force, the therapy releases physical and emotional blockages. It is suitable for people seeking inner balance, clarity and renewed vitality.'
+      en: 'Specialized therapy that combines traditional Thai massage with focused energy healing. Through precise pressure on energy points and balancing life force, the therapy releases physical and emotional blockages. It is suitable for people seeking inner balance, clarity and renewed vitality.',
+      it: 'Specialized therapy that combines traditional Thai massage with focused energy healing. Through precise pressure on energy points and balancing life force, the therapy releases physical and emotional blockages. It is suitable for people seeking inner balance, clarity and renewed vitality.'
     },
     category: 'therapy',
     pricing: {
       duration60: {
         minutes: 60,
         price: 56,
-        label: { bg: '60 минути', en: '60 minutes' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
       },
       duration90: {
         minutes: 90,
         price: 72,
-        label: { bg: '90 минути', en: '90 minutes' }
+        label: { bg: '90 минути', en: '90 minutes', it: '90 minutes' }
       }
     },
     benefits: [
@@ -195,14 +200,15 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Нежна подмладяваща терапия за лице, която подобрява кръвообращението, стяга кожата и намалява фините линии. Процедурата отпуска мускулите, освежава тена и придава естествен блясък.',
-      en: 'Gentle rejuvenating facial therapy that improves blood circulation, tightens skin and reduces fine lines. The procedure relaxes muscles, refreshes complexion and gives a natural glow.'
+      en: 'Gentle rejuvenating facial therapy that improves blood circulation, tightens skin and reduces fine lines. The procedure relaxes muscles, refreshes complexion and gives a natural glow.',
+      it: 'Gentle rejuvenating facial therapy that improves blood circulation, tightens skin and reduces fine lines. The procedure relaxes muscles, refreshes complexion and gives a natural glow.'
     },
     category: 'beauty',
     pricing: {
       duration60: {
         minutes: 30,
         price: 26,
-        label: { bg: '30 минути', en: '30 minutes' }
+        label: { bg: '30 минути', en: '30 minutes', it: '30 minutes' }
       }
     },
     benefits: [
@@ -226,14 +232,15 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Усещаш ли, че е време за промяна, но не знаеш откъде да започнеш? Тази консултация е твоето пространство за осъзнаване, подредба и нов фокус. Заедно ще изследваме начина ти на живот, емоционалните ти нужди, вътрешните блокажи и ще създадем ясен и устойчив план за баланс и благополучие.',
-      en: 'Do you feel it is time for a change, but you don\'t know where to start? This consultation is your space for awareness, arrangement and a new focus. Together we will explore your lifestyle, your emotional needs, your internal blockages and create a clear and sustainable plan for balance and well-being.'
+      en: 'Do you feel it is time for a change, but you don\',
+      it: 'Do you feel it is time for a change, but you don\'t know where to start? This consultation is your space for awareness, arrangement and a new focus. Together we will explore your lifestyle, your emotional needs, your internal blockages and create a clear and sustainable plan for balance and well-being.'
     },
     category: 'coaching',
     pricing: {
       duration60: {
         minutes: 60,
         price: 46,
-        label: { bg: '60 минути', en: '60 minutes' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
       }
     },
     benefits: [
@@ -259,14 +266,15 @@ export const SERVICES: Service[] = [
     },
     description: {
       bg: 'Индивидуална консултация, насочена към постигане на баланс и хармония чрез силата на лечебните растения. По време на срещата ще изследваме твоето състояние в дълбочина и ще изготвим персонализиран фитотерапевтичен план с натурални средства – билкови тинктури, чайове, масла и други природни формули.',
-      en: 'Individual consultation aimed at achieving balance and harmony through the power of medicinal plants. During the meeting, we will examine your condition in depth and prepare a personalized phytotherapy plan with natural remedies – herbal tinctures, teas, oils and other natural formulas.'
+      en: 'Individual consultation aimed at achieving balance and harmony through the power of medicinal plants. During the meeting, we will examine your condition in depth and prepare a personalized phytotherapy plan with natural remedies – herbal tinctures, teas, oils and other natural formulas.',
+      it: 'Individual consultation aimed at achieving balance and harmony through the power of medicinal plants. During the meeting, we will examine your condition in depth and prepare a personalized phytotherapy plan with natural remedies – herbal tinctures, teas, oils and other natural formulas.'
     },
     category: 'coaching',
     pricing: {
       duration60: {
         minutes: 60,
         price: 41,
-        label: { bg: '60 минути', en: '60 minutes' }
+        label: { bg: '60 минути', en: '60 minutes', it: '60 minutes' }
       }
     },
     benefits: [
