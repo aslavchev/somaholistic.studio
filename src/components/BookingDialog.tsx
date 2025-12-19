@@ -10,8 +10,7 @@ import {
   validateName,
   sanitizeInput,
   buildBookingMessage,
-  buildWhatsAppUrl,
-  ALL_TIME_SLOTS
+  buildWhatsAppUrl
 } from "@/lib/utils";
 import { Step1SelectService } from "./booking/Step1SelectService";
 import { Step2DateTime } from "./booking/Step2DateTime";
@@ -100,15 +99,6 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       }
     }
   }, [formData.service, formData.duration]);
-
-  useEffect(() => {
-    if (step === 2 && formData.date && !formData.time) {
-      const availableSlots = ALL_TIME_SLOTS;
-      if (availableSlots.length > 0) {
-        setFormData(prev => ({ ...prev, time: availableSlots[0] }));
-      }
-    }
-  }, [step, formData.date, formData.time]);
 
   const handleSubmit = () => {
     setIsSubmitting(true);
