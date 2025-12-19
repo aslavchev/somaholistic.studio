@@ -11,10 +11,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CONTACT, SERVICES } from "@/data";
+import { GIFTS_TEXT } from "@/data/translations/gifts";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Gifts = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [selectedService, setSelectedService] = useState<string>("");
   const [customAmount, setCustomAmount] = useState("");
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -27,11 +28,7 @@ const Gifts = () => {
     if (!service) return;
 
     const serviceTitle = service.title[language];
-    const message = language === 'bg'
-      ? `Здравейте! Искам да закупя подаръчна карта за услугата: ${serviceTitle}.`
-      : language === 'it'
-      ? `Ciao! Vorrei acquistare un buono regalo per il servizio: ${serviceTitle}.`
-      : `Hello! I would like to purchase a gift certificate for the service: ${serviceTitle}.`;
+    const message = GIFTS_TEXT.whatsappMessages.serviceVoucher[language].replace('{service}', serviceTitle);
 
     const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -40,11 +37,7 @@ const Gifts = () => {
   const handleCustomPurchase = () => {
     const amount = parseFloat(customAmount);
     if (amount && amount >= 25) {
-      const message = language === 'bg'
-        ? `Здравейте! Искам да закупя подаръчна карта на стойност €${amount}.`
-        : language === 'it'
-        ? `Ciao! Vorrei acquistare un buono regalo del valore di €${amount}.`
-        : `Hello! I would like to purchase a gift certificate worth €${amount}.`;
+      const message = GIFTS_TEXT.whatsappMessages.customAmount[language].replace('{amount}', amount.toString());
 
       const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
@@ -64,23 +57,16 @@ const Gifts = () => {
             headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* Icon */}
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
             <Gift className="w-8 h-8 text-primary" aria-hidden="true" />
           </div>
 
-          {/* Heading */}
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Подарете", "Gift", "Regala")} <span className="font-bold text-primary">{t("преживяване", "an Experience", "un'Esperienza")}</span>
+            {GIFTS_TEXT.hero.title[language]} <span className="font-bold text-primary">{GIFTS_TEXT.hero.titleHighlight[language]}</span>
           </h2>
 
-          {/* Description */}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {t(
-              "Подарете на любим човек възможността да избере своето пътешествие към благополучието",
-              "Gift a loved one the freedom to choose their wellness journey",
-              "Regala a una persona cara la libertà di scegliere il proprio percorso di benessere"
-            )}
+            {GIFTS_TEXT.hero.description[language]}
           </p>
         </div>
 
@@ -90,27 +76,25 @@ const Gifts = () => {
             cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* Service Voucher Section */}
           <div className="bg-white rounded-xl shadow-md border-2 border-primary/20 p-8 flex flex-col">
             <div className="flex items-center justify-center gap-2 mb-3">
               <Sparkles className="w-5 h-5 text-primary" />
               <h3 className="text-xl font-bold text-foreground text-center">
-                {t("Ваучер за една от нашите услуги", "Voucher for One of Our Services", "Buono per Uno dei Nostri Servizi")}
+                {GIFTS_TEXT.serviceVoucher.heading[language]}
               </h3>
             </div>
             <p className="text-sm text-muted-foreground mb-6 text-center">
-              {t("Изберете услуга и подарете незабравимо изживяване", "Choose a service and gift an unforgettable experience", "Scegli un servizio e regala un'esperienza indimenticabile")}
+              {GIFTS_TEXT.serviceVoucher.description[language]}
             </p>
 
             <div className="space-y-4 flex-grow flex flex-col justify-center">
               <div>
                 <Select value={selectedService} onValueChange={setSelectedService}>
                   <SelectTrigger className="w-full h-12">
-                    <SelectValue placeholder={t("Изберете услуга", "Select Service", "Seleziona Servizio")} />
+                    <SelectValue placeholder={GIFTS_TEXT.serviceVoucher.selectPlaceholder[language]} />
                   </SelectTrigger>
                   <SelectContent>
                     {SERVICES.map((service) => {
-                      // Get first available price
                       const price = service.pricing.duration30?.price ||
                                    service.pricing.duration60?.price ||
                                    service.pricing.duration90?.price || 0;
@@ -137,18 +121,17 @@ const Gifts = () => {
                 className="w-full"
               >
                 <Gift className="w-4 h-4 mr-2" />
-                {t("Изпрати подарък", "Send Gift", "Invia Regalo")}
+                {GIFTS_TEXT.serviceVoucher.sendButton[language]}
               </Button>
             </div>
           </div>
 
-          {/* Custom Amount Section */}
           <div className="bg-white rounded-xl shadow-md border-2 border-border p-8 flex flex-col">
             <h3 className="text-xl font-bold text-foreground mb-2 text-center">
-              {t("Персонализирана сума", "Custom Amount", "Importo Personalizzato")}
+              {GIFTS_TEXT.customAmount.heading[language]}
             </h3>
             <p className="text-sm text-muted-foreground mb-6 text-center">
-              {t("Изберете своя собствена сума (минимум €25)", "Choose your own amount (minimum €25)", "Scegli il tuo importo (minimo €25)")}
+              {GIFTS_TEXT.customAmount.description[language]}
             </p>
 
             <div className="flex gap-3 flex-grow items-center">
@@ -175,22 +158,21 @@ const Gifts = () => {
                 className="px-8"
               >
                 <Gift className="w-4 h-4 mr-2" />
-                {t("Изпрати", "Send", "Invia")}
+                {GIFTS_TEXT.customAmount.sendButton[language]}
               </Button>
             </div>
           </div>
 
-          {/* Features */}
           <div className="md:col-span-2 mt-4 grid sm:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
                 <Check className="w-6 h-6 text-primary" />
               </div>
               <h4 className="font-semibold text-foreground mb-1">
-                {t("Гъвкава валидност", "Flexible Validity", "Validità Flessibile")}
+                {GIFTS_TEXT.features.flexibility.title[language]}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {t("Картата е валидна до изчерпване на средствата", "Valid until balance is used", "Valido fino all'esaurimento del saldo")}
+                {GIFTS_TEXT.features.flexibility.description[language]}
               </p>
             </div>
 
@@ -199,10 +181,10 @@ const Gifts = () => {
                 <Check className="w-6 h-6 text-primary" />
               </div>
               <h4 className="font-semibold text-foreground mb-1">
-                {t("Всички процедури", "All Services", "Tutti i Servizi")}
+                {GIFTS_TEXT.features.allServices.title[language]}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {t("Може да се използва за всяка процедура в студиото", "Can be used for any studio service", "Può essere utilizzato per qualsiasi servizio dello studio")}
+                {GIFTS_TEXT.features.allServices.description[language]}
               </p>
             </div>
 
@@ -211,10 +193,10 @@ const Gifts = () => {
                 <Check className="w-6 h-6 text-primary" />
               </div>
               <h4 className="font-semibold text-foreground mb-1">
-                {t("Лесно закупуване", "Easy Purchase", "Acquisto Facile")}
+                {GIFTS_TEXT.features.easyPurchase.title[language]}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {t("Свържете се с нас и ще организираме всичко", "Contact us and we'll arrange everything", "Contattaci e organizzeremo tutto")}
+                {GIFTS_TEXT.features.easyPurchase.description[language]}
               </p>
             </div>
           </div>
