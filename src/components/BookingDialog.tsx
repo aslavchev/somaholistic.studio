@@ -3,14 +3,15 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { SERVICES } from "@/data";
+import { SERVICES, CONTACT } from "@/data";
 import { COMMON_TEXT, BOOKING_TEXT } from "@/data/translations";
 import {
   validatePhone,
   validateName,
   sanitizeInput,
   buildBookingMessage,
-  buildWhatsAppUrl
+  buildWhatsAppUrl,
+  ALL_TIME_SLOTS
 } from "@/lib/utils";
 import { Step1SelectService } from "./booking/Step1SelectService";
 import { Step2DateTime } from "./booking/Step2DateTime";
@@ -90,7 +91,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
         service.pricing.duration60 && "60",
         service.pricing.duration90 && "90"
       ].filter(Boolean) as string[];
-      
+
       if (available.length === 1 && !formData.duration) {
         setFormData(prev => ({ ...prev, duration: available[0] }));
       }
@@ -99,6 +100,15 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       }
     }
   }, [formData.service, formData.duration]);
+
+  useEffect(() => {
+    if (step === 2 && formData.date && !formData.time) {
+      const availableSlots = ALL_TIME_SLOTS;
+      if (availableSlots.length > 0) {
+        setFormData(prev => ({ ...prev, time: availableSlots[0] }));
+      }
+    }
+  }, [step, formData.date, formData.time]);
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -109,7 +119,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       name: sanitizeInput(formData.name),
       phone: sanitizeInput(formData.phone)
     }, language);
-    const url = buildWhatsAppUrl(message);
+    const url = buildWhatsAppUrl(CONTACT.WHATSAPP, message);
     window.open(url, "_blank");
     setTimeout(() => {
       setIsSubmitting(false);

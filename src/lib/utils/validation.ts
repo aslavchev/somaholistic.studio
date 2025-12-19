@@ -58,13 +58,26 @@ export function validatePhone(phone: string, language: 'bg' | 'en' | 'it'): Vali
 
 /**
  * Validate name
- * - Minimum 2 characters
+ * - Required (minimum 2 characters)
+ * - Latin or Cyrillic letters (for Bulgarian customers)
  */
 export function validateName(name: string, language: 'bg' | 'en' | 'it'): ValidationResult {
-  if (name.trim().length < 2) {
+  const trimmedName = name.trim();
+
+  // Check minimum length
+  if (trimmedName.length < 2) {
     return {
       valid: false,
       error: UTILS_TEXT.validation.minCharacters[language]
+    };
+  }
+
+  // Accept both Latin and Cyrillic letters (allows spaces, hyphens, apostrophes)
+  const nameRegex = /^[A-Za-zА-Яа-я\s\-']+$/;
+  if (!nameRegex.test(trimmedName)) {
+    return {
+      valid: false,
+      error: UTILS_TEXT.validation.nameLatinOnly[language]
     };
   }
 

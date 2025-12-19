@@ -3,7 +3,6 @@ import { BookingFormData } from "./types";
 import { Calendar, Clock, User, Phone, Sparkles } from "lucide-react";
 import { BOOKING_TEXT } from "@/data/translations";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { format } from "date-fns";
 
 interface Step4Props {
   formData: BookingFormData;
@@ -38,7 +37,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
           <Calendar className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-sm text-foreground" data-testid="booking-summary-date">
-              <strong>{BOOKING_TEXT.step4.date[language]}:</strong> {format(formData.date, "PPP")}
+              <strong>{BOOKING_TEXT.step4.date[language]}:</strong> {formData.date.toLocaleDateString()}
             </p>
           </div>
         </div>

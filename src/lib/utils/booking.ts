@@ -59,7 +59,6 @@ export function buildBookingMessage(
     date: Date | undefined;
     time: string;
     name: string;
-    email: string;
     phone: string;
     countryCode: string;
   },
@@ -75,6 +74,5 @@ ${UTILS_TEXT.booking.duration[language]} ${data.duration}
 ${UTILS_TEXT.booking.date[language]} ${formattedDate}
 ${UTILS_TEXT.booking.time[language]} ${data.time}
 ${UTILS_TEXT.booking.name[language]} ${data.name}
-${UTILS_TEXT.booking.email[language]} ${data.email}
 ${UTILS_TEXT.booking.phone[language]} ${fullPhone}`;
 }

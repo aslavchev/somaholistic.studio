@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { User, Phone } from "lucide-react";
 import { BOOKING_TEXT } from "@/data/translations";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { COUNTRY_CODES } from "@/lib/utils";
+import { COUNTRY_CODES, formatPhone } from "@/lib/utils";
 
 interface Step3Props {
   formData: BookingFormData;
@@ -21,7 +21,7 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor="name">{BOOKING_TEXT.step3.yourName[language]}</Label>
+        <Label htmlFor="name">{BOOKING_TEXT.step3.yourName[language]} *</Label>
         <div className="relative">
           <User className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
           <Input
@@ -34,13 +34,14 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
             }}
             className={`pl-10 ${errors.name ? 'border-red-500' : ''}`}
             data-testid="booking-name-input"
+            required
           />
         </div>
         {errors.name && <p className="text-red-500 text-sm mt-1" data-testid="booking-name-error">{errors.name}</p>}
       </div>
 
       <div>
-        <Label htmlFor="phone">{BOOKING_TEXT.step3.phone[language]}</Label>
+        <Label htmlFor="phone">{BOOKING_TEXT.step3.phone[language]} *</Label>
         <div className="flex gap-2">
           <Select
             value={formData.countryCode}
@@ -66,11 +67,13 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
               placeholder="888 123 456"
               value={formData.phone}
               onChange={(e) => {
-                setFormData((prev: BookingFormData) => ({ ...prev, phone: e.target.value }));
-                handleValidatePhone(e.target.value);
+                const formatted = formatPhone(e.target.value);
+                setFormData((prev: BookingFormData) => ({ ...prev, phone: formatted }));
+                handleValidatePhone(formatted);
               }}
               className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
               data-testid="booking-phone-input"
+              required
             />
           </div>
         </div>

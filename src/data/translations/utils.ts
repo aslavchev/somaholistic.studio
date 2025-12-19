@@ -42,5 +42,10 @@ export const UTILS_TEXT = {
       en: "Minimum 2 characters",
       it: "Minimo 2 caratteri"
     },
+    nameLatinOnly: {
+      bg: "Името трябва да съдържа само букви",
+      en: "Name must contain only letters",
+      it: "Il nome deve contenere solo lettere"
+    },
   },
 } as const;
