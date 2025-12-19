@@ -10,12 +10,13 @@
 export type Language = 'bg' | 'en' | 'it';
 
 /**
- * Translated string with Bulgarian, English and Italian versions
+ * Translated string with Bulgarian, English and optional Italian versions
+ * Italian falls back to English if not provided
  */
 export interface TranslatedString {
   bg: string;
   en: string;
-  it: string;
+  it?: string;
 }
 
 /**
