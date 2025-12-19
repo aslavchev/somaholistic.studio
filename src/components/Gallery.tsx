@@ -3,6 +3,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Skeleton } from "@/components/ui/skeleton";
 import Lightbox from "@/components/Lightbox";
+import { GALLERY_TEXT } from "@/data/translations";
 import studioPic1 from "@/assets/studio-pics/studio_pic1.webp";
 import studioPic2 from "@/assets/studio-pics/studio_pic2.webp";
 import studioPic3 from "@/assets/studio-pics/studio_pic3.webp";
@@ -13,21 +14,21 @@ import studioPic7 from "@/assets/studio-pics/studio_pic7.webp";
 import studioPic8 from "@/assets/studio-pics/studio_pic8.webp";
 
 const Gallery = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [loadedImages, setLoadedImages] = useState<{ [key: number]: boolean }>({});
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.3 });
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const images = [
-    { src: studioPic1, alt: t("SOMA Studio интериор", "SOMA Studio interior", "Interni SOMA Studio") },
-    { src: studioPic2, alt: t("Терапевтично пространство", "Therapeutic space", "Spazio terapeutico") },
-    { src: studioPic3, alt: t("Студио за релаксация", "Relaxation studio", "Studio relax") },
-    { src: studioPic4, alt: t("Тихо място за изцеление", "Peaceful healing space", "Spazio di guarigione") },
-    { src: studioPic5, alt: t("Холистична среда", "Holistic environment", "Ambiente olistico") },
-    { src: studioPic6, alt: t("Просторно студио", "Spacious studio", "Studio spazioso") },
-    { src: studioPic7, alt: t("Уютен кът", "Cozy corner", "Angolo accogliente") },
-    { src: studioPic8, alt: t("Място за трансформация", "Space for transformation", "Spazio di trasformazione") }
+    { src: studioPic1, alt: GALLERY_TEXT.imageAlts.interior[language] },
+    { src: studioPic2, alt: GALLERY_TEXT.imageAlts.therapeutic[language] },
+    { src: studioPic3, alt: GALLERY_TEXT.imageAlts.relaxation[language] },
+    { src: studioPic4, alt: GALLERY_TEXT.imageAlts.peaceful[language] },
+    { src: studioPic5, alt: GALLERY_TEXT.imageAlts.holistic[language] },
+    { src: studioPic6, alt: GALLERY_TEXT.imageAlts.spacious[language] },
+    { src: studioPic7, alt: GALLERY_TEXT.imageAlts.cozy[language] },
+    { src: studioPic8, alt: GALLERY_TEXT.imageAlts.transformation[language] }
   ];
 
   const goToPrevious = () => {
@@ -52,13 +53,10 @@ const Gallery = () => {
           }`}
         >
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Нашето", "Our", "Our")} <span className="font-bold text-primary">{t("пространство", "Space", "Space")}</span>
+            {GALLERY_TEXT.hero.title[language]} <span className="font-bold text-primary">{GALLERY_TEXT.hero.titleHighlight[language]}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            {t(
-              "Открийте мястото, където тялото и умът намират хармония",
-              "Discover the place where body and mind find harmony"
-            )}
+            {GALLERY_TEXT.hero.description[language]}
           </p>
         </div>
 
@@ -105,7 +103,7 @@ const Gallery = () => {
             onClose={() => setSelectedImage(null)}
             onNext={goToNext}
             onPrevious={goToPrevious}
-            alt={t("Галерия", "Gallery", "Galleria")}
+            alt={GALLERY_TEXT.imageAlts.gallery[language]}
           />
         )}
       </div>

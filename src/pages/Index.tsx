@@ -6,6 +6,7 @@ import Services from "@/components/Services";
 import Packages from "@/components/Packages";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
+import { PAGES_TEXT } from "@/data/translations";
 
 // Lazy load below-the-fold sections for optimal performance
 const About = lazy(() => import("@/components/About"));
@@ -24,7 +25,7 @@ const SectionSkeleton = () => (
 );
 
 const IndexContent = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="min-h-screen">
@@ -32,7 +33,7 @@ const IndexContent = () => {
         href="#services"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none"
       >
-        {t("Към съдържанието", "Skip to content", "Vai al contenuto")}
+        {PAGES_TEXT.index.skipToContent[language]}
       </a>
       <Header />
       <Hero />

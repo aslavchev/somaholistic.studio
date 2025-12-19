@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Check, Sparkles } from "lucide-react";
 import { SERVICES, get4SessionPricing, get6SessionPricing } from "@/data";
+import { PRICING_TEXT } from "@/data/translations";
 
 const PricingContent = () => {
   const { t, language } = useLanguage();
@@ -32,21 +33,13 @@ const PricingContent = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-light text-foreground mb-4">
-                {t("Ценова", "Pricing", "Listino")} <span className="font-bold text-primary">{t("Листа", "List", "Prezzi")}</span>
+                {PRICING_TEXT.hero.title[language]} <span className="font-bold text-primary">{PRICING_TEXT.hero.titleHighlight[language]}</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                {t(
-                  "Прозрачни цени за всички наши терапии и консултации. Спестете с нашите пакети за благоденствие.",
-                  "Transparent pricing for all our therapies and consultations. Save with our wellness bundles.",
-                  "Prezzi trasparenti per tutte le nostre terapie e consulenze. Risparmia con i nostri pacchetti benessere."
-                )}
+                {PRICING_TEXT.hero.description[language]}
               </p>
               <p className="text-sm text-muted-foreground">
-                {t(
-                  "Всички цени са в евро (€)",
-                  "All prices are in Euros (€)",
-                  "Tutti i prezzi sono in Euro (€)"
-                )}
+                {PRICING_TEXT.hero.currency[language]}
               </p>
             </div>
           </div>
@@ -59,18 +52,14 @@ const PricingContent = () => {
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
                 <Sparkles className="w-4 h-4 text-primary" />
                 <span className="text-sm font-semibold text-primary uppercase tracking-wide">
-                  {t("Най-добра стойност", "Best Value", "Miglior Valore")}
+                  {PRICING_TEXT.packages.badges.bestValue[language]}
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-                {t("Пакети за", "Wellness", "Pacchetti di")} <span className="font-bold text-primary">{t("благоденствие", "Bundles", "Benessere")}</span>
+                {PRICING_TEXT.packages.title[language]} <span className="font-bold text-primary">{PRICING_TEXT.packages.titleHighlight[language]}</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t(
-                  "Инвестирайте в дългосрочното си здраве и спестете до 15% с нашите пакети",
-                  "Invest in your long-term wellness and save up to 15% with our bundles",
-                  "Investi nel tuo benessere a lungo termine e risparmia fino al 15% con i nostri pacchetti"
-                )}
+                {PRICING_TEXT.packages.description[language]}
               </p>
             </div>
 
@@ -78,10 +67,10 @@ const PricingContent = () => {
               {/* 4-Session Bundle */}
               <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow">
                 <h3 className="text-2xl font-bold text-foreground mb-2">
-                  {t("Пакет пътуване", "Journey Bundle", "Pacchetto Viaggio")}
+                  {PRICING_TEXT.packages.journey.name[language]}
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  {t("4 сесии по избор", "4 sessions of your choice", "4 sessioni a tua scelta")}
+                  {PRICING_TEXT.packages.journey.subtitle[language]}
                 </p>
 
                 <div className="mb-6">
@@ -91,12 +80,12 @@ const PricingContent = () => {
                   <div className="text-sm text-muted-foreground">
                     <span className="line-through">€{package4Sessions.normalPrice}</span>
                     <span className="ml-2 text-primary font-semibold">
-                      {t("Спестете", "Save", "Risparmia")} €{package4Sessions.savings}
+                      {PRICING_TEXT.packages.benefits.save[language]} €{package4Sessions.savings}
                     </span>
                   </div>
                   <div className="inline-block mt-2 px-3 py-1 bg-primary/10 rounded-full">
                     <span className="text-sm font-semibold text-primary">
-                      {package4Sessions.discount}% {t("отстъпка", "discount", "sconto")}
+                      {package4Sessions.discount}% {PRICING_TEXT.packages.benefits.discount[language]}
                     </span>
                   </div>
                 </div>
@@ -105,19 +94,19 @@ const PricingContent = () => {
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-foreground">
-                      {t("Изберете всяка комбинация от услуги", "Choose any combination of services", "Scegli qualsiasi combinazione di servizi")}
+                      {PRICING_TEXT.packages.benefits.anyCombo[language]}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-foreground">
-                      {t("Валиден 6 месеца", "Valid for 6 months", "Valido per 6 mesi")}
+                      {PRICING_TEXT.packages.benefits.valid6months[language]}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-foreground">
-                      {t("Приоритетно записване", "Priority booking", "Prenotazione prioritaria")}
+                      {PRICING_TEXT.packages.benefits.priorityBooking[language]}
                     </span>
                   </li>
                 </ul>
@@ -131,14 +120,14 @@ const PricingContent = () => {
               {/* 6-Session Bundle - Most Popular */}
               <div className="relative bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-2xl shadow-xl border-2 border-primary p-8 hover:shadow-2xl transition-shadow">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-wellness-sage text-white text-sm font-semibold rounded-full">
-                  {t("Най-популярен", "Most Popular", "Più Popolare")}
+                  {PRICING_TEXT.packages.badges.mostPopular[language]}
                 </div>
 
                 <h3 className="text-2xl font-bold mb-2">
-                  {t("Пакет трансформация", "Transformation Bundle", "Pacchetto Trasformazione")}
+                  {PRICING_TEXT.packages.transformation.name[language]}
                 </h3>
                 <p className="text-primary-foreground/80 mb-6">
-                  {t("6 сесии по избор", "6 sessions of your choice", "6 sessioni a tua scelta")}
+                  {PRICING_TEXT.packages.transformation.subtitle[language]}
                 </p>
 
                 <div className="mb-6">
@@ -148,12 +137,12 @@ const PricingContent = () => {
                   <div className="text-sm text-primary-foreground/80">
                     <span className="line-through">€{package6Sessions.normalPrice}</span>
                     <span className="ml-2 font-semibold">
-                      {t("Спестете", "Save", "Risparmia")} €{package6Sessions.savings}
+                      {PRICING_TEXT.packages.benefits.save[language]} €{package6Sessions.savings}
                     </span>
                   </div>
                   <div className="inline-block mt-2 px-3 py-1 bg-white/20 rounded-full">
                     <span className="text-sm font-semibold">
-                      {package6Sessions.discount}% {t("отстъпка", "discount", "sconto")}
+                      {package6Sessions.discount}% {PRICING_TEXT.packages.benefits.discount[language]}
                     </span>
                   </div>
                 </div>
@@ -162,25 +151,25 @@ const PricingContent = () => {
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">
-                      {t("Изберете всяка комбинация от услуги", "Choose any combination of services", "Scegli qualsiasi combinazione di servizi")}
+                      {PRICING_TEXT.packages.benefits.anyCombo[language]}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">
-                      {t("Валиден 9 месеца", "Valid for 9 months", "Valido per 9 mesi")}
+                      {PRICING_TEXT.packages.benefits.valid9months[language]}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">
-                      {t("Приоритетно записване", "Priority booking", "Prenotazione prioritaria")}
+                      {PRICING_TEXT.packages.benefits.priorityBooking[language]}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">
-                      {t("Една безплатна сесия за приятел", "One free friend session", "Una sessione gratuita per un amico")}
+                      {PRICING_TEXT.packages.benefits.friendSession[language]}
                     </span>
                   </li>
                 </ul>
@@ -200,14 +189,10 @@ const PricingContent = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-                {t("Индивидуални", "Individual", "Sessioni")} <span className="font-bold text-primary">{t("сесии", "Sessions", "Individuali")}</span>
+                {PRICING_TEXT.individual.title[language]} <span className="font-bold text-primary">{PRICING_TEXT.individual.titleHighlight[language]}</span>
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t(
-                  "Опитайте една сесия преди да се ангажирате с пакет",
-                  "Try a single session before committing to a package",
-                  "Prova una singola sessione prima di impegnarti con un pacchetto"
-                )}
+                {PRICING_TEXT.individual.description[language]}
               </p>
             </div>
 
@@ -226,7 +211,7 @@ const PricingContent = () => {
                           {service.title}
                           {service.featured && (
                             <span className="ml-2 inline-block px-2 py-0.5 bg-primary/10 text-primary text-xs font-semibold rounded">
-                              {t("Топ избор", "Signature", "Esclusivo")}
+                              {PRICING_TEXT.packages.badges.topChoice[language]}
                             </span>
                           )}
                         </h3>

@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { PAGES_TEXT } from "@/data/translations";
 
 const NotFoundContent = () => {
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     if (import.meta.env.DEV) {
@@ -20,10 +21,10 @@ const NotFoundContent = () => {
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-gray-600 mb-4">
-          {t("Упс! Страницата не е намерена", "Oops! Page not found", "Ops! Pagina non trovata")}
+          {PAGES_TEXT.notFound.title[language]}
         </p>
         <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          {t("Върнете се към началото", "Return to Home", "Torna alla Home")}
+          {PAGES_TEXT.notFound.returnHome[language]}
         </a>
       </div>
     </div>

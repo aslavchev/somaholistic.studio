@@ -14,9 +14,15 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/src/assets/Logo_Soma.svg",
+      "src": "/Logo_Soma.svg",
       "sizes": "any",
       "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Logo_Soma_png.png",
+      "sizes": "180x180",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
