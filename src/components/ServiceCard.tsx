@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CONTACT } from "@/data";
-import { COMMON_TEXT } from "@/data/translations";
+import { COMMON_TEXT, SERVICECARD_TEXT } from "@/data/translations";
 import BookingDialog from "@/components/BookingDialog";
 
 interface ServiceCardProps {
@@ -43,7 +43,7 @@ const ServiceCard = ({
   onToggle,
   imageFetchPriority = 'auto'
 }: ServiceCardProps) => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -59,11 +59,11 @@ const ServiceCard = ({
   };
 
   const categoryLabels = {
-    signature: t("Авторска", "Signature", "Signature"),
-    massage: t("Масаж", "Massage", "Massage"),
-    therapy: t("Терапия", "Therapy", "Therapy"),
-    beauty: t("Красота", "Beauty", "Beauty"),
-    coaching: t("Коучинг", "Coaching", "Coaching")
+    signature: SERVICECARD_TEXT.categories.signature[language],
+    massage: SERVICECARD_TEXT.categories.massage[language],
+    therapy: SERVICECARD_TEXT.categories.therapy[language],
+    beauty: SERVICECARD_TEXT.categories.beauty[language],
+    coaching: SERVICECARD_TEXT.categories.coaching[language]
   };
 
   useEffect(() => {
@@ -174,7 +174,7 @@ const ServiceCard = ({
               {benefits.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🌿 {t("Какво ще получите:", "What You'll Get:", "What You'll Get:")}
+                    🌿 {SERVICECARD_TEXT.benefits.heading[language]}
                   </h4>
                   <ul className="space-y-3">
                     {benefits.map((benefit, index) => (
@@ -190,7 +190,7 @@ const ServiceCard = ({
               {suitableFor.length > 0 && (
                 <div className="mb-6">
                   <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🎯 {t("Подходящ за:", "Suitable For:", "Suitable For:")}
+                    🎯 {SERVICECARD_TEXT.suitableFor.heading[language]}
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {suitableFor.join(", ")}
@@ -270,7 +270,7 @@ const ServiceCard = ({
                 aria-label={`Call to book ${title}`}
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
-                <span>{t("Обади се", "Call Now", "Chiama Ora")}</span>
+                <span>{SERVICECARD_TEXT.buttons.call[language]}</span>
               </a>
             </Button>
           </div>
@@ -287,7 +287,7 @@ const ServiceCard = ({
             aria-label={isExpanded ? "Collapse details" : "Expand details"}
             aria-expanded={isExpanded}
           >
-            <span>{isExpanded ? t("Виж по-малко", "Show Less", "Show Less") : t("Виж повече", "Show More", "Show More")}</span>
+            <span>{isExpanded ? SERVICECARD_TEXT.buttons.showLess[language] : SERVICECARD_TEXT.buttons.showMore[language]}</span>
             <ChevronDown
               className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
               aria-hidden="true"

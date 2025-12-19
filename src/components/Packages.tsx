@@ -3,11 +3,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Button } from "@/components/ui/button";
 import { get4SessionPricing, get6SessionPricing } from "@/data";
+import { PACKAGES_TEXT } from "@/data/translations";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { scrollToSection } from "@/utils/scrollToSection";
 
 const Packages = () => {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation({ threshold: 0.1 });
 
@@ -26,18 +27,14 @@ const Packages = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4">
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-primary uppercase tracking-wide">
-              {t("Най-добра стойност", "Best Value", "Miglior Valore")}
+              {PACKAGES_TEXT.badge.bestValue[language]}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Пакети за", "Wellness", "Pacchetti di")} <span className="font-bold text-primary">{t("благоденствие", "Bundles", "Benessere")}</span>
+            {PACKAGES_TEXT.hero.title[language]} <span className="font-bold text-primary">{PACKAGES_TEXT.hero.titleHighlight[language]}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-            {t(
-              "Инвестирайте в дългосрочното си здраве и спестете до 10% с нашите пакети",
-              "Invest in your long-term wellness and save up to 10% with our bundles",
-              "Investi nel tuo benessere a lungo termine e risparmia fino al 10% con i nostri pacchetti"
-            )}
+            {PACKAGES_TEXT.hero.description[language]}
           </p>
         </div>
 
@@ -49,14 +46,14 @@ const Packages = () => {
           {/* 4-Session Classical Massage Bundle - Most Popular */}
           <div className="relative bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-2xl shadow-xl border-2 border-primary p-8 hover:shadow-2xl transition-shadow flex flex-col">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-wellness-sage text-white text-sm font-semibold rounded-full">
-              {t("Най-популярен", "Most Popular", "Più Popolare")}
+              {PACKAGES_TEXT.serenityVoyage.badge[language]}
             </div>
 
             <h3 className="text-2xl font-bold mb-2">
-              {t("Пътешествие към Спокойствието", "Serenity Voyage", "Viaggio Serenità")}
+              {PACKAGES_TEXT.serenityVoyage.title[language]}
             </h3>
             <p className="text-primary-foreground/80 mb-6">
-              {t("4 процедури класически масаж", "4 classical massage sessions", "4 sessioni di massaggio classico")}
+              {PACKAGES_TEXT.serenityVoyage.description[language]}
             </p>
 
             <div className="mb-6">
@@ -66,12 +63,12 @@ const Packages = () => {
               <div className="text-sm text-primary-foreground/80">
                 <span className="line-through">€{package4Sessions.normalPrice}</span>
                 <span className="ml-2 font-semibold">
-                  {t("Спестете", "Save", "Risparmia")} €{package4Sessions.savings}
+                  {PACKAGES_TEXT.common.save[language]} €{package4Sessions.savings}
                 </span>
               </div>
               <div className="inline-block mt-2 px-3 py-1 bg-white/20 rounded-full">
                 <span className="text-sm font-semibold">
-                  {package4Sessions.discount}% {t("отстъпка", "discount", "sconto")}
+                  {package4Sessions.discount}% {PACKAGES_TEXT.common.discount[language]}
                 </span>
               </div>
             </div>
@@ -80,19 +77,19 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("4 процедури класически масаж", "4 classical massage sessions", "4 sessioni di massaggio classico")}
+                  {PACKAGES_TEXT.serenityVoyage.benefit1[language]}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("Валиден 2 месеца", "Valid for 2 months", "Valido per 2 mesi")}
+                  {PACKAGES_TEXT.serenityVoyage.benefit2[language]}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
-                  {t("Приоритетно записване", "Priority booking", "Prenotazione prioritaria")}
+                  {PACKAGES_TEXT.serenityVoyage.benefit3[language]}
                 </span>
               </li>
             </ul>
@@ -107,10 +104,10 @@ const Packages = () => {
           {/* 4-Session Facial Bundle */}
           <div className="relative bg-white rounded-2xl shadow-lg border-2 border-primary/20 p-8 hover:shadow-xl transition-shadow flex flex-col">
             <h3 className="text-2xl font-bold text-foreground mb-2">
-              {t("Ренесанс на Блясъка", "Radiance Renaissance", "Rinascita Radiosa")}
+              {PACKAGES_TEXT.radianceRenaissance.title[language]}
             </h3>
             <p className="text-muted-foreground mb-6">
-              {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions", "4 sessioni di massaggio facciale ringiovanente")}
+              {PACKAGES_TEXT.radianceRenaissance.description[language]}
             </p>
 
             <div className="mb-6">
@@ -120,12 +117,12 @@ const Packages = () => {
               <div className="text-sm text-muted-foreground">
                 <span className="line-through">€{package6Sessions.normalPrice}</span>
                 <span className="ml-2 text-primary font-semibold">
-                  {t("Спестете", "Save", "Risparmia")} €{package6Sessions.savings}
+                  {PACKAGES_TEXT.common.save[language]} €{package6Sessions.savings}
                 </span>
               </div>
               <div className="inline-block mt-2 px-3 py-1 bg-primary/10 rounded-full">
                 <span className="text-sm font-semibold text-primary">
-                  {package6Sessions.discount}% {t("отстъпка", "discount", "sconto")}
+                  {package6Sessions.discount}% {PACKAGES_TEXT.common.discount[language]}
                 </span>
               </div>
             </div>
@@ -134,19 +131,19 @@ const Packages = () => {
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("4 процедури подмладяващ масаж за лице", "4 rejuvenating facial massage sessions", "4 sessioni di massaggio facciale ringiovanente")}
+                  {PACKAGES_TEXT.radianceRenaissance.benefit1[language]}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("Валиден 2 месеца", "Valid for 2 months", "Valido per 2 mesi")}
+                  {PACKAGES_TEXT.radianceRenaissance.benefit2[language]}
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-foreground">
-                  {t("Приоритетно записване", "Priority booking", "Prenotazione prioritaria")}
+                  {PACKAGES_TEXT.radianceRenaissance.benefit3[language]}
                 </span>
               </li>
             </ul>
@@ -161,11 +158,7 @@ const Packages = () => {
         {/* Gift Certificate CTA */}
         <div className="mt-12 text-center">
           <p className="text-muted-foreground text-sm mb-4">
-            {t(
-              "Търсите подарък за специален човек?",
-              "Looking for a gift for someone special?",
-              "Cerchi un regalo per qualcuno di speciale?"
-            )}
+            {PACKAGES_TEXT.giftCta.text[language]}
           </p>
           <Button
             variant="outline"
@@ -173,7 +166,7 @@ const Packages = () => {
             className="group"
           >
             <Gift className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-            {t("Разгледайте подаръчните карти", "Explore Gift Certificates", "Esplora i Buoni Regalo")}
+            {PACKAGES_TEXT.giftCta.button[language]}
           </Button>
         </div>
       </div>

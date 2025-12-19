@@ -3,10 +3,11 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import Logo from "@/components/common/Logo";
 import { CONTACT } from "@/data";
+import { FOOTER_TEXT } from "@/data/translations";
 import { scrollToSection } from '@/utils/scrollToSection';
 
 const Footer = () => {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -26,21 +27,17 @@ const Footer = () => {
               <div>
                 <h3 className="text-xl font-bold">SOMA STUDIO</h3>
                 <p className="text-xs uppercase tracking-wide opacity-80">
-                  {t("Соматични практики", "Somatic Practices", "Pratiche Somatiche")}
+                  {FOOTER_TEXT.tagline[language]}
                 </p>
               </div>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              {t(
-                "Изкуството на дълбоката релаксация и холистичното възстановяване в сърцето на София.",
-                "The art of deep relaxation and holistic restoration in the heart of Sofia.",
-                "L'arte del rilassamento profondo e del restauro olistico nel cuore di Sofia."
-              )}
+              {FOOTER_TEXT.description[language]}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Контакти", "Contact", "Contatti")}</h4>
+            <h4 className="font-semibold mb-4">{FOOTER_TEXT.contact.heading[language]}</h4>
             <div className="space-y-3 text-sm">
               <a
                 href={`tel:${CONTACT.PHONE_TEL}`}
@@ -65,53 +62,45 @@ const Footer = () => {
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
-                  <p>{t(CONTACT.ADDRESS.AREA, "Manastirski Livadi Iztok")}</p>
-                  <p>{t(CONTACT.ADDRESS.STREET, "409-ta Street 13")}</p>
+                  <p>{CONTACT.ADDRESS.AREA}</p>
+                  <p>{CONTACT.ADDRESS.STREET}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Работно време", "Working Hours", "Orari di Lavoro")}</h4>
+            <h4 className="font-semibold mb-4">{FOOTER_TEXT.hours.heading[language]}</h4>
             <p className="text-primary-foreground/80 text-sm">
-              {t(
-                "Студиото работи само с предварително записани часове",
-                "The studio operates by appointment only",
-                "Lo studio opera solo su appuntamento"
-              )}
+              {FOOTER_TEXT.hours.description[language]}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Бързи връзки", "Quick Links", "Link Rapidi")}</h4>
+            <h4 className="font-semibold mb-4">{FOOTER_TEXT.quickLinks.heading[language]}</h4>
             <div className="space-y-2">
               <button onClick={scrollToTop} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Начало", "Home", "Home")}
+                {FOOTER_TEXT.quickLinks.home[language]}
               </button>
               <button onClick={() => scrollToSection('services')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Услуги", "Services", "Servizi")}
+                {FOOTER_TEXT.quickLinks.services[language]}
               </button>
               <button onClick={() => scrollToSection('packages')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Пакети", "Packages", "Pacchetti")}
+                {FOOTER_TEXT.quickLinks.packages[language]}
               </button>
               <button onClick={() => scrollToSection('gifts')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("Подаръци", "Gifts", "Regali")}
+                {FOOTER_TEXT.quickLinks.gifts[language]}
               </button>
               <button onClick={() => scrollToSection('about')} className="block text-primary-foreground/80 text-sm hover:text-primary-foreground transition-colors text-left">
-                {t("За нас", "About", "Chi Siamo")}
+                {FOOTER_TEXT.quickLinks.about[language]}
               </button>
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">{t("Не сте сигурни?", "Not Sure?", "Non Sei Sicuro?")}</h4>
+            <h4 className="font-semibold mb-4">{FOOTER_TEXT.cta.heading[language]}</h4>
             <p className="text-primary-foreground/80 text-sm mb-4">
-              {t(
-                "Свържете се с нас за безплатна консултация",
-                "Contact us for a free consultation",
-                "Contattaci per una consulenza gratuita"
-              )}
+              {FOOTER_TEXT.cta.description[language]}
             </p>
             <DiscoveryCallButton
               size="sm"
@@ -123,11 +112,7 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-primary-foreground/60 text-sm">
-            {t(
-              "© 2025 SOMA STUDIO. Всички права запазени.",
-              "© 2025 SOMA STUDIO. All rights reserved.",
-              "© 2025 SOMA STUDIO. Tutti i diritti riservati."
-            )}
+            {FOOTER_TEXT.copyright[language]}
           </p>
         </div>
       </div>
