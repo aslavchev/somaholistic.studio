@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { User, Phone } from "lucide-react";
+import { BOOKING_TEXT } from "@/data/translations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { COUNTRY_CODES } from "@/lib/utils";
 
@@ -15,17 +16,17 @@ interface Step3Props {
 }
 
 export const Step3Contact = ({ formData, setFormData, errors, handleValidateName, handleValidatePhone }: Step3Props) => {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor="name">{t("Вашето име", "Your Name", "Il Tuo Nome")}</Label>
+        <Label htmlFor="name">{BOOKING_TEXT.step3.yourName[language]}</Label>
         <div className="relative">
           <User className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
           <Input
             id="name"
-            placeholder={t("Име и фамилия", "Full Name", "Nome Completo")}
+            placeholder={BOOKING_TEXT.step3.fullName[language]}
             value={formData.name}
             onChange={(e) => {
               setFormData((prev: BookingFormData) => ({ ...prev, name: e.target.value }));
@@ -39,7 +40,7 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
       </div>
 
       <div>
-        <Label htmlFor="phone">{t("Телефон", "Phone", "Telefono")}</Label>
+        <Label htmlFor="phone">{BOOKING_TEXT.step3.phone[language]}</Label>
         <div className="flex gap-2">
           <Select
             value={formData.countryCode}

@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SERVICES } from "@/data";
-import { COMMON_TEXT } from "@/data/translations";
+import { COMMON_TEXT, BOOKING_TEXT } from "@/data/translations";
 import {
   validatePhone,
   validateName,
@@ -25,7 +25,7 @@ interface BookingDialogProps {
 }
 
 const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialogProps) => {
-  const { t, language } = useLanguage();
+  const { language, t } = useLanguage();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -135,11 +135,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
             {COMMON_TEXT.buttons.bookAppointment[language]}
           </DialogTitle>
           <DialogDescription>
-            {t(
-              "Попълнете формата за да резервирате вашата процедура",
-              "Fill out the form to book your appointment",
-              "Compila il modulo per prenotare"
-            )}
+            {BOOKING_TEXT.dialog.description[language]}
           </DialogDescription>
         </DialogHeader>
 

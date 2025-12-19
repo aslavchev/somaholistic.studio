@@ -1,6 +1,7 @@
 import type { Service } from "@/data/services";
 import { BookingFormData } from "./types";
 import { Calendar, Clock, User, Phone, Sparkles } from "lucide-react";
+import { BOOKING_TEXT } from "@/data/translations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { format } from "date-fns";
 
@@ -10,7 +11,7 @@ interface Step4Props {
 }
 
 export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   const getPrice = () => {
     if (!selectedServiceData) return "";
@@ -28,7 +29,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
               {selectedServiceData?.title[language]}
             </p>
             <p className="text-sm text-muted-foreground">
-              {formData.duration} {t("мин", "min", "min")} - €{getPrice()}
+              {formData.duration} {BOOKING_TEXT.step4.min[language]} - €{getPrice()}
             </p>
           </div>
         </div>
@@ -37,7 +38,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
           <Calendar className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-sm text-foreground" data-testid="booking-summary-date">
-              <strong>{t("Дата", "Date", "Data")}:</strong> {format(formData.date, "PPP")}
+              <strong>{BOOKING_TEXT.step4.date[language]}:</strong> {format(formData.date, "PPP")}
             </p>
           </div>
         </div>
@@ -46,7 +47,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
           <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-sm text-foreground" data-testid="booking-summary-time">
-              <strong>{t("Час", "Time", "Ora")}:</strong> {formData.time}
+              <strong>{BOOKING_TEXT.step4.time[language]}:</strong> {formData.time}
             </p>
           </div>
         </div>
@@ -55,7 +56,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
           <User className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-sm text-foreground" data-testid="booking-summary-name">
-              <strong>{t("Име", "Name", "Nome")}:</strong> {formData.name}
+              <strong>{BOOKING_TEXT.step4.name[language]}:</strong> {formData.name}
             </p>
           </div>
         </div>
@@ -64,7 +65,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
           <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-sm text-foreground" data-testid="booking-summary-phone">
-              <strong>{t("Телефон", "Phone", "Telefono")}:</strong> {formData.countryCode} {formData.phone}
+              <strong>{BOOKING_TEXT.step4.phone[language]}:</strong> {formData.countryCode} {formData.phone}
             </p>
           </div>
         </div>
@@ -72,11 +73,7 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
 
       <div className="bg-muted/30 rounded-lg p-4">
         <p className="text-sm text-muted-foreground text-center">
-          {t(
-            "Ще бъдете пренасочени към WhatsApp за да потвърдите вашата резервация",
-            "You will be redirected to WhatsApp to confirm your booking",
-            "Verrai reindirizzato a WhatsApp per confermare la prenotazione"
-          )}
+          {BOOKING_TEXT.step4.whatsappNote[language]}
         </p>
       </div>
     </div>
