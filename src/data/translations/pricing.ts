@@ -74,4 +74,17 @@ export const PRICING_TEXT = {
       it: "Prova una singola sessione prima di impegnarti con un pacchetto"
     },
   },
+
+  cta: {
+    heading: {
+      bg: "Не сте сигурни коя услуга е подходяща за вас?",
+      en: "Not sure which service is right for you?",
+      it: "Non sei sicuro quale servizio sia giusto per te?"
+    },
+    description: {
+      bg: "Свържете се с Мари за безплатна консултация и тя ще ви помогне да изберете идеалната терапия за вашите нужди.",
+      en: "Contact Mari for a free consultation and she will help you choose the ideal therapy for your needs.",
+      it: "Contatta Mari per una consulenza gratuita e ti aiuterà a scegliere la terapia ideale per le tue esigenze."
+    },
+  },
 } as const;

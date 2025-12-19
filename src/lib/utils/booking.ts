@@ -5,6 +5,7 @@
  */
 
 import { BUSINESS_HOURS } from "@/data";
+import { UTILS_TEXT } from "@/data/translations";
 
 /**
  * All available time slots during business hours
@@ -48,7 +49,7 @@ export function getAvailableTimeSlots(date: Date | undefined, minAdvanceHours: n
  * Build booking confirmation message for WhatsApp
  *
  * @param data - Booking form data
- * @param t - Translation function
+ * @param language - Current language ('bg' | 'en' | 'it')
  * @returns Formatted WhatsApp message
  */
 export function buildBookingMessage(
@@ -62,18 +63,18 @@ export function buildBookingMessage(
     phone: string;
     countryCode: string;
   },
-  t: (bg: string, en: string, it: string) => string
+  language: 'bg' | 'en' | 'it'
 ): string {
   const fullPhone = `+${data.countryCode} ${data.phone}`;
   const formattedDate = data.date?.toLocaleDateString();
 
-  return `${t("Здравейте! Искам да запазя час:", "Hello! I would like to book an appointment:", "Ciao! Vorrei prenotare un appuntamento:")}
+  return `${UTILS_TEXT.booking.greeting[language]}
 
-${t("Услуга:", "Service:", "Servizio:")} ${data.service}
-${t("Продължителност:", "Duration:", "Durata:")} ${data.duration}
-${t("Дата:", "Date:", "Data:")} ${formattedDate}
-${t("Час:", "Time:", "Ora:")} ${data.time}
-${t("Име:", "Name:", "Nome:")} ${data.name}
-${t("Email:", "Email:", "Email:")} ${data.email}
-${t("Телефон:", "Phone:", "Telefono:")} ${fullPhone}`;
+${UTILS_TEXT.booking.service[language]} ${data.service}
+${UTILS_TEXT.booking.duration[language]} ${data.duration}
+${UTILS_TEXT.booking.date[language]} ${formattedDate}
+${UTILS_TEXT.booking.time[language]} ${data.time}
+${UTILS_TEXT.booking.name[language]} ${data.name}
+${UTILS_TEXT.booking.email[language]} ${data.email}
+${UTILS_TEXT.booking.phone[language]} ${fullPhone}`;
 }

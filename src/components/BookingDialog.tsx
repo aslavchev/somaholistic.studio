@@ -25,7 +25,7 @@ interface BookingDialogProps {
 }
 
 const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialogProps) => {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -42,16 +42,16 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   const selectedServiceData = SERVICES.find(s => s.id === formData.service);
 
   const handleValidatePhone = useCallback((phone: string) => {
-    const result = validatePhone(phone, t);
+    const result = validatePhone(phone, language);
     setErrors(prev => ({ ...prev, phone: result.error || "" }));
     return result.valid;
-  }, [t]);
+  }, [language]);
 
   const handleValidateName = useCallback((name: string) => {
-    const result = validateName(name, t);
+    const result = validateName(name, language);
     setErrors(prev => ({ ...prev, name: result.error || "" }));
     return result.valid;
-  }, [t]);
+  }, [language]);
 
   useEffect(() => {
     if (step === 3) {
@@ -108,7 +108,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       service: sanitizeInput(serviceLabel),
       name: sanitizeInput(formData.name),
       phone: sanitizeInput(formData.phone)
-    }, t);
+    }, language);
     const url = buildWhatsAppUrl(message);
     window.open(url, "_blank");
     setTimeout(() => {

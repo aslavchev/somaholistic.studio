@@ -17,3 +17,5 @@ export { HERO_TEXT } from "./hero";
 export { HEADER_TEXT } from "./header";
 export { TESTIMONIALS_TEXT } from "./testimonials";
 export { BOOKING_TEXT } from "./booking";
+export { COMPONENTS_TEXT } from "./components";
+export { UTILS_TEXT } from "./utils";

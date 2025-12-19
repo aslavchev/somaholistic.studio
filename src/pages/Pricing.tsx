@@ -7,7 +7,7 @@ import { SERVICES, get4SessionPricing, get6SessionPricing } from "@/data";
 import { PRICING_TEXT } from "@/data/translations";
 
 const PricingContent = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   // Transform centralized services data for display
   const services = SERVICES.map((service) => ({
@@ -240,18 +240,10 @@ const PricingContent = () => {
             <div className="mt-12 text-center max-w-2xl mx-auto">
               <div className="bg-white rounded-lg p-8 shadow-md border border-primary/20">
                 <h3 className="text-2xl font-light text-foreground mb-3">
-                  {t(
-                    "Не сте сигурни коя услуга е подходяща за вас?",
-                    "Not sure which service is right for you?",
-                    "Non sei sicuro quale servizio sia giusto per te?"
-                  )}
+                  {PRICING_TEXT.cta.heading[language]}
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  {t(
-                    "Свържете се с Мари за безплатна консултация и тя ще ви помогне да изберете идеалната терапия за вашите нужди.",
-                    "Contact Mari for a free consultation and she will help you choose the ideal therapy for your needs.",
-                    "Contatta Mari per una consulenza gratuita e ti aiuterà a scegliere la terapia ideale per le tue esigenze."
-                  )}
+                  {PRICING_TEXT.cta.description[language]}
                 </p>
                 <DiscoveryCallButton size="lg" />
               </div>

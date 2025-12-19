@@ -2,10 +2,10 @@ import { Award, Heart, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import therapistPortrait from "@/assets/therapist-portrait.webp";
 import { useState, useEffect } from "react";
-import { COMMON_TEXT, ABOUT_TEXT } from "@/data/translations";
+import { COMMON_TEXT, ABOUT_TEXT, COMPONENTS_TEXT } from "@/data/translations";
 
 const About = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -30,7 +30,7 @@ const About = () => {
               <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl ring-4 ring-primary/10">
                 <img
                   src={therapistPortrait}
-                  alt={t("Мариана Игова – терапевт в SOMA STUDIO", "Mariana Igova – therapist at SOMA STUDIO", "Mariana Igova – terapista presso SOMA STUDIO")}
+                  alt={COMPONENTS_TEXT.about.therapistImageAlt[language]}
                   className="w-full h-full object-cover"
                   loading="eager"
                   fetchPriority="high"

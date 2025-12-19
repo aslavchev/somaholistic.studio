@@ -4,6 +4,8 @@
  * Reusable validation functions for user input
  */
 
+import { UTILS_TEXT } from "@/data/translations";
+
 export interface ValidationResult {
   valid: boolean;
   error?: string;
@@ -14,13 +16,13 @@ export interface ValidationResult {
  * - Checks for valid email format
  * - Ensures only ASCII characters (no Cyrillic)
  */
-export function validateEmail(email: string, t: (bg: string, en: string) => string): ValidationResult {
+export function validateEmail(email: string, language: 'bg' | 'en' | 'it'): ValidationResult {
   // Check for non-English (non-ASCII) characters
   const hasNonEnglish = /[^\x20-\x7F]/.test(email);
   if (hasNonEnglish) {
     return {
       valid: false,
-      error: t("Имейлът трябва да съдържа само английски букви", "Email must contain only English characters")
+      error: UTILS_TEXT.validation.emailEnglishOnly[language]
     };
   }
 
@@ -29,7 +31,7 @@ export function validateEmail(email: string, t: (bg: string, en: string) => stri
   if (!emailRegex.test(email)) {
     return {
       valid: false,
-      error: t("Невалиден имейл", "Invalid email")
+      error: UTILS_TEXT.validation.invalidEmail[language]
     };
   }
 
@@ -41,13 +43,13 @@ export function validateEmail(email: string, t: (bg: string, en: string) => stri
  * - Accepts 9+ digits for Bulgarian numbers
  * - Accepts 10+ digits for international numbers
  */
-export function validatePhone(phone: string, t: (bg: string, en: string) => string): ValidationResult {
+export function validatePhone(phone: string, language: 'bg' | 'en' | 'it'): ValidationResult {
   const digitsOnly = phone.replace(/\D/g, '');
 
   if (digitsOnly.length < 9) {
     return {
       valid: false,
-      error: t("Невалиден телефон", "Invalid phone")
+      error: UTILS_TEXT.validation.invalidPhone[language]
     };
   }
 
@@ -58,11 +60,11 @@ export function validatePhone(phone: string, t: (bg: string, en: string) => stri
  * Validate name
  * - Minimum 2 characters
  */
-export function validateName(name: string, t: (bg: string, en: string) => string): ValidationResult {
+export function validateName(name: string, language: 'bg' | 'en' | 'it'): ValidationResult {
   if (name.trim().length < 2) {
     return {
       valid: false,
-      error: t("Минимум 2 символа", "Minimum 2 characters")
+      error: UTILS_TEXT.validation.minCharacters[language]
     };
   }
 
