@@ -25,7 +25,7 @@ const IMAGE_MAP: Record<string, string> = {
 const Services = () => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({
     threshold: 0.1,
@@ -105,7 +105,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.signature.bg, CATEGORY_LABELS.signature.en, CATEGORY_LABELS.signature.it)}
+            {CATEGORY_LABELS.signature[language]}
           </button>
           <button
             onClick={() => setSelectedCategory('massage')}
@@ -115,7 +115,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.massage.bg, CATEGORY_LABELS.massage.en, CATEGORY_LABELS.massage.it)}
+            {CATEGORY_LABELS.massage[language]}
           </button>
           <button
             onClick={() => setSelectedCategory('therapy')}
@@ -125,7 +125,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.therapy.bg, CATEGORY_LABELS.therapy.en, CATEGORY_LABELS.therapy.it)}
+            {CATEGORY_LABELS.therapy[language]}
           </button>
           <button
             onClick={() => setSelectedCategory('beauty')}
@@ -135,7 +135,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.beauty.bg, CATEGORY_LABELS.beauty.en, CATEGORY_LABELS.beauty.it)}
+            {CATEGORY_LABELS.beauty[language]}
           </button>
           <button
             onClick={() => setSelectedCategory('coaching')}
@@ -145,7 +145,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t(CATEGORY_LABELS.coaching.bg, CATEGORY_LABELS.coaching.en, CATEGORY_LABELS.coaching.it)}
+            {CATEGORY_LABELS.coaching[language]}
           </button>
         </div>
 
