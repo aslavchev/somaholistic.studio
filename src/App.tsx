@@ -25,6 +25,7 @@ const App = () => (
         <BrowserRouter basename={basename}>
           <GoogleAnalytics />
           <StructuredData />
+
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>

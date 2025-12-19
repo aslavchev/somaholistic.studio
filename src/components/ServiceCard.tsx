@@ -122,7 +122,7 @@ const ServiceCard = ({
             src={image}
             alt={title}
             loading={imageFetchPriority === "high" ? "eager" : "lazy"}
-            fetchPriority={imageFetchPriority}
+            fetchpriority={imageFetchPriority}
             decoding="async"
             onLoad={() => setImageLoaded(true)}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -146,7 +146,7 @@ const ServiceCard = ({
         `}>
           {title}
         </h3>
-        
+
         {/* Default/Collapsed Description */}
         {!isExpanded && (
           <p className="text-muted-foreground leading-relaxed text-sm md:text-base mb-6">
@@ -200,7 +200,7 @@ const ServiceCard = ({
             </motion.div>
           )}
         </AnimatePresence>
-        
+
         {/* Pricing */}
         {(price60 || price90) && (
           <div className="mb-6">
@@ -221,7 +221,7 @@ const ServiceCard = ({
                   </div>
                 </div>
               )}
-              
+
               {price90 && duration90 && (
                 <div className="flex-1 bg-primary/10 rounded-lg p-3 border border-primary/20">
                   <div className="flex items-center justify-between">
@@ -238,10 +238,10 @@ const ServiceCard = ({
             </div>
           </div>
         )}
-        
+
         {/* Enhanced CTA Buttons - Always visible */}
         <div className="space-y-2">
-            <Button 
+            <Button
               onClick={(e) => {
                 e.stopPropagation();
                 setBookingOpen(true);
@@ -257,7 +257,7 @@ const ServiceCard = ({
               <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
               <span>{COMMON_TEXT.buttons.bookOnline[language]}{isHovered && !isMobile ? ' →' : ''}</span>
             </Button>
-            
+
             <Button
               variant="outline"
               asChild
@@ -288,7 +288,7 @@ const ServiceCard = ({
             aria-expanded={isExpanded}
           >
             <span>{isExpanded ? t("Виж по-малко", "Show Less", "Show Less") : t("Виж повече", "Show More", "Show More")}</span>
-            <ChevronDown 
+            <ChevronDown
               className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
               aria-hidden="true"
             />
@@ -296,7 +296,7 @@ const ServiceCard = ({
         )}
       </CardContent>
     </Card>
-    
+
     <BookingDialog
       open={bookingOpen}
       onOpenChange={setBookingOpen}

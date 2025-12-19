@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -24,8 +24,8 @@ const SectionSkeleton = () => (
   </div>
 );
 
-const IndexContent = () => {
-  const { t, language } = useLanguage();
+const Index = () => {
+  const { language } = useLanguage();
 
   return (
     <div className="min-h-screen">
@@ -49,14 +49,6 @@ const IndexContent = () => {
       <Footer />
       <WhatsAppButton />
     </div>
-  );
-};
-
-const Index = () => {
-  return (
-    <LanguageProvider>
-      <IndexContent />
-    </LanguageProvider>
   );
 };
 

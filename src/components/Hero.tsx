@@ -7,10 +7,10 @@ import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import spaHero from "@/assets/spa-hero.webp";
 import { CONTACT } from "@/data";
-import { COMMON_TEXT } from "@/data/translations";
+import { COMMON_TEXT, HERO_TEXT } from "@/data/translations";
 
 const Hero = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
@@ -53,7 +53,7 @@ const Hero = () => {
               }`}
               data-testid="hero-heading"
             >
-              {t("Добре дошли в", "Welcome to", "Benvenuti a")} <br />
+              {HERO_TEXT.welcome[language]} <br />
               <span className="font-bold bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent" data-testid="studio-name">
                 SOMA STUDIO
               </span>
@@ -64,10 +64,7 @@ const Hero = () => {
                 contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
-              {t(
-                "Изкуството на дълбоката релаксация. Подарете си 90 минути блаженство от шума на ежедневието със SOMA Ритуал - холистична терапия, вдъхновена от източни традиции.",
-                "The art of deep relaxation. Gift yourself 90 minutes of bliss away from the noise of everyday life with the SOMA Ritual - holistic therapy inspired by Eastern traditions."
-              )}
+              {HERO_TEXT.description[language]}
             </p>
 
             <div
@@ -110,10 +107,7 @@ const Hero = () => {
               }`}
             >
               <p className="text-sm text-white/90 font-medium mb-3">
-                {t(
-                  "Не сте сигурни коя услуга е подходяща за вас?",
-                  "Not sure which service is right for you?"
-                )}
+                {HERO_TEXT.discoveryCall[language]}
               </p>
               <DiscoveryCallButton
                 variant="outline"

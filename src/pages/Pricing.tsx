@@ -1,4 +1,4 @@
-import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
@@ -201,9 +201,8 @@ const PricingContent = () => {
                 {services.map((service, index) => (
                   <div
                     key={index}
-                    className={`bg-white rounded-lg shadow-sm border ${
-                      service.featured ? 'border-primary/30 shadow-md' : 'border-border'
-                    } p-6 hover:shadow-lg transition-shadow`}
+                    className={`bg-white rounded-lg shadow-sm border ${service.featured ? 'border-primary/30 shadow-md' : 'border-border'
+                      } p-6 hover:shadow-lg transition-shadow`}
                   >
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div className="flex-grow">
@@ -266,12 +265,4 @@ const PricingContent = () => {
   );
 };
 
-const Pricing = () => {
-  return (
-    <LanguageProvider>
-      <PricingContent />
-    </LanguageProvider>
-  );
-};
-
-export default Pricing;
+export default PricingContent;

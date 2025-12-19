@@ -2,10 +2,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Instagram, Clock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CONTACT } from "@/data";
-import { COMMON_TEXT } from "@/data/translations";
+import { COMMON_TEXT, CONTACT_TEXT } from "@/data/translations";
 
 const Contact = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <section className="py-16 md:py-24 bg-wellness-cream" data-testid="contact-section" aria-label="Contact section" id="contact">
@@ -15,11 +15,7 @@ const Contact = () => {
             {COMMON_TEXT.buttons.book[language]} <span className="font-bold text-primary">{COMMON_TEXT.phrases.yourAppointment[language]}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-            {t(
-              "Свържете се с нас, за да резервирате вашата терапия и да започнете пътуването към благополучието",
-              "Contact us to book your therapy and begin your journey to wellness",
-              "Contattaci per prenotare la tua terapia e iniziare il tuo viaggio verso il benessere"
-            )}
+            {CONTACT_TEXT.description[language]}
           </p>
         </div>
 
@@ -70,8 +66,8 @@ const Contact = () => {
                       <div>
                         <p className="font-medium text-foreground">{COMMON_TEXT.form.address[language]}</p>
                         <p className="text-muted-foreground">
-                          {t(CONTACT.ADDRESS.AREA, "Manastirski Livadi Iztok")}<br />
-                          {t(CONTACT.ADDRESS.STREET, "409-ta Street 13")}
+                          {CONTACT.ADDRESS.AREA[language]}<br />
+                          {CONTACT.ADDRESS.STREET[language]}
                         </p>
                         <a
                           href={CONTACT.GOOGLE_MAPS}
@@ -80,7 +76,7 @@ const Contact = () => {
                           className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition-colors mt-2"
                         >
                           <MapPin className="w-4 h-4" aria-hidden="true" />
-                          {t("Вижте на картата", "Get Directions", "Ottieni Indicazioni")}
+                          {CONTACT_TEXT.directions[language]}
                         </a>
                       </div>
                     </div>
@@ -90,11 +86,7 @@ const Contact = () => {
                       <div>
                         <p className="font-medium text-foreground">{COMMON_TEXT.form.workingHours[language]}</p>
                         <p className="text-muted-foreground">
-                          {t(
-                            "Студиото работи само с предварително записани часове",
-                            "The studio operates by appointment only",
-                            "Lo studio opera solo su appuntamento"
-                          )}
+                          {CONTACT_TEXT.hours.description[language]}
                         </p>
                       </div>
                     </div>
@@ -110,7 +102,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title={t("Карта на SOMA STUDIO", "SOMA STUDIO Map", "Mappa di SOMA STUDIO")}
+                    title={CONTACT_TEXT.mapTitle[language]}
                   />
                 </div>
               </div>

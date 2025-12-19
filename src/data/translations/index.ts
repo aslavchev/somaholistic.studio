@@ -12,3 +12,5 @@ export { PACKAGES_TEXT } from "./packages";
 export { FOOTER_TEXT } from "./footer";
 export { SERVICES_TEXT } from "./services";
 export { SERVICECARD_TEXT } from "./servicecard";
+export { CONTACT_TEXT } from "./contact";
+export { HERO_TEXT } from "./hero";

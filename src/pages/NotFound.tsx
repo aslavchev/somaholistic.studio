@@ -1,11 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { PAGES_TEXT } from "@/data/translations";
 
-const NotFoundContent = () => {
+const NotFound = () => {
   const location = useLocation();
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   useEffect(() => {
     if (import.meta.env.DEV) {
@@ -28,14 +28,6 @@ const NotFoundContent = () => {
         </a>
       </div>
     </div>
-  );
-};
-
-const NotFound = () => {
-  return (
-    <LanguageProvider>
-      <NotFoundContent />
-    </LanguageProvider>
   );
 };
 

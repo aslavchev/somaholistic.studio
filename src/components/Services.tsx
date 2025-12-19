@@ -4,7 +4,7 @@ import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { SERVICES, CATEGORY_LABELS } from "@/data";
-import { COMMON_TEXT } from "@/data/translations";
+import { COMMON_TEXT, SERVICES_TEXT } from "@/data/translations";
 import wellnessAccessories from "@/assets/wellness-accessories.webp";
 import massageTherapy from "@/assets/massage-therapy.webp";
 import classicalMassage from "@/assets/classical-massage.webp";
@@ -32,19 +32,11 @@ const Services = () => {
     rootMargin: '0px 0px 100px 0px' // Small margin for smooth transition, aligned with lazy loading
   });
 
-  // Preload first 4 service images for better UX on navigation
-  // Order: SOMA Ritual, Phytotherapy, Wellness Coaching, Classic Massage
+  // Preload first service image for LCP optimization
   useEffect(() => {
-    const imagesToPreload = [
-      wellnessAccessories, // SOMA Ritual (featured, shows first)
-      energyTherapy,       // Phytotherapy
-      classicalMassage,    // Classic Massage
-      massageTherapy       // Thai Massage
-    ];
-    imagesToPreload.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
+    const firstImage = wellnessAccessories; // SOMA Ritual (featured, shows first)
+    const img = new Image();
+    img.src = firstImage;
   }, []);
 
   // Transform centralized data into ServiceCard props format
@@ -68,8 +60,8 @@ const Services = () => {
   }));
 
   // Filter services by category
-  const filteredServices = selectedCategory === 'all' 
-    ? services 
+  const filteredServices = selectedCategory === 'all'
+    ? services
     : services.filter(service => service.category === selectedCategory);
 
   const handleToggle = (index: number) => {
@@ -89,11 +81,7 @@ const Services = () => {
             {COMMON_TEXT.sections.ourServices[language]} <span className="font-bold text-primary">{COMMON_TEXT.sections.services[language]}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-            {t(
-              "Открийте пътя към вътрешно равновесие и хармония чрез нашите специализирани терапии",
-              "Discover the path to inner balance and harmony through our specialized therapies",
-              "Scopri il percorso verso l'equilibrio interiore e l'armonia attraverso le nostre terapie specializzate"
-            )}
+            {SERVICES_TEXT.description[language]}
           </p>
         </div>
 
@@ -107,7 +95,7 @@ const Services = () => {
                 : 'bg-muted text-foreground hover:bg-muted/80'
             }`}
           >
-            {t("Всички", "All", "Tutti")}
+            {SERVICES_TEXT.filter.all[language]}
           </button>
           <button
             onClick={() => setSelectedCategory('signature')}
@@ -175,7 +163,7 @@ const Services = () => {
             >
               <ServiceCard
                 {...service}
-                imageFetchPriority={index < 3 ? 'high' : 'auto'}
+                imageFetchPriority={index === 0 ? 'high' : 'auto'}
                 isExpanded={expandedCard === index}
                 onToggle={() => handleToggle(index)}
               />
@@ -187,18 +175,10 @@ const Services = () => {
         <div className="mt-12 text-center max-w-2xl mx-auto">
           <div className="bg-muted/70 rounded-lg p-6 sm:p-8 border-2 border-primary/20">
             <h3 className="text-xl md:text-2xl font-light text-foreground mb-3">
-              {t(
-                "Не сте сигурни коя услуга е подходяща за вас?",
-                "Not sure which service is right for you?",
-                "Non sei sicuro quale servizio sia giusto per te?"
-              )}
+              {SERVICES_TEXT.cta.heading[language]}
             </h3>
             <p className="text-muted-foreground mb-6">
-              {t(
-                "Свържете се с Мари за безплатна консултация и тя ще ви помогне да изберете идеалната терапия за вашите нужди.",
-                "Contact Mari for a free consultation and she will help you choose the ideal therapy for your needs.",
-                "Contatta Mari per una consulenza gratuita e ti aiuterà a scegliere la terapia ideale per le tue esigenze."
-              )}
+              {SERVICES_TEXT.cta.description[language]}
             </p>
             <DiscoveryCallButton size="lg" />
           </div>
