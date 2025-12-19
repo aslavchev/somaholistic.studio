@@ -4,11 +4,11 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { CONTACT, TESTIMONIALS } from "@/data";
+import { TESTIMONIALS_TEXT } from "@/data/translations";
 import { useState, useEffect } from "react";
 
 const Testimonials = () => {
   const { language } = useLanguage();
-  const { t } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start' },
@@ -35,14 +35,10 @@ const Testimonials = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-            {t("Какво казват", "What Our", "Cosa Dicono")} <span className="font-bold text-primary">{t("нашите клиенти", "Clients Say", "I Nostri Clienti")}</span>
+            {TESTIMONIALS_TEXT.heading.title[language]} <span className="font-bold text-primary">{TESTIMONIALS_TEXT.heading.titleHighlight[language]}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            {t(
-              "Споделени преживявания от хора, които са открили пътя към баланс и благополучие",
-              "Shared experiences from people who have discovered the path to balance and wellness",
-              "Esperienze condivise da persone che hanno scoperto il percorso verso l'equilibrio e il benessere"
-            )}
+            {TESTIMONIALS_TEXT.description[language]}
           </p>
         </div>
 
@@ -99,13 +95,13 @@ const Testimonials = () => {
           >
             <Star className="w-5 h-5 text-primary" aria-hidden="true" />
             <span className="font-semibold text-foreground">
-              {t("5.0 в Google Maps", "5.0 on Google Maps", "5.0 su Google Maps")}
+              {TESTIMONIALS_TEXT.trustBadges.googleRating[language]}
             </span>
           </a>
           <div className="bg-background px-6 py-3 rounded-full shadow-md flex items-center gap-2" data-testid="testimonial-trust-badge-cert">
             <span className="text-xl">✓</span>
             <span className="font-semibold text-foreground">
-              {t("Сертифициран специалист", "Certified Specialist", "Specialista Certificato")}
+              {TESTIMONIALS_TEXT.trustBadges.certified[language]}
             </span>
           </div>
         </div>

@@ -4,12 +4,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import Logo from "@/components/common/Logo";
 import { CONTACT } from "@/data";
+import { HEADER_TEXT } from "@/data/translations";
 import { useState } from "react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { scrollToSection } from '@/utils/scrollToSection';
 
 const Header = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useActiveSection();
 
@@ -27,13 +28,13 @@ const Header = () => {
   };
 
   const navItems = [
-    { id: 'services', labelBg: 'Услуги', labelEn: 'Services', labelIt: 'Servizi' },
-    { id: 'packages', labelBg: 'Пакети', labelEn: 'Packages', labelIt: 'Pacchetti' },
-    { id: 'gifts', labelBg: 'Подаръци', labelEn: 'Gifts', labelIt: 'Regali' },
-    { id: 'about', labelBg: 'За нас', labelEn: 'About', labelIt: 'Chi Siamo' },
-    { id: 'testimonials', labelBg: 'Отзиви', labelEn: 'Testimonials', labelIt: 'Testimonianze' },
-    { id: 'gallery', labelBg: 'Галерия', labelEn: 'Gallery', labelIt: 'Galleria' },
-    { id: 'contact', labelBg: 'Контакти', labelEn: 'Contact', labelIt: 'Contatti' }
+    { id: 'services', label: HEADER_TEXT.nav.services },
+    { id: 'packages', label: HEADER_TEXT.nav.packages },
+    { id: 'gifts', label: HEADER_TEXT.nav.gifts },
+    { id: 'about', label: HEADER_TEXT.nav.about },
+    { id: 'testimonials', label: HEADER_TEXT.nav.testimonials },
+    { id: 'gallery', label: HEADER_TEXT.nav.gallery },
+    { id: 'contact', label: HEADER_TEXT.nav.contact }
   ];
 
   return (
@@ -49,7 +50,7 @@ const Header = () => {
               <Logo size="md" />
               <div>
                 <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Соматични практики", "Somatic Practices", "Pratiche Somatiche")}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wide">{HEADER_TEXT.tagline[language]}</p>
               </div>
             </button>
           </div>
@@ -61,7 +62,7 @@ const Header = () => {
                 onClick={() => handleNavClick(item.id)}
                 className={`text-sm font-medium transition-colors ${activeSection === item.id ? "text-primary font-semibold" : "text-foreground hover:text-primary"}`}
               >
-                {t(item.labelBg, item.labelEn, item.labelIt)}
+                {item.label[language]}
               </button>
             ))}
           </nav>
@@ -72,7 +73,7 @@ const Header = () => {
               size="sm"
               className="lg:hidden text-primary hover:bg-accent"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? t("Затвори меню", "Close menu", "Chiudi menu") : t("Отвори меню", "Open menu", "Apri menu")}
+              aria-label={mobileMenuOpen ? HEADER_TEXT.mobileMenu.closeMenu[language] : HEADER_TEXT.mobileMenu.openMenu[language]}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -134,7 +135,7 @@ const Header = () => {
                   onClick={() => handleNavClick(item.id)}
                   className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 >
-                  {t(item.labelBg, item.labelEn, item.labelIt)}
+                  {item.label[language]}
                 </button>
               ))}
 

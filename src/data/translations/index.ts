@@ -14,3 +14,6 @@ export { SERVICES_TEXT } from "./services";
 export { SERVICECARD_TEXT } from "./servicecard";
 export { CONTACT_TEXT } from "./contact";
 export { HERO_TEXT } from "./hero";
+export { HEADER_TEXT } from "./header";
+export { TESTIMONIALS_TEXT } from "./testimonials";
+export { BOOKING_TEXT } from "./booking";
