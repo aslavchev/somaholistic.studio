@@ -7,14 +7,15 @@
 /**
  * Supported languages
  */
-export type Language = 'bg' | 'en';
+export type Language = 'bg' | 'en' | 'it';
 
 /**
- * Translated string with both Bulgarian and English versions
+ * Translated string with Bulgarian, English and Italian versions
  */
 export interface TranslatedString {
   bg: string;
   en: string;
+  it: string;
 }
 
 /**
