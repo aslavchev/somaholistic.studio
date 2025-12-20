@@ -26,9 +26,9 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
           <SelectTrigger id="service" data-testid="booking-service-select">
             <SelectValue placeholder={BOOKING_TEXT.step1.selectService[language]} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="max-w-[calc(100vw-2rem)]">
             {SERVICES.map((service) => (
-              <SelectItem key={service.id} value={service.id} className="py-3">
+              <SelectItem key={service.id} value={service.id}>
                 {service.title[language]}
               </SelectItem>
             ))}
