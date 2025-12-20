@@ -129,7 +129,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto mx-4" data-testid="booking-dialog">
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto w-[calc(100%-2rem)] mx-auto" data-testid="booking-dialog">
         <DialogHeader>
           <DialogTitle className="text-2xl font-semibold text-primary">
             {COMMON_TEXT.buttons.bookAppointment[language]}
