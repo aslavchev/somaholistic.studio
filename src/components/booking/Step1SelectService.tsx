@@ -16,19 +16,19 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
   const { language } = useLanguage();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div>
-        <Label htmlFor="service">{BOOKING_TEXT.step1.selectService[language]}</Label>
+        <Label htmlFor="service" className="mb-2 block">{BOOKING_TEXT.step1.selectService[language]}</Label>
         <Select
           value={formData.service}
           onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, service: value, duration: "" }))}
         >
-          <SelectTrigger id="service" data-testid="booking-service-select">
-            <SelectValue placeholder={BOOKING_TEXT.step1.selectService[language]} />
+          <SelectTrigger id="service" data-testid="booking-service-select" className="h-auto min-h-[40px]">
+            <SelectValue placeholder={BOOKING_TEXT.step1.selectService[language]} className="whitespace-normal text-left" />
           </SelectTrigger>
           <SelectContent>
             {SERVICES.map((service) => (
-              <SelectItem key={service.id} value={service.id}>
+              <SelectItem key={service.id} value={service.id} className="whitespace-normal">
                 {service.title[language]}
               </SelectItem>
             ))}
@@ -38,13 +38,13 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
 
       {formData.service && selectedServiceData && (
         <div>
-          <Label htmlFor="duration">{BOOKING_TEXT.step1.selectDuration[language]}</Label>
+          <Label htmlFor="duration" className="mb-2 block">{BOOKING_TEXT.step1.selectDuration[language]}</Label>
           <Select
             value={formData.duration}
             onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, duration: value }))}
           >
-            <SelectTrigger id="duration" data-testid="booking-duration-select">
-              <SelectValue placeholder={BOOKING_TEXT.step1.selectDuration[language]} />
+            <SelectTrigger id="duration" data-testid="booking-duration-select" className="h-auto min-h-[40px]">
+              <SelectValue placeholder={BOOKING_TEXT.step1.selectDuration[language]} className="whitespace-normal text-left" />
             </SelectTrigger>
             <SelectContent>
               {selectedServiceData.pricing.duration30 && (

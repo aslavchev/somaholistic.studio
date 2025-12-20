@@ -19,9 +19,9 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
   const { language } = useLanguage();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div>
-        <Label htmlFor="name">{BOOKING_TEXT.step3.yourName[language]} *</Label>
+        <Label htmlFor="name" className="mb-2 block">{BOOKING_TEXT.step3.yourName[language]} *</Label>
         <div className="relative">
           <User className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
           <Input
@@ -37,11 +37,11 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
             required
           />
         </div>
-        {errors.name && <p className="text-red-500 text-sm mt-1" data-testid="booking-name-error">{errors.name}</p>}
+        <p className={`text-sm mt-1 min-h-[20px] ${errors.name ? 'text-red-500' : 'invisible'}`} data-testid="booking-name-error">{errors.name || '\u00A0'}</p>
       </div>
 
       <div>
-        <Label htmlFor="phone">{BOOKING_TEXT.step3.phone[language]} *</Label>
+        <Label htmlFor="phone" className="mb-2 block">{BOOKING_TEXT.step3.phone[language]} *</Label>
         <div className="flex gap-2">
           <Select
             value={formData.countryCode}
@@ -77,7 +77,7 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
             />
           </div>
         </div>
-        {errors.phone && <p className="text-red-500 text-sm mt-1" data-testid="booking-phone-error">{errors.phone}</p>}
+        <p className={`text-sm mt-1 min-h-[20px] ${errors.phone ? 'text-red-500' : 'invisible'}`} data-testid="booking-phone-error">{errors.phone || '\u00A0'}</p>
       </div>
     </div>
   );

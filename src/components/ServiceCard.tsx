@@ -209,10 +209,10 @@ const ServiceCard = ({
             </h4>
             <div className="flex flex-col sm:flex-row gap-3">
               {price60 && duration60 && (
-                <div className="flex-1 bg-accent rounded-lg p-3 border border-border">
+                <div className="flex-1 bg-primary/10 rounded-lg p-3 border border-primary/20">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-lg font-bold text-accent-foreground">{price60}</span>
+                      <span className="text-lg font-bold text-primary">{price60}</span>
                       <div className="flex items-center text-xs text-muted-foreground mt-1">
                         <Clock className="w-3 h-3 mr-1" aria-hidden="true" />
                         {duration60}
