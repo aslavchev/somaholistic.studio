@@ -93,7 +93,7 @@ const ServiceCard = ({
     <Card
       ref={cardRef}
       className={`
-        service-card group rounded-xl overflow-hidden transition-all duration-300 cursor-pointer
+        service-card group rounded-xl overflow-hidden transition-all duration-300 cursor-pointer h-full flex flex-col
         ${featured ? 'border-primary shadow-lg' : 'border-border shadow-lg'}
         ${isExpanded ? 'border-2 border-primary bg-wellness-cream shadow-xl' : ''}
         md:hover:shadow-2xl md:hover:-translate-y-2
@@ -139,108 +139,111 @@ const ServiceCard = ({
         </div>
       )}
 
-      <CardContent className="p-6">
-        <h3 className={`
-          text-xl md:text-2xl font-semibold mb-3 text-foreground
-          ${featured ? 'text-primary' : ''}
-        `}>
-          {title}
-        </h3>
+      <CardContent className="p-6 flex-1 flex flex-col">
+        {/* Content that can vary in height */}
+        <div className="flex-1">
+          <h3 className={`
+            text-xl md:text-2xl font-semibold mb-3 text-foreground
+            ${featured ? 'text-primary' : ''}
+          `}>
+            {title}
+          </h3>
 
-        {/* Default/Collapsed Description */}
-        {!isExpanded && (
-          <p className="text-muted-foreground leading-relaxed text-sm md:text-base mb-6">
-            {shortDescription}
-          </p>
-        )}
-
-        {/* Expanded Content */}
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{
-                height: { duration: 0.35, ease: "easeOut" },
-                opacity: { duration: 0.2, delay: 0.1 }
-              }}
-              className="mb-6"
-            >
-              <p className="text-muted-foreground leading-relaxed text-sm md:text-base mb-6">
-                {description}
-              </p>
-
-              {benefits.length > 0 && (
-                <div className="mb-6">
-                  <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🌿 {SERVICECARD_TEXT.benefits.heading[language]}
-                  </h4>
-                  <ul className="space-y-3">
-                    {benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-sm text-foreground leading-relaxed">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {suitableFor.length > 0 && (
-                <div className="mb-6">
-                  <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
-                    🎯 {SERVICECARD_TEXT.suitableFor.heading[language]}
-                  </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {suitableFor.join(", ")}
-                  </p>
-                </div>
-              )}
-            </motion.div>
+          {/* Default/Collapsed Description */}
+          {!isExpanded && (
+            <p className="text-muted-foreground leading-relaxed text-sm md:text-base mb-6">
+              {shortDescription}
+            </p>
           )}
-        </AnimatePresence>
 
-        {/* Pricing */}
-        {(price60 || price90) && (
-          <div className="mb-6">
-            <h4 className="text-base font-semibold text-primary mb-3">
-              {COMMON_TEXT.phrases.pricesAndOptions[language]}
-            </h4>
-            <div className="flex flex-col sm:flex-row gap-3">
-              {price60 && duration60 && (
-                <div className="flex-1 bg-primary/10 rounded-lg p-3 border border-primary/20">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-lg font-bold text-primary">{price60}</span>
-                      <div className="flex items-center text-xs text-muted-foreground mt-1">
-                        <Clock className="w-3 h-3 mr-1" aria-hidden="true" />
-                        {duration60}
+          {/* Expanded Content */}
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{
+                  height: { duration: 0.35, ease: "easeOut" },
+                  opacity: { duration: 0.2, delay: 0.1 }
+                }}
+                className="mb-6"
+              >
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base mb-6">
+                  {description}
+                </p>
+
+                {benefits.length > 0 && (
+                  <div className="mb-6">
+                    <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
+                      🌿 {SERVICECARD_TEXT.benefits.heading[language]}
+                    </h4>
+                    <ul className="space-y-3">
+                      {benefits.map((benefit, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+                          <span className="text-sm text-foreground leading-relaxed">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {suitableFor.length > 0 && (
+                  <div className="mb-6">
+                    <h4 className="text-base font-semibold text-primary mb-3 flex items-center gap-2">
+                      🎯 {SERVICECARD_TEXT.suitableFor.heading[language]}
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {suitableFor.join(", ")}
+                    </p>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Pricing */}
+          {(price60 || price90) && (
+            <div className="mb-6">
+              <h4 className="text-base font-semibold text-primary mb-3">
+                {COMMON_TEXT.phrases.pricesAndOptions[language]}
+              </h4>
+              <div className="flex flex-col sm:flex-row gap-3">
+                {price60 && duration60 && (
+                  <div className="flex-1 bg-primary/10 rounded-lg p-3 border border-primary/20">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-lg font-bold text-primary">{price60}</span>
+                        <div className="flex items-center text-xs text-muted-foreground mt-1">
+                          <Clock className="w-3 h-3 mr-1" aria-hidden="true" />
+                          {duration60}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {price90 && duration90 && (
-                <div className="flex-1 bg-primary/10 rounded-lg p-3 border border-primary/20">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-lg font-bold text-primary">{price90}</span>
-                      <div className="flex items-center text-xs text-muted-foreground mt-1">
-                        <Clock className="w-3 h-3 mr-1" aria-hidden="true" />
-                        {duration90}
+                {price90 && duration90 && (
+                  <div className="flex-1 bg-primary/10 rounded-lg p-3 border border-primary/20">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-lg font-bold text-primary">{price90}</span>
+                        <div className="flex items-center text-xs text-muted-foreground mt-1">
+                          <Clock className="w-3 h-3 mr-1" aria-hidden="true" />
+                          {duration90}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
-        {/* Enhanced CTA Buttons - Always visible */}
-        <div className="space-y-2">
+        {/* Buttons section - stays at bottom */}
+        <div className="space-y-2 mt-auto">
             <Button
               onClick={(e) => {
                 e.stopPropagation();
