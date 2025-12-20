@@ -23,7 +23,7 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
           value={formData.service}
           onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, service: value, duration: "" }))}
         >
-          <SelectTrigger id="service" data-testid="booking-service-select" className="h-auto min-h-[40px] [&>span]:line-clamp-none">
+          <SelectTrigger id="service" data-testid="booking-service-select">
             <SelectValue placeholder={BOOKING_TEXT.step1.selectService[language]} />
           </SelectTrigger>
           <SelectContent>
@@ -43,7 +43,7 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
             value={formData.duration}
             onValueChange={(value) => setFormData((prev: BookingFormData) => ({ ...prev, duration: value }))}
           >
-            <SelectTrigger id="duration" data-testid="booking-duration-select" className="h-auto min-h-[40px] [&>span]:line-clamp-none">
+            <SelectTrigger id="duration" data-testid="booking-duration-select">
               <SelectValue placeholder={BOOKING_TEXT.step1.selectDuration[language]} />
             </SelectTrigger>
             <SelectContent>
