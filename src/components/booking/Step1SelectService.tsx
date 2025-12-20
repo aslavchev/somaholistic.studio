@@ -28,7 +28,7 @@ export const Step1SelectService = ({ formData, setFormData, selectedServiceData 
           </SelectTrigger>
           <SelectContent>
             {SERVICES.map((service) => (
-              <SelectItem key={service.id} value={service.id} className="whitespace-normal">
+              <SelectItem key={service.id} value={service.id} className="whitespace-normal py-3 pl-8 pr-2 leading-normal">
                 {service.title[language]}
               </SelectItem>
             ))}
