@@ -41,7 +41,7 @@ export const Step2DateTime = ({ formData, setFormData }: Step2Props) => {
 
       {formData.date && (
         <div>
-          <Label htmlFor="time" className="flex items-center gap-2">
+          <Label htmlFor="time" className="flex items-center gap-2 mb-2 block">
             <Clock className="w-4 h-4" />
             {BOOKING_TEXT.step2.selectTime[language]}
           </Label>
