@@ -101,10 +101,8 @@ const Gifts = () => {
 
                       return (
                         <SelectItem key={service.id} value={service.id} className="py-3">
-                          <span className="block">{service.title[language]}</span>
-                          <span className="text-xs text-muted-foreground block mt-1">
-                            €{price}
-                          </span>
+                          <span>{service.title[language]}</span>
+                          <span className="text-xs text-muted-foreground ml-2">€{price}</span>
                         </SelectItem>
                       );
                     })}

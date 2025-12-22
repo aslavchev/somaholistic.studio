@@ -4,7 +4,6 @@ import { Phone, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingDialog from "@/components/BookingDialog";
 import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
-import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import spaHero from "@/assets/spa-hero.webp";
 import { CONTACT } from "@/data";
 import { COMMON_TEXT, HERO_TEXT } from "@/data/translations";
@@ -38,15 +37,6 @@ const Hero = () => {
         
         <div className="relative container mx-auto px-4 py-16 text-center text-white">
           <div className="max-w-4xl mx-auto">
-            {/* Google Review Badge - Above title */}
-            <div
-              className={`mb-4 flex justify-center transition-all duration-700 ${
-                contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-              }`}
-            >
-              <GoogleReviewBadge className="text-white" />
-            </div>
-
             <h1
               className={`text-4xl md:text-6xl font-light mb-6 leading-tight transition-all duration-700 delay-100 ${
                 contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
