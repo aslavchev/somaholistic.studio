@@ -6,9 +6,15 @@
 
 /**
  * Format phone number as XXX XXX XXX
+ * Prevents 0 as first digit
  */
 export function formatPhone(value: string): string {
   const digits = value.replace(/\D/g, '');
+
+  // Prevent 0 as first digit
+  if (digits.length > 0 && digits[0] === '0') {
+    return formatPhone(digits.slice(1));
+  }
 
   if (digits.length <= 3) return digits;
   if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;

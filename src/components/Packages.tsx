@@ -1,8 +1,7 @@
-import { Check, Sparkles, Gift } from "lucide-react";
+import { Check, Sparkles, Gift, ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import DiscoveryCallButton from "@/components/common/DiscoveryCallButton";
 import { Button } from "@/components/ui/button";
-import { get4SessionPricing, get6SessionPricing } from "@/data";
+import { get4SessionPricing, get6SessionPricing, CONTACT } from "@/data";
 import { PACKAGES_TEXT } from "@/data/translations";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { scrollToSection } from "@/utils/scrollToSection";
@@ -15,6 +14,17 @@ const Packages = () => {
   // Get package pricing from centralized calculations
   const package4Sessions = get4SessionPricing();
   const package6Sessions = get6SessionPricing();
+
+  const handlePurchasePackage = (packageName: string, price: number) => {
+    const messages = {
+      bg: `Здравейте! Искам да закупя ${packageName} за €${price}.`,
+      en: `Hello! I would like to purchase the ${packageName} for €${price}.`,
+      it: `Ciao! Vorrei acquistare il ${packageName} per €${price}.`
+    };
+    const message = messages[language];
+    const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-primary/10" id="packages" data-testid="packages-section" aria-label="Wellness packages section">
@@ -94,11 +104,15 @@ const Packages = () => {
               </li>
             </ul>
 
-            <DiscoveryCallButton
+            <Button
               size="lg"
               variant="outline"
               className="w-full bg-white/10 border-white/30 hover:bg-white/20"
-            />
+              onClick={() => handlePurchasePackage(PACKAGES_TEXT.serenityVoyage.title[language], package4Sessions.price)}
+            >
+              <ShoppingBag className="w-4 h-4 mr-2" />
+              {language === 'bg' ? 'Закупи пакет' : language === 'en' ? 'Purchase Package' : 'Acquista Pacchetto'}
+            </Button>
           </div>
 
           {/* 4-Session Facial Bundle */}
@@ -148,10 +162,14 @@ const Packages = () => {
               </li>
             </ul>
 
-            <DiscoveryCallButton
+            <Button
               size="lg"
               className="w-full"
-            />
+              onClick={() => handlePurchasePackage(PACKAGES_TEXT.radianceRenaissance.title[language], package6Sessions.price)}
+            >
+              <ShoppingBag className="w-4 h-4 mr-2" />
+              {language === 'bg' ? 'Закупи пакет' : language === 'en' ? 'Purchase Package' : 'Acquista Pacchetto'}
+            </Button>
           </div>
         </div>
 

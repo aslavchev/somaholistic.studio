@@ -23,7 +23,7 @@ export const ALL_TIME_SLOTS = [
  * @param minAdvanceHours - Minimum hours in advance (default: 2)
  * @returns Array of available time slots
  */
-export function getAvailableTimeSlots(date: Date | undefined, minAdvanceHours: number = 2): string[] {
+export function getAvailableTimeSlots(date: Date | undefined, minAdvanceHours: number = 3): string[] {
   if (!date) return ALL_TIME_SLOTS;
 
   const now = new Date();
@@ -64,7 +64,7 @@ export function buildBookingMessage(
   },
   language: 'bg' | 'en' | 'it'
 ): string {
-  const fullPhone = `+${data.countryCode} ${data.phone}`;
+  const fullPhone = `${data.countryCode} ${data.phone}`;
   const formattedDate = data.date?.toLocaleDateString();
 
   return `${UTILS_TEXT.booking.greeting[language]}

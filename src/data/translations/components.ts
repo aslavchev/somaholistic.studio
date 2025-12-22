@@ -27,9 +27,9 @@ export const COMPONENTS_TEXT = {
   googleReviewBadge: {
     ratingAria: (rating: number, count: number, lang: 'bg' | 'en' | 'it') => {
       const templates = {
-        bg: `${rating} рейтинг с ${count} отзива в Google`,
-        en: `${rating} rating with ${count} Google reviews`,
-        it: `${rating} valutazione con ${count} recensioni Google`
+        bg: `Оценка ${rating} от 5 на база ${count} клиентски отзива в Google`,
+        en: `Rated ${rating} out of 5 based on ${count} Google customer reviews`,
+        it: `Valutato ${rating} su 5 sulla base di ${count} recensioni clienti Google`
       };
       return templates[lang];
     },

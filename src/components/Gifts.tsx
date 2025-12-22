@@ -90,23 +90,21 @@ const Gifts = () => {
             <div className="space-y-4 flex-grow flex flex-col justify-center">
               <div>
                 <Select value={selectedService} onValueChange={setSelectedService}>
-                  <SelectTrigger className="w-full h-12">
+                  <SelectTrigger className="w-full">
                     <SelectValue placeholder={GIFTS_TEXT.serviceVoucher.selectPlaceholder[language]} />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="max-w-[calc(100vw-2rem)]">
                     {SERVICES.map((service) => {
                       const price = service.pricing.duration30?.price ||
                                    service.pricing.duration60?.price ||
                                    service.pricing.duration90?.price || 0;
 
                       return (
-                        <SelectItem key={service.id} value={service.id}>
-                          <div className="flex justify-between items-center w-full">
-                            <span>{service.title[language]}</span>
-                            <span className="text-xs text-muted-foreground ml-4">
-                              €{price}
-                            </span>
-                          </div>
+                        <SelectItem key={service.id} value={service.id} className="py-3">
+                          <span className="block">{service.title[language]}</span>
+                          <span className="text-xs text-muted-foreground block mt-1">
+                            €{price}
+                          </span>
                         </SelectItem>
                       );
                     })}
