@@ -9,18 +9,19 @@ import { UTILS_TEXT } from "@/data/translations";
 
 /**
  * All available time slots during business hours
+ * Starting at 10:00 to ensure quality service preparation
  */
 export const ALL_TIME_SLOTS = [
-  "09:00", "10:00", "11:00", "12:00", "13:00", "14:00",
+  "10:00", "11:00", "12:00", "13:00", "14:00",
   "15:00", "16:00", "17:00", "18:00", "19:00"
 ];
 
 /**
  * Get available time slots for a given date
- * Enforces 2-hour minimum advance booking policy
+ * Enforces 3-hour minimum advance booking policy
  *
  * @param date - The selected date
- * @param minAdvanceHours - Minimum hours in advance (default: 2)
+ * @param minAdvanceHours - Minimum hours in advance (default: 3)
  * @returns Array of available time slots
  */
 export function getAvailableTimeSlots(date: Date | undefined, minAdvanceHours: number = 3): string[] {
@@ -43,6 +44,27 @@ export function getAvailableTimeSlots(date: Date | undefined, minAdvanceHours: n
 
     return slotDateTime > minAdvanceTime;
   });
+}
+
+/**
+ * Get optimal initial booking date
+ * Returns today if slots are available, otherwise tomorrow
+ *
+ * @param minAdvanceHours - Minimum hours in advance (default: 3)
+ * @returns Optimal date for booking
+ */
+export function getOptimalBookingDate(minAdvanceHours: number = 3): Date {
+  const today = new Date();
+  const availableSlotsToday = getAvailableTimeSlots(today, minAdvanceHours);
+
+  // If no slots available today, return tomorrow
+  if (availableSlotsToday.length === 0) {
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
+  }
+
+  return today;
 }
 
 /**

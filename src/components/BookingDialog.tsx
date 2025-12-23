@@ -10,7 +10,8 @@ import {
   validateName,
   sanitizeInput,
   buildBookingMessage,
-  buildWhatsAppUrl
+  buildWhatsAppUrl,
+  getOptimalBookingDate
 } from "@/lib/utils";
 import { Step1SelectService } from "./booking/Step1SelectService";
 import { Step2DateTime } from "./booking/Step2DateTime";
@@ -31,7 +32,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   const [formData, setFormData] = useState({
     service: "",
     duration: "",
-    date: new Date(),
+    date: getOptimalBookingDate(3), // Auto-select today or tomorrow based on availability
     time: "",
     name: "",
     phone: "",
@@ -115,7 +116,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       setIsSubmitting(false);
       onOpenChange(false);
       setStep(1);
-      setFormData({ service: "", duration: "", date: new Date(), time: "", name: "", phone: "", countryCode: "+359" });
+      setFormData({ service: "", duration: "", date: getOptimalBookingDate(3), time: "", name: "", phone: "", countryCode: "+359" });
       setErrors({ name: "", phone: "" });
     }, 1000);
   };
