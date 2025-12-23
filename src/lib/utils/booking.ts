@@ -81,14 +81,9 @@ export function buildBookingMessage(
     date: Date | undefined;
     time: string;
     name: string;
-    phone: string;
-    countryCode: string;
   },
   language: 'bg' | 'en' | 'it'
 ): string {
-  // Strip leading 0 if present (Bulgarian users type 0888, but international format is +359 888)
-  const cleanPhone = data.phone.replace(/^0/, '');
-  const fullPhone = `${data.countryCode} ${cleanPhone}`;
   const formattedDate = data.date?.toLocaleDateString();
 
   return `${UTILS_TEXT.booking.greeting[language]}
@@ -97,6 +92,5 @@ ${UTILS_TEXT.booking.service[language]} ${data.service}
 ${UTILS_TEXT.booking.duration[language]} ${data.duration}
 ${UTILS_TEXT.booking.date[language]} ${formattedDate}
 ${UTILS_TEXT.booking.time[language]} ${data.time}
-${UTILS_TEXT.booking.name[language]} ${data.name}
-${UTILS_TEXT.booking.phone[language]} ${fullPhone}`;
+${UTILS_TEXT.booking.name[language]} ${data.name}`;
 }

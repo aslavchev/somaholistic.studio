@@ -1,20 +1,18 @@
 import { BookingFormData, BookingErrors } from "./types";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { User, Phone } from "lucide-react";
+import { User } from "lucide-react";
 import { BOOKING_TEXT } from "@/data/translations";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { formatPhone } from "@/lib/utils";
 
 interface Step3Props {
   formData: BookingFormData;
   setFormData: (fn: (prev: BookingFormData) => BookingFormData) => void;
   errors: BookingErrors;
   handleValidateName: (value: string) => void;
-  handleValidatePhone: (value: string) => void;
 }
 
-export const Step3Contact = ({ formData, setFormData, errors, handleValidateName, handleValidatePhone }: Step3Props) => {
+export const Step3Contact = ({ formData, setFormData, errors, handleValidateName }: Step3Props) => {
   const { language } = useLanguage();
 
   return (
@@ -39,29 +37,12 @@ export const Step3Contact = ({ formData, setFormData, errors, handleValidateName
         <p className={`text-sm mt-1 min-h-[20px] ${errors.name ? 'text-red-500' : 'invisible'}`} data-testid="booking-name-error">{errors.name || '\u00A0'}</p>
       </div>
 
-      <div>
-        <Label htmlFor="phone" className="mb-2 block">{BOOKING_TEXT.step3.phone[language]} *</Label>
-        <div className="relative">
-          <Phone className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-          <div className="absolute left-10 top-3 text-sm text-muted-foreground pointer-events-none">
-            +359
-          </div>
-          <Input
-            id="phone"
-            type="tel"
-            placeholder="888 123 456"
-            value={formData.phone}
-            onChange={(e) => {
-              const formatted = formatPhone(e.target.value);
-              setFormData((prev: BookingFormData) => ({ ...prev, phone: formatted }));
-              handleValidatePhone(formatted);
-            }}
-            className={`pl-20 ${errors.phone ? 'border-red-500' : ''}`}
-            data-testid="booking-phone-input"
-            required
-          />
-        </div>
-        <p className={`text-sm mt-1 min-h-[20px] ${errors.phone ? 'text-red-500' : 'invisible'}`} data-testid="booking-phone-error">{errors.phone || '\u00A0'}</p>
+      <div className="bg-muted/50 border border-primary/20 rounded-lg p-4 text-sm">
+        <p className="text-muted-foreground">
+          {language === 'bg' && 'Ще ви се свържем чрез WhatsApp за потвърждение на часа.'}
+          {language === 'en' && 'We will contact you via WhatsApp to confirm your appointment.'}
+          {language === 'it' && 'Ti contatteremo tramite WhatsApp per confermare il tuo appuntamento.'}
+        </p>
       </div>
     </div>
   );

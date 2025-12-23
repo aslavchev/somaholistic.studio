@@ -4,11 +4,8 @@ export interface BookingFormData {
   date: Date;
   time: string;
   name: string;
-  phone: string;
-  countryCode: string;
 }
 
 export interface BookingErrors {
   name: string;
-  phone: string;
 }

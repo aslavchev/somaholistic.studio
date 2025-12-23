@@ -34,19 +34,11 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     duration: "",
     date: getOptimalBookingDate(3), // Auto-select today or tomorrow based on availability
     time: "",
-    name: "",
-    phone: "",
-    countryCode: "+359"
+    name: ""
   });
-  const [errors, setErrors] = useState({ name: "", phone: "" });
+  const [errors, setErrors] = useState({ name: "" });
 
   const selectedServiceData = SERVICES.find(s => s.id === formData.service);
-
-  const handleValidatePhone = useCallback((phone: string) => {
-    const result = validatePhone(phone, language);
-    setErrors(prev => ({ ...prev, phone: result.error || "" }));
-    return result.valid;
-  }, [language]);
 
   const handleValidateName = useCallback((name: string) => {
     const result = validateName(name, language);
@@ -57,9 +49,8 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
   useEffect(() => {
     if (step === 3) {
       if (formData.name) handleValidateName(formData.name);
-      if (formData.phone) handleValidatePhone(`+${formData.countryCode}${formData.phone.replace(/\s/g, '')}`);
     }
-  }, [step, formData.name, formData.phone, formData.countryCode, handleValidateName, handleValidatePhone]);
+  }, [step, formData.name, handleValidateName]);
 
   useEffect(() => {
     if (open && preselectedService) {
@@ -107,8 +98,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
     const message = buildBookingMessage({
       ...formData,
       service: sanitizeInput(serviceLabel),
-      name: sanitizeInput(formData.name),
-      phone: sanitizeInput(formData.phone)
+      name: sanitizeInput(formData.name)
     }, language);
     const url = buildWhatsAppUrl(CONTACT.WHATSAPP, message);
     window.open(url, "_blank");
@@ -116,14 +106,12 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
       setIsSubmitting(false);
       onOpenChange(false);
       setStep(1);
-      setFormData({ service: "", duration: "", date: getOptimalBookingDate(3), time: "", name: "", phone: "", countryCode: "+359" });
-      setErrors({ name: "", phone: "" });
+      setFormData({ service: "", duration: "", date: getOptimalBookingDate(3), time: "", name: "" });
+      setErrors({ name: "" });
     }, 1000);
   };
 
-  const canSubmit = formData.name.trim().length >= 2 &&
-                    formData.phone.replace(/\D/g, '').length >= 9 &&
-                    !errors.name && !errors.phone;
+  const canSubmit = formData.name.trim().length >= 2 && !errors.name;
 
   const canProceedStep1 = formData.service && formData.duration;
   const canProceedStep2 = formData.date && formData.time;
@@ -154,7 +142,7 @@ const BookingDialog = ({ open, onOpenChange, preselectedService }: BookingDialog
 
         {step === 1 && <Step1SelectService formData={formData} setFormData={setFormData} selectedServiceData={selectedServiceData} />}
         {step === 2 && <Step2DateTime formData={formData} setFormData={setFormData} />}
-        {step === 3 && <Step3Contact formData={formData} setFormData={setFormData} errors={errors} handleValidateName={handleValidateName} handleValidatePhone={handleValidatePhone} />}
+        {step === 3 && <Step3Contact formData={formData} setFormData={setFormData} errors={errors} handleValidateName={handleValidateName} />}
         {step === 4 && <Step4Summary formData={formData} selectedServiceData={selectedServiceData} />}
 
         <div className="flex justify-between mt-6">
