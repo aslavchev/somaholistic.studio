@@ -2,7 +2,7 @@ import { BookingFormData } from "./types";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ALL_TIME_SLOTS } from "@/lib/utils";
+import { getAvailableTimeSlots } from "@/lib/utils";
 import { BOOKING_TEXT } from "@/data/translations";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CalendarIcon, Clock } from "lucide-react";
@@ -14,7 +14,7 @@ interface Step2Props {
 
 export const Step2DateTime = ({ formData, setFormData }: Step2Props) => {
   const { language } = useLanguage();
-  const availableTimeSlots = ALL_TIME_SLOTS;
+  const availableTimeSlots = getAvailableTimeSlots(formData.date, 3);
 
   return (
     <div className="space-y-6">

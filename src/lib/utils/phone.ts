@@ -5,20 +5,17 @@
  */
 
 /**
- * Format phone number as XXX XXX XXX
- * Prevents 0 as first digit
+ * Format phone number as XXX XXX XXX or 0XXX XXX XXX
+ * Allows leading 0 (Bulgarian users type 0888 888 888)
  */
 export function formatPhone(value: string): string {
   const digits = value.replace(/\D/g, '');
 
-  // Prevent 0 as first digit
-  if (digits.length > 0 && digits[0] === '0') {
-    return formatPhone(digits.slice(1));
-  }
-
+  // Allow up to 10 digits (0888 888 888)
   if (digits.length <= 3) return digits;
   if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
-  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)}`;
+  if (digits.length <= 9) return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)}`;
+  return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7, 10)}`;
 }
 
 /**
