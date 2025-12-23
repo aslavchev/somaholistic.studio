@@ -59,15 +59,6 @@ export const Step4Summary = ({ formData, selectedServiceData }: Step4Props) => {
             </p>
           </div>
         </div>
-
-        <div className="flex items-start gap-3">
-          <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-          <div className="flex-1">
-            <p className="text-sm text-foreground" data-testid="booking-summary-phone">
-              <strong>{BOOKING_TEXT.step4.phone[language]}:</strong> {formData.countryCode} {formData.phone}
-            </p>
-          </div>
-        </div>
       </div>
 
       <div className="bg-muted/30 rounded-lg p-4">

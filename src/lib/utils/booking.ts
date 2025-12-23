@@ -85,11 +85,12 @@ export function buildBookingMessage(
   language: 'bg' | 'en' | 'it'
 ): string {
   const formattedDate = data.date?.toLocaleDateString();
+  const minText = language === 'bg' ? 'мин' : 'min';
 
   return `${UTILS_TEXT.booking.greeting[language]}
 
 ${UTILS_TEXT.booking.service[language]} ${data.service}
-${UTILS_TEXT.booking.duration[language]} ${data.duration}
+${UTILS_TEXT.booking.duration[language]} ${data.duration} ${minText}
 ${UTILS_TEXT.booking.date[language]} ${formattedDate}
 ${UTILS_TEXT.booking.time[language]} ${data.time}
 ${UTILS_TEXT.booking.name[language]} ${data.name}`;
