@@ -36,7 +36,7 @@ const Gifts = () => {
 
   const handleCustomPurchase = () => {
     const amount = parseFloat(customAmount);
-    if (amount && amount >= 25) {
+    if (amount && amount >= 26) {
       const message = GIFTS_TEXT.whatsappMessages.customAmount[language].replace('{amount}', amount.toString());
 
       const whatsappUrl = `https://wa.me/${CONTACT.WHATSAPP}?text=${encodeURIComponent(message)}`;
@@ -137,7 +137,7 @@ const Gifts = () => {
                 </span>
                 <Input
                   type="number"
-                  min="25"
+                  min="26"
                   step="5"
                   placeholder="100"
                   value={customAmount}
@@ -149,7 +149,7 @@ const Gifts = () => {
               </div>
               <Button
                 onClick={handleCustomPurchase}
-                disabled={!customAmount || parseFloat(customAmount) < 25}
+                disabled={!customAmount || parseFloat(customAmount) < 26}
                 size="lg"
                 className="px-8"
               >

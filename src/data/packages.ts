@@ -69,11 +69,11 @@ export const PACKAGE_4_SESSIONS: WellnessPackage = {
   },
   sessions: 4,
   price: Math.round(4 * 46 * 0.9),  // 4 sessions × €46 × 10% discount = €166
-  validityMonths: 6,
+  validityMonths: 2,
   benefits: [
-    { bg: '4 процедури класически масаж', en: '4 classical massage sessions' },
-    { bg: 'Валиден 6 месеца', en: 'Valid for 6 months' },
-    { bg: 'Приоритетно записване', en: 'Priority booking' }
+    { bg: '4 процедури класически масаж', en: '4 classical massage sessions', it: '4 sessioni di massaggio classico' },
+    { bg: 'Валиден 2 месеца', en: 'Valid for 2 months', it: 'Valido per 2 mesi' },
+    { bg: 'Приоритетно записване', en: 'Priority booking', it: 'Prenotazione prioritaria' }
   ],
   featured: true,
   popular: true
@@ -94,11 +94,11 @@ export const PACKAGE_6_SESSIONS: WellnessPackage = {
   },
   sessions: 4,
   price: Math.round(4 * 26 * 0.9),  // 4 sessions × €26 × 10% discount = €94
-  validityMonths: 6,
+  validityMonths: 2,
   benefits: [
-    { bg: '4 процедури подмладяващ масаж за лице', en: '4 rejuvenating facial massage sessions' },
-    { bg: 'Валиден 6 месеца', en: 'Valid for 6 months' },
-    { bg: 'Приоритетно записване', en: 'Priority booking' }
+    { bg: '4 процедури подмладяващ масаж за лице', en: '4 rejuvenating facial massage sessions', it: '4 sessioni di massaggio facciale ringiovanente' },
+    { bg: 'Валиден 2 месеца', en: 'Valid for 2 months', it: 'Valido per 2 mesi' },
+    { bg: 'Приоритетно записване', en: 'Priority booking', it: 'Prenotazione prioritaria' }
   ],
   featured: false,
   popular: false

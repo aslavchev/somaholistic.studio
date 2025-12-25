@@ -34,9 +34,9 @@ export const GIFTS_TEXT = {
   customAmount: {
     heading: { bg: "Персонализирана сума", en: "Custom Amount", it: "Importo Personalizzato" },
     description: {
-      bg: "Изберете своя собствена сума (минимум €25)",
-      en: "Choose your own amount (minimum €25)",
-      it: "Scegli il tuo importo (minimo €25)"
+      bg: "Изберете своя собствена сума (минимум €26)",
+      en: "Choose your own amount (minimum €26)",
+      it: "Scegli il tuo importo (minimo €26)"
     },
     sendButton: { bg: "Изпрати", en: "Send", it: "Invia" },
   },
