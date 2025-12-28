@@ -24,9 +24,9 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-3 mb-4">
               <Logo size="md" />
-              <div>
-                <h3 className="text-xl font-bold">SOMA STUDIO</h3>
-                <p className="text-xs uppercase opacity-80">
+              <div className="-space-y-0.5">
+                <h3 className="text-xl font-bold leading-tight">SOMA STUDIO</h3>
+                <p className="text-xs uppercase opacity-80 tracking-tight">
                   {FOOTER_TEXT.tagline[language]}
                 </p>
               </div>

@@ -43,9 +43,9 @@ const Header = () => {
           <div className="flex items-center space-x-2 md:space-x-4">
             <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity" aria-label="Scroll to top">
               <Logo size="md" />
-              <div>
-                <h1 className="text-xl font-bold" data-testid="header-logo-text">SOMA STUDIO</h1>
-                <p className="text-xs uppercase opacity-80">{HEADER_TEXT.tagline[language]}</p>
+              <div className="-space-y-0.5">
+                <h1 className="text-xl font-bold leading-tight" data-testid="header-logo-text">SOMA STUDIO</h1>
+                <p className="text-xs uppercase opacity-80 tracking-tight">{HEADER_TEXT.tagline[language]}</p>
               </div>
             </button>
           </div>
