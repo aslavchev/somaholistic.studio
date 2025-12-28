@@ -77,9 +77,9 @@ const Gifts = () => {
           }`}
         >
           <div className="bg-white rounded-xl shadow-md border-2 border-primary/20 p-8 flex flex-col">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Sparkles className="w-5 h-5 text-primary flex-shrink-0" />
-              <h3 className="text-xl font-bold text-foreground">
+            <div className="flex items-start justify-center gap-2 mb-3">
+              <Sparkles className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+              <h3 className="text-xl font-bold text-foreground text-center">
                 {GIFTS_TEXT.serviceVoucher.heading[language]}
               </h3>
             </div>
