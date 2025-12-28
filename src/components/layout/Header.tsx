@@ -1,7 +1,6 @@
 import { Phone, Instagram, Languages, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import GoogleReviewBadge from "@/components/common/GoogleReviewBadge";
 import Logo from "@/components/common/Logo";
 import { CONTACT } from "@/data";
 import { HEADER_TEXT } from "@/data/translations";
@@ -42,14 +41,10 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 md:space-x-4">
-            <div className="hidden md:block">
-              <GoogleReviewBadge variant="compact" />
-            </div>
-
             <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity" aria-label="Scroll to top">
               <Logo size="md" />
               <div>
-                <h1 className="text-xl font-bold text-foreground" data-testid="header-logo-text">SOMA STUDIO</h1>
+                <h1 className="text-xl font-bold" data-testid="header-logo-text">SOMA STUDIO</h1>
                 <p className="text-xs uppercase tracking-wide opacity-80">{HEADER_TEXT.tagline[language]}</p>
               </div>
             </button>
