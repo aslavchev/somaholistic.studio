@@ -66,8 +66,8 @@ const Contact = () => {
                       <div>
                         <p className="font-medium text-foreground">{COMMON_TEXT.form.address[language]}</p>
                         <p className="text-muted-foreground">
-                          {CONTACT.ADDRESS.AREA[language]}<br />
-                          {CONTACT.ADDRESS.STREET[language]}
+                          {CONTACT.ADDRESS.AREA}<br />
+                          {CONTACT.ADDRESS.STREET}
                         </p>
                         <a
                           href={CONTACT.GOOGLE_MAPS}

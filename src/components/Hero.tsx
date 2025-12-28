@@ -102,7 +102,7 @@ const Hero = () => {
               <DiscoveryCallButton
                 variant="outline"
                 size="lg"
-                className="bg-white/20 backdrop-blur-sm border-white/60 text-white font-semibold hover:bg-white/30 hover:border-white"
+                className="bg-white/20 backdrop-blur-sm border-white/60 text-white font-semibold hover:bg-white/30 hover:border-white rounded-full"
               />
             </div>
           </div>
