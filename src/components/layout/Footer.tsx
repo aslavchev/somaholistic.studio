@@ -26,7 +26,7 @@ const Footer = () => {
               <Logo size="md" />
               <div>
                 <h3 className="text-xl font-bold">SOMA STUDIO</h3>
-                <p className="text-xs uppercase tracking-wide opacity-80">
+                <p className="text-xs uppercase opacity-80">
                   {FOOTER_TEXT.tagline[language]}
                 </p>
               </div>

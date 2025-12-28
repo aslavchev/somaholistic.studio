@@ -45,7 +45,7 @@ const Header = () => {
               <Logo size="md" />
               <div>
                 <h1 className="text-xl font-bold" data-testid="header-logo-text">SOMA STUDIO</h1>
-                <p className="text-xs uppercase tracking-wide opacity-80 -ml-[0.5px]">{HEADER_TEXT.tagline[language]}</p>
+                <p className="text-xs uppercase opacity-80">{HEADER_TEXT.tagline[language]}</p>
               </div>
             </button>
           </div>
